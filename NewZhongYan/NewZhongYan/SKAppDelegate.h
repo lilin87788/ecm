@@ -11,7 +11,6 @@
 @class SKAgentLogonManager;
 @class User;
 #define System_Version_Small_Than_(v) (DeviceSystemMajorVersion() < v)
-
 @interface SKAppDelegate : UIResponder <UIApplicationDelegate>
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UIStoryboard *mainStoryboard;

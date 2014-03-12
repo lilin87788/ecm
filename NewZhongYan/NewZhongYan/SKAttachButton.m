@@ -33,20 +33,20 @@
         [self addSubview:_attachLabel];
         
         _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        [_indicator setFrame:CGRectMake(255, 5, 38, 38)];
+        [_indicator setFrame:CGRectMake(264, 5, 38, 38)];
         [self addSubview:_indicator];
         
         delelteAttachBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [delelteAttachBtn setBackgroundImage:[UIImage imageNamed:@"btn_delete"] forState:UIControlStateNormal];
         [delelteAttachBtn setBackgroundImage:[UIImage imageNamed:@"btn_delete_highlight"] forState:UIControlStateHighlighted];
-        [delelteAttachBtn setFrame:CGRectMake(frame.size.width - 35, 10, 25, 25)];
+        [delelteAttachBtn setFrame:CGRectMake(frame.size.width - 28, 10, 25, 25)];
         [delelteAttachBtn addTarget:self action:@selector(deleteAttachment:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:delelteAttachBtn];
         
         _downloadButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_downloadButton setBackgroundImage:[UIImage imageNamed:@"btn_download"] forState:UIControlStateNormal];
         [_downloadButton setBackgroundImage:[UIImage imageNamed:@"btn_download_highlight"] forState:UIControlStateHighlighted];
-        [_downloadButton setFrame:CGRectMake(frame.size.width - 34, 10, 24, 24)];
+        [_downloadButton setFrame:CGRectMake(frame.size.width - 27, 10, 24, 24)];
         [_downloadButton addTarget:self action:@selector(loadAttachment) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_downloadButton];
         
@@ -70,7 +70,6 @@
     if (self) {
         previewController = [[SKQLPreviewController alloc] init];
         previewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-        
         _attachLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 12, 235, 20)];
         [_attachLabel setTextColor:[UIColor blackColor]];
         [_attachLabel setBackgroundColor:[UIColor clearColor]];
@@ -186,6 +185,7 @@
         {
             [_request clearDelegatesAndCancel];
             [ASIHTTPRequest removeFileAtPath:self.filePath error:0];
+            [_downloadButton setHidden:NO];
             [self.progresser setHidden:YES];
             [self.indicator stopAnimating];
             return;

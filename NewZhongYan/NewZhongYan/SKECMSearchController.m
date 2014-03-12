@@ -262,7 +262,7 @@
 {
     Paper* paper = _dataArray[indexPath.row];
     UIFont *font = [UIFont fontWithName:@"Helvetica" size:16.];
-    CGSize size = [paper.title sizeWithFont:font constrainedToSize:CGSizeMake(270, 220) lineBreakMode:NSLineBreakByTruncatingTail];
+    CGSize size = [paper.title sizeWithFont:font constrainedToSize:CGSizeMake(280, 220) lineBreakMode:NSLineBreakByTruncatingTail];
     return size.height + 32;
 }
 

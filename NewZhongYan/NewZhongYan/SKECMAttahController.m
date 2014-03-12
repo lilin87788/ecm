@@ -63,8 +63,8 @@
 -(void) analysisXml:(NSString *) contentPath
 {
     NSData *data=[NSData dataWithContentsOfFile:contentPath];
-//    NSString* xml = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//    NSLog(@"%@",xml);
+    NSString* xml = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",xml);
     DDXMLDocument *doc = [[DDXMLDocument alloc] initWithData:data options:0 error:0];
     _detail = [[SKECMDetail alloc] init];
 
@@ -199,7 +199,7 @@
     }
 
     if (_detail.addition.count) {
-        inscribeContentCount = _detail.inscribe.count;
+        inscribeContentCount = _detail.addition.count;
         UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, _curHeight, 320, 25)];
         [view setBackgroundColor:COLOR(242, 240, 241)];
         [_bgscrollview addSubview:view];
@@ -212,8 +212,13 @@
         [view addSubview:label];
         _curHeight = CGRectGetMaxY(view.frame);
         for (Content *content in _detail.addition) {
-            if ([self.channel.TYPELABLE rangeOfString:@"meeting"].location == NSNotFound
-                && [content.type isEqualToString:@"mark"])
+//            if ([self.channel.TYPELABLE rangeOfString:@"meeting"].location == NSNotFound
+//                && [content.type isEqualToString:@"mark"])
+//            {
+//                inscribeContentCount --;
+//            }
+            
+            if ([content.type isEqualToString:@"mark"])
             {
                 inscribeContentCount --;
             }
@@ -240,6 +245,23 @@
 -(void) addText:(Content *) content{
     UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(20, _curHeight, 280, 1)];
     [label setText:content.value];
+    [label setNumberOfLines:0];
+    //[label setBackgroundColor:COLOR(17, 168, 171)];
+    [label setTextColor:[UIColor lightGrayColor]];
+    [label setFont:[UIFont systemFontOfSize:14]];
+    [label setTextAlignment:NSTextAlignmentRight];
+    [label setTag:1];//1 表示该view是自己添加的，而不是系统自带的
+    [label sizeToFit];
+    CGRect rect = label.frame;
+    rect.origin.x = 320 - 20 - label.frame.size.width;
+    label.frame = rect;
+    [_bgscrollview addSubview:label];
+    _curHeight = CGRectGetMaxY(label.frame);
+}
+
+-(void)addMeetingtime:(Content *) content{
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(20, _curHeight, 280, 1)];
+    [label setText:[NSString stringWithFormat:@"%@: %@",content.name,content.value]];
     [label setNumberOfLines:0];
     //[label setBackgroundColor:COLOR(17, 168, 171)];
     [label setTextColor:[UIColor lightGrayColor]];
@@ -312,7 +334,7 @@
 }
 
 -(void) showContent:(Content *) content{
-    //[content show];
+    [content show];
     if (content.type == nil) {
         [self addText:content];
     }
@@ -336,9 +358,11 @@
     }//如果是文字
     else if ([content.type isEqualToString:@"mark"])
     {
-        if ([self.channel.TYPELABLE rangeOfString:@"meeting"].location != NSNotFound ) {
-            [self addMark:content];
-        }
+//        if ([self.channel.TYPELABLE rangeOfString:@"meeting"].location != NSNotFound ) {
+//            [self addMark:content];
+//        }
+    }else if ([content.type isEqualToString:@"meetingtime"]){
+        [self addMeetingtime:content];
     }
 }
 

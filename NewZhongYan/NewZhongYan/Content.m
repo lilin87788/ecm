@@ -18,7 +18,6 @@
 
 -(void)show
 {
-    NSLog(@"====================");
      NSLog(@"\nidatta = %@\nname = %@\ntype = %@\nvalue = %@",idatta,name,type,value);
 }
 @end

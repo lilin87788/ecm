@@ -140,9 +140,6 @@
 
 -(void)rootButtonPressed:(UIButton*)btn
 {
-    
-    //数据
-    //[self dataFromDBForRootItems];
     _currentPDPID = @"";
     isHome = YES;
     [_dataUItems setArray:[_dataUShowed objectAtIndex:0]];

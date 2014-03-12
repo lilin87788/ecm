@@ -244,7 +244,14 @@
                                                    }];
             }];
         } faliure:^(NSError* error){
-            NSLog(@"%@",error);
+            [SKDaemonManager SynMaxUpdateDateWithClient:self.clientApp
+                                               complete:^(NSMutableArray* array){
+                                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                                       [self reloadBageNumberWithServerInfo:array];
+                                                   });
+                                               } faliure:^(NSError* error){
+                                                   
+                                               }];
         }];
     }
 }
@@ -284,8 +291,7 @@
     }];
 }
 
--(long long)maxuptmFromServer:(NSArray*)array ChannelCode:(NSString*)code
-{
+-(long long)maxuptmFromServer:(NSArray*)array ChannelCode:(NSString*)code{
     for (NSDictionary* dict in array) {
         NSDictionary* vinfo = dict[@"v"];
         if ([vinfo[@"CHANNELCODE"] isEqualToString:code]) {
@@ -332,8 +338,7 @@
     }
 }
 
--(void)setECMBadgeNumber
-{
+-(void)setECMBadgeNumber{
     for (UIDragButton *btn in upButtons)
     {
         if (![btn.channel.TYPELABLE isEqualToString:@"meeting,"]) {
@@ -344,8 +349,7 @@
     }
 }
 
--(void)setBadgeNumber
-{
+-(void)setBadgeNumber{
     dispatch_async(dispatch_get_main_queue(), ^{
         for (UIDragButton *btn in upButtons)
         {
@@ -431,8 +435,7 @@
     });
 }
 
--(void)didReceiveMemoryWarning
-{
+-(void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     NSLog(@"SKGridController 我内存报警了，来治我吧。。。");
 }

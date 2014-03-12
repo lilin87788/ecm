@@ -145,7 +145,7 @@
 }
 
 #pragma mark -Actionsheet delegate
-- (void)actionSheet:(UIActionSheet *)as clickedButtonAtIndex:(NSInteger)anIndex
+- (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)anIndex
 {
     if (currentIndex == anIndex || anIndex == subChannels.count) {
         return;
@@ -393,19 +393,16 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (isMeeting) {
-        NSDictionary* dataDictionary;
         NSString* sectionName  = [_sectionArray objectAtIndex:indexPath.section];//获取section 的名字
         NSArray * sectionArray = [_sectionDictionary objectForKey:sectionName];  //获取本section 的数据
-        dataDictionary = [sectionArray objectAtIndex:indexPath.row];
-        CGFloat contentWidth = 280;
-        UIFont *font =  [UIFont fontWithName:@"Helvetica" size:16.];
-        CGSize size = [dataDictionary[@"TITL"] sizeWithFont:font constrainedToSize:CGSizeMake(contentWidth, 220) lineBreakMode:NSLineBreakByCharWrapping];
-        CGFloat height = size.height+55;
-        return height;
+        NSDictionary*  dataDictionary = [sectionArray objectAtIndex:indexPath.row];
+        return [dataDictionary[@"TITL"] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:16.]
+                                          constrainedToSize:CGSizeMake(280, 220)
+                                              lineBreakMode:NSLineBreakByCharWrapping].height+55;
     }else{
-        UIFont *font = [UIFont systemFontOfSize:16];
-        CGSize size = [_dataItems[indexPath.row][@"TITL"]  sizeWithFont:font constrainedToSize:CGSizeMake(270, 220) lineBreakMode:NSLineBreakByTruncatingTail];
-        return size.height + 30;
+        return [_dataItems[indexPath.row][@"TITL"]  sizeWithFont:[UIFont fontWithName:@"Helvetica" size:16.]
+                                                      constrainedToSize:CGSizeMake(280, 220)
+                                                          lineBreakMode:NSLineBreakByTruncatingTail].height + 30;
     }
 }
 @end

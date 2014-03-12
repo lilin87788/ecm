@@ -42,7 +42,7 @@
 #define ReportLossCode      3004 //挂失
 #define RegistInfoCode      3005 //注册信息无效
 #define AuthInfoCode        3006
-
+#define DataNoneCode        3011
 //#define SD_WEBP 1
 
 typedef void (^basicBlock)(void);

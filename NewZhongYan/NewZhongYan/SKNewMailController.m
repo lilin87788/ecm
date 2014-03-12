@@ -1095,10 +1095,9 @@
     return YES;
 }
 
-- (BOOL)textFieldDidBeginEditing:(UITextField *)textField
+- (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [scrollView setContentOffset:CGPointMake(0, textField.frame.origin.y) animated:YES];
-    return YES;
 }
 
 

@@ -7,6 +7,14 @@
 //
 
 #import "ASIHTTPRequest.h"
+typedef enum  {
+    SKHTTPRequestErrorDataNone = 3011,//没有获取到数据
+    SKHTTPRequestErrorTypeReportLoss = 3004,//挂失
+    SKHTTPRequestErrorTypeRegistInfo= 3005,//注册信息无效
+    SKHTTPRequestErrorTypeAuthInfoCode = 3006,//验证失败
+    SKHTTPRequestErrorDefault = -1
+}SKHTTPRequestErrorType;
+
 @interface SKHTTPRequest : ASIHTTPRequest
 {
     NSString    *returncode;  //返回码

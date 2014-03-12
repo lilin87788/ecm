@@ -183,6 +183,9 @@
 
 -(void)loginWithUser:(User*)user CompleteBlock:(basicBlock)block failureBlock:(errorBlock)errorblock
 {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [BWStatusBarOverlay showLoadingWithMessage:@"正在登录..." animated:YES];
+    });
     [SKAppDelegate sharedCurrentUser].logging = YES;
     if ([self isLoggedCookieValidity]) {
         [self logOut];
@@ -205,18 +208,29 @@
         {
             if (![self isLoggedCookieValidity]){
                 if (errorblock) {
-                    errorblock(@{@"name": @"登录失败",@"reason":@"帐号或者密码错误"});
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UIAlertView* av = [UIAlertView showAlertString:@"帐号或者密码已经被修改请重新登录"];
+                        av.delegate = self;
+                        av.tag = 101;
+                    });
+                    //errorblock(@{@"name": @"登录失败",@"reason":@"帐号或者密码错误"});
                 }
             }else{
                 [loggedUser setLogged:YES];
                 [loggedUser setLastLoginDate:[NSDate date]];
                 if(block){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [BWStatusBarOverlay showSuccessWithMessage:@"登录成功" duration:1 animated:1];
+                    });
                     block();
                 }
             }
         }else {
             if (errorblock) {
-                errorblock(@{@"name": @"登录失败",@"reason":@"服务器异常"});
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [BWStatusBarOverlay showErrorWithMessage:@"服务器异常" duration:1 animated:YES];
+                    errorblock(@{@"name": @"登录失败",@"reason":@"服务器异常"});
+                });
             }
         }
         [SKAppDelegate sharedCurrentUser].logging = NO;

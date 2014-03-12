@@ -63,7 +63,7 @@
         }];
     } faliure:^(NSError* error){
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (error.code == 2001) {
+            if (error.code == DataNoneCode) {
                 [BWStatusBarOverlay showSuccessWithMessage:[NSString stringWithFormat:@"同步%@完成",self.channel.NAME] duration:1 animated:1];
             }
             [self.tableView tableViewDidFinishedLoading];
@@ -288,7 +288,7 @@
     } faliure:^(NSError* error){
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView tableViewDidFinishedLoading];
-            if (error.code == 2001) {
+            if (error.code == DataNoneCode) {
                 [self.tableView setReachedTheEnd:YES];
             }
         });

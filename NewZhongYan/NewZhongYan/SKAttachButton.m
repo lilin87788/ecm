@@ -130,20 +130,34 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        if ([_request isExecuting])
-        {
-            [_request clearDelegatesAndCancel];
-            [ASIHTTPRequest removeFileAtPath:self.filePath error:0];
-            [self.progresser setHidden:YES];
-            [self.indicator stopAnimating];
-            return;
+    if (alertView.tag == 1001) {
+        if (buttonIndex != alertView.cancelButtonIndex) {
+            NSError* error = nil;
+            [SKHTTPRequest removeFileAtPath:self.filePath error:&error];
+            if (error) {
+                NSLog(@"删除失败");
+            }else{
+                [self setIsAttachExisted:NO];
+            }
         }
-        _request = [[SKHTTPRequest alloc] initWithURL:self.attachUrl];
-        [_request setDownloadDestinationPath:self.filePath];
-        [_request setDownloadProgressDelegate:self.progresser];
-        [_request setDelegate:self];
-        [_request startAsynchronous];
+    }
+    
+    if (alertView.tag == 1002) {
+        if (buttonIndex == 1) {
+            if ([_request isExecuting])
+            {
+                [_request clearDelegatesAndCancel];
+                [ASIHTTPRequest removeFileAtPath:self.filePath error:0];
+                [self.progresser setHidden:YES];
+                [self.indicator stopAnimating];
+                return;
+            }
+            _request = [[SKHTTPRequest alloc] initWithURL:self.attachUrl];
+            [_request setDownloadDestinationPath:self.filePath];
+            [_request setDownloadProgressDelegate:self.progresser];
+            [_request setDelegate:self];
+            [_request startAsynchronous];
+        }
     }
 }
 
@@ -180,6 +194,7 @@
         
         if ([APPUtils currentReachabilityStatus] == ReachableViaWWAN) {
             UIAlertView* alter = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当前网络为3G状态，继续下载会使用大量的流量..." delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"继续", nil];
+            [alter setTag:1002];
             [alter show];
             return;
         }
@@ -239,14 +254,11 @@
     [_downloadButton setHidden:YES];
 }
 
+
 -(void)deleteAttachment:(id)sender{
-    NSError* error = nil;
-    [SKHTTPRequest removeFileAtPath:self.filePath error:&error];
-    if (error) {
-        NSLog(@"删除失败");
-    }else{
-        [self setIsAttachExisted:NO];
-    }
+    UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确定要删除该文件吗" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [av setTag:1001];
+    [av show];
 }
 
 -(void)setIsAttachExisted:(BOOL)attachExisted{

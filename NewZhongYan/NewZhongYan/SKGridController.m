@@ -55,7 +55,7 @@
     [_rootController performSegueWithIdentifier:btn.controllerName sender:self];
 }
 
--(void)initChannelView
+-(void)initChannelView:(basicBlock)completeBlock
 {
     for (UIView* v in self.view.subviews) {
         if (v.class == [UIDragButton class]) {
@@ -91,6 +91,9 @@
             [upButtons addObject:dragbtn];
         }
         [self setUpButtonsFrameWithAnimate:NO withoutShakingButton:nil];
+        if (completeBlock) {
+            completeBlock();
+        }
     });
 }
 
@@ -229,39 +232,46 @@
 {
     [super viewDidAppear:animated];
     if ([self.clientApp.APPTYPE isEqualToString:@"ECM"]) {
-        [SKDaemonManager SynMaxUpdateDateWithClient:self.clientApp
-                                           complete:^(NSMutableArray* array){
-                                               dispatch_async(dispatch_get_main_queue(), ^{
-                                                   [self reloadBageNumberWithServerInfo:array];
-                                               });
-                                           } faliure:^(NSError* error){
-                                               NSLog(@"SynMaxUpdateDateWithClient %@",error);
-                                           }];
+        [SKDaemonManager SynChannelWithClientApp:self.clientApp complete:^{
+            [self initChannelView:^{
+                [SKDaemonManager SynMaxUpdateDateWithClient:self.clientApp
+                                                   complete:^(NSMutableArray* array){
+                                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                                           [self reloadBageNumberWithServerInfo:array];
+                                                       });
+                                                   } faliure:^(NSError* error){
+                                                       
+                                                   }];
+            }];
+        } faliure:^(NSError* error){
+            NSLog(@"%@",error);
+        }];
     }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //[self.view setBackgroundColor:COLOR(17, 168, 171)];
-    [self initChannelView];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self reloadBageNumber];
-    });
+    [self initChannelView:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self reloadBageNumber];
+        });
+    }];
 }
 
 -(void)reloadData
 {
     [SKDaemonManager SynChannelWithClientApp:self.clientApp complete:^{
-        [self initChannelView];
-        [SKDaemonManager SynMaxUpdateDateWithClient:self.clientApp
-                                           complete:^(NSMutableArray* array){
-                                               dispatch_async(dispatch_get_main_queue(), ^{
-                                                   [self reloadBageNumberWithServerInfo:array];
-                                               });
-                                           } faliure:^(NSError* error){
-                                               
-                                           }];
+        [self initChannelView:^{
+            [SKDaemonManager SynMaxUpdateDateWithClient:self.clientApp
+                                               complete:^(NSMutableArray* array){
+                                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                                       [self reloadBageNumberWithServerInfo:array];
+                                                   });
+                                               } faliure:^(NSError* error){
+                                                   
+                                               }];
+        }];
     } faliure:^(NSError* error){
         [SKDaemonManager SynMaxUpdateDateWithClient:self.clientApp
                                            complete:^(NSMutableArray* array){

@@ -169,7 +169,7 @@ static NSOperationQueue* sharedQueue = nil;
 {
     SKHTTPRequest* request = [SKHTTPRequest requestWithURL:[SKECMURLManager getAllChannelWithAppCode:_client.CODE]];
     [request startSynchronous];
-    NSLog(@"%@  %@",request.url,request.responseString);
+    //NSLog(@"%@  %@",request.url,request.responseString);
     if (!request.error) {
         SKMessageEntity* entity = [[SKMessageEntity alloc] initWithData:[request responseData]];
         if (!entity.praserError) {
@@ -186,7 +186,9 @@ static NSOperationQueue* sharedQueue = nil;
             }
         }
     }else{
-        if (_faliureBlock) {
+        if (request.errorcode == DataNoneCode) {
+            _faliureBlock([NSError errorWithDomain:@"ECMRequestError" code:DataNoneCode userInfo:@{@"reason": @"获取数据元信息错误"}]);
+        }else{
             _faliureBlock([NSError errorWithDomain:ERRORDOMAIN code:RequestDataError userInfo:@{@"reason": request.errorinfo}]);
         }
     }
@@ -219,7 +221,9 @@ static NSOperationQueue* sharedQueue = nil;
             }
         }
     }else{
-        if (_faliureBlock) {
+        if (request.errorcode == DataNoneCode) {
+            _faliureBlock([NSError errorWithDomain:@"ECMRequestError" code:DataNoneCode userInfo:@{@"reason": @"获取数据元信息错误"}]);
+        }else{
             _faliureBlock([NSError errorWithDomain:ERRORDOMAIN code:RequestMetaError userInfo:@{@"reason": @"获取数据元信息错误"}]);
         }
         return;
@@ -230,7 +234,7 @@ static NSOperationQueue* sharedQueue = nil;
     NSURL* url = [SKECMURLManager getDocunmentWithChannelCode:_channel.CODE QueryDate:(_isUp ? _channel.MAXUPTM :_channel.MINUPTM) isUP:_isUp];
     SKHTTPRequest* request = [SKHTTPRequest requestWithURL:url];
     [request startSynchronous];
-    //NSLog(@"%@ %@ ",request.url,request.responseString);
+   // NSLog(@"%@ %@ ",request.url,request.responseString);
     if (!request.error) {
         SKMessageEntity* entity = [[SKMessageEntity alloc] initWithData:[request responseData]];
         if (!entity.praserError) {
@@ -246,7 +250,9 @@ static NSOperationQueue* sharedQueue = nil;
             }
         }
     }else{
-        if (_faliureBlock) {
+        if (request.errorcode == DataNoneCode) {
+            _faliureBlock([NSError errorWithDomain:@"ECMRequestError" code:DataNoneCode userInfo:@{@"reason": @"获取数据元信息错误"}]);
+        }else{
             _faliureBlock([NSError errorWithDomain:ERRORDOMAIN code:RequestMetaError userInfo:@{@"reason": @"获取文档列表错误"}]);
         }
         return;

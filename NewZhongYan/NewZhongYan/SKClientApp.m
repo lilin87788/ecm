@@ -73,8 +73,11 @@
             }
         }
     }else{
-        if (faliureblock) {
+        if (request.errorcode == DataNoneCode) {
+            faliureblock([NSError errorWithDomain:@"ECMRequestError" code:DataNoneCode userInfo:@{@"reason": @"获取数据元信息错误"}]);
+        }else{
             faliureblock([NSError errorWithDomain:@"ECMRequestError" code:1003 userInfo:@{@"reason": @"获取数据元信息错误"}]);
+            
         }
     }
 }
@@ -88,7 +91,7 @@
     }else{
         SKMessageEntity* entity = [[SKMessageEntity alloc] initWithData:request.responseData];
         if (entity.praserError) {
-            if (entity.praserError.code == 2001) {
+            if (entity.praserError.code == DataNoneCode) {
                 @throw [NSException exceptionWithName:@"获取应用列表失败" reason:@"该用户没有任何应用数据" userInfo:nil];
             }else{
                 @throw [NSException exceptionWithName:@"获取应用列表失败" reason:@"服务器数据异常" userInfo:nil];

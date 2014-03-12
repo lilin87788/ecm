@@ -506,11 +506,18 @@
         if ([username length] > 0 ) {
             [FileUtils setvalueToPlistWithKey:@"gpusername" Value:@""];//这里一般不是第一次登陆 比如屏幕保护密码输错
         }else{
-            [self firstInitClientApp];
-            [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedEmployee] delegate:self];
-            [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedOranizational] delegate:self];
-            [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedUnit] delegate:self];
-            [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedSelfEmployee] delegate:0];
+            if ([APPUtils currentReachabilityStatus] != NotReachable) {
+                [self firstInitClientApp];
+                [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedEmployee] delegate:self];
+                [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedOranizational] delegate:self];
+                [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedUnit] delegate:self];
+                [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedSelfEmployee] delegate:0];
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [SKAppDelegate sharedCurrentUser].logging = NO;
+                    [BWStatusBarOverlay showSuccessWithMessage:@"当前网络不可用，请检查网络设置" duration:1 animated:1];
+                });
+            }
         }
     }else{
         if ([APPUtils currentReachabilityStatus] != NotReachable) {
@@ -521,32 +528,33 @@
                 if (sleepSecond > 1500 && [self isLoggedCookieValidity]) {
                     [self afterOnLogon];
                 }else{
-                    [BWStatusBarOverlay showLoadingWithMessage:@"正在登录..." animated:YES];
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                         [[APPUtils AppLogonManager] loginWithUser:[SKAppDelegate sharedCurrentUser]
                                                     CompleteBlock:^{
-                                                        dispatch_async(dispatch_get_main_queue(), ^{
-                                                            [BWStatusBarOverlay showSuccessWithMessage:@"登录成功" duration:1 animated:1];
-                                                        });
                                                         [self afterOnLogon];
                                                     }failureBlock:^(NSDictionary* dict){
-                                                        dispatch_async(dispatch_get_main_queue(), ^{
-                                                            [BWStatusBarOverlay showErrorWithMessage:dict[@"reason"] duration:1 animated:YES];
-                                                            if ([dict[@"reason"] isEqualToString:@"帐号或者密码错误"])
-                                                            {
-                                                                UIAlertView* av = [UIAlertView showAlertString:@"帐号或者密码已经被修改请重新登录"];
-                                                                av.delegate = self;
-                                                                av.tag = 101;
-                                                            }
-                                                        });
+                                                        
                                                     }];
                     });
                 }
                 
+            }else{
+                //有事后需要检查是否需要重新构建grid 界面 比如 bug10 首次登陆 help 界面 再进来的情况
+                if (!clientAppArray) {
+                    [self firstInitClientApp];
+                    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ECONTACTSYNED"]) {
+                        if ([APPUtils currentReachabilityStatus] == ReachableViaWiFi) {
+                            [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedEmployee] delegate:self];
+                            [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedOranizational] delegate:self];
+                            [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedUnit] delegate:self];
+                        }
+                    }
+                }
             }
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [SKAppDelegate sharedCurrentUser].logging = NO;
+                [BWStatusBarOverlay showSuccessWithMessage:@"当前网络不可用，请检查网络设置" duration:1 animated:1];
             });
         }
     }
@@ -569,8 +577,6 @@
 #pragma mark - 数据代理函数
 -(void)didBeginSynData:(LocalDataMeta *)metaData
 {
-    if ([metaData.dataCode isEqualToString:@"versioninfo"]) {
-    }
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([metaData.dataCode isEqualToString:@"employee"]  && ![metaData isUserOwner])  {
             BWStatusBar =  [[BWStatusBarOverlay alloc] init];

@@ -118,6 +118,14 @@
     }
 }
 
+-(NSString*)errorinfoWithErrorcode:(SKHTTPRequestErrorType)code
+{
+    if (code == SKHTTPRequestErrorDataNone) {
+        return @"服务器上没有最新数据";
+    }
+    return @"服务器异常";
+}
+
 -(void)reportFinished
 {
     if (self.errorcode)
@@ -126,9 +134,7 @@
         NSString *authorizeID =  [[entity dataItem:0] objectForKey:@"MESSAGE"];
         if (entity.praserError)
         {   //这里一般出现在代办处理中
-            if (entity.praserError.code == 2001) {//用于从服务器上没有取到数据时抛的错误
-                [super reportFinished];return;
-            }
+
             NSError* xmlerror = nil;
             DDXMLDocument* doc = [[DDXMLDocument alloc] initWithData:self.responseData options:0 error:&xmlerror];
             if (!xmlerror) {
@@ -139,6 +145,7 @@
             //这里一般为普通异常 如挂失 维护等等
             self.errorinfo = authorizeID ? authorizeID : @"服务器内部错误";
         }
+        
         self.error = [NSError errorWithDomain:@"服务器内部错误"
                                          code:errorcode
                                      userInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.errorinfo,NSLocalizedDescriptionKey,nil]];

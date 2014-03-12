@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES" initialViewController="d0p-J8-FJG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES" initialViewController="d0p-J8-FJG">
     <dependencies>
         <deployment version="1536" defaultVersion="1280" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -1089,6 +1089,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="367"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Zr-b9-JUG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1110,53 +1111,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CMSCell" rowHeight="70" id="TeC-jC-q9d" customClass="SKTableViewCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="70"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TeC-jC-q9d" id="cgv-IH-mU8">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_read.png" translatesAutoresizingMaskIntoConstraints="NO" id="zv1-1k-vlr">
-                                                    <rect key="frame" x="5" y="18" width="15" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="标题" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="275" translatesAutoresizingMaskIntoConstraints="NO" id="PXv-GK-pYG">
-                                                    <rect key="frame" x="25" y="6" width="275" height="40"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="时间" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04y-N5-FLY">
-                                                    <rect key="frame" x="131" y="48" width="169" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cms_attachment.png" translatesAutoresizingMaskIntoConstraints="NO" id="YYx-wf-GS6">
-                                                    <rect key="frame" x="25" y="51" width="30" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="attachView" destination="YYx-wf-GS6" id="dI0-8D-KqM"/>
-                                            <outlet property="crtmLabel" destination="04y-N5-FLY" id="Hb7-6s-gV3"/>
-                                            <outlet property="stateView" destination="zv1-1k-vlr" id="D5P-5N-zDd"/>
-                                            <outlet property="titleLabel" destination="PXv-GK-pYG" id="gFC-XM-jEc"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="cQ0-Eg-3ZL">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cQ0-Eg-3ZL" id="KyI-Kf-Cu5">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="ELw-A0-G6E" id="IPo-MS-zBy"/>
                                     <outlet property="delegate" destination="ELw-A0-G6E" id="IlO-QW-AFf"/>
@@ -3290,6 +3244,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="200"/>
                     <connections>
                         <outlet property="DelectButton" destination="1cN-na-e0y" id="hK3-bc-iMh"/>
                         <outlet property="EightButton" destination="IN6-zP-nxe" id="g95-bN-ZO2"/>
@@ -3312,7 +3267,7 @@
         <!--Search Controller - 查询资源-->
         <scene sceneID="toS-sd-eet">
             <objects>
-                <tableViewController storyboardIdentifier="searchController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zZ8-Lg-qu7" customClass="SKSearchController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="cmsSearchController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zZ8-Lg-qu7" customClass="SKSearchController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="99K-Jt-omk">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3970,7 +3925,7 @@
         <!--Search Controller - 查询资源-->
         <scene sceneID="8eX-fF-i2U">
             <objects>
-                <tableViewController storyboardIdentifier="searchController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OtZ-lI-Cgg" customClass="SKECMSearchController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ecmSearchController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OtZ-lI-Cgg" customClass="SKECMSearchController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="rob-xe-nwB">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

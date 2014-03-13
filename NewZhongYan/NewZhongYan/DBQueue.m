@@ -104,7 +104,7 @@ static DBQueue *gSharedInstance = nil;
                         NSLog(@"数据库插入错误:%@ 错误码%d",[db lastErrorMessage],db.lastErrorCode);
                     }
                 }
-                [dict removeAllObjects],dict = nil;
+                //[dict removeAllObjects],dict = nil;
             }
         }
     }];

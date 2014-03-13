@@ -63,8 +63,8 @@
 -(void) analysisXml:(NSString *) contentPath
 {
     NSData *data=[NSData dataWithContentsOfFile:contentPath];
-    NSString* xml = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",xml);
+//    NSString* xml = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    NSLog(@"%@",xml);
     DDXMLDocument *doc = [[DDXMLDocument alloc] initWithData:data options:0 error:0];
     _detail = [[SKECMDetail alloc] init];
 
@@ -334,7 +334,7 @@
 }
 
 -(void) showContent:(Content *) content{
-    [content show];
+    //[content show];
     if (content.type == nil) {
         [self addText:content];
     }

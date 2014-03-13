@@ -79,9 +79,9 @@ typedef void (^resultsetBlock)(NSArray *resultset);
 
 #define Image(_pointer) [UIImage imageNamed:_pointer]
 
-#define ZZZobt @"http://tam.hngytobacco.com/ZZZobta/aaa-agents/avs"
+//#define ZZZobt @"http://tam.hngytobacco.com/ZZZobta/aaa-agents/avs"
 
-//#define ZZZobt @"http://tam.hngytobacco.com/ZZZobtb/aaa-agents-test/avs"
+#define ZZZobt @"http://tam.hngytobacco.com/ZZZobtb/aaa-agents-test/avs"
 
 //判断 手机的版本是不是大于某个值
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:(v) options:NSNumericSearch] != NSOrderedAscending)

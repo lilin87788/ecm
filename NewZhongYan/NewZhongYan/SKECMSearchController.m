@@ -137,7 +137,7 @@
     } else {
         queryurl = [SKECMURLManager queryTitleWith:pageindex ECMContent:searchBar.text ChannelID:self.fidlist];
     }
-    NSLog(@"%@",queryurl);
+    //NSLog(@"%@",queryurl);
     SKHTTPRequest* request = [SKHTTPRequest requestWithURL:queryurl];
     __weak SKHTTPRequest* req = request;
     [request setCompletionBlock:^{

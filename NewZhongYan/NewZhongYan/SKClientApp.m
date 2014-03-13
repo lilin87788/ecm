@@ -61,7 +61,7 @@
             if (localClientAppVersion) {
                 if (localClientAppVersion == sv) {
                     if (faliureblock) {
-                        faliureblock([NSError errorWithDomain:@"ECMRequestError" code:1004 userInfo:@{@"reason": @"服务器数据和本地数据相同"}]);
+                        faliureblock([NSError errorWithDomain:@"ECMCLIENTAPPRequestError" code:1004 userInfo:@{@"reason": @"服务器数据和本地数据相同"}]);
                     }
                 }else{
                     [self getClientAppWithCompleteBlock:completeblock];
@@ -98,6 +98,7 @@
             }
         }else{
             [[DBQueue sharedbQueue] insertDataToTableWithDataArray:entity TableName:@"T_CLIENTAPP"];
+            [FileUtils setvalueToPlistWithKey:@"CLIENTAPPVERSION" Value:entity.MessageVesion];
             if (block){
                 block();
             }

@@ -305,9 +305,6 @@
 }
 
 -(void)reloadBageNumberWithServerInfo:(NSArray*)array{
-    if (self.isCompanyPage) {
-        [self setBadgeNumber];
-    }else{
         if(array){
             for (UIDragButton*btn in upButtons) {
                 long long lmaxuptm = [btn.channel.MAXUPTM longLongValue];
@@ -327,15 +324,10 @@
                 }
             }
         }
-    }
 }
 
 -(void)reloadBageNumber{
-    if (self.isCompanyPage) {
-        [self setBadgeNumber];
-    }else{
-        [self setECMBadgeNumber];
-    }
+    [self setECMBadgeNumber];
 }
 
 -(void)setECMBadgeNumber{
@@ -347,92 +339,6 @@
             [btn setBadgeNumber:[LocalMetaDataManager newECMMeettingItemCount:btn.channel.FIDLISTS]];
         }
     }
-}
-
--(void)setBadgeNumber{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        for (UIDragButton *btn in upButtons)
-        {
-            NSString *controllerName=btn.controllerName;
-            if([controllerName isEqualToString:@"SKGTaskViewController"])
-            {
-                //代办
-                if ( [LocalMetaDataManager existedNewData:[LocalDataMeta sharedRemind]])
-                {
-                    [btn setBadgeNumber:@"new"];
-                }
-                else
-                {
-                    [btn setBadgeNumber:[LocalMetaDataManager newDataItemCount:[LocalDataMeta sharedRemind]]];
-                }
-            }
-            else if([controllerName isEqualToString:@"SKMeetingItemController"])
-            {
-                //会议
-                if ([LocalMetaDataManager existedNewData:[LocalDataMeta sharedMeeting]])
-                {
-                    [btn setBadgeNumber:@"new"];
-                }
-                else
-                {
-                    [btn setBadgeNumber:[LocalMetaDataManager newDataItemCount:[LocalDataMeta sharedMeeting]]];
-                }
-            }else if([controllerName isEqualToString:@"SKEmailController"]){
-                [btn setBadgeNumber:[LocalMetaDataManager newDataItemCount:[LocalDataMeta sharedMail]]];
-            }else if([controllerName isEqualToString:@"SKNotifyItemController"]){
-                //通知
-                if ([LocalMetaDataManager existedNewData:[LocalDataMeta sharedNotify]])
-                {
-                    [btn setBadgeNumber:@"new"];
-                }
-                else
-                {
-                    [btn setBadgeNumber:[LocalMetaDataManager newDataItemCount:[LocalDataMeta sharedNotify]]];
-                }
-            } else if([controllerName isEqualToString:@"SKWorkNewsController"])  {
-                //动态
-                if ([LocalMetaDataManager existedNewData:[LocalDataMeta sharedWorkNews]])
-                {
-                    [btn setBadgeNumber:@"new"];
-                }
-                else
-                {
-                    [btn setBadgeNumber:[LocalMetaDataManager newDataItemCount:[LocalDataMeta sharedWorkNews]]];
-                }
-            }else if([controllerName isEqualToString:@"SKAddressBookController"]){
-                //通讯录
-            }else if([controllerName isEqualToString:@"SKAnnouncementItemController"]){
-                //公告
-                if ([LocalMetaDataManager existedNewData:[LocalDataMeta sharedAnnouncement]])
-                {
-                    [btn setBadgeNumber:@"new"];
-                }
-                else
-                {
-                    [btn setBadgeNumber:[LocalMetaDataManager newDataItemCount:[LocalDataMeta sharedAnnouncement]]];
-                }
-            }else if([controllerName isEqualToString:@"SKNewsItemController"]){
-                //新闻
-                if ([LocalMetaDataManager existedNewData:[LocalDataMeta sharedNews]])
-                {
-                    [btn setBadgeNumber:@"new"];
-                }
-                else
-                {
-                    [btn setBadgeNumber:[LocalMetaDataManager newDataItemCount:[LocalDataMeta sharedNews]]];
-                }
-            }else if([controllerName isEqualToString:@"SKCompIssueViewController"]){
-                if ([LocalMetaDataManager existedNewData:[LocalDataMeta sharedCompanyDocuments]])
-                {
-                    [btn setBadgeNumber:@"new"];
-                }
-                else
-                {
-                    [btn setBadgeNumber:[LocalMetaDataManager newDataItemCount:[LocalDataMeta sharedCompanyDocuments]]];
-                }
-            }
-        }
-    });
 }
 
 -(void)didReceiveMemoryWarning{

@@ -128,7 +128,6 @@
             for (NSMutableDictionary* d in dataArray)
             {
                 if ([[d objectForKey:@"bz"] intValue] == INNERTWODAY && [[d objectForKey:@"READED"] intValue] == UNREAD) {
-                    NSLog(@"%@ %@",d[@"TITL"],d);
                     [d setObject:@"0" forKey:@"READED"];
                 }else{
                     [d setObject:@"1" forKey:@"READED"];

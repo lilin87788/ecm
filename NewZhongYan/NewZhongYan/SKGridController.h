@@ -10,7 +10,6 @@
 #import "EGOImageButton.h"
 #import "UIDragButton.h"
 @interface SKGridController : UIViewController<UIDragButtonDelegate>
-@property BOOL isCompanyPage;
 @property SKClientApp* clientApp;
 @property(nonatomic,weak)SKViewController* rootController;
 

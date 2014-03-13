@@ -296,7 +296,6 @@
 {
     [bgScrollView setContentSize:CGSizeMake((page + 1) * 320, bgScrollView.frame.size.height)];
     SKGridController *controller = [[APPUtils AppStoryBoard] instantiateViewControllerWithIdentifier:@"SKGridController"];
-    //controller.isCompanyPage = !page;
     controller.rootController = self;
     [controllerArray addObject:controller];
     if (controller.view.superview == nil)
@@ -449,6 +448,9 @@
 
 -(void)firstInitClientApp
 {
+    for (UIView* view in [bgScrollView subviews]) {
+        [view removeFromSuperview];
+    }
     clientAppArray = [NSMutableArray array];
     NSArray* array = [[DBQueue sharedbQueue] recordFromTableBySQL:@"select * from T_CLIENTAPP where HASPMS = 1 and ENABLED = 1 ORDER BY DEFAULTED;"];
     [pageController setNumberOfPages:array.count];
@@ -462,26 +464,13 @@
     }
 }
 
-/**
- *  检测应用更新的代码该代码一天只执行一次
- *  特殊情况: 当APP更新后可能会导致强制更新应用
- */
-//保证每天只执行一次的代码
--(void)checkClientInfomationCheckDate
-{
-    NSDate* date = [[NSUserDefaults standardUserDefaults] objectForKey:ClientInfomationCheckDate];
-//    NSLog(@"%@",[[date dateAtStartOfDay] dateByAddingHours:8]);
-//    NSLog(@"%d",[[[[[NSDate date] dateAtStartOfDay] dateByAddingHours:8] dateByAddingDays:1] daysAfterDate:[[date dateAtStartOfDay] dateByAddingHours:8]]);
-    if(!date)//这里保证补丁代码只执行一次
-    {
-        [[NSUserDefaults standardUserDefaults] setObject:[[[NSDate date] dateAtStartOfDay] dateByAddingHours:8] forKey:DepartmentInfomationCheckDate];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-}
-
 -(void)afterOnLogon
 {
-    [self updateClientAppinfo];
+    [SKClientApp getClientAppWithCompleteBlock:^{
+        [self firstInitClientApp];
+    } faliureBlock:^(NSError* error){
+        [self updateClientAppinfo];
+    }];
     [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedVersionInfo] delegate:self];
     [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedRemind] delegate:self];
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ECONTACTSYNED"]) {
@@ -521,8 +510,7 @@
         }
     }else{
         if ([APPUtils currentReachabilityStatus] != NotReachable) {
-            NSDate *date=[FileUtils valueFromPlistWithKey:@"sleepTime"];
-            int sleepSecond = [[NSDate date] secondsAfterDate:date];
+            int sleepSecond = [[NSDate date] secondsAfterDate:[FileUtils valueFromPlistWithKey:@"sleepTime"]];
             if (sleepSecond > 1500 || sleepSecond < 0)
             {
                 if (sleepSecond > 1500 && [self isLoggedCookieValidity]) {
@@ -533,7 +521,6 @@
                                                     CompleteBlock:^{
                                                         [self afterOnLogon];
                                                     }failureBlock:^(NSDictionary* dict){
-                                                        
                                                     }];
                     });
                 }
@@ -549,6 +536,12 @@
                             [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedUnit] delegate:self];
                         }
                     }
+                }else{
+                    [SKClientApp getClientAppWithCompleteBlock:^{
+                        [self firstInitClientApp];
+                    } faliureBlock:^(NSError* error){
+                        NSLog(@"%@",error);
+                    }];
                 }
             }
         }else{

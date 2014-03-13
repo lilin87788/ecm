@@ -57,7 +57,7 @@
     BOOL isErrorHappened;//用于如果出现错误 则不弹出提示框 直接返回
     BOOL isBack;
     
-    int   currentTextViewindex;         //当前被选中textView的序号
+    NSUInteger   currentTextViewindex;         //当前被选中textView的序号
     int   curretnDetailIndex;             //当前明细ID的下标
     int   currentImageViewIndex;               //当前ImageView下标
     float totalHeight;                  //scrollview总高度
@@ -1292,7 +1292,7 @@
     NSDictionary *dict=[note userInfo];
     UIImage *image=[dict objectForKey:@"image"];
     NSNumber *number=[dict objectForKey:@"tag"];
-    int stag=[number integerValue];
+    NSInteger stag=[number integerValue];
     SKImageView *signatureImageView=(SKImageView *)[self.view viewWithTag:stag];
     NSData * imageData = UIImagePNGRepresentation(image);
     signatureImageView.base64String = [[imageData base64EncodedString] stringByReplacingOccurrencesOfString:@"&#13;" withString:@"-----"];
@@ -1697,7 +1697,7 @@
  */
 -(void)getSignature:(id)sender
 {
-    int index=(((UIButton *)sender).tag/100)*1001;
+    NSInteger index=(((UIButton *)sender).tag/100)*1001;
     SKImageView *signatureImageView=(SKImageView *)[self.view viewWithTag:index];
     if (signatureImageView.image)
     {

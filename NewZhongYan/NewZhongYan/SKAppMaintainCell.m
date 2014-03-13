@@ -24,7 +24,7 @@
     return self;
 }
 - (IBAction)clearData:(id)sender {
-    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",self.tag],@"tag", nil];
+    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",(long)self.tag],@"tag", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"cleanLocalDataNote" object:nil userInfo:dict];
 }
 

@@ -229,8 +229,8 @@
             if (errorblock) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [BWStatusBarOverlay showErrorWithMessage:@"服务器异常" duration:1 animated:YES];
-                    errorblock(@{@"name": @"登录失败",@"reason":@"服务器异常"});
                 });
+                errorblock(@{@"name": @"登录失败",@"reason":@"服务器异常"});
             }
         }
         [SKAppDelegate sharedCurrentUser].logging = NO;

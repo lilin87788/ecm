@@ -16,7 +16,7 @@ typedef enum{
     NSMutableArray      *_dataArray;
     BOOL                isRemote;//是否远程查询
     NSMutableArray      *_keyArray;//用来存储key的数组
-    NSInteger           pageindex;
+    int           pageindex;
 }
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong,nonatomic)UIButton *moreBtn;

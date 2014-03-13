@@ -120,7 +120,7 @@
 
 - (NSAttributedString *)getAttributedString
 {
-    int len = [self.text length];
+    NSUInteger len = [self.text length];
     NSMutableAttributedString *mutaString = [[NSMutableAttributedString alloc] initWithString:self.text] ;
     [mutaString beginEditing];
     [mutaString addAttribute:(NSString *)(kCTForegroundColorAttributeName)

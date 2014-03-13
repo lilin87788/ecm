@@ -107,7 +107,7 @@
     [CLTextView setHidden:YES];
     [confirmBtn setHidden:YES];
     [CLLabel setHidden:NO];
-    NSNotification *noti=[NSNotification notificationWithName:@"confirmEditing" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",indexForCell],@"index", nil]];
+    NSNotification *noti=[NSNotification notificationWithName:@"confirmEditing" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",(long)indexForCell],@"index", nil]];
     [[NSNotificationCenter defaultCenter] postNotification:noti];
 }
 
@@ -135,7 +135,7 @@
         self.frame=cellRect;
         //[(UITableView *)self.superview reloadData];
         //将当前cell下方的cell位置向下移动
-        int rowsNumber= [self.superTableView numberOfRowsInSection:0];
+        NSInteger rowsNumber= [self.superTableView numberOfRowsInSection:0];
         for (int i=0; i<rowsNumber; i++)
         {
             if (i>indexForCell)

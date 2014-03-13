@@ -47,7 +47,7 @@
 
 +(void)getClientAppWithCompleteBlock:(clientCompleteBlock)completeblock  faliureBlock:(clientfaliureBlock)faliureblock
 {
-    int localClientAppVersion = [[FileUtils valueFromPlistWithKey:@"CLIENTAPPVERSION"] integerValue];
+    int localClientAppVersion = [[FileUtils valueFromPlistWithKey:@"CLIENTAPPVERSION"] intValue];
     SKHTTPRequest* request = [SKHTTPRequest requestWithURL:
                               [SKECMURLManager getClientAppVMetaInfoWithVersion:localClientAppVersion]];
     [request startSynchronous];

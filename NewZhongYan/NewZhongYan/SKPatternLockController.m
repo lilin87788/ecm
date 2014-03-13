@@ -97,7 +97,7 @@
     
     for (NSNumber *tag in _paths)
     {
-        [key appendFormat:@"%d", tag.integerValue];
+        [key appendFormat:@"%d", tag.intValue];
     }
     return key;
 }
@@ -246,7 +246,7 @@
         
         if (found) return;
         if (touched) {// add by lilin 做一个判断 有可能取不到
-            [_paths addObject:[NSNumber numberWithInt:touched.tag]];
+            [_paths addObject:[NSNumber numberWithInt:(int)touched.tag]];
             [drawView addDotView:touched];
             
             UIImageView* iv = (UIImageView*)touched;

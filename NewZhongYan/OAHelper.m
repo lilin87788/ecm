@@ -30,7 +30,7 @@
     NSDate *aWeekBefore=[NSDate dateWithTimeIntervalSinceNow:-60*60*24*7];
     NSString *strDate=[DateUtils dateToString:aWeekBefore DateFormat:sdateFormat];
     NSArray *oldRecordArray= [[DBQueue sharedbQueue] recordFromTableBySQL:[NSString stringWithFormat:@"SELECT AID FROM T_REMINDS where CRTM<'%@' and STATUS==0",strDate]];
-    NSLog(@"%d",oldRecordArray.count);
+    NSLog(@"%lu",(unsigned long)oldRecordArray.count);
     if(oldRecordArray.count>0)
     {
         for (NSDictionary *dic in oldRecordArray)

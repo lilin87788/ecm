@@ -22,7 +22,7 @@
 {
     NSMutableArray* attachmentItem;
     SKAttachManger *AM;//附件管理
-    int inscribeContentCount;//记录附属值的个数
+    NSUInteger inscribeContentCount;//记录附属值的个数
     CGFloat height;
 }
 @end

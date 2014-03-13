@@ -212,7 +212,7 @@ BOOL isEditing;
     CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(contentWidth, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
     CGFloat height = size.height+35;
     
-    NSString *index=[NSString stringWithFormat:@"%d",[indexPath row]];
+    NSString *index=[NSString stringWithFormat:@"%ld",(long)[indexPath row]];
     
     for (NSString *str in editingIndexArray)
     {
@@ -415,7 +415,7 @@ BOOL isEditing;
                 editingIndexArray=[[NSMutableArray alloc] init];
             }
             //当前下标
-            NSString *currentIndex=[NSString stringWithFormat:@"%d",actionSheet.tag];
+            NSString *currentIndex=[NSString stringWithFormat:@"%ld",(long)actionSheet.tag];
             //如果当前下标已经存在与下标编辑下标数组，不进入编辑状态
             for (NSString *str in editingIndexArray)
             {
@@ -442,7 +442,7 @@ BOOL isEditing;
                 CGRect cellRect=cell.frame;
                 cellRect.size.height+=25;
                 cell.frame=cellRect;
-                int rowsNumber= [self.tableView numberOfRowsInSection:0];
+                NSInteger rowsNumber= [self.tableView numberOfRowsInSection:0];
                 for (int i=0; i<rowsNumber; i++)
                 {
                     if (i>actionSheet.tag)

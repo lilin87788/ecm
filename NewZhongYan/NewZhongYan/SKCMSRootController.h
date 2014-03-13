@@ -16,7 +16,7 @@
     NSString                    *_keyWord;
     NSMutableArray              *_dataItems;
     LocalDataMeta               *datameta;
-    NSInteger                   from;
+    int                   from;
     NSMutableDictionary         *_sectionDictionary;   //存储section的数据
     NSArray                     *_sectionArray;        //存储section的标题
 }

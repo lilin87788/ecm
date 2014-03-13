@@ -13,6 +13,6 @@
 @property (nonatomic,retain)HPGrowingTextView *CLTextView;
 @property (nonatomic,retain)UIButton *confirmBtn;
 @property (nonatomic,assign)BOOL isEditing;
-@property (nonatomic,assign)int indexForCell;
+@property (nonatomic,assign)NSInteger indexForCell;
 @property (nonatomic,weak)UITableView* superTableView;
 @end

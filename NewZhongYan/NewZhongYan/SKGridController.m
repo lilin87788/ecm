@@ -132,8 +132,8 @@
                         DDXMLElement *element2=(DDXMLElement *)obj2;
                         DDXMLNode *locationElement1=[element1 elementForName:@"location"];
                         DDXMLNode *locationElement2=[element2 elementForName:@"location"];
-                        int index1=[locationElement1.stringValue integerValue];
-                        int index2=[locationElement2.stringValue integerValue];
+                        NSInteger index1=[locationElement1.stringValue integerValue];
+                        NSInteger index2=[locationElement2.stringValue integerValue];
                         if (index1 > index2) {
                             return (NSComparisonResult)NSOrderedDescending;
                         }
@@ -148,7 +148,7 @@
 
 - (void)setUpButtonsFrameWithAnimate:(BOOL)_bool withoutShakingButton:(UIDragButton *)shakingButton
 {
-    int count = [upButtons count];
+    NSUInteger count = [upButtons count];
     if (shakingButton != nil) {
         [UIView animateWithDuration:_bool ? 0.4 : 0 animations:^{
             for (int y = 0; y <= count / 3; y++) {
@@ -260,9 +260,7 @@
 {
     [super viewDidLoad];
     [self initChannelView:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
             [self reloadBageNumber];
-        });
     }];
 }
 

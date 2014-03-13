@@ -172,7 +172,7 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 			
 			if (tokens.count > 1 && untokSize.width > availableWidth)
             {
-				untokenized = [NSString stringWithFormat:@"%d 位联系人", titles.count];
+				untokenized = [NSString stringWithFormat:@"%ld 位联系人", (long)titles.count];
 			}
 			
 			[titles release];

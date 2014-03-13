@@ -180,7 +180,7 @@ static NSOperationQueue* _shareQueue = nil;
 -(void)synUpdateDataWithlocalVersion:(int)lv
                             ServerVersion:(int)sv
                               ServerCount:(int)sc
-                                     From:(NSInteger)from
+                                     From:(int)from
 {
     if (_delegate && [_delegate respondsToSelector:@selector(didBeginSynData:)])
     {
@@ -220,7 +220,7 @@ static NSOperationQueue* _shareQueue = nil;
 //增量更新模式
 -(void)synUpdatedData
 {
-    int lv = [_metaData version];
+    int lv = (int)[_metaData version];
     //获取根据指定版本之后的变更元信息
     NSString* url;
     if ([_metaData isECM]) {
@@ -262,7 +262,7 @@ static NSOperationQueue* _shareQueue = nil;
 -(void)main
 {
     @autoreleasepool{
-        int lv = [[_metaData dataCode] isEqualToString:@"versioninfo"] ? 0 :[_metaData version];
+        int lv = [[_metaData dataCode] isEqualToString:@"versioninfo"] ? 0 :(int)[_metaData version];
         @try{
             if (lv <= 0){
                 [self firstSynData];
@@ -282,7 +282,7 @@ static NSOperationQueue* _shareQueue = nil;
                 [self.delegate didCompleteSynData:_metaData];
             }
             if ([_delegate respondsToSelector:@selector(didCompleteSynData:SV:SC:LV:)]) {
-                [self.delegate didCompleteSynData:_metaData.dataCode SV:_metaData.version SC:synedCount LV:lv];
+                [self.delegate didCompleteSynData:_metaData.dataCode SV:(int)_metaData.version SC:synedCount LV:lv];
             }
         }
     }

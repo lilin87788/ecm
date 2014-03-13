@@ -19,7 +19,6 @@
     NSString *strNow=[DateUtils dateToString:[NSDate date] DateFormat:sdateFormat];
     NSString *sql=[NSString stringWithFormat:@"SELECT TID FROM T_NOTIFY where FID=='4' and CRTM<'%@' and EDTM<'%@'",strDate,strNow];
     NSArray *oldRecordArray= [[DBQueue sharedbQueue] recordFromTableBySQL:sql];
-    NSLog(@"%d",oldRecordArray.count);
     if(oldRecordArray.count>0)
     {
         for (NSDictionary *dic in oldRecordArray)

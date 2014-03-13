@@ -33,7 +33,6 @@
     NSString *strDate=[DateUtils dateToString:aWeekBefore DateFormat:sdateFormat];
     NSLog(@"%@",strDate);
     NSArray *oldRecordArray= [[DBQueue sharedbQueue] recordFromTableBySQL:[NSString stringWithFormat:@"SELECT TID FROM T_NEWS where CRTM<'%@'",strDate]];
-    NSLog(@"%d",oldRecordArray.count);
     if(oldRecordArray.count>0)
     {
         for (NSDictionary *dic in oldRecordArray)
@@ -67,7 +66,6 @@
     if ([[DBQueue sharedbQueue] CountOfQueryWithSQL:weekSql]>0)
     {
         NSArray *oldRecordArray= [[DBQueue sharedbQueue] recordFromTableBySQL:[NSString stringWithFormat:@"SELECT TID FROM T_NEWS where CRTM<'%@'",weekDate]];
-        NSLog(@"%d",oldRecordArray.count);
         for (NSDictionary *dic in oldRecordArray)
         {
             NSString *filePath= [SKAttachManger TIDPathWithOutCreate:SKNews Tid:[dic objectForKey:@"TID"]];
@@ -94,7 +92,6 @@
     if ([[DBQueue sharedbQueue] CountOfQueryWithSQL:weekSql]>0)
     {
         NSArray *oldRecordArray= [[DBQueue sharedbQueue] recordFromTableBySQL:[NSString stringWithFormat:@"SELECT TID FROM T_NEWS where CRTM<'%@'",weekDate]];
-        NSLog(@"%d",oldRecordArray.count);
         for (NSDictionary *dic in oldRecordArray)
         {
             NSString *filePath= [SKAttachManger TIDPathWithOutCreate:SKNews Tid:[dic objectForKey:@"TID"]];

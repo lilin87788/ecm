@@ -166,7 +166,7 @@ NSUInteger DeviceSystemMajorVersion() {
     if ([FileUtils valueFromPlistWithKey:@"sleepTime"])
     {
         NSDate *date=[FileUtils valueFromPlistWithKey:@"sleepTime"];
-        int sleepSecond = [[NSDate date] secondsAfterDate:date];
+        NSInteger sleepSecond = [[NSDate date] secondsAfterDate:date];
         if (sleepSecond > 3) {
             UIViewController* controller = [APPUtils visibleViewController];
             if ([controller isKindOfClass:[SKPatternLockController class]]

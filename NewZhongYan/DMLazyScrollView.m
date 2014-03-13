@@ -166,7 +166,7 @@ enum {
 - (void) setNumberOfPages:(NSUInteger)pages {
     if (pages != numberOfPages) {
         numberOfPages = pages;
-        int offset = [self hasMultiplePages] ? numberOfPages + 2 : 1;
+        NSInteger offset = [self hasMultiplePages] ? numberOfPages + 2 : 1;
         if (_direction == DMLazyScrollViewDirectionHorizontal) {
             self.contentSize = CGSizeMake(self.frame.size.width * offset, self.contentSize.height);
         } else {

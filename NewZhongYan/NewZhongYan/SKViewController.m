@@ -310,7 +310,7 @@
     }
 }
 
-- (SKGridController*)loadScrollViewWithClientApp:(SKClientApp*)app PageNo:(int)page
+- (SKGridController*)loadScrollViewWithClientApp:(SKClientApp*)app PageNo:(NSUInteger)page
 {
     if (page == 0) {
         navTitleLabel.text = app.NAME;
@@ -510,7 +510,7 @@
         }
     }else{
         if ([APPUtils currentReachabilityStatus] != NotReachable) {
-            int sleepSecond = [[NSDate date] secondsAfterDate:[FileUtils valueFromPlistWithKey:@"sleepTime"]];
+            NSInteger sleepSecond = [[NSDate date] secondsAfterDate:[FileUtils valueFromPlistWithKey:@"sleepTime"]];
             if (sleepSecond > 1500 || sleepSecond < 0)
             {
                 if (sleepSecond > 1500 && [self isLoggedCookieValidity]) {

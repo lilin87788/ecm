@@ -33,7 +33,6 @@
     NSString *strDate=[DateUtils dateToString:aWeekBefore DateFormat:sdateFormat];
     NSArray *oldRecordArray= [[DBQueue sharedbQueue] recordFromTableBySQL:[NSString stringWithFormat:
         @"SELECT TID FROM T_NOTIFY where FID=='9' and CRTM<'%@'",strDate]];
-    NSLog(@"%d",oldRecordArray.count);
     if(oldRecordArray.count>0)
     {
         for (NSDictionary *dic in oldRecordArray)

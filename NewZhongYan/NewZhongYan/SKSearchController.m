@@ -132,7 +132,7 @@
     SKFormDataRequest* Request = [SKFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/commons/cms/queryCMSItem",ZZZobt]]];
     [Request setPostValue:[APPUtils userUid] forKey:@"userid"];
     [Request setPostValue:self.fid forKey:@"fid"];
-    [Request setPostValue:[NSString stringWithFormat:@"%d",pageindex] forKey:@"page"];
+    [Request setPostValue:[NSString stringWithFormat:@"%ld",(long)pageindex] forKey:@"page"];
     [Request setPostValue:[self criteriaString] forKey:@"criteria"];
     [Request setPostValue:@"0" forKey:@"mincmsid"];
     [Request startAsynchronous];

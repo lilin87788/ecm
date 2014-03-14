@@ -51,7 +51,7 @@ static inline NSString* cachePathForKey(NSString* key) {
 	return [EGOCacheDirectory() stringByAppendingPathComponent:key];
 }
 
-static EGOCache* __instance;
+static EGOCache* __instance = nil;
 
 @interface EGOCache ()
 - (void)removeItemFromCache:(NSString*)key;

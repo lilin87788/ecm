@@ -81,6 +81,7 @@
             if (dict[@"LOGO"] == [NSNull null]) {
                 [dragbtn.tapButton setImageURL:[NSURL URLWithString:@"http://tam.hngytobacco.com/ZZZobtc/public/icon/wzfactory/wzgeneralinfo.png"]];
             }else{
+                NSLog(@"%@",dict[@"LOGO"]);
                 [dragbtn.tapButton setImageURL:[NSURL URLWithString:dict[@"LOGO"]]];
             }
             [dragbtn setControllerName:dict[@"CODE"]];
@@ -231,19 +232,8 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if ([self.clientApp.APPTYPE isEqualToString:@"ECM"]) {
-        [SKDaemonManager SynChannelWithClientApp:self.clientApp complete:^{
-            [self initChannelView:^{
-                [SKDaemonManager SynMaxUpdateDateWithClient:self.clientApp
-                                                   complete:^(NSMutableArray* array){
-                                                       dispatch_async(dispatch_get_main_queue(), ^{
-                                                           [self reloadBageNumberWithServerInfo:array];
-                                                       });
-                                                   } faliure:^(NSError* error){
-                                                       
-                                                   }];
-            }];
-        } faliure:^(NSError* error){
+    [SKDaemonManager SynChannelWithClientApp:self.clientApp complete:^{
+        [self initChannelView:^{
             [SKDaemonManager SynMaxUpdateDateWithClient:self.clientApp
                                                complete:^(NSMutableArray* array){
                                                    dispatch_async(dispatch_get_main_queue(), ^{
@@ -253,7 +243,17 @@
                                                    
                                                }];
         }];
-    }
+    } faliure:^(NSError* error){
+        //NSLog(@"%@",error);
+        [SKDaemonManager SynMaxUpdateDateWithClient:self.clientApp
+                                           complete:^(NSMutableArray* array){
+                                               dispatch_async(dispatch_get_main_queue(), ^{
+                                                   [self reloadBageNumberWithServerInfo:array];
+                                               });
+                                           } faliure:^(NSError* error){
+                                               
+                                           }];
+    }];
 }
 
 - (void)viewDidLoad
@@ -278,6 +278,7 @@
                                                }];
         }];
     } faliure:^(NSError* error){
+        //NSLog(@"%@",error);
         [SKDaemonManager SynMaxUpdateDateWithClient:self.clientApp
                                            complete:^(NSMutableArray* array){
                                                dispatch_async(dispatch_get_main_queue(), ^{

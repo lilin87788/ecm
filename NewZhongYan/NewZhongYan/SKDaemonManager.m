@@ -173,6 +173,7 @@ static NSOperationQueue* sharedQueue = nil;
     if (!request.error) {
         SKMessageEntity* entity = [[SKMessageEntity alloc] initWithData:[request responseData]];
         if (!entity.praserError) {
+            [[EGOCache currentCache] clearCache];
             [[DBQueue sharedbQueue] insertDataToTableWithDataArray:entity TableName:@"T_CHANNEL"];
             _client.version = sv;
             NSString* sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO T_CLIENTVERSION (CODE,VERSION) VALUES ('%@','%d');",_client.CODE,_client.version];

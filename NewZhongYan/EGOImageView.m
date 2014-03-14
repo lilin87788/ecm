@@ -41,7 +41,6 @@
         self.imageSavePath = nil;
         self.caption = nil;
 	}
-	
 	return self;
 }
 

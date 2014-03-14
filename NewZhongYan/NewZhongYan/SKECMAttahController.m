@@ -63,8 +63,8 @@
 -(void) analysisXml:(NSString *) contentPath
 {
     NSData *data=[NSData dataWithContentsOfFile:contentPath];
-    NSString* xml = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",xml);
+//    NSString* xml = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    NSLog(@"%@",xml);
     DDXMLDocument *doc = [[DDXMLDocument alloc] initWithData:data options:0 error:0];
     _detail = [[SKECMDetail alloc] init];
 
@@ -279,13 +279,35 @@
 -(void) addImage:(Content *) content{
     EGOImageView *imageView = [[EGOImageView alloc] initWithFrame:CGRectMake(20, _curHeight, 280, 200)];
     NSString* urlstring = [[content.value gtm_stringByEscapingForHTML] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    [imageView setPlaceholderImage:Image(@"reload")];
+    [imageView setPlaceholderImage:Image(@"loading")];
     [imageView setImageURL:[NSURL URLWithString:urlstring]];
     [imageView setCaption:_detail.title];
-    [imageView addDetailShow];
+    [imageView setDelegate:self];
     [imageView setTag:1];//1 表示该view是自己添加的，而不是系统自带的
     [_bgscrollview addSubview:imageView];
     _curHeight += 202;
+}
+
+- (void)imageViewLoadedImage:(EGOImageView*)imageView
+{
+    for (UIGestureRecognizer* gesture in imageView.gestureRecognizers) {
+        [imageView removeGestureRecognizer:gesture];
+    }
+    [imageView addDetailShow];
+}
+
+-(void)imageViewTaped:(UITapGestureRecognizer*)gesture
+{
+    EGOImageView* imageView = (EGOImageView*)gesture.view;
+    [imageView setImageURL:imageView.imageURL];
+}
+
+- (void)imageViewFailedToLoadImage:(EGOImageView*)imageView error:(NSError*)error
+{
+    [imageView setImage:Image(@"reload")];
+    [imageView setUserInteractionEnabled:YES];
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewTaped:)];
+    [imageView addGestureRecognizer:tap];
 }
 
 //http://unmi.cc/uiwebview-replace-uitextview-line-height/

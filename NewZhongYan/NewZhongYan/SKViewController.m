@@ -496,6 +496,7 @@
             [FileUtils setvalueToPlistWithKey:@"gpusername" Value:@""];//这里一般不是第一次登陆 比如屏幕保护密码输错
         }else{
             if ([APPUtils currentReachabilityStatus] != NotReachable) {
+                [[EGOCache currentCache] clearCache];
                 [self firstInitClientApp];
                 [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedEmployee] delegate:self];
                 [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedOranizational] delegate:self];

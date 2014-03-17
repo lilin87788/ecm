@@ -17,75 +17,79 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
-        //homeN 
-        UIImage * NBgImage = [UIImage imageNamed:@"btn_home_bg.png"];
-        UIImage * NInImage = [UIImage imageNamed:@"btn_particular_home.png"];
-        UIImage * NImage = [NBgImage splitImageWithImage:NInImage
-                                                    Rect:CGRectMake((NBgImage.size.width - NInImage.size.width)/2, 10,
-                                                                    NInImage.size.width, NInImage.size.height)];
-        
-        //homeH 
-        UIImage * HBgImage = [UIImage imageNamed:@"btn_home_bg_pressed.png"];
-        UIImage * HInImage = [UIImage imageNamed:@"btn_particular_home_pressed.png"];
-        UIImage * HImage = [HBgImage splitImageWithImage:HInImage
-                                                    Rect:CGRectMake((HBgImage.size.width - HInImage.size.width)/2, 10,
-                                                                    HInImage.size.width, HInImage.size.height)];
-        
+        self.backgroundColor = COLOR(247, 247, 247);
         homeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [homeButton setImage:Image(@"homepage") forState:UIControlStateNormal];
+        [homeButton setImage:Image(@"homepage_blue") forState:UIControlStateSelected];
+        [homeButton setImage:Image(@"homepage_blue") forState:UIControlStateHighlighted];
+        [homeButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 8, 0)];
         [homeButton setFrame:CGRectMake(2, 0, 49, 49)];
-        [homeButton setImage:NImage forState:UIControlStateNormal];
-        [homeButton setImage:HImage forState:UIControlStateHighlighted];
+        [homeButton addTarget:self action:@selector(backToRoot:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:homeButton];
         
-        //search text
         UILabel* homeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
         homeLabel.text = @"首页";
         homeLabel.textAlignment = UITextAlignmentCenter;
         homeLabel.backgroundColor = [UIColor clearColor];
-        homeLabel.textColor = [UIColor colorWithRed:0 green:48.0/255 blue:161.0/255 alpha:1];
         homeLabel.font = [UIFont systemFontOfSize:10];
         CGPoint labelCenter = homeButton.center;
         labelCenter.y += 15;
         [homeLabel setCenter:labelCenter];
         [self addSubview:homeLabel];
-        
-        
-        //右边的背景图片
-        UIImage* image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"zoom_bg" ofType:@"png"]];
-        UIImageView * bgImageView = [[UIImageView alloc] initWithImage:image];
-        [bgImageView setFrame:CGRectMake(320 - 200, 0, 200, 49)];
-        [self addSubview:bgImageView];
-        
-        //first
+
         firstButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [firstButton setImage:[UIImage imageNamed:@"btn_call"] forState:UIControlStateNormal];
+        [firstButton setFrame:CGRectMake(180, 0, 49, 49)];
+        [firstButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 8, 0)];
+        [firstButton setImage:Image(@"btn_search_ecm") forState:UIControlStateNormal];
+        [firstButton setImage:Image(@"btn_search_ecm_press") forState:UIControlStateSelected];
+        [firstButton setImage:Image(@"btn_search_ecm_press") forState:UIControlStateHighlighted];
         [self addSubview:firstButton];
         
-        //second
+        firstLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
+        firstLabel.text = @"搜索";
+        firstLabel.textAlignment = UITextAlignmentCenter;
+        firstLabel.backgroundColor = [UIColor clearColor];
+        firstLabel.font = [UIFont systemFontOfSize:10];
+        CGPoint searchLabelCenter = firstButton.center;
+        searchLabelCenter.y += 15;
+        [firstLabel setCenter:searchLabelCenter];
+        [self addSubview:firstLabel];
+        
         secondButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [secondButton setImage:[UIImage imageNamed:@"btn_sms"] forState:UIControlStateNormal];
+        [secondButton setFrame:CGRectMake(260, 0, 49, 49)];
+        [secondButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 8, 0)];
+        [secondButton setImage:[UIImage imageNamed:@"btn_refresh_ecm"] forState:UIControlStateNormal];
+        [secondButton setImage:[UIImage imageNamed:@"btn_refresh_ecm_press"] forState:UIControlStateSelected];
+        [secondButton setImage:[UIImage imageNamed:@"btn_refresh_ecm_press"] forState:UIControlStateHighlighted];
         [self addSubview:secondButton];
+        
+        secondLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
+        secondLabel.text = @"同步";
+        secondLabel.textAlignment = UITextAlignmentCenter;
+        secondLabel.backgroundColor = [UIColor clearColor];
+        secondLabel.font = [UIFont systemFontOfSize:10];
+        CGPoint refreshlabelCenter = secondButton.center;
+        refreshlabelCenter.y += 15;
+        [secondLabel setCenter:refreshlabelCenter];
+        [self addSubview:secondLabel];
     }
     return self;
 }
 
 -(void)setFirstItem:(NSString*)imageName Title:(NSString*)title
 {
-    [firstButton setFrame:CGRectMake(120, 0, 100, 48)];
-    [firstButton setImageEdgeInsets:UIEdgeInsetsMake(8, 20, 8, 48)];
+    [firstLabel setText:title];
     [firstButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-    [firstButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    [firstButton setTitle:title forState:UIControlStateNormal];
+    [firstButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_press",imageName]] forState:UIControlStateSelected];
+    [firstButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_press",imageName]] forState:UIControlStateHighlighted];
 }
 
 -(void)setSecondItem:(NSString*)imageName Title:(NSString*)title
 {
-    [secondButton setFrame:CGRectMake(210, 0, 100, 48)];
-    [secondButton setImageEdgeInsets:UIEdgeInsetsMake(8, 20, 8, 48)];
+    [secondLabel setText:title];
     [secondButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-    [secondButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    [secondButton setTitle:title forState:UIControlStateNormal];
+    [secondButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_press",imageName]] forState:UIControlStateSelected];
+    [secondButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_press",imageName]] forState:UIControlStateHighlighted];
 }
 
 -(void)setFirstItem:(NSString*)imageName Title:(NSString*)title Target:(id)target action:(SEL)action
@@ -109,5 +113,4 @@
 {
     [secondButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
 }
-
 @end

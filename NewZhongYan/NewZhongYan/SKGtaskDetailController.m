@@ -630,6 +630,7 @@
     }
     else if(extendType==SKSignature&&columntype)
     {
+        [gTextView setEditable:NO];
         UIButton *signatureBtn=[UIButton buttonWithType:UIButtonTypeCustom];
         [signatureBtn setBackgroundImage:[UIImage imageNamed:@"btn_home_bg.png"] forState:UIControlStateNormal];
         [signatureBtn setFrame:CGRectMake(CONTENT_WIDTH-65, contentTotalHeight+CONTENT_TITLEHEIGHT+45, 60, 37)];
@@ -955,8 +956,7 @@
         [cv addSubview:nameLabel];
     }
     
-    if (extendType==SKPhrase&&elementype)
-    {
+    if (extendType==SKPhrase&&elementype){
         UIButton *phraseBtn=[UIButton buttonWithType:UIButtonTypeCustom];
         [phraseBtn setBackgroundImage:[UIImage imageNamed:@"btn_home_bg.png"] forState:UIControlStateNormal];
         [phraseBtn setFrame:CGRectMake(CONTENT_WIDTH-65, contentTotalHeight+CONTENT_TITLEHEIGHT+45, 60, 37)];
@@ -971,9 +971,8 @@
         [phraseBtn addSubview:label];
         [phraseBtn bringSubviewToFront:label];
         contentTotalHeight+=valueLabelHeight+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE+45;//加上了textView和button的高度
-    }
-    else if(extendType==SKSignature&&elementype)
-    {
+    }else if(extendType==SKSignature&&elementype){
+        [gTextView setEditable:NO];
         UIButton *signatureBtn=[UIButton buttonWithType:UIButtonTypeCustom];
         [signatureBtn setBackgroundImage:[UIImage imageNamed:@"btn_home_bg.png"] forState:UIControlStateNormal];
         [signatureBtn setFrame:CGRectMake(CONTENT_WIDTH-65, contentTotalHeight+CONTENT_TITLEHEIGHT+45, 60, 37)];
@@ -989,12 +988,9 @@
         [signatureBtn addSubview:label];
         [signatureBtn bringSubviewToFront:label];
         contentTotalHeight+=valueLabelHeight+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE+45;//加上了textView和button的高度
-    }
-    else
-    {
+    }else{
         contentTotalHeight+=valueLabelHeight+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE;
     }
-    
 }
 
 //加入图像类型内容
@@ -1264,6 +1260,7 @@
 
 -(void) keyboardWillHide:(NSNotification *)note
 {
+    keyboardHeight = 0;
     NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
     CGRect mainFrame = self.view.frame;
@@ -1553,7 +1550,7 @@
         }
         else
         {
-            if ([UIScreen mainScreen].bounds.size.height>480)
+            if (IS_IPHONE_5)
             {
                 [mainScrollview setContentOffset:CGPointMake(0, currentTextViewYlocation-80) animated:YES];
             }
@@ -1798,10 +1795,12 @@
             [BWStatusBarOverlay showMessage:[NSString stringWithFormat:@"请填写%@",textView.nameLabelText] duration:2 animated:YES];
             if (!textView.isForSignature)//如果没有完成的选项 不是用来签名的
             {
-                [textView becomeFirstResponder];
-            }
-            else                        //如果没有完成的选项 是用来签名的
-            {
+                if (textView.isTextSignature) {
+                    currentTextViewYlocation=textView.yLocation - 216;
+                }else{
+                    [textView becomeFirstResponder];
+                }
+            }else{
                 currentTextViewYlocation=textView.yLocation;
             }
             [self setScrollViewOffsetWithTextView:textView];

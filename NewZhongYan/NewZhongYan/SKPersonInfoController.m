@@ -103,8 +103,8 @@
     [myToolBar.homeButton addTarget:self action:@selector(backToRoot:) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.firstButton addTarget:self action:@selector(savePersonInfoToServer) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.secondButton addTarget:self action:@selector(getUserInfoFromServer) forControlEvents:UIControlEventTouchUpInside];
-    [myToolBar setFirstItem:@"btn_save" Title:@"保存"];
-    [myToolBar setSecondItem:@"btn_refresh" Title:@"刷新"];
+    [myToolBar setFirstItem:@"btn_save_ecm" Title:@"保存"];
+    [myToolBar setSecondItem:@"btn_refresh_ecm" Title:@"刷新"];
     [toolVIew addSubview:myToolBar];
     
     [mobileTextField.internalTextView setKeyboardType:UIKeyboardTypeNumberPad];

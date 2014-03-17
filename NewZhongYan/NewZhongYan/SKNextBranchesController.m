@@ -35,7 +35,7 @@
 
 - (void)requestFinished:(SKHTTPRequest *)request
 {
-    //NSLog(@"%@",request.responseString);
+    NSLog(@"%@",request.responseString);
     if (request.responseStatusCode == 500) {
         //[utils showTextOnView:self.view Text:@"网络异常请联系供应商"]; return;
         
@@ -258,16 +258,15 @@
 }
 
 - (void)viewDidLoad
-{ 
+{
     [super viewDidLoad];
     if (IS_IOS7) {
         [self setAutomaticallyAdjustsScrollViewInsets:NO];
     }
-     //self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[utils backBarButtonItem]] autorelease];
     [self.view setBackgroundColor:[UIColor whiteColor]];
-   titleLabel = [self selfAdaptionLable:[UIFont systemFontOfSize:17]
-                                             Width:300 
-                                              Text:[self.GTaskInfo objectForKey:@"TITL"]];
+    titleLabel = [self selfAdaptionLable:[UIFont systemFontOfSize:17]
+                                   Width:300
+                                    Text:[self.GTaskInfo objectForKey:@"TITL"]];
     [titleLabel setTag:1000];
     [titleLabel setTextColor:[UIColor grayColor]];
     [titleLabel setShadowColor:[UIColor whiteColor]];
@@ -279,8 +278,8 @@
     [myToolBar.homeButton addTarget:self action:@selector(backToRoot:) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.firstButton addTarget:self action:@selector(lastStep:) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.secondButton addTarget:self action:@selector(nextStep:) forControlEvents:UIControlEventTouchUpInside];
-    [myToolBar setFirstItem:@"btn_last" Title:@"上一步"];
-    [myToolBar setSecondItem:@"btn_next" Title:@"下一步"];
+    [myToolBar setFirstItem:@"btn_last_ecm" Title:@"上一步"];
+    [myToolBar setSecondItem:@"btn_next_ecm" Title:@"下一步"];
     [self.view addSubview:myToolBar];
     
     NSURL* nextBranchesURL = [DataServiceURLs getNextBranches:[APPUtils userUid]

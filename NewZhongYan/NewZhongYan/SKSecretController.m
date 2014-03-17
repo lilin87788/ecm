@@ -124,8 +124,8 @@
     [myToolBar.homeButton addTarget:self action:@selector(backToRoot:) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.firstButton addTarget:self action:@selector(clearTextView) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.secondButton addTarget:self action:@selector(savePasswordToServer) forControlEvents:UIControlEventTouchUpInside];
-    [myToolBar setFirstItem:@"btn_email_delete" Title:@"清除"];
-    [myToolBar setSecondItem:@"btn_save" Title:@"保存"];
+    [myToolBar setFirstItem:@"btn_clean_ecm" Title:@"清除"];
+    [myToolBar setSecondItem:@"btn_save_ecm" Title:@"保存"];
     [toolView addSubview:myToolBar];
     
     previousBtn=[[UIBarButtonItem alloc] initWithTitle:@"上一项"

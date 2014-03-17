@@ -347,7 +347,7 @@
     [myToolBar.homeButton addTarget:self action:@selector(backToRoot:) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.secondButton addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.firstButton addTarget:self action:@selector(lastBranch:) forControlEvents:UIControlEventTouchUpInside];
-    [myToolBar setFirstItem:@"btn_last" Title:@"上一步"];
+    [myToolBar setFirstItem:@"btn_last_ecm" Title:@"上一步"];
     [myToolBar setSecondItem:@"btn_submit" Title:@"提交"];
     [self.view addSubview:myToolBar];
 }

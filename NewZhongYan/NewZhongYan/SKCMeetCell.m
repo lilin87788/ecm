@@ -21,6 +21,7 @@
     UIImageView* pictureImageView;
     UIImageView* contentImageView;
     UIImageView* attachImageView;
+    UIImageView* meetPlaceImageView;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -52,11 +53,15 @@
         [self addSubview:_ETIMELabel];
         
         _MeetAddrLabel = [[UILabel alloc] init];
-       // [_MeetAddrLabel setBackgroundColor:COLOR(17, 168, 171)];
+        //[_MeetAddrLabel setBackgroundColor:COLOR(17, 168, 171)];
         [_MeetAddrLabel setFont:[UIFont systemFontOfSize:12]];
         [_MeetAddrLabel setTextAlignment:NSTextAlignmentLeft];
         [_MeetAddrLabel setTextColor:[UIColor lightGrayColor]];
         [self addSubview:_MeetAddrLabel];
+        
+        meetPlaceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,1,15,15)];
+        meetPlaceImageView.image = Image(@"meeting_place");
+        [self addSubview:meetPlaceImageView];
         
         _attachBgView = [[UIView alloc] initWithFrame:CGRectMake(25,25, 85, 15)];
         //[_attachBgView setBackgroundColor:COLOR(17, 168, 171)];
@@ -89,6 +94,7 @@
     [_STIMELabel setFrame:CGRectMake(165, height + 12, 140, 20)];
     [_ETIMELabel setFrame:CGRectMake(165, height + 32, 140, 20)];
     [_MeetAddrLabel setFrame:CGRectMake(25, height + 12, 128, 20)];
+    [meetPlaceImageView setFrame:CGRectMake(5, height + 15, 15, 15)];
     [_attachBgView  setFrame:CGRectMake(25, height + 32, 85, 15)];
     //[_ATTACHView setFrame:CGRectMake(25, height + 32, 30, 15)];
 }
@@ -130,6 +136,7 @@
     if (![info[@"ADDITION"] isEqual:[NSNull null]]) {
         NSArray* array = [info[@"ADDITION"] componentsSeparatedByString:@"&"];
         _MeetAddrLabel.text = [array[0] substringFromIndex:13];
+        [meetPlaceImageView setHidden:[_MeetAddrLabel.text isEqualToString:@""]];
     }
     
     [self setAttachViewImage:info[@"ATTRLABLE"]];

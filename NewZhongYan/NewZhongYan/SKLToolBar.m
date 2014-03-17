@@ -21,24 +21,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
-        //homeN 
-        UIImage * NBgImage = [UIImage imageNamed:@"btn_home_bg.png"];
-        UIImage * NInImage = [UIImage imageNamed:@"btn_particular_home.png"];
-        UIImage * NImage = [NBgImage splitImageWithImage:NInImage
-                                                    Rect:CGRectMake((NBgImage.size.width - NInImage.size.width)/2, 10,
-                                                                    NInImage.size.width, NInImage.size.height)];
-        
-        //homeH 
-        UIImage * HBgImage = [UIImage imageNamed:@"btn_home_bg_pressed.png"];
-        UIImage * HInImage = [UIImage imageNamed:@"btn_particular_home_pressed.png"];
-        UIImage * HImage = [HBgImage splitImageWithImage:HInImage
-                                                    Rect:CGRectMake((HBgImage.size.width - HInImage.size.width)/2, 10,
-                                                                    HInImage.size.width, HInImage.size.height)];
-        
         homeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [homeButton setBackgroundColor:COLOR(17, 168, 171)];
         [homeButton setFrame:CGRectMake(2, 0, 49, 49)];
-        [homeButton setImage:NImage forState:UIControlStateNormal];
-        [homeButton setImage:HImage forState:UIControlStateHighlighted];
         [self addSubview:homeButton];
         
         //search text

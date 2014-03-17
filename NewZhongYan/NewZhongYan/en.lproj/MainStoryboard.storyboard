@@ -3784,7 +3784,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
-                            <state key="normal" title="全部" backgroundImage="navagationBarCenterBtn.png">
+                            <state key="normal" title="全部" backgroundImage="btn_select.png">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -3975,6 +3975,7 @@
         <image name="blur.png" width="320" height="400"/>
         <image name="btn_help.png" width="60" height="36"/>
         <image name="btn_home_bg.png" width="72" height="72"/>
+        <image name="btn_select.png" width="91" height="37"/>
         <image name="button.png" width="225" height="72"/>
         <image name="button_1.png" width="225" height="72"/>
         <image name="button_1_pressed.png" width="225" height="72"/>

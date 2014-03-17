@@ -68,16 +68,27 @@
 
 -(void)selectType:(UIButton*)button
 {
+    if ((button.tag==101 && searchmode == SKSearchTitle) || (button.tag==102 && searchmode == SKSearchContent)) {
+        return;
+    }
     if (button.tag==101)
     {
         [titleButton1 setBackgroundImage:[UIImage imageNamed:@"segLeft_press.png"] forState:UIControlStateNormal];
+        [titleButton1 setBackgroundImage:[UIImage imageNamed:@"segLeft_press.png"] forState:UIControlStateHighlighted];
         [titleButton2 setBackgroundImage:[UIImage imageNamed:@"segRight.png"] forState:UIControlStateNormal];
+        [titleButton2 setBackgroundImage:[UIImage imageNamed:@"segRight.png"] forState:UIControlStateHighlighted];
+        [titleButton2 setTitleColor:COLOR(5, 73, 165) forState:UIControlStateNormal];
+        [titleButton1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         searchmode = SKSearchTitle;
     }
     else
     {
         [titleButton1 setBackgroundImage:[UIImage imageNamed:@"segLeft.png"] forState:UIControlStateNormal];
+        [titleButton1 setBackgroundImage:[UIImage imageNamed:@"segLeft.png"] forState:UIControlStateHighlighted];
         [titleButton2 setBackgroundImage:[UIImage imageNamed:@"segRight_press.png"] forState:UIControlStateNormal];
+        [titleButton2 setBackgroundImage:[UIImage imageNamed:@"segRight_press.png"] forState:UIControlStateHighlighted];
+        [titleButton1 setTitleColor:COLOR(5, 73, 165) forState:UIControlStateNormal];
+        [titleButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         searchmode = SKSearchContent;
     }
 }
@@ -103,6 +114,7 @@
     [titleButton1 setFrame:CGRectMake(0, 0, 74, 32)];
     [titleButton1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [titleButton1 setBackgroundImage:[UIImage imageNamed:@"segLeft_press.png"] forState:UIControlStateNormal];
+    [titleButton1 setBackgroundImage:[UIImage imageNamed:@"segLeft_press.png"] forState:UIControlStateHighlighted];
     [titleButton1 setTitle:@"标题" forState:UIControlStateNormal];
     [titleButton1.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
     [titleButton1 setTag:101];
@@ -110,8 +122,9 @@
     
     titleButton2=[UIButton buttonWithType:UIButtonTypeCustom];
     [titleButton2 setFrame:CGRectMake(74, 0, 74, 32)];
-    [titleButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [titleButton2 setTitleColor:COLOR(5, 73, 165) forState:UIControlStateNormal];
     [titleButton2 setBackgroundImage:[UIImage imageNamed:@"segRight.png"] forState:UIControlStateNormal];
+    [titleButton2 setBackgroundImage:[UIImage imageNamed:@"segRight.png"] forState:UIControlStateHighlighted];
     [titleButton2 setTitle:@"全文" forState:UIControlStateNormal];
     [titleButton2.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
     [titleButton2 setTag:102];
@@ -223,7 +236,7 @@
     [self initData];
     [self initNavBar];
     if (System_Version_Small_Than_(7)) {
-        _searchBar.tintColor = COLOR(242, 240, 241);
+        _searchBar.tintColor = [UIColor lightGrayColor];
     }
 }
 
@@ -238,8 +251,7 @@
     if (self.isMeeting) {
         static NSString* identify = @"meetscell";
         cell = [tableView dequeueReusableCellWithIdentifier:identify];
-        if (!cell)
-        {
+        if (!cell) {
             cell = [[SKSearchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
         }
         [cell setECMPaperInfo:_dataArray[indexPath.row]];
@@ -247,8 +259,7 @@
     }else{
         static NSString* identify = @"newscell";
          cell = [tableView dequeueReusableCellWithIdentifier:identify];
-        if (!cell)
-        {
+        if (!cell){
             cell = [[SKSearchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
         }
         [cell setECMPaperInfo:_dataArray[indexPath.row]];

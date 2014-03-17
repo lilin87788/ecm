@@ -279,7 +279,7 @@
 -(void) addImage:(Content *) content{
     EGOImageView *imageView = [[EGOImageView alloc] initWithFrame:CGRectMake(20, _curHeight, 280, 200)];
     NSString* urlstring = [[content.value gtm_stringByEscapingForHTML] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    [imageView setPlaceholderImage:Image(@"loading")];
+    [imageView setPlaceholderImage:Image(@"loading_transparent")];
     [imageView setImageURL:[NSURL URLWithString:urlstring]];
     [imageView setCaption:_detail.title];
     [imageView setDelegate:self];
@@ -293,6 +293,7 @@
     for (UIGestureRecognizer* gesture in imageView.gestureRecognizers) {
         [imageView removeGestureRecognizer:gesture];
     }
+    [imageView setUserInteractionEnabled:NO];
     [imageView addDetailShow];
 }
 
@@ -443,7 +444,6 @@
                 }
             }
         }
-        //_bgscrollview.contentSize = CGSizeMake(320,[self scrollViewContentHeight]);
     }
 }
 @end

@@ -108,9 +108,10 @@
 {
     [super viewDidLoad];
     
-//    SKToolBar* myToolBar = [[SKToolBar alloc] initWithFrame:CGRectMake(0, 0, 320, 49)  FirstTarget:self FirstAction:@selector(onSearchClick)
-//                                               SecondTarget:self.tableView SecondAction:@selector(launchRefreshing)];
-//    [toolView addSubview:myToolBar];
+    SKToolBar* myToolBar = [[SKToolBar alloc] initWithFrame:CGRectMake(0, 0, 320, 49)
+                                                FirstTarget:self FirstAction:@selector(onSearchClick)
+                                               SecondTarget:self.tableView SecondAction:@selector(launchRefreshing)];
+    [toolView addSubview:myToolBar];
     [self onRefrshClick];
 }
 

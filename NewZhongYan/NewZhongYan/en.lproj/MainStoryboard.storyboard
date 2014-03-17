@@ -2639,17 +2639,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awt-QQ-kkk">
                                 <rect key="frame" x="0.0" y="431" width="320" height="49"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LJX-ZY-0AQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <items>
-                                            <tabBarItem systemItem="search" id="f6M-Ox-mQg"/>
-                                            <tabBarItem systemItem="more" id="p0t-dD-pxF"/>
-                                        </items>
-                                    </tabBar>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="AAa-VM-tft"/>
@@ -2670,18 +2659,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="0gO-V3-fiR">
                         <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="q0n-gq-ssY">
-                            <rect key="frame" x="85" y="7" width="150" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="待办">
-                                    <size key="contentOffset" width="0.0" height="2"/>
-                                </segment>
-                                <segment title="已办">
-                                    <size key="contentOffset" width="0.0" height="3"/>
-                                </segment>
-                            </segments>
-                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" id="4so-ne-rUD">
                             <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QjS-xe-vFD">
                                 <rect key="frame" x="244" y="2" width="60" height="40"/>

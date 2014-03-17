@@ -188,7 +188,7 @@
                                     <outlet property="delegate" destination="3qq-31-Btt" id="LHQ-tt-VH7"/>
                                 </connections>
                             </textField>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="QsV-Es-a0J">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="QsV-Es-a0J">
                                 <rect key="frame" x="150" y="427" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
@@ -198,6 +198,7 @@
                             <constraint firstAttribute="trailing" secondItem="LHU-Mh-k57" secondAttribute="trailing" constant="20" id="5IO-qS-O1C"/>
                             <constraint firstItem="sBA-Rr-7TB" firstAttribute="top" secondItem="95e-Wf-3XZ" secondAttribute="bottom" constant="41" id="7NO-SR-gmI"/>
                             <constraint firstAttribute="trailing" secondItem="jD5-Q3-F7t" secondAttribute="trailing" constant="25" id="8dw-uy-NBz"/>
+                            <constraint firstItem="QsV-Es-a0J" firstAttribute="top" secondItem="95e-Wf-3XZ" secondAttribute="bottom" constant="8" symbolic="YES" id="A0j-ca-hk6"/>
                             <constraint firstItem="oCG-iu-1yr" firstAttribute="leading" secondItem="9fk-zs-rqz" secondAttribute="leading" id="Byx-20-nMC"/>
                             <constraint firstAttribute="trailing" secondItem="oCG-iu-1yr" secondAttribute="trailing" id="DK2-yp-fVB"/>
                             <constraint firstItem="sBA-Rr-7TB" firstAttribute="top" secondItem="oCG-iu-1yr" secondAttribute="bottom" id="IJR-08-tW0"/>
@@ -212,6 +213,7 @@
                             <constraint firstAttribute="trailing" secondItem="V89-u5-uXm" secondAttribute="trailing" constant="20" id="Tas-rZ-dEV"/>
                             <constraint firstItem="jeb-WA-pJg" firstAttribute="leading" secondItem="9fk-zs-rqz" secondAttribute="leading" constant="56" id="YDM-3a-ByD"/>
                             <constraint firstItem="V89-u5-uXm" firstAttribute="leading" secondItem="9fk-zs-rqz" secondAttribute="leading" constant="20" id="YoF-K7-5UT"/>
+                            <constraint firstItem="QsV-Es-a0J" firstAttribute="centerX" secondItem="y4N-yp-3K8" secondAttribute="centerX" id="aFi-3s-hql"/>
                             <constraint firstItem="LHU-Mh-k57" firstAttribute="top" secondItem="jeb-WA-pJg" secondAttribute="bottom" constant="10" id="hm4-nN-ihc"/>
                             <constraint firstItem="oCG-iu-1yr" firstAttribute="top" secondItem="9fk-zs-rqz" secondAttribute="top" id="iZn-uX-OYO"/>
                             <constraint firstAttribute="trailing" secondItem="y4N-yp-3K8" secondAttribute="trailing" constant="20" id="o6v-Wn-3xj"/>

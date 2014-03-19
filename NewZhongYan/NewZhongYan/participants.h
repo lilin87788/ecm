@@ -17,8 +17,8 @@
 
 -(void)show;
 
-@property(nonatomic,retain)NSString             *returncode;
-@property(nonatomic,retain)NSString             *selection; 
-@property(nonatomic,retain)NSMutableArray       *participantsArray;
-@property(nonatomic,retain)NSArray              *xmlNodes;  
+@property(nonatomic,strong)NSString             *returncode;
+@property(nonatomic,strong)NSString             *selection;
+@property(nonatomic,strong)NSMutableArray       *participantsArray;
+@property(nonatomic,strong)NSArray              *xmlNodes;
 @end

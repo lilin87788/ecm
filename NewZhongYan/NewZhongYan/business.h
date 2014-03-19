@@ -18,9 +18,9 @@
 }
 
 //-(void)showABusiness;
-@property(nonatomic,retain)NSString    *step;
-@property(nonatomic,retain)NSString    *returncode;
-@property(nonatomic,retain)NSString    *flowinstanceid;
-@property(nonatomic,retain)NSMutableArray     *columnsArray;//存储columns
-@property(nonatomic,retain)NSArray     *xmlNodes;    
+@property(nonatomic,strong)NSString    *step;
+@property(nonatomic,strong)NSString    *returncode;
+@property(nonatomic,strong)NSString    *flowinstanceid;
+@property(nonatomic,strong)NSMutableArray     *columnsArray;//存储columns
+@property(nonatomic,strong)NSArray     *xmlNodes;    
 @end

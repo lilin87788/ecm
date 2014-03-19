@@ -31,6 +31,11 @@
         }];
     }
 }
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (IBAction)help:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"popupHelp" object:nil];
 }

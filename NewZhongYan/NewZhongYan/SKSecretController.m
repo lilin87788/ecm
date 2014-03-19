@@ -175,6 +175,11 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
+-(void)dealloc
+{
+    [self removeoObb];
+}
+
 -(void)savePasswordToServer
 {
     if (![self checkNewPassword]) {

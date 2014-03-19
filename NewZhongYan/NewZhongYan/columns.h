@@ -15,9 +15,9 @@
     NSMutableArray         *columnsArray;//存储column 至少一个或者多个
     DDXMLNode         *csnode;//存储column 至少一个或者多个
 }
-@property(nonatomic,retain)NSDictionary    *columnsDict; //存储属性 
-@property(nonatomic,retain)NSMutableArray         *columnsArray;//存储column 至少一个或者多个
-@property(nonatomic,retain)DDXMLNode* csnode;
+@property(nonatomic,strong)NSDictionary    *columnsDict; //存储属性
+@property(nonatomic,strong)NSMutableArray         *columnsArray;//存储column 至少一个或者多个
+@property(nonatomic,strong)DDXMLNode* csnode;
 @property BOOL isWritenColumns;
 @property BOOL isWrited;
 //-(void)showAColumns;

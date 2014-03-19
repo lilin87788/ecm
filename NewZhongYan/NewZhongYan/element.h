@@ -16,7 +16,7 @@
     DDXMLElement    * enode;
 }
 
-@property(nonatomic,retain) NSString        * value;
-@property(nonatomic,retain) NSDictionary    * elementDict;
-@property(nonatomic,retain) DDXMLElement    * enode;
+@property(nonatomic,strong) NSString        * value;
+@property(nonatomic,strong) NSDictionary    * elementDict;
+@property(nonatomic,strong) DDXMLElement    * enode;
 @end

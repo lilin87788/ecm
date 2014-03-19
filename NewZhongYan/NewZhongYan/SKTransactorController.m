@@ -16,7 +16,7 @@
 #import "participant.h"
 #import "BWStatusBarOverlay.h"
 #import "SKViewController.h"
-//#import "SKAllDepartmentController.h"
+#import "SKAddressController.h"
 @interface SKTransactorController ()
 //构建视图
 -(void)drawView;
@@ -25,6 +25,7 @@
 @implementation SKTransactorController
 @synthesize GTaskInfo,tableView = _tableView,pts,bid,branchname;
 -(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     if ([pRequest isExecuting]) {
         [pRequest clearDelegatesAndCancel];
     }
@@ -65,8 +66,6 @@
     
     DDXMLElement* element2 = (DDXMLElement*)[[doc nodesForXPath:@"//participants" error:0] objectAtIndex:0];
     pts.selection = [[[element2 attributes] objectAtIndex:0] stringValue];
-    //pts.selection = [[[element2 attributes] objectAtIndex:0] objectForKey:@"selection"];
-    //解析
     for (DDXMLElement* element in [doc nodesForXPath:@"//participant" error:0])
     {
         participant *pt = [[participant alloc] init];
@@ -79,23 +78,19 @@
         pt.pname = [[element elementForName:@"pname"] stringValue];
         [self.pts.participantsArray addObject:pt];
     }
-    
-    //[pts show];
     [self drawView];
 }
 
 -(void)addSignalPeople
 {
-//    SKAllDepartmentController* allUnit = [[SKAllDepartmentController alloc] init];
-//    allUnit.IsMail = YES;
-//    [self.navigationController pushViewController:allUnit animated:YES];
+    SKAddressController* addressBook = [[APPUtils AppStoryBoard] instantiateViewControllerWithIdentifier:@"SKAddressController"];
+    addressBook.IsMail = YES;
+    [self.navigationController pushViewController:addressBook animated:YES];
 }
 
 -(void)drawAddSignalView
 {
-    UILabel *titleLabel = (UILabel*)[self.view viewWithTag:1000];
-    currentHeight += titleLabel.frame.size.height + 5;
-    
+    currentHeight += CGRectGetMaxY([self.view viewWithTag:1000].frame) + 5;
     UILabel* addsigLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, currentHeight + 5, 100, 20)];
     addsigLabel.text = @"   加签人";
     [self.view addSubview:addsigLabel];
@@ -122,7 +117,7 @@
     [DividingLines setFrame:CGRectMake(0, currentHeight + 30, 320, 2)];
     [self.view addSubview:DividingLines];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, currentHeight + 33, 320,[UIScreen mainScreen].bounds.size.height - 20 - 44  - 49 - DividingLines.frame.origin.y)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(DividingLines.frame) + 1 , 320,SCREEN_HEIGHT - 49 - CGRectGetMaxY(DividingLines.frame) - 1)];
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
     [_tableView setBounces:NO];

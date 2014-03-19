@@ -29,7 +29,7 @@
 
 -(void)show;
 @property BOOL selected;
-@property(nonatomic,retain)NSString* type;
-@property(nonatomic,retain)NSString* pid;
-@property(nonatomic,retain)NSString* pname;
+@property(nonatomic,strong)NSString* type;
+@property(nonatomic,strong)NSString* pid;
+@property(nonatomic,strong)NSString* pname;
 @end

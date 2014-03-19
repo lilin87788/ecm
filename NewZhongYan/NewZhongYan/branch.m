@@ -9,7 +9,7 @@
 #import "branch.h"
 
 @implementation branch
-@synthesize bid,bname,ifend;
+@synthesize bid,bname,ifend,node;
 
 -(void)show
 {

@@ -218,6 +218,7 @@
 		F286C19618223D1000ADFF40 /* uncheck.png in Resources */ = {isa = PBXBuildFile; fileRef = F286C19418223D1000ADFF40 /* uncheck.png */; };
 		F286C1991822517C00ADFF40 /* SKEDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F286C1981822517C00ADFF40 /* SKEDetailController.m */; };
 		F286C19F1822893F00ADFF40 /* SKLToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F286C19E1822893F00ADFF40 /* SKLToolBar.m */; };
+		F287260318D94461009CD16A /* branches.m in Sources */ = {isa = PBXBuildFile; fileRef = F287260218D94461009CD16A /* branches.m */; };
 		F288468F180397EB006A5D62 /* SKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F288468D180397EB006A5D62 /* SKLoginViewController.m */; };
 		F28846971803992F006A5D62 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = F28846951803992F006A5D62 /* button.png */; };
 		F28846981803992F006A5D62 /* button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F28846961803992F006A5D62 /* button_pressed.png */; };
@@ -795,6 +796,8 @@
 		F286C1981822517C00ADFF40 /* SKEDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKEDetailController.m; sourceTree = "<group>"; };
 		F286C19D1822893F00ADFF40 /* SKLToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKLToolBar.h; sourceTree = "<group>"; };
 		F286C19E1822893F00ADFF40 /* SKLToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKLToolBar.m; sourceTree = "<group>"; };
+		F287260118D94461009CD16A /* branches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = branches.h; sourceTree = "<group>"; };
+		F287260218D94461009CD16A /* branches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = branches.m; sourceTree = "<group>"; };
 		F288468C180397EB006A5D62 /* SKLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKLoginViewController.h; sourceTree = "<group>"; };
 		F288468D180397EB006A5D62 /* SKLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKLoginViewController.m; sourceTree = "<group>"; };
 		F28846951803992F006A5D62 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
@@ -2136,6 +2139,8 @@
 			children = (
 				F2B832171829F0BC007E2CC0 /* aNextBranches.h */,
 				F2B832181829F0BC007E2CC0 /* aNextBranches.m */,
+				F287260118D94461009CD16A /* branches.h */,
+				F287260218D94461009CD16A /* branches.m */,
 				F2B832191829F0BC007E2CC0 /* branch.h */,
 				F2B8321A1829F0BC007E2CC0 /* branch.m */,
 				F2B8321B1829F0BC007E2CC0 /* business.h */,
@@ -3217,6 +3222,7 @@
 				F2B67F9717F7C8EC0007CB91 /* UIImage+rescale.m in Sources */,
 				F28DF842185AAA3B000B6C1F /* UIImage+BoxBlur.m in Sources */,
 				F291E24F180CDD010027F0C9 /* ASINetworkQueue.m in Sources */,
+				F287260318D94461009CD16A /* branches.m in Sources */,
 				F28846A31803B335006A5D62 /* APPUtils.m in Sources */,
 				F20EC7721824DE0B00427D54 /* SKAttachButton.m in Sources */,
 				F2F79E96180D2A420004CAFC /* DataServiceURLs.m in Sources */,

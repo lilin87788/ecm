@@ -1725,7 +1725,7 @@
         <!--Address Controller-->
         <scene sceneID="z4X-yY-Frw">
             <objects>
-                <viewController id="5M0-c3-6NB" customClass="SKAddressController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SKAddressController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5M0-c3-6NB" customClass="SKAddressController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="z4D-mL-zQL"/>
                         <viewControllerLayoutGuide type="bottom" id="uCN-Y1-Mby"/>

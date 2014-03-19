@@ -29,16 +29,14 @@
 
 - (void)requestFailed:(SKHTTPRequest *)request
 {
-    //NSError *error = [request error];
-    //[utils showTextOnView:self.view Text:[NetUtils userInfoWhenRequestOccurError:error]];
+    NSError *error = [request error];
+    [BWStatusBarOverlay showErrorWithMessage:[NetUtils userInfoWhenRequestOccurError:error] duration:1 animated:1];
 }
 
 - (void)requestFinished:(SKHTTPRequest *)request
 {
-    NSLog(@"%@",request.responseString);
     if (request.responseStatusCode == 500) {
-        //[utils showTextOnView:self.view Text:@"网络异常请联系供应商"]; return;
-        
+        [BWStatusBarOverlay showErrorWithMessage:@"网络异常请联系供应商" duration:1 animated:1];
     }
     DDXMLDocument *doc = [[DDXMLDocument alloc] initWithData:request.responseData options:0 error:nil];
     DDXMLElement* element = (DDXMLElement*)[[doc nodesForXPath:@"//returncode" error:0] objectAtIndex:0];
@@ -47,23 +45,22 @@
     self.nextBranches.returncode =  [element stringValue];
     
     //解析
-    for (DDXMLElement* element in [doc nodesForXPath:@"//branch" error:0])
-    {
-        branch *b = [[branch alloc] init];
-        b.bid = [[element elementForName:@"bid"] stringValue];
-        b.bname = [[element elementForName:@"bname"] stringValue];
-        b.ifend = [[element elementForName:@"ifend"] stringValue];
-        [self.nextBranches.branchesArray addObject:b];
-    }
-    
-    for (UIView* v in [self.view subviews]) {
-        if (v.tag == 1001) {
-            [v removeFromSuperview];
+    for (DDXMLElement* node in [doc nodesForXPath:@"//branches" error:0]) {
+        branches* bs = [[branches alloc] init];
+        bs.attributeDictionary = [(DDXMLElement*)node attributesAsDictionary];
+        for (DDXMLElement* element in [node nodesForXPath:@"./branch" error:0])
+        {
+            branch *b = [[branch alloc] init];
+            b.bid = [[element elementForName:@"bid"] stringValue];
+            b.bname = [[element elementForName:@"bname"] stringValue];
+            b.ifend = [[element elementForName:@"ifend"] stringValue];
+            b.node =element;
+            [bs.branchArray addObject:b];
+            branchCount++;
         }
+        [self.nextBranches.branchesArray addObject:bs];
     }
-    
     [self drawView];
-
 }
 
 -(void)fitLabel:(UILabel*)label
@@ -75,26 +72,13 @@
 
 -(void)drawView
 {
-    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(titleLabel.frame) + 5, 320, 0)];
-    if ([self.nextBranches.selection isEqualToString:@"single"]) {
-        [label setText:@"   流程选择 (单选)"];
-    }else{
-        [label setText:@"   流程选择 (复选)"];
-    }
-    [label setTextColor:COLOR(51,181,229)];
-    [self fitLabel:label];
-    [self.view addSubview:label];
-    
-    //分割线
-    UIImageView* DividingLines = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_line.png"]];
-    [DividingLines setFrame:CGRectMake(0,  CGRectGetMaxY(label.frame) + 5, 320, 2)];
-    [self.view addSubview:DividingLines];
-    
     _tableView = [[UITableView alloc] init];
     if (IS_IOS7) {
-        [_tableView setFrame:CGRectMake(0,CGRectGetMaxY(DividingLines.frame),320,SCREEN_HEIGHT - CGRectGetMaxY(DividingLines.frame) - 49)];
+        [_tableView setFrame:CGRectMake(0,CGRectGetMaxY(titleLabel.frame) + 5,320,
+                                        SCREEN_HEIGHT - 49 - CGRectGetMaxY(titleLabel.frame) - 5)];
     }else{
-        
+        [_tableView setFrame:CGRectMake(0,CGRectGetMaxY(titleLabel.frame) + 5,320,
+                                        SCREEN_HEIGHT - 49 - CGRectGetMaxY(titleLabel.frame) - 5 - 64)];
     }
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
@@ -102,9 +86,15 @@
     [self.view addSubview:_tableView];
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    [_tableView setBounces: self.nextBranches.branchesArray.count > 6];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return self.nextBranches.branchesArray.count;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    branches* bs = self.nextBranches.branchesArray[section];
+    [_tableView setBounces:branchCount > 6];
+    return [bs.branchArray count];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -115,7 +105,8 @@
         cell.imageView.image =[[UIImage imageNamed:@"uncheck.png"] rescaleImageToSize:CGSizeMake(25, 25)];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    branch* b =  (branch*)[self.nextBranches.branchesArray objectAtIndex:indexPath.row];
+    branches* bs =  (branches*)self.nextBranches.branchesArray[indexPath.section];
+    branch* b = bs.branchArray[indexPath.row];
     cell.textLabel.text = b.bname;
     return cell;
 }
@@ -124,13 +115,35 @@
 {
     UITableViewCell* cell = [aTableView cellForRowAtIndexPath:indexPath];
     cell.imageView.image = [UIImage imageNamed:@"check.png"];
-    selectedRow = indexPath.row;
+    selectedRow = indexPath;
 }
 
-- (void)tableView:(UITableView *)aTableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath 
+- (void)tableView:(UITableView *)aTableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell = [aTableView cellForRowAtIndexPath:indexPath];
     cell.imageView.image = [UIImage imageNamed:@"uncheck.png"];
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView* headView = [[UIView alloc] init];
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
+    branches* bs = self.nextBranches.branchesArray[section];
+    if (bs.attributeDictionary[@"name"]) {
+        [label setText:[NSString stringWithFormat:@"   %@ (单选)",bs.attributeDictionary[@"name"]]];
+    }else{
+        [label setText:@"   流程选择 (单选)"];
+    }
+    [label setTextColor:COLOR(51,181,229)];
+    [self fitLabel:label];
+    
+    [headView setFrame:CGRectMake(0, 0, 320, label.frame.size.height)];
+    [headView addSubview:label];
+    
+    UIImageView* DividingLines = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_line.png"]];
+    [DividingLines setFrame:CGRectMake(0,  CGRectGetMaxY(label.frame) + 5, 320, 2)];
+    [headView addSubview:DividingLines];
+    return headView;
 }
 
 -(void)dealloc
@@ -144,7 +157,7 @@
 {
     self = [super init];
     if (self) {
-        selectedRow = -1;
+        selectedRow = nil;
         self.title = @"流程分支";
         self.GTaskInfo = dictionary;
         self.nextBranches = [[aNextBranches alloc] init];
@@ -208,11 +221,13 @@
 }
 
 -(void)nextStep:(id)sender{
-    if (selectedRow == -1) {
+    if (!selectedRow) {
         //[utils showTextOnView:self.view Text:@"您还没有选择适当的流程分支!"];
+        [BWStatusBarOverlay showErrorWithMessage:@"您还没有选择适当的流程分支!" duration:1 animated:YES];
         return;
     }
-    branch* b =  (branch*)[self.nextBranches.branchesArray objectAtIndex:selectedRow];
+    branches* bs =  (branches*)self.nextBranches.branchesArray[selectedRow.section];
+    branch* b = bs.branchArray[selectedRow.row];
     if ([b.ifend isEqualToString:@"nextto"]) {
         
         //➢	branchid，可供选择的分支途径。为String数组，如果某项流程是主流程下子流程，其格式为主流程id:子流程id
@@ -246,7 +261,7 @@
     CGFloat height = [text sizeWithFont:font
                       constrainedToSize: CGSizeMake(width,MAXFLOAT)
                           lineBreakMode:NSLineBreakByWordWrapping].height; //expectedLabelSizeOne.height 就是内容的高度
-    CGRect labelRect = CGRectMake((320 - width)/2.0, TopY ,width,height);
+    CGRect labelRect = CGRectMake((320 - width)/2.0, TopY + 5,width,height);
     UILabel *label = [[UILabel alloc] initWithFrame:labelRect];
     label.lineBreakMode = UILineBreakModeWordWrap;
     label.numberOfLines = 0;//上面两行设置多行显示s
@@ -268,6 +283,7 @@
                                    Width:300
                                     Text:[self.GTaskInfo objectForKey:@"TITL"]];
     [titleLabel setTag:1000];
+    //[titleLabel setBackgroundColor:COLOR(17, 168, 171)];
     [titleLabel setTextColor:[UIColor grayColor]];
     [titleLabel setShadowColor:[UIColor whiteColor]];
     [titleLabel setShadowOffset:CGSizeMake(-1, -1)];

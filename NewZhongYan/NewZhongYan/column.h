@@ -18,10 +18,10 @@
 }
 
 //-(void)showCloumn;
-@property(nonatomic,retain)NSString          * value;//有可能为空
-@property(nonatomic,retain)NSDictionary      * columnDict;
-@property(nonatomic,retain)NSMutableArray    * elementArray;
-@property(nonatomic,retain)DDXMLNode  * cnode;//可能为空
+@property(nonatomic,strong)NSString          * value;//有可能为空
+@property(nonatomic,strong)NSDictionary      * columnDict;
+@property(nonatomic,strong)NSMutableArray    * elementArray;
+@property(nonatomic,strong)DDXMLNode  * cnode;//可能为空
 @end
 
 

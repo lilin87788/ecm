@@ -12,13 +12,13 @@
 {
     NSString            *selection; //选择方式
     NSString            *returncode;
-    NSMutableArray      *branchesArray;//存储branch
+    NSMutableArray      *branchesArray;//存储branches
     NSArray             *xmlNodes;     //新添加的用于存储xml数据 将来便于返回
 }
 
 -(void)show;
-@property(nonatomic,retain)NSString             *selection;
-@property(nonatomic,retain)NSString             *returncode;
-@property(nonatomic,retain)NSMutableArray       *branchesArray;//存储columns
-@property(nonatomic,retain)NSArray              *xmlNodes;    
+@property(nonatomic,strong)NSString             *selection;
+@property(nonatomic,strong)NSString             *returncode;
+@property(nonatomic,strong)NSMutableArray       *branchesArray;//存储columns
+@property(nonatomic,strong)NSArray              *xmlNodes;    
 @end

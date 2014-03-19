@@ -7,16 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "DDXMLElement.h"
 @interface branch : NSObject
 {
     NSString    *bid;       //选项ID
     NSString    *bname;     //选项名称
     NSString    *ifend;     //默认的选择状态
+    DDXMLElement* node;
 }
 
 -(void)show;
-@property(nonatomic,retain)NSString    *bid; 
-@property(nonatomic,retain)NSString    *bname;     //选项名称
-@property(nonatomic,retain)NSString    *ifend;     //默认的选择状态
+@property(nonatomic,strong)NSString    *bid;
+@property(nonatomic,strong)NSString    *bname;     //选项名称
+@property(nonatomic,strong)NSString    *ifend;     //默认的选择状态
+@property(nonatomic,strong)DDXMLElement    *node;     //默认的选择状态
 @end

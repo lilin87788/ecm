@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SKHTTPRequest.h"
 #import "aNextBranches.h"
+#import "branches.h"
 @interface SKNextBranchesController : UIViewController
 <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
@@ -21,7 +22,8 @@
     aNextBranches   *nextBranches;
     UITableView     *_tableView;
     CGFloat         currentHeight;
-    NSInteger       selectedRow;
+    NSIndexPath*     selectedRow;
+    NSUInteger      branchCount;
 }
 
 -(id)initWithDictionary:(NSDictionary*)dictionary;

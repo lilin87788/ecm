@@ -107,8 +107,8 @@
         [titleButton1 setBackgroundImage:[UIImage imageNamed:@"segLeft_press.png"] forState:UIControlStateHighlighted];
         [titleButton2 setBackgroundImage:[UIImage imageNamed:@"segRight.png"] forState:UIControlStateNormal];
         [titleButton2 setBackgroundImage:[UIImage imageNamed:@"segRight.png"] forState:UIControlStateHighlighted];
-        [titleButton2 setTitleColor:COLOR(5, 73, 165) forState:UIControlStateNormal];
-        [titleButton1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [titleButton1 setTitleColor:COLOR(5, 73, 165) forState:UIControlStateNormal];
+        [titleButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         remindState = SKReminding;
     }
     else
@@ -117,8 +117,8 @@
         [titleButton1 setBackgroundImage:[UIImage imageNamed:@"segLeft.png"] forState:UIControlStateHighlighted];
         [titleButton2 setBackgroundImage:[UIImage imageNamed:@"segRight_press.png"] forState:UIControlStateNormal];
         [titleButton2 setBackgroundImage:[UIImage imageNamed:@"segRight_press.png"] forState:UIControlStateHighlighted];
-        [titleButton1 setTitleColor:COLOR(5, 73, 165) forState:UIControlStateNormal];
-        [titleButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [titleButton2 setTitleColor:COLOR(5, 73, 165) forState:UIControlStateNormal];
+        [titleButton1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         remindState = SKreminded;
     }
     
@@ -154,7 +154,6 @@
             }
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
             [self.tableView tableViewDidFinishedLoading];
             [self.tableView reloadData];
         });
@@ -170,7 +169,7 @@
     
     titleButton1=[UIButton buttonWithType:UIButtonTypeCustom];
     [titleButton1 setFrame:CGRectMake(0, 0, 74, 32)];
-    [titleButton1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [titleButton1 setTitleColor:COLOR(5, 73, 165) forState:UIControlStateNormal];
     [titleButton1 setBackgroundImage:[UIImage imageNamed:@"segLeft_press.png"] forState:UIControlStateNormal];
     [titleButton1 setBackgroundImage:[UIImage imageNamed:@"segLeft_press.png"] forState:UIControlStateHighlighted];
     [titleButton1 setTitle:@"待办" forState:UIControlStateNormal];
@@ -180,7 +179,7 @@
     
     titleButton2=[UIButton buttonWithType:UIButtonTypeCustom];
     [titleButton2 setFrame:CGRectMake(74, 0, 74, 32)];
-    [titleButton2 setTitleColor:COLOR(5, 73, 165) forState:UIControlStateNormal];
+    [titleButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [titleButton2 setBackgroundImage:[UIImage imageNamed:@"segRight.png"] forState:UIControlStateNormal];
     [titleButton2 setBackgroundImage:[UIImage imageNamed:@"segRight.png"] forState:UIControlStateHighlighted];
     [titleButton2 setTitle:@"已办" forState:UIControlStateNormal];

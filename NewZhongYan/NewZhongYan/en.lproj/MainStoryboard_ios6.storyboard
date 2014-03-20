@@ -917,27 +917,6 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E3a-YH-754">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5g4-y0-a40">
-                                <rect key="frame" x="10" y="101" width="300" height="0.0"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="landbar.png" translatesAutoresizingMaskIntoConstraints="NO" id="9V3-M4-vgV">
-                                        <rect key="frame" x="10" y="0.0" width="280" height="0.0"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </imageView>
-                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="公司主页" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3DD-ms-E6w">
-                                        <rect key="frame" x="56" y="6" width="188" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KDo-qQ-uPk">
                                 <rect key="frame" x="0.0" y="64" width="320" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -971,13 +950,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94117647059999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="dQG-Z9-VP6" firstAttribute="top" secondItem="E3a-YH-754" secondAttribute="bottom" id="28q-Ts-Fpz"/>
                             <constraint firstAttribute="trailing" secondItem="Z2C-YI-hcX" secondAttribute="trailing" id="I2p-zB-DfH"/>
-                            <constraint firstItem="E3a-YH-754" firstAttribute="leading" secondItem="bYg-Rn-D75" secondAttribute="leading" id="PPg-Qv-AQA"/>
                             <constraint firstItem="dQG-Z9-VP6" firstAttribute="top" secondItem="Z2C-YI-hcX" secondAttribute="bottom" id="SME-rb-Kij"/>
-                            <constraint firstAttribute="trailing" secondItem="E3a-YH-754" secondAttribute="trailing" id="cSU-yd-mx7"/>
                             <constraint firstItem="Z2C-YI-hcX" firstAttribute="leading" secondItem="bYg-Rn-D75" secondAttribute="leading" id="cj9-01-hIB"/>
-                            <constraint firstItem="E3a-YH-754" firstAttribute="top" secondItem="bYg-Rn-D75" secondAttribute="top" id="sff-d1-gtZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="AGJ-bd-Z2X">
@@ -988,9 +963,6 @@
                         <outlet property="emailTabItem" destination="92L-Op-0vO" id="8rI-Yp-yxH"/>
                         <outlet property="remindTabItem" destination="AuP-w4-as9" id="Yo6-mF-aVq"/>
                         <outlet property="tabbar" destination="Z2C-YI-hcX" id="OgH-zH-5bB"/>
-                        <outlet property="titleImageView" destination="9V3-M4-vgV" id="QKk-ZY-mwx"/>
-                        <outlet property="titleLabel" destination="3DD-ms-E6w" id="Ear-jQ-V3E"/>
-                        <outlet property="titleView" destination="5g4-y0-a40" id="z9h-Db-7Nd"/>
                         <outlet property="workItemView" destination="KDo-qQ-uPk" id="uj8-j5-WAF"/>
                         <segue destination="Wk6-BQ-O9C" kind="push" identifier="about" id="QZa-Jh-g59"/>
                         <segue destination="6O5-0W-PaO" kind="push" identifier="userinfo" id="kcf-By-Rg6"/>
@@ -1024,12 +996,6 @@
                     <view key="view" contentMode="scaleToFill" id="icU-hR-UGH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blur.png" translatesAutoresizingMaskIntoConstraints="NO" id="ddA-Wy-y6u">
-                                <rect key="frame" x="10" y="0.0" width="300" height="367"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -3750,7 +3716,6 @@
     </scenes>
     <resources>
         <image name="address.png" width="30" height="30"/>
-        <image name="blur.png" width="320" height="400"/>
         <image name="btn_help.png" width="60" height="36"/>
         <image name="btn_home_bg.png" width="72" height="72"/>
         <image name="button.png" width="225" height="72"/>
@@ -3770,7 +3735,6 @@
         <image name="icon_announcement.png" width="100" height="100"/>
         <image name="icon_read.png" width="32" height="32"/>
         <image name="icon_unread.png" width="32" height="32"/>
-        <image name="landbar.png" width="320" height="53"/>
         <image name="landbar_noshadow.png" width="320" height="49"/>
         <image name="landbar_shadow.png" width="320" height="49"/>
         <image name="linebuttom_n.png" width="225" height="10"/>

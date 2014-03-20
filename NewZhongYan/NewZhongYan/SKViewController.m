@@ -24,6 +24,7 @@
 #import "UIImage+BlurredFrame.h"
 #import "SKDaemonManager.h"
 #import "SKECMRootController.h"
+#import "SKSettingController.h"
 #define OriginY ((IS_IOS7) ? 64 : 0 )
 #define DepartmentInfomationCheckDate @"DepartmentInfomationCheckDate"
 #define ClientInfomationCheckDate @"ClientInfomationCheckDate"
@@ -184,13 +185,12 @@
         SKECMRootController *ecmRoot = segue.destinationViewController;
         ecmRoot.channel = sender;
 	}
-}
-
-- (IBAction)jumpToEmailController:(id)sender {
-}
-- (IBAction)jumpToRemindController:(id)sender {
-}
-- (IBAction)jumpAddressBookController:(id)sender {
+    
+	if ([segue.identifier isEqualToString:@"setting"])
+	{
+        SKSettingController *setting = segue.destinationViewController;
+        setting.rootController = self;
+	}
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
@@ -217,7 +217,8 @@
         case 3:
         {
             item.selectedImage = Image(@"setting_highnight");
-            [settingController ecmTouchDown];
+            [self performSegueWithIdentifier:@"setting"sender:self];
+            //[settingController ecmTouchDown];
             break;
         }
         default:

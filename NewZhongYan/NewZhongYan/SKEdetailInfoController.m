@@ -81,9 +81,9 @@
 {
     [super viewDidLoad];
     SKLToolBar* myToolBar = [[SKLToolBar alloc] initWithFrame:CGRectMake(0, 0, 320, 49)];
-    [myToolBar setFirstItem:@"btn_call" Title:@"电话"];
-    [myToolBar setSecondItem:@"btn_sms" Title:@"短信"];
-    [myToolBar setThirdItem:@"btn_email" Title:@"邮件"];
+    [myToolBar setFirstItem:@"btn_call_ecm" Title:@"电话"];
+    [myToolBar setSecondItem:@"btn_sms_ecm" Title:@"短信"];
+    [myToolBar setThirdItem:@"btn_mail_ecm" Title:@"邮件"];
     [myToolBar.firstButton  addTarget:self action:@selector(phoneOnToolBar)  forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.secondButton addTarget:self action:@selector(sendSMS)   forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.thirdButton  addTarget:self action:@selector(email:) forControlEvents:UIControlEventTouchUpInside];

@@ -198,10 +198,12 @@
         [self.searchBar setBackgroundImage:Image(@"navbar64") forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
         [self.searchBar setSearchBarStyle:UISearchBarStyleDefault];
         [self.searchBar setFrame:CGRectMake(0.0f, 20, 320.0f, 44)];
+        self.searchBar.tintColor = [UIColor whiteColor];
     }else{
         [self.searchBar setFrame:CGRectMake(0.0f, 0, 320.0f, 44)];
+        self.searchBar.tintColor = [UIColor grayColor];
     }
-	self.searchBar.tintColor = [UIColor grayColor];
+	
 	self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
 	self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	self.searchBar.keyboardType = UIKeyboardTypeDefault;
@@ -326,6 +328,7 @@
     for (UIView *subView in viewTop.subviews) {
         if ([subView isKindOfClass:NSClassFromString(classString)]) {
             UIButton *cancelButton = (UIButton*)subView;
+            [cancelButton.titleLabel setTextColor:[UIColor whiteColor]];
             [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
         }
     }

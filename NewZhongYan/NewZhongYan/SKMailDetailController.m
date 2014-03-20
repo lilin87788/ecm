@@ -431,9 +431,9 @@
 -(void)initToolBar
 {
     SKLToolBar* myToolBar = [[SKLToolBar alloc] initWithFrame:CGRectMake(0,0,320,49)];
-    [myToolBar setFirstItem:@"btn_email_delete" Title:@"删除"];
-    [myToolBar setSecondItem:@"btn_email_forward" Title:@"转发"];
-    [myToolBar setThirdItem:@"btn_email_reply" Title:@"回复"];
+    [myToolBar setFirstItem:@"btn_clean_ecm" Title:@"删除"];
+    [myToolBar setSecondItem:@"btn_forward_ecm" Title:@"转发"];
+    [myToolBar setThirdItem:@"btn_reply_ecm" Title:@"回复"];
     [myToolBar.firstButton  addTarget:self action:@selector(deleteEmail)  forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.secondButton addTarget:self action:@selector(forwardEmail)   forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.thirdButton  addTarget:self action:@selector(replyEmail) forControlEvents:UIControlEventTouchUpInside];

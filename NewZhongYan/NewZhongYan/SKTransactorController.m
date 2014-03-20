@@ -47,9 +47,11 @@
 
 - (void)requestFinished:(SKHTTPRequest *)request
 {
-    NSLog(@"%@",request.responseString);
+    //NSLog(@"%@",request.responseString);
     if (request.responseStatusCode != 200) {
-        //[utils AlterView:self.view Title:@"尊敬的用户您好:" Deatil:@"网络异常请联系供应商"]; return;
+        //[utils AlterView:self.view Title:@"尊敬的用户您好:" Deatil:@"网络异常请联系供应商"];
+        [BWStatusBarOverlay showErrorWithMessage:@"网络异常请联系供应商" duration:1 animated:1];
+        return;
     }
     DDXMLDocument *doc = [[DDXMLDocument alloc] initWithData:request.responseData options:0 error:0];
     DDXMLElement* element1 = (DDXMLElement*)[[doc nodesForXPath:@"//returncode" error:0] objectAtIndex:0];

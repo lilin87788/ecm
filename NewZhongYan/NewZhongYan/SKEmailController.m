@@ -266,10 +266,9 @@
 -(void)createToolBar
 {
     SKLToolBar* myToolBar = [[SKLToolBar alloc] initWithFrame:CGRectMake(0, 0, 320, 49)];
-    [myToolBar.homeButton addTarget:self action:@selector(backToRoot:) forControlEvents:UIControlEventTouchUpInside];
-    [myToolBar setFirstItem:@"btn_add_email" Title:@"写信"];
-    [myToolBar setSecondItem:@"btn_email_add" Title:@"更多"];
-    [myToolBar setThirdItem:@"btn_refresh" Title:@"最新"];
+    [myToolBar setFirstItem:@"btn_newmail_ecm" Title:@"写信"];
+    [myToolBar setSecondItem:@"btn_moremail_ecm" Title:@"更多"];
+    [myToolBar setThirdItem:@"btn_refresh_ecm" Title:@"最新"];
     [myToolBar.firstButton  addTarget:self action:@selector(writeEmail)
                      forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.secondButton addTarget:self action:@selector(getMoreEmailFromServer)

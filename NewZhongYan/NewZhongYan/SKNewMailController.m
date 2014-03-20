@@ -499,14 +499,14 @@
 -(void)createToolBar
 {
     myToolBar = [[SKLToolBar alloc] initWithFrame:CGRectMake(0,0,320,49)];
-    [myToolBar setFirstItem:@"btn_email_send"   Title:@"发送"];
-    [myToolBar setSecondItem:@"btn_email_overlook" Title:@"废弃"];
-    [myToolBar setThirdItem:@"btn_email_attachments"    Title:@"附件"];
+    [myToolBar setFirstItem:@"btn_sendmail_ecm"   Title:@"发送"];
+    [myToolBar setSecondItem:@"btn_abandon_ecm" Title:@"废弃"];
+    [myToolBar setThirdItem:@"btn_attachments_ecm"    Title:@"附件"];
     [myToolBar.firstButton  addTarget:self action:@selector(sendEmail:)  forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.secondButton addTarget:self action:@selector(back:)   forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.thirdButton  addTarget:self action:@selector(addAttachEmail) forControlEvents:UIControlEventTouchUpInside];
     [toolView addSubview:myToolBar];
-     [self.view bringSubviewToFront:toolView];
+    [self.view bringSubviewToFront:toolView];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {

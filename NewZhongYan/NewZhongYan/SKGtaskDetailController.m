@@ -305,10 +305,9 @@
     [self initData];
     
     myToolBar = [[SKLToolBar alloc] initWithFrame:CGRectMake(0,0, 320, 49)];
-    [myToolBar.homeButton addTarget:self action:@selector(backToRoot:) forControlEvents:UIControlEventTouchUpInside];
-    [myToolBar setFirstItem:@"btn_history" Title:@"历史"];
-    [myToolBar setSecondItem:@"btn_location" Title:@"定位"];
-    [myToolBar setThirdItem:@"btn_next" Title:@"下一步"];
+    [myToolBar setFirstItem:@"btn_history_ecm" Title:@"历史"];
+    [myToolBar setSecondItem:@"btn_location_ecm" Title:@"定位"];
+    [myToolBar setThirdItem:@"btn_next_ecm" Title:@"下一步"];
     [myToolBar.firstButton  addTarget:self action:@selector(getHistory)       forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.secondButton addTarget:self action:@selector(locateTextView)   forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.thirdButton  addTarget:self action:@selector(getNextBranches:) forControlEvents:UIControlEventTouchUpInside];

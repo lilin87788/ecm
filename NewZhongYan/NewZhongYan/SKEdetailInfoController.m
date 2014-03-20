@@ -62,19 +62,14 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     NSString* msg = [NSString string];
-    if(result==MessageComposeResultSent)
-    {
+    if(result==MessageComposeResultSent){
         msg = @"发短信成功";
-    }
-    else if(result==MessageComposeResultCancelled)
-    {
+    }else if(result==MessageComposeResultCancelled){
         msg = @"发短信取消";
-    }
-    else if(result==MessageComposeResultFailed)
-    {
+    }else if(result==MessageComposeResultFailed){
         msg = @"发短信失败";
     }
-    [BWStatusBarOverlay showSuccessWithMessage:msg duration:1 animated:1];
+    [BWStatusBarOverlay showSuccessWithMessage:msg duration:1 animated:YES];
 }
 
 - (void)viewDidLoad

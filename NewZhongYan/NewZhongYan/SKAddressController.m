@@ -7,7 +7,6 @@
 //
 
 #import "SKAddressController.h"
-#import "SKEDetailController.h"
 #import "SKUnitCell.h"
 #import "NSString+hnzy.h"
 #import "SKViewController.h"
@@ -703,8 +702,7 @@
         if (_isMail){
             [selectedEmployees addObject:[_dataEItems objectAtIndex:indexPath.row]];
         }else{
-            //[self performSegueWithIdentifier:@"EDetail" sender:self];
-            [self performSegueWithIdentifier:@"aa" sender:self];
+            [self performSegueWithIdentifier:@"EDetail" sender:self];
         }
     }
 }
@@ -760,13 +758,9 @@
 #pragma mark - UIStoryboardSegue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"EDetail"]){
-        SKEDetailController *EDetail = segue.destinationViewController;
-        EDetail.employeeInfo = _dataEItems[[dataTable indexPathForSelectedRow].row];
-        [dataTable deselectRowAtIndexPath:[dataTable indexPathForSelectedRow] animated:YES];
-	}else{
         SKEdetailInfoController *EDetail = segue.destinationViewController;
         EDetail.employeeInfo = _dataEItems[[dataTable indexPathForSelectedRow].row];
         [dataTable deselectRowAtIndexPath:[dataTable indexPathForSelectedRow] animated:YES];
-    }
+	}
 }
 @end

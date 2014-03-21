@@ -173,6 +173,7 @@
     [indicator setColor:[UIColor darkGrayColor]];
     [self.view addSubview:indicator];
     [indicator setHidden:YES];
+
     [self reload];
 }
 
@@ -210,6 +211,7 @@
         cell.tag = indexPath.row - 1;
         [cell setDataInfo:dataArray[indexPath.row - 1]];
     }
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 @end

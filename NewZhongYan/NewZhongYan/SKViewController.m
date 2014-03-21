@@ -576,7 +576,9 @@
         if ([metaData.dataCode isEqualToString:@"employee"]  && ![metaData isUserOwner])  {
             BWStatusBar =  [[BWStatusBarOverlay alloc] init];
             [BWStatusBar showLoadingWithMessage:@"正在同步通讯录..." animated:YES];
-            [BWStatusBar setProgressBackgroundColor:COLOR(17, 168, 171)];
+            if (IS_IOS7) {
+                [BWStatusBar setProgressBackgroundColor:COLOR(17, 168, 171)];
+            }
         }
     });
 }

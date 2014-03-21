@@ -55,6 +55,7 @@
             } else {
                 [_dataItems setArray:array];
             }
+            [_tableView setHidden:array.count <= 0];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView tableViewDidFinishedLoading];
                 [self.tableView reloadData];
@@ -238,6 +239,7 @@
     UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
     backItem.title = @"返回";
     self.navigationItem.backBarButtonItem = backItem;
+    [_tableView setHidden:YES];
     self.title = self.channel.NAME;
     isMeeting = [self.channel.TYPELABLE rangeOfString:@"meeting"].location != NSNotFound;
     [titleButton setHidden:!self.channel.HASSUBTYPE];
@@ -260,13 +262,25 @@
     }
     
     [self dataFromDataBaseWithFid:self.channel.FIDLISTS ComleteBlock:^(NSArray* array){
-        if (isMeeting) {
-            [_sectionDictionary addEntriesFromDictionary:[self praseMeetingArray:array]];
-        } else {
-            [_dataItems setArray:array];
+        if (array.count) {
+            [_tableView setHidden:NO];
+            if (isMeeting) {
+                [_sectionDictionary addEntriesFromDictionary:[self praseMeetingArray:array]];
+            } else {
+                [_dataItems setArray:array];
+            }
+            [self.tableView tableViewDidFinishedLoading];
+            [self.tableView reloadData];
+        }else{
+            [_tableView setHidden:YES];
+            UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.textColor = [UIColor lightGrayColor];
+            label.text = @"当前频道下暂时没有数据...";
+            label.center = self.view.center;
+            [self.view addSubview:label];
         }
-        [self.tableView tableViewDidFinishedLoading];
-        [self.tableView reloadData];
+
         [self onRefrshClick];
     }];
 }

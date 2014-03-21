@@ -29,6 +29,7 @@
     NSInteger                   currentIndex;
     UIButton *titleButton;
     UIActionSheet *actionSheet;
+    UILabel* noneDataLabel;
 }
 @end
 
@@ -55,10 +56,11 @@
             } else {
                 [_dataItems setArray:array];
             }
-            [_tableView setHidden:array.count <= 0];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView tableViewDidFinishedLoading];
                 [self.tableView reloadData];
+                [noneDataLabel setHidden:array.count > 0];
+                [_tableView setHidden:array.count <= 0];
                 [BWStatusBarOverlay showSuccessWithMessage:[NSString stringWithFormat:@"同步%@完成",self.channel.NAME] duration:1 animated:1];
             });
         }];
@@ -264,6 +266,7 @@
     [self dataFromDataBaseWithFid:self.channel.FIDLISTS ComleteBlock:^(NSArray* array){
         if (array.count) {
             [_tableView setHidden:NO];
+            [noneDataLabel setHidden:YES];
             if (isMeeting) {
                 [_sectionDictionary addEntriesFromDictionary:[self praseMeetingArray:array]];
             } else {
@@ -273,12 +276,12 @@
             [self.tableView reloadData];
         }else{
             [_tableView setHidden:YES];
-            UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
-            label.textAlignment = NSTextAlignmentCenter;
-            label.textColor = [UIColor lightGrayColor];
-            label.text = @"当前频道下暂时没有数据...";
-            label.center = self.view.center;
-            [self.view addSubview:label];
+            noneDataLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
+            noneDataLabel.textAlignment = NSTextAlignmentCenter;
+            noneDataLabel.textColor = [UIColor lightGrayColor];
+            noneDataLabel.text = @"没有数据或正在加载数据...";
+            noneDataLabel.center = self.view.center;
+            [self.view addSubview:noneDataLabel];
         }
 
         [self onRefrshClick];
@@ -425,10 +428,10 @@
     }
 }
 
--(void)deselect
-{
+-(void)deselect{
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
 }
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"browse"]) {
         if (isMeeting) {
@@ -458,13 +461,11 @@
     [self deselect];
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self performSegueWithIdentifier:@"browse" sender:self];
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (isMeeting) {
         NSString* sectionName  = [_sectionArray objectAtIndex:indexPath.section];//获取section 的名字
         NSArray * sectionArray = [_sectionDictionary objectForKey:sectionName];  //获取本section 的数据

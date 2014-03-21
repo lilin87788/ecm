@@ -145,18 +145,38 @@
 #pragma mark -Actionsheet delegate
 - (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)anIndex
 {
-    if (currentIndex == anIndex || anIndex == subChannels.count) {
+    NSLog(@"%d",anIndex);
+
+    if (currentIndex == anIndex || anIndex == subChannels.count + 1) {
         return;
     }
     [_dataItems removeAllObjects];
-    [self dataFromDataBaseWithFid:subChannels[anIndex][@"FIDLIST"] ComleteBlock:^(NSArray* array){
-        [_dataItems setArray:array];
-        [self.tableView reloadData];
-    }];
+    if (anIndex == 0) {
+        [self dataFromDataBaseWithComleteBlock:^(NSArray* array){
+            if (isMeeting) {
+                [_sectionDictionary addEntriesFromDictionary:[self praseMeetingArray:array]];
+            } else {
+                [_dataItems setArray:array];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }];
+        [titleButton setTitle:@"全部" forState:UIControlStateNormal];
+    }else{
+        [titleButton setTitle:subChannels[anIndex - 1][@"NAME"] forState:UIControlStateNormal];
+        [self dataFromDataBaseWithFid:subChannels[anIndex - 1][@"FIDLIST"] ComleteBlock:^(NSArray* array){
+            if (isMeeting) {
+                [_sectionDictionary addEntriesFromDictionary:[self praseMeetingArray:array]];
+            } else {
+                [_dataItems setArray:array];
+            }
+            [self.tableView reloadData];
+        }];
+    }
     currentIndex = anIndex;
     [as setDelegate:nil];
 }
-
 
 - (IBAction)selectType:(id)sender {
    actionSheet = [[UIActionSheet alloc] initWithTitle:self.channel.NAME
@@ -164,12 +184,13 @@
                                                     cancelButtonTitle:0
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:0,nil];
+    [actionSheet addButtonWithTitle:@"全部"];
     for (NSDictionary* dict in subChannels) {
         [actionSheet addButtonWithTitle:dict[@"NAME"]];
     }
     [actionSheet addButtonWithTitle:@"取消"];
     actionSheet.tag = ActionsheetTag;
-    [actionSheet setCancelButtonIndex:subChannels.count];
+    [actionSheet setCancelButtonIndex:subChannels.count + 1];
     actionSheet.actionSheetStyle = UIBarStyleBlackTranslucent;
     [actionSheet showInView:self.view];
 }
@@ -274,7 +295,11 @@
     [SKDaemonManager SynDocumentsWithChannel:self.channel complete:^{
         [self dataFromDataBaseWithComleteBlock:^(NSArray* array){
             if (array.count) {
-                [_dataItems setArray:array];
+                if (isMeeting) {
+                    [_sectionDictionary addEntriesFromDictionary:[self praseMeetingArray:array]];
+                } else {
+                    [_dataItems setArray:array];
+                }
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView tableViewDidFinishedLoading];
                     [self.tableView reloadData];

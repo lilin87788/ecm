@@ -51,6 +51,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = [NSString stringWithFormat:@"%@详情",self.channel.NAME];
     [self dataFromDB];
     KinitialPage = [self currentPage];
     viewControllerArray = [[NSMutableArray alloc] initWithCapacity:kNumberOfPages];

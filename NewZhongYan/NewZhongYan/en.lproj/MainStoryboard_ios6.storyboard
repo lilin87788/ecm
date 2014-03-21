@@ -3548,7 +3548,7 @@
             </objects>
             <point key="canvasLocation" x="411" y="-1959"/>
         </scene>
-        <!--Browse Controller - 新闻详情-->
+        <!--Browse Controller-->
         <scene sceneID="c5K-uq-1PQ">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="tKn-ek-4Wj" customClass="SKECMBrowseController" sceneMemberID="viewController">
@@ -3573,7 +3573,7 @@
                             <constraint firstItem="H17-5W-Ooo" firstAttribute="top" secondItem="swZ-kA-w9p" secondAttribute="bottom" id="nkb-5S-7os"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="新闻详情" id="cMf-fZ-Q25"/>
+                    <navigationItem key="navigationItem" id="cMf-fZ-Q25"/>
                     <connections>
                         <outlet property="lazyScrollView" destination="H17-5W-Ooo" id="b7V-ts-iKH"/>
                     </connections>

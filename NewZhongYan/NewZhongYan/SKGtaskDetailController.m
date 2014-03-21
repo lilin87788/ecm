@@ -1655,7 +1655,7 @@
 -(void)getPhrase:(UIButton*)sender
 {
     SKCommonLanguageController *lc = [[SKCommonLanguageController alloc] init];
-    lc.textViewKey=[NSString stringWithFormat:@"%d",((UIButton *)sender).tag/10000];
+    lc.textViewKey=[NSString stringWithFormat:@"%d",sender.tag/10000];
     HPGrowingTextView *textV=(HPGrowingTextView *)[self.view viewWithTag:((UIButton *)sender).tag/10000];
     lc.textViewText=textV.text;
     currentTextViewindex = [saveTextViewArray indexOfObject:textV];

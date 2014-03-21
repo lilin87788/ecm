@@ -3783,7 +3783,7 @@
             </objects>
             <point key="canvasLocation" x="411" y="-1959"/>
         </scene>
-        <!--Browse Controller - 新闻详情-->
+        <!--Browse Controller-->
         <scene sceneID="AZi-Al-Xs7">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="WM5-X9-EpB" customClass="SKECMBrowseController" sceneMemberID="viewController">
@@ -3808,7 +3808,7 @@
                             <constraint firstAttribute="trailing" secondItem="Zyj-UO-BeG" secondAttribute="trailing" id="fSY-s2-xsD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="新闻详情" id="pnu-ge-XbG"/>
+                    <navigationItem key="navigationItem" id="pnu-ge-XbG"/>
                     <connections>
                         <outlet property="lazyScrollView" destination="Zyj-UO-BeG" id="72w-W3-bfX"/>
                     </connections>

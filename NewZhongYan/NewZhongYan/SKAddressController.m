@@ -194,7 +194,7 @@
     UIImage* rootNImage = [UIImage imageNamed:@"org_position_info_root.png"];
     [rootButton setBackgroundImage:rootNImage forState:UIControlStateNormal];
     [rootButton setBackgroundImage:rootNImage forState:UIControlStateHighlighted];
-    [rootButton setFrame:CGRectMake(0, 0,50,46)];
+    [rootButton setFrame:CGRectMake(0, 0,50,47)];
     [rootButton addTarget:self action:@selector(rootButtonPressed:)forControlEvents:UIControlEventTouchUpInside];
     [orgazationBar addSubview:rootButton];
     

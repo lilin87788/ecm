@@ -182,10 +182,10 @@
         [(UILabel*)[cell.contentView viewWithTag:1] setText:_employeeInfo[@"CNAME"]];
         [(UILabel*)[cell.contentView viewWithTag:2] setText:_employeeInfo[@"TNAME"]];
         [(UILabel*)[cell.contentView viewWithTag:3] setText:_employeeInfo[@"UCNAME"]];
-        SKPathButton* btn = (SKPathButton*)[cell.contentView viewWithTag:5];
-        [btn setPathColor:[UIColor whiteColor]];
-        [btn setBorderColor:[UIColor darkGrayColor]];
-        [btn setPathWidth:5];
+//        SKPathButton* btn = (SKPathButton*)[cell.contentView viewWithTag:5];
+//        [btn setPathColor:[UIColor whiteColor]];
+//        [btn setBorderColor:[UIColor darkGrayColor]];
+//        [btn setPathWidth:5];
         
         UIButton* btn1 = (UIButton*)[cell.contentView viewWithTag:4];
         [btn1 addTarget:self action:@selector(stored:) forControlEvents:UIControlEventTouchUpInside];

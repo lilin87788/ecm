@@ -55,8 +55,8 @@
 -(void)awakeFromNib {
     [super awakeFromNib];
     originalImage = [self backgroundImageForState:UIControlStateNormal];
-    [self setDefaultParam];
-    [self draw];
+    //[self setDefaultParam];
+    //[self draw];
 }
 
 -(void)setDefaultParam {

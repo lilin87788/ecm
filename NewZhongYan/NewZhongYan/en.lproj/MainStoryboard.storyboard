@@ -1804,7 +1804,7 @@
                                                 <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yc7-Dp-j51" customClass="SKPathButton">
                                                     <rect key="frame" x="10" y="10" width="80" height="80"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" backgroundImage="night_user_defaulthead.png">
+                                                    <state key="normal" backgroundImage="usercenter_hd_avatar_default.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
@@ -1851,10 +1851,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3TH-lz-xlM">
-                                                    <rect key="frame" x="10" y="14" width="25" height="18"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="contact_email.png" translatesAutoresizingMaskIntoConstraints="NO" id="3TH-lz-xlM">
+                                                    <rect key="frame" x="20" y="14" width="16" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="backgroundColor" red="0.066666666669999999" green="0.6588235294" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="邮       箱" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQW-HZ-IuC">
                                                     <rect key="frame" x="45" y="12" width="61" height="21"/>
@@ -1886,10 +1885,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l0X-iy-jSV">
-                                                    <rect key="frame" x="10" y="13" width="25" height="16"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="contact_mobile.png" translatesAutoresizingMaskIntoConstraints="NO" id="l0X-iy-jSV">
+                                                    <rect key="frame" x="20" y="13" width="16" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="backgroundColor" red="0.066666666669999999" green="0.6588235294" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="移动电话" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="raG-oZ-Wnh">
                                                     <rect key="frame" x="45" y="10" width="60" height="21"/>
@@ -1914,10 +1912,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P5c-JY-hpc">
-                                                    <rect key="frame" x="10" y="13" width="25" height="16"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="contact_shortnum.png" translatesAutoresizingMaskIntoConstraints="NO" id="P5c-JY-hpc">
+                                                    <rect key="frame" x="20" y="13" width="16" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="backgroundColor" red="0.066666666669999999" green="0.6588235294" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="短       号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E34-La-Jau">
                                                     <rect key="frame" x="45" y="10" width="61" height="21"/>
@@ -1942,10 +1939,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zal-6c-8uC">
-                                                    <rect key="frame" x="10" y="14" width="25" height="16"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="contact_tel.png" translatesAutoresizingMaskIntoConstraints="NO" id="zal-6c-8uC">
+                                                    <rect key="frame" x="20" y="14" width="16" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="backgroundColor" red="0.066666666669999999" green="0.6588235294" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="办公电话" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scL-9S-KLy">
                                                     <rect key="frame" x="45" y="10" width="60" height="21"/>
@@ -1983,10 +1979,9 @@
                                                     <color key="textColor" red="0.1960784314" green="0.58823529409999997" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wqr-qa-LND">
-                                                    <rect key="frame" x="10" y="13" width="25" height="16"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="address.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wqr-qa-LND">
+                                                    <rect key="frame" x="20" y="13" width="16" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="backgroundColor" red="0.066666666669999999" green="0.6588235294" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -1998,10 +1993,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fIi-uL-ugT">
-                                                    <rect key="frame" x="10" y="14" width="25" height="16"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="contact_place.png" translatesAutoresizingMaskIntoConstraints="NO" id="fIi-uL-ugT">
+                                                    <rect key="frame" x="20" y="14" width="16" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="backgroundColor" red="0.066666666669999999" green="0.6588235294" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="办公地点" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ldd-hs-Qht">
                                                     <rect key="frame" x="45" y="10" width="60" height="21"/>
@@ -3960,6 +3954,11 @@
         <image name="button_1_pressed.png" width="225" height="72"/>
         <image name="button_pressed.png" width="225" height="72"/>
         <image name="cms_attachment.png" width="48" height="30"/>
+        <image name="contact_email.png" width="16" height="16"/>
+        <image name="contact_mobile.png" width="16" height="16"/>
+        <image name="contact_place.png" width="16" height="16"/>
+        <image name="contact_shortnum.png" width="16" height="16"/>
+        <image name="contact_tel.png" width="16" height="16"/>
         <image name="contentview_graylongbutton.png" width="290" height="41"/>
         <image name="dial_button_default.png" width="100" height="48"/>
         <image name="dial_button_delete.png" width="72" height="48"/>
@@ -3977,7 +3976,6 @@
         <image name="linebuttom_p.png" width="225" height="32"/>
         <image name="login_bg.png" width="320" height="460"/>
         <image name="navagationBarCenterBtn.png" width="90" height="36"/>
-        <image name="night_user_defaulthead.png" width="90" height="90"/>
         <image name="personinfo_ecm.png" width="32" height="32"/>
         <image name="pw_input1.png" width="402" height="74"/>
         <image name="pwmodify_ecm.png" width="32" height="32"/>
@@ -3987,6 +3985,7 @@
         <image name="star_on.png" width="35" height="35"/>
         <image name="sysmaintain_ecm.png" width="32" height="32"/>
         <image name="user_input1.png" width="402" height="74"/>
+        <image name="usercenter_hd_avatar_default.png" width="68" height="68"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

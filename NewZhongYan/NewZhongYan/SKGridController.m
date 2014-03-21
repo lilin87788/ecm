@@ -81,7 +81,6 @@
             if (dict[@"LOGO"] == [NSNull null]) {
                 [dragbtn.tapButton setImageURL:[NSURL URLWithString:@"http://tam.hngytobacco.com/ZZZobtc/public/icon/wzfactory/wzgeneralinfo.png"]];
             }else{
-                NSLog(@"%@",dict[@"LOGO"]);
                 [dragbtn.tapButton setImageURL:[NSURL URLWithString:dict[@"LOGO"]]];
             }
             [dragbtn setControllerName:dict[@"CODE"]];

@@ -137,6 +137,8 @@
         NSArray* array = [info[@"ADDITION"] componentsSeparatedByString:@"&"];
         _MeetAddrLabel.text = [array[0] substringFromIndex:13];
         [meetPlaceImageView setHidden:[_MeetAddrLabel.text isEqualToString:@""]];
+    }else{
+        [meetPlaceImageView setHidden:YES];
     }
     
     [self setAttachViewImage:info[@"ATTRLABLE"]];

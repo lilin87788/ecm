@@ -51,6 +51,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = backItem;
     self.title = [NSString stringWithFormat:@"%@详情",self.channel.NAME];
     [self dataFromDB];
     KinitialPage = [self currentPage];

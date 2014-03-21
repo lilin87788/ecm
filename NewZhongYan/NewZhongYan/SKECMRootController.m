@@ -235,6 +235,9 @@
 
 -(void)initData
 {
+    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = backItem;
     self.title = self.channel.NAME;
     isMeeting = [self.channel.TYPELABLE rangeOfString:@"meeting"].location != NSNotFound;
     [titleButton setHidden:!self.channel.HASSUBTYPE];

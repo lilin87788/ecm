@@ -304,6 +304,10 @@
     [super viewDidLoad];
     [self initData];
     
+    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = backItem;
+    
     myToolBar = [[SKLToolBar alloc] initWithFrame:CGRectMake(0,0, 320, 49)];
     [myToolBar setFirstItem:@"btn_history_ecm" Title:@"历史"];
     [myToolBar setSecondItem:@"btn_location_ecm" Title:@"定位"];

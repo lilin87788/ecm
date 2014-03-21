@@ -33,6 +33,7 @@
 		F22967FC181F5359006373CA /* SKSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22967FB181F5359006373CA /* SKSearchController.m */; };
 		F22967FF181F64E9006373CA /* SKSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F22967FE181F64E9006373CA /* SKSearchCell.m */; };
 		F2296802181FA017006373CA /* NSString+hnzy.m in Sources */ = {isa = PBXBuildFile; fileRef = F2296801181FA017006373CA /* NSString+hnzy.m */; };
+		F22C372218DC6A890044F29C /* btn_home_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F22C372118DC6A890044F29C /* btn_home_bg.png */; };
 		F22C60B11819FBEA007A3473 /* UIImageView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = F22C60B01819FBEA007A3473 /* UIImageView+Addition.m */; };
 		F22C959F180EBCDC00BC6D71 /* UINavigationController+SGProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = F22C959E180EBCDB00BC6D71 /* UINavigationController+SGProgress.m */; };
 		F22C95A3180EBD8900BC6D71 /* MTStatusBarOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = F22C95A2180EBD8900BC6D71 /* MTStatusBarOverlay.m */; };
@@ -518,6 +519,7 @@
 		F22967FE181F64E9006373CA /* SKSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSearchCell.m; sourceTree = "<group>"; };
 		F2296800181FA017006373CA /* NSString+hnzy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+hnzy.h"; sourceTree = "<group>"; };
 		F2296801181FA017006373CA /* NSString+hnzy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+hnzy.m"; sourceTree = "<group>"; };
+		F22C372118DC6A890044F29C /* btn_home_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_home_bg.png; sourceTree = "<group>"; };
 		F22C60AF1819FBEA007A3473 /* UIImageView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Addition.h"; sourceTree = "<group>"; };
 		F22C60B01819FBEA007A3473 /* UIImageView+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Addition.m"; sourceTree = "<group>"; };
 		F22C959D180EBCDB00BC6D71 /* UINavigationController+SGProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+SGProgress.h"; sourceTree = "<group>"; };
@@ -1452,6 +1454,7 @@
 		F23CE44E182B23840066F214 /* pic */ = {
 			isa = PBXGroup;
 			children = (
+				F22C372118DC6A890044F29C /* btn_home_bg.png */,
 				F287263618DA8987009CD16A /* undispose.png */,
 				F24BD5D3182A2645009AE159 /* onlyread.png */,
 				F287263818DA8995009CD16A /* list_onlyread.png */,
@@ -2746,6 +2749,7 @@
 				F2DF1E8618C035F100A160FA /* email@2x.png in Resources */,
 				F23487881831CD6D00E649AA /* iphone4_email_detailed.png in Resources */,
 				F23487901831CD6D00E649AA /* iphone5_cms.png in Resources */,
+				F22C372218DC6A890044F29C /* btn_home_bg.png in Resources */,
 				F2F26FBB18D6D75300599888 /* btn_search_ecm_press@2x.png in Resources */,
 				F2B4B1A31807A45F00A789CB /* locus_round_click.png in Resources */,
 				F24F44D91820E14500168C59 /* dial_button_pressed.png in Resources */,

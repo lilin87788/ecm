@@ -327,7 +327,6 @@
                                                  name:@"EmailContact"
                                                object:nil];
     
-    //self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[utils backBarButtonItem]] autorelease];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"办理人";
     UILabel* titleLabel = [self selfAdaptionLable:[UIFont systemFontOfSize:17]

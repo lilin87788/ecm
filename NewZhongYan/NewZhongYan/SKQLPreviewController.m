@@ -65,25 +65,14 @@
     }];
 }
 
--(UIButton*)backBarButtonItem{
-    UIImage* buttonImage = [[UIImage imageNamed:@"navigationBarBackButton.png"] stretchableImageWithLeftCapWidth:14 topCapHeight:0.0];
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont smallSystemFontSize]];
-    backBtn.titleLabel.textColor = [UIColor whiteColor];
-    backBtn.titleLabel.shadowOffset = CGSizeMake(0,-1);
-    backBtn.titleLabel.shadowColor = [UIColor darkGrayColor];
-    backBtn.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
-    backBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 9.0, 0, 3.0);
-    backBtn.frame = CGRectMake(0, 0, buttonImage.size.width + 15, buttonImage.size.height);
-    [backBtn setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [backBtn setTitle:@"返回" forState:UIControlStateNormal];
-    return backBtn;
-}
-
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.rightBarButtonItem = nil;
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
+    label.textColor = [UIColor whiteColor];
+    label.backgroundColor = [UIColor clearColor];
+    label.text = @"文档详情";
+    self.navigationItem.titleView = label;
 }
 
 -(void)viewWillLayoutSubviews

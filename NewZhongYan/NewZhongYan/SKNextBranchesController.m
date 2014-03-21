@@ -278,7 +278,10 @@
     if (IS_IOS7) {
         [self setAutomaticallyAdjustsScrollViewInsets:NO];
     }
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    self.view.backgroundColor = [UIColor whiteColor];
+    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = backItem;
     titleLabel = [self selfAdaptionLable:[UIFont systemFontOfSize:17]
                                    Width:300
                                     Text:[self.GTaskInfo objectForKey:@"TITL"]];

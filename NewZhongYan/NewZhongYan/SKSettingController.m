@@ -9,6 +9,7 @@
 #import "SKSettingController.h"
 #import "SKAppConfiguration.h"
 #import "SKNewMailController.h"
+#import "UIColor+FlatUI.h"
 @implementation SKSettingController
 -(void)viewDidLoad
 {
@@ -34,13 +35,17 @@
     [subTitleLabel setFont:[UIFont systemFontOfSize:14]];
     [view  addSubview:subTitleLabel];
     
-    [self clearsSelectionOnViewWillAppear];
+    if (System_Version_Small_Than_(7)) {
+        self.tableView.backgroundColor = [UIColor cloudsColor];
+        self.tableView.opaque = NO;
+        self.tableView.backgroundView = nil;
+    }
 }
 
 -(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
     if(section == 0){
-        return 0.00001;
+        return 5;
     }
     return 15.0;
 }
@@ -53,6 +58,22 @@
 -(void)deselect
 {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (System_Version_Small_Than_(7)) {
+        UIView* bgView = [[UIView alloc] initWithFrame:cell.bounds];
+        [bgView setBackgroundColor:[UIColor whiteColor]];
+        cell.backgroundView = bgView;
+        if (indexPath.section == 1){
+            if (indexPath.row != 4) {
+                UIView* v = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(cell.contentView.bounds), CGRectGetWidth(cell.contentView.bounds)+10, 0.5)];
+                [v setBackgroundColor:[UIColor lightGrayColor]];
+                [cell.contentView addSubview:v];
+            }
+        }
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

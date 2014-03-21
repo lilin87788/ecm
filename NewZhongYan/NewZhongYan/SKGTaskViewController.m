@@ -163,7 +163,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //添加刷新通知监视
+
+    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = backItem;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:@"refresh" object:nil];
     [self.tableView setHeaderOnly:YES];
     

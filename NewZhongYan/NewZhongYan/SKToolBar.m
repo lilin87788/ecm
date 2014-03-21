@@ -79,6 +79,10 @@
         refreshlabelCenter.y += 15;
         [refreshLabel setCenter:refreshlabelCenter];
         [self addSubview:refreshLabel];
+        
+        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), 0.5)];
+        [view setBackgroundColor:[UIColor lightGrayColor]];
+        [self addSubview:view];
     }
     return self;
 }
@@ -126,6 +130,10 @@
         [clearBtn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
         clearBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [self addSubview:clearBtn];
+        
+        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), 0.5)];
+        [view setBackgroundColor:[UIColor lightGrayColor]];
+        [self addSubview:view];
     }
     return self;
 }

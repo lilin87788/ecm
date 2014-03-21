@@ -97,6 +97,10 @@
         thirdlabelCenter.y += 15;
         [thirdLabel setCenter:thirdlabelCenter];
         [self addSubview:thirdLabel];
+        
+        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), 0.5)];
+        [view setBackgroundColor:[UIColor lightGrayColor]];
+        [self addSubview:view];
     }
     return self;
 }

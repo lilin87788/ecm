@@ -324,6 +324,35 @@
     return 0;
 }
 
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 16)];
+    label.backgroundColor = COLOR(245, 245, 245);
+    label.textColor = [UIColor grayColor];
+    label.font = [UIFont systemFontOfSize:15];
+    if (isMeeting) {
+        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0) {
+            label.text = [NSString stringWithFormat:@"  %@",[_sectionArray objectAtIndex:section]];
+            return label;
+        }else{
+            return 0;
+        }
+    }
+    return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (isMeeting){
+        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0){
+            return 20;
+        }else{
+            return 0;
+        }
+    }
+    return 0;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (isMeeting) {

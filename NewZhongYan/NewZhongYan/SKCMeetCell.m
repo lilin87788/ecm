@@ -93,8 +93,8 @@
     [_RStateView setFrame:CGRectMake(5,CGRectGetMidY(_TITLLabel.frame) - 7.5, 15, 15)];
     [_STIMELabel setFrame:CGRectMake(165, height + 12, 140, 20)];
     [_ETIMELabel setFrame:CGRectMake(165, height + 32, 140, 20)];
-    [_MeetAddrLabel setFrame:CGRectMake(25, height + 12, 128, 20)];
-    [meetPlaceImageView setFrame:CGRectMake(5, height + 15, 15, 15)];
+    [_MeetAddrLabel setFrame:CGRectMake(35, height + 12, 128, 20)];
+    [meetPlaceImageView setFrame:CGRectMake(20, height + 15, 15, 15)];
     [_attachBgView  setFrame:CGRectMake(25, height + 32, 85, 15)];
     //[_ATTACHView setFrame:CGRectMake(25, height + 32, 30, 15)];
 }

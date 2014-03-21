@@ -161,14 +161,14 @@
     _curHeight = CGRectGetMaxY(DividingLines.frame);
 
     if (_detail.body.count) {
-        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_crtmLabel.frame), 320, 25)];
+        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_crtmLabel.frame), 320, 24)];
         [view setBackgroundColor:COLOR(242, 240, 241)];
         [_bgscrollview addSubview:view];
         
-        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 4, 100, 19)];
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 100, 19)];
         label.text = @"正文";
-        label.font = [UIFont systemFontOfSize:16];
-        label.textColor = [UIColor darkGrayColor];
+        label.font = [UIFont boldSystemFontOfSize:15];
+        label.textColor = [UIColor grayColor];
         label.backgroundColor = [UIColor clearColor];
         [view addSubview:label];
         _curHeight = CGRectGetMaxY(view.frame);
@@ -182,14 +182,14 @@
     }
     
     if (_detail.attachment.count) {
-        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, _curHeight, 320, 25)];
+        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, _curHeight, 320, 24)];
         [view setBackgroundColor:COLOR(242, 240, 241)];
         [_bgscrollview addSubview:view];
         
-        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 4, 100, 19)];
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 100, 19)];
         label.text = @"附件";
-        label.font = [UIFont systemFontOfSize:16];
-        label.textColor = [UIColor blackColor];
+        label.font = [UIFont boldSystemFontOfSize:15];
+        label.textColor = [UIColor grayColor];
         label.backgroundColor = [UIColor clearColor];
         [view addSubview:label];
         _curHeight = CGRectGetMaxY(view.frame);
@@ -200,14 +200,14 @@
 
     if (_detail.addition.count) {
         inscribeContentCount = _detail.addition.count;
-        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, _curHeight, 320, 25)];
+        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, _curHeight, 320, 24)];
         [view setBackgroundColor:COLOR(242, 240, 241)];
         [_bgscrollview addSubview:view];
         
-        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 4, 100, 19)];
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 100, 19)];
         label.text = @"附加说明";
-        label.font = [UIFont systemFontOfSize:16];
-        label.textColor = [UIColor blackColor];
+        label.font = [UIFont boldSystemFontOfSize:15];
+        label.textColor = [UIColor grayColor];
         label.backgroundColor = [UIColor clearColor];
         [view addSubview:label];
         _curHeight = CGRectGetMaxY(view.frame);

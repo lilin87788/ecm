@@ -26,10 +26,8 @@
 
 #import "EGOImageButton.h"
 
-
 @implementation EGOImageButton
 @synthesize imageURL, placeholderImage, delegate;
-
 - (id)initWithPlaceholderImage:(UIImage*)anImage {
 	return [self initWithPlaceholderImage:anImage delegate:nil];	
 }
@@ -99,10 +97,8 @@
 #pragma mark -
 - (void)dealloc {
 	[[EGOImageLoader sharedImageLoader] removeObserver:self];
-	
 	self.imageURL = nil;
 	self.placeholderImage = nil;
     [super dealloc];
 }
-
 @end

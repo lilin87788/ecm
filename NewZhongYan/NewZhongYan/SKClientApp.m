@@ -51,7 +51,7 @@
     SKHTTPRequest* request = [SKHTTPRequest requestWithURL:
                               [SKECMURLManager getClientAppVMetaInfoWithVersion:localClientAppVersion]];
     [request startSynchronous];
-    NSLog(@"%@",request.responseString);
+    //NSLog(@"%@",request.responseString);
     if (!request.error) {
         SKMessageEntity* entity = [[SKMessageEntity alloc] initWithData:[request responseData]];
         NSDictionary* dict = [entity dataItem:0];

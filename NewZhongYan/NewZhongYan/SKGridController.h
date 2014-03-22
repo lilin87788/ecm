@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EGOImageButton.h"
 #import "UIDragButton.h"
-@interface SKGridController : UIViewController<UIDragButtonDelegate>
+@interface SKGridController : UIViewController<UIDragButtonDelegate,EGOImageButtonDelegate>
 @property SKClientApp* clientApp;
 @property(nonatomic,weak)SKViewController* rootController;
 

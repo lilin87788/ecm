@@ -25,6 +25,7 @@
 @interface SKGridController ()
 {
     NSMutableArray *upButtons;
+    BOOL isLoadImage;
 }
 @end
 
@@ -42,21 +43,11 @@
 {
     UIDragButton *btn=(UIDragButton *)[(UIDragButton *)sender superview];
     [_rootController performSegueWithIdentifier:@"SKECMRootController" sender:btn.channel];
-    //    SKECMRootController* controller = [[APPUtils AppStoryBoard] instantiateViewControllerWithIdentifier:@"SKECMRootController"];
-    //    controller.channel = btn.channel;
-    //    [self.navigationController pushViewController:controller animated:YES];
-}
-
--(void)jumoController:(id)sender
-{
-    UIDragButton *btn=(UIDragButton *)[(UIDragButton *)sender superview] ;
-    //UIViewController* controller = [[APPUtils AppStoryBoard] instantiateViewControllerWithIdentifier:btn.controllerName];
-    //[self.navigationController pushViewController:controller animated:YES];
-    [_rootController performSegueWithIdentifier:btn.controllerName sender:self];
 }
 
 -(void)initChannelView:(basicBlock)completeBlock
 {
+    isLoadImage = YES;
     for (UIView* v in self.view.subviews) {
         if (v.class == [UIDragButton class]) {
             [v removeFromSuperview];
@@ -78,6 +69,7 @@
             [dragbtn setChannel:channel];
             [dragbtn setTitle:dict[@"NAME"]];
             [dragbtn.tapButton setPlaceholderImage:Image(@"icon_default")];
+            [dragbtn.tapButton setDelegate:self];
             if (dict[@"LOGO"] == [NSNull null]) {
                 [dragbtn.tapButton setImageURL:[NSURL URLWithString:@"http://tam.hngytobacco.com/ZZZobtc/public/icon/wzfactory/wzgeneralinfo.png"]];
             }else{
@@ -97,25 +89,26 @@
     });
 }
 
--(void)initCompanyPageView
+- (void)imageButtonLoadedImage:(EGOImageButton*)imageButton{
+}
+
+- (void)imageButtonFailedToLoadImage:(EGOImageButton*)imageButton error:(NSError*)error
 {
-    upButtons = [[NSMutableArray alloc] init];
-    NSArray *dataArray=[self dataFromXml];
-    for (int i=0;i<dataArray.count;i++)
-    {
-        DDXMLElement *obj=[dataArray objectAtIndex:i];
-        UIDragButton *dragbtn=[[UIDragButton alloc] initWithFrame:CGRectZero inView:self.view];
-        [dragbtn setTitle:[obj elementForName:@"title"].stringValue];
-        [dragbtn setNormalImage:[obj elementForName:@"icon"].stringValue];
-        [dragbtn setControllerName:[obj elementForName:@"controller"].stringValue];
-        [dragbtn setLocation:up];
-        [dragbtn setDelegate:self];
-        [dragbtn setTag:i];
-        [dragbtn.tapButton addTarget:self action:@selector(jumoController:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:dragbtn];
-        [upButtons addObject:dragbtn];
+    [[SKAppDelegate sharedCurrentUser] addObserver:self
+                                        forKeyPath:@"logged"
+                                           options:NSKeyValueObservingOptionNew
+                                           context:(void*)imageButton];
+}
+
+// 这代码还需要测试 逻辑
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+                        change:(NSDictionary *)change context:(void *)context {
+    if (!isLoadImage) {
+        [self initChannelView:^{
+            isLoadImage = NO;
+        }];
     }
-    [self setUpButtonsFrameWithAnimate:NO withoutShakingButton:nil];
+    [[SKAppDelegate sharedCurrentUser] removeObserver:self forKeyPath:@"logged"];
 }
 
 //取出xml中的app节点  并按照app节点中的location节点的值升序排序

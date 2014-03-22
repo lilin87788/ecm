@@ -73,7 +73,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="保护密码" id="K4e-Wy-LeK">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="C5F-Pp-ZOJ">
+                        <barButtonItem key="leftBarButtonItem" id="C5F-Pp-ZOJ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kSb-kR-3Sw">
                                 <rect key="frame" x="5" y="7" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -85,7 +85,7 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="KIr-lt-BwN">
+                        <barButtonItem key="rightBarButtonItem" id="KIr-lt-BwN">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qvP-5v-z8I">
                                 <rect key="frame" x="265" y="7" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -3685,7 +3685,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="查询资源" id="ac6-Rh-Us9">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="htz-su-NlK">
+                        <barButtonItem key="rightBarButtonItem" id="htz-su-NlK">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="co6-5j-1Ei">
                                 <rect key="frame" x="265" y="7" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

@@ -1522,7 +1522,6 @@
 				F2C1CF4518BDC8A6005941C1 /* usercenter_hd_avatar_default@2x.png */,
 				F24B0F4A1859A4F400E9CE6B /* profile.png */,
 				F24B0F4B1859A4F400E9CE6B /* profile@2x.png */,
-				F2BE28EB18DD82AB00AADD13 /* arrow@2x.png */,
 			);
 			name = pic;
 			sourceTree = "<group>";
@@ -1560,6 +1559,7 @@
 				F286C18F18223C9000ADFF40 /* employee_btn_call_pressed.png */,
 				F286C19018223C9000ADFF40 /* employee_btn_call.png */,
 				F24F44DE1820E16800168C59 /* icon_organize.png */,
+				F2BE28EB18DD82AB00AADD13 /* arrow@2x.png */,
 				F24F44DC1820E16800168C59 /* star_off.png */,
 				F24F44DD1820E16800168C59 /* star_on.png */,
 			);

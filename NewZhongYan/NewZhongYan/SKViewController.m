@@ -109,7 +109,6 @@
 
 -(void)initNavBar
 {
-    self.navigationItem.backBarButtonItem.title = @"返回";
     UIImage* navbgImage;
     if (System_Version_Small_Than_(7)) {
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
@@ -124,6 +123,10 @@
     }
     [self.navigationController.navigationBar setBackgroundImage:navbgImage  forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor: [UIColor whiteColor]};
+    
+    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = backItem;
     
     
     CGRect rect = self.navigationController.navigationBar.bounds;

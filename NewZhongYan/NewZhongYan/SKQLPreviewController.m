@@ -49,20 +49,15 @@
         titleView.shadowColor = [UIColor colorWithRed:0.9373 green:0.9451 blue:0.9529 alpha:1.0000];
         titleView.shadowOffset = CGSizeMake(0.0, 1.0);
         titleView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin);
-        
         titleView.textColor = [UIColor colorWithRed:0.3020 green:0.3294 blue:0.3608 alpha:1.0000]; // set this to whatever you like
-        
         self.navigationItem.titleView = titleView;
     }
     titleView.text = title;
     [titleView sizeToFit];
 }
 #pragma mark - View lifecycle
--(void)back
-{
-    [self dismissViewControllerAnimated:YES completion:^{
-    
-    }];
+-(void)back:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewDidLoad
@@ -73,11 +68,34 @@
     label.backgroundColor = [UIColor clearColor];
     label.text = @"文档详情";
     self.navigationItem.titleView = label;
+    if (System_Version_Small_Than_(7)) {
+        UIButton* backbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [backbtn setFrame:CGRectMake(0, 0, 50, 30)];
+        [backbtn setBackgroundImage:Image(@"back") forState:UIControlStateNormal];
+        [backbtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithCustomView:backbtn];
+        self.navigationItem.leftBarButtonItem = backItem;
+
+        //这里暂时没有办法解决
+        UIButton* rightbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [rightbtn setFrame:CGRectMake(0, 0, 50, 30)];
+        [rightbtn setBackgroundImage:Image(@"back") forState:UIControlStateNormal];
+        [rightbtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightbtn];
+        self.navigationItem.rightBarButtonItem = rightItem;
+        self.navigationItem.rightBarButtonItem = nil;
+        self.navigationController.navigationItem.rightBarButtonItem = nil;
+    }else{
+        UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
+        backItem.title = @"返回";
+        self.navigationItem.backBarButtonItem = backItem;
+    }
 }
 
 -(void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
+    [[self navigationItem] setRightBarButtonItem:nil];
 }
 
 
@@ -96,6 +114,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[self navigationItem] setRightBarButtonItem:nil];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ShowPreView"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

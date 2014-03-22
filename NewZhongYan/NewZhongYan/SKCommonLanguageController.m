@@ -60,13 +60,6 @@ BOOL isEditing;
         
     }
 }
-
-
--(void)back:(id)sender
-{
-    
-    
-}
 #pragma mark - View lifecycle
 
 
@@ -78,14 +71,29 @@ BOOL isEditing;
     txtView.clipsToBounds = YES;
 }
 
+-(void)back:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (IS_IOS7) {
+    if (System_Version_Small_Than_(7)) {
+        UIButton* backbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [backbtn setFrame:CGRectMake(0, 0, 50, 30)];
+        [backbtn setBackgroundImage:Image(@"back") forState:UIControlStateNormal];
+        [backbtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithCustomView:backbtn];
+        self.navigationItem.leftBarButtonItem = backItem;
+    }else{
         [self setAutomaticallyAdjustsScrollViewInsets:NO];
+        
+        UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
+        backItem.title = @"返回";
+        self.navigationItem.backBarButtonItem = backItem;
     }
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    
     
     //添加编辑确定按钮通知
     [[NSNotificationCenter defaultCenter] addObserver:self

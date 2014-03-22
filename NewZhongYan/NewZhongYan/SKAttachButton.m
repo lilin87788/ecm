@@ -50,7 +50,11 @@
         [_downloadButton addTarget:self action:@selector(loadAttachment) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_downloadButton];
         
-        progresser = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+        progresser = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+        if (System_Version_Small_Than_(7)) {
+            [progresser setProgressImage:Image(@"progress")];
+            [progresser setTrackImage:Image(@"track")];
+        }
         //[progresser setCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2 + 15)];
         [progresser setCenter:CGPointMake(self.frame.size.width/2 - 60, self.frame.size.height/2 + 15)];
         CGRect rect = progresser.frame;

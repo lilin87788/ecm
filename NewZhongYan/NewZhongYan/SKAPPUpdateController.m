@@ -28,7 +28,6 @@
 
 -(void)initNavBar
 {
-    self.navigationItem.backBarButtonItem.title = @"返回";
     UIImage* navbgImage;
     if (System_Version_Small_Than_(7)) {
         navbgImage = [UIImage imageNamed:@"navbar44"] ;

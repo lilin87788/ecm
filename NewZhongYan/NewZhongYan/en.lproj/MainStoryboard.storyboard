@@ -3945,7 +3945,7 @@
         <image name="address.png" width="25" height="25"/>
         <image name="appinstall_ecm.png" width="32" height="32"/>
         <image name="appsetting_ecm.png" width="32" height="32"/>
-        <image name="btn_help.png" width="60" height="36"/>
+        <image name="btn_help.png" width="50" height="30"/>
         <image name="btn_home_bg.png" width="72" height="72"/>
         <image name="btn_select.png" width="91" height="37"/>
         <image name="button.png" width="225" height="72"/>

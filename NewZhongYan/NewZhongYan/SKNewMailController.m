@@ -918,15 +918,13 @@
     [_resultsTable setDataSource:self];
     [scrollView addSubview:_resultsTable];
     [_resultsTable addObserver:self forKeyPath:@"hidden" options:NSKeyValueObservingOptionNew context:0];
-
-    if (IS_IOS7) {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:0 target:self action:@selector(back:)];
-    }
     
-    //用在添加联系人
-    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
-    backItem.title = @"返回";
-    self.navigationItem.backBarButtonItem = backItem;
+    UIButton* backbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backbtn setFrame:CGRectMake(0, 0, 50, 30)];
+    [backbtn setBackgroundImage:Image(@"back") forState:UIControlStateNormal];
+    [backbtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithCustomView:backbtn];
+    self.navigationItem.leftBarButtonItem = backItem;
 }
 
 - (void)setSearchResultsVisible:(BOOL)visible{

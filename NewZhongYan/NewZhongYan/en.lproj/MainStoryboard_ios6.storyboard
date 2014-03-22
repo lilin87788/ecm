@@ -73,15 +73,29 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="保护密码" id="K4e-Wy-LeK">
-                        <barButtonItem key="leftBarButtonItem" title="退出" id="j6C-EX-rec">
-                            <connections>
-                                <action selector="quitApp:" destination="SvM-ie-qyF" id="BzW-o8-HPw"/>
-                            </connections>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="C5F-Pp-ZOJ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kSb-kR-3Sw">
+                                <rect key="frame" x="5" y="7" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="exit.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="quitApp:" destination="SvM-ie-qyF" eventType="touchUpInside" id="wvL-8N-0lS"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="帮助" id="YNc-LO-4Mb">
-                            <connections>
-                                <action selector="help:" destination="SvM-ie-qyF" id="GwL-aV-wrY"/>
-                            </connections>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="KIr-lt-BwN">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qvP-5v-z8I">
+                                <rect key="frame" x="265" y="7" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btn_help.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="help:" destination="SvM-ie-qyF" eventType="touchUpInside" id="t4h-qD-0zs"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -1746,7 +1760,7 @@
                         </button>
                         <barButtonItem key="rightBarButtonItem" id="E3R-h0-hG1">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VpZ-qr-vX7">
-                                <rect key="frame" x="255" y="2" width="60" height="40"/>
+                                <rect key="frame" x="265" y="7" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" backgroundImage="btn_help.png">
@@ -2288,7 +2302,7 @@
                         </button>
                         <barButtonItem key="rightBarButtonItem" id="ff5-tc-ce0">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Hkl-cm-Qco">
-                                <rect key="frame" x="255" y="2" width="60" height="40"/>
+                                <rect key="frame" x="265" y="7" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" backgroundImage="btn_help.png">
@@ -2396,7 +2410,7 @@
                     <navigationItem key="navigationItem" title="待办" id="IpP-fL-WdX">
                         <barButtonItem key="rightBarButtonItem" id="jh2-En-Id0">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2Ny-ce-VQA">
-                                <rect key="frame" x="255" y="2" width="60" height="40"/>
+                                <rect key="frame" x="265" y="7" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" backgroundImage="btn_help.png">
@@ -2458,7 +2472,7 @@
                     <navigationItem key="navigationItem" id="s4R-ak-5Fr">
                         <barButtonItem key="rightBarButtonItem" id="2mJ-Ad-XlS">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oSu-eY-odm">
-                                <rect key="frame" x="255" y="2" width="60" height="40"/>
+                                <rect key="frame" x="265" y="7" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" backgroundImage="btn_help.png">
@@ -2580,7 +2594,7 @@
                     <navigationItem key="navigationItem" title="攥写邮件" id="IM8-8b-veu">
                         <barButtonItem key="rightBarButtonItem" id="Mme-J8-4CY">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Pyt-CW-jC7">
-                                <rect key="frame" x="255" y="2" width="60" height="40"/>
+                                <rect key="frame" x="265" y="7" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" backgroundImage="btn_help.png">
@@ -3671,10 +3685,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="查询资源" id="ac6-Rh-Us9">
-                        <barButtonItem key="rightBarButtonItem" title="取消" id="Sna-rx-eZj">
-                            <connections>
-                                <action selector="cancel:" destination="OtZ-lI-Cgg" id="XWQ-XX-nxF"/>
-                            </connections>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="htz-su-NlK">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="co6-5j-1Ei">
+                                <rect key="frame" x="265" y="7" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="取消">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancel:" destination="OtZ-lI-Cgg" eventType="touchUpInside" id="ohY-Nm-qhx"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -3937,7 +3959,7 @@
         <image name="address.png" width="25" height="25"/>
         <image name="appinstall_ecm.png" width="32" height="32"/>
         <image name="appsetting_ecm.png" width="32" height="32"/>
-        <image name="btn_help.png" width="60" height="36"/>
+        <image name="btn_help.png" width="50" height="30"/>
         <image name="btn_home_bg.png" width="72" height="72"/>
         <image name="btn_select.png" width="91" height="37"/>
         <image name="button.png" width="225" height="72"/>
@@ -3958,6 +3980,7 @@
         <image name="dial_button_pressed.png" width="100" height="48"/>
         <image name="dial_text.png" width="250" height="48"/>
         <image name="email.png" width="25" height="25"/>
+        <image name="exit.png" width="50" height="30"/>
         <image name="feedback_ecm.png" width="32" height="32"/>
         <image name="icon.png" width="640" height="1008"/>
         <image name="icon_announcement.png" width="100" height="100"/>
@@ -3986,9 +4009,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="iol-VQ-4dL"/>
         <segue reference="k3P-sK-tMI"/>
         <segue reference="fua-6h-snE"/>
+        <segue reference="Jo4-lA-SZ4"/>
         <segue reference="YYL-SR-ohk"/>
     </inferredMetricsTieBreakers>
 </document>

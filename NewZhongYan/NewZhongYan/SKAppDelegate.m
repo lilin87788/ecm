@@ -122,7 +122,7 @@ NSUInteger DeviceSystemMajorVersion() {
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     if (System_Version_Small_Than_(7)) {
-//            [[UIBarButtonItem appearance] setBackButtonBackgroundImage:Image(@"icon_organize")
+//            [[UIBarButtonItem appearance] setBackButtonBackgroundImage:Image(@"back")
 //                                                              forState:UIControlStateNormal
 //                                                            barMetrics:UIBarMetricsDefault];
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {

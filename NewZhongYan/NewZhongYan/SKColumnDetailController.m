@@ -76,16 +76,29 @@
     txtView.clipsToBounds = YES;
 }
 
+-(void)back:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    //self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[utils backBarButtonItem]] autorelease];
-    [self setTitle:isHistory ? @"历史数据" : @"明细数据" ];
-    
-    if (IS_IOS7) {
+    if (System_Version_Small_Than_(7)) {
+        UIButton* backbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [backbtn setFrame:CGRectMake(0, 0, 50, 30)];
+        [backbtn setBackgroundImage:Image(@"back") forState:UIControlStateNormal];
+        [backbtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithCustomView:backbtn];
+        self.navigationItem.leftBarButtonItem = backItem;
+    }else{
         [self setAutomaticallyAdjustsScrollViewInsets:NO];
+        UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
+        backItem.title = @"返回";
+        self.navigationItem.backBarButtonItem = backItem;
     }
+    [self setTitle:isHistory ? @"历史数据" : @"明细数据" ];
     mainScrollview=[[UIScrollView alloc] initWithFrame:CGRectMake(0, TopY, 320, [UIScreen mainScreen].bounds.size.height-TopY)];
     [self.view addSubview:mainScrollview];
     [mainScrollview release];

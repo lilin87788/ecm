@@ -11,8 +11,26 @@
 #import "SKNewMailController.h"
 #import "UIColor+FlatUI.h"
 @implementation SKSettingController
--(void)viewDidLoad
+-(void)back:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)viewDidLoad
 {
+    [super viewDidLoad];
+    if (System_Version_Small_Than_(7)) {
+        UIButton* backbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [backbtn setFrame:CGRectMake(0, 0, 50, 30)];
+        [backbtn setBackgroundImage:Image(@"back") forState:UIControlStateNormal];
+        [backbtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithCustomView:backbtn];
+        self.navigationItem.leftBarButtonItem = backItem;
+    }else{
+        UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
+        backItem.title = @"返回";
+        self.navigationItem.backBarButtonItem = backItem;
+    }
+    
     [self.view setBackgroundColor:COLOR(239, 239, 239)];
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 90)];
     [view setBackgroundColor:COLOR(239, 239, 239)];

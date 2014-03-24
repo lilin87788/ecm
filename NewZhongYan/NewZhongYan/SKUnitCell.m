@@ -14,11 +14,11 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        UIImageView* iv = [[UIImageView alloc] initWithFrame:CGRectMake(5, 7, 30, 30)];
+        UIImageView* iv = [[UIImageView alloc] initWithFrame:CGRectMake(10, 16, 10, 16)];
         [iv setImage:Image(@"icon_organize.png")];
         [self.contentView addSubview:iv];
 
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(43, 13, 257, 21)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 13, 257, 21)];
         [_titleLabel setFont:[UIFont systemFontOfSize:15]];
         [self.contentView addSubview:_titleLabel];
     }

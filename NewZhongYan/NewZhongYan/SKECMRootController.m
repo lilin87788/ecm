@@ -148,8 +148,6 @@
 #pragma mark -Actionsheet delegate
 - (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)anIndex
 {
-    NSLog(@"%d",anIndex);
-
     if (currentIndex == anIndex || anIndex == subChannels.count + 1) {
         return;
     }

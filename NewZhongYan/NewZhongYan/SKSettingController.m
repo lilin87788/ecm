@@ -133,9 +133,10 @@
     }else if(indexPath.section == 2){
         SKNewMailController* aEmail = [[APPUtils AppStoryBoard] instantiateViewControllerWithIdentifier:@"SKNewMailController"];
         SKToken* token = [[SKToken alloc] initWithTitle:@"产品经理"
-                                      representedObject:@"liuyang@hngytobacco.com"];
+                                      representedObject:@"p_liuyang@hngytobacco.com"];
         [aEmail.toTokenField addToken:token];
         [aEmail setStatus:NewMailStatusWrite];
+        [aEmail.STokenField setText:@"手机门户意见反馈"];
         [[APPUtils visibleViewController].navigationController pushViewController:aEmail animated:YES];
     }
 }

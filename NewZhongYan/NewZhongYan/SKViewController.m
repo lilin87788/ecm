@@ -439,7 +439,7 @@
 -(void)initClientApp
 {
     clientAppArray = [NSMutableArray array];
-    NSArray* array = [[DBQueue sharedbQueue] recordFromTableBySQL:@"select * from T_CLIENTAPP where HASPMS = 1 and ENABLED = 1 ORDER BY DEFAULTED limit 0,1;"];
+    NSArray* array = [[DBQueue sharedbQueue] recordFromTableBySQL:@"select * from T_CLIENTAPP where HASPMS = 1 and ENABLED = 1 ORDER BY DEFAULTED;"];
     [pageController setNumberOfPages:array.count];
     for (NSDictionary* dict in array) {
         SKClientApp* clientApp = [[SKClientApp alloc] initWithDictionary:dict];
@@ -456,7 +456,7 @@
         [view removeFromSuperview];
     }
     clientAppArray = [NSMutableArray array];
-    NSArray* array = [[DBQueue sharedbQueue] recordFromTableBySQL:@"select * from T_CLIENTAPP where HASPMS = 1 and ENABLED = 1 ORDER BY DEFAULTED limit 0,1;"];
+    NSArray* array = [[DBQueue sharedbQueue] recordFromTableBySQL:@"select * from T_CLIENTAPP where HASPMS = 1 and ENABLED = 1 ORDER BY DEFAULTED;"];
     [pageController setNumberOfPages:array.count];
     for (NSDictionary* dict in array) {
         SKClientApp* clientApp = [[SKClientApp alloc] initWithDictionary:dict];

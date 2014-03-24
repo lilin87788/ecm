@@ -158,7 +158,7 @@
     DividingLines.tag = 1;
     [DividingLines setFrame:CGRectMake(10, CGRectGetMaxY(_crtmLabel.frame), 300, 2)];
     [_bgscrollview addSubview:DividingLines];
-    _curHeight = CGRectGetMaxY(DividingLines.frame);
+    _curHeight = CGRectGetMaxY(DividingLines.frame) + 2;
 
     if (_detail.body.count) {
         UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_crtmLabel.frame), 320, 24)];
@@ -171,7 +171,7 @@
         label.textColor = [UIColor grayColor];
         label.backgroundColor = [UIColor clearColor];
         [view addSubview:label];
-        _curHeight = CGRectGetMaxY(view.frame);
+        _curHeight = CGRectGetMaxY(view.frame) + 2;
         for (Content *content in _detail.body) {
             [self showContent:content];
         }
@@ -317,7 +317,7 @@
     webView.delegate = self;
     webView.dataDetectorTypes = UIDataDetectorTypeNone;
     [(UIScrollView*)[[webView subviews] objectAtIndex:0] setScrollEnabled:NO];
-    NSString *webviewText = @"<style>body{margin:0;background-color:#clear;font:16px/24px}</style>";
+    NSString *webviewText = @"<style>body{margin:0;background-color:#clear;font:18px/24px}</style>";
     NSString *htmlString = [webviewText stringByAppendingFormat:@"%@",content.value];
     [webView loadHTMLString:htmlString baseURL:Nil];
     [webView setTag:1];//1 表示该view是自己添加的，而不是系统自带的

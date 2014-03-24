@@ -515,7 +515,8 @@
         _isFooterInAction = NO;
     } else if (_isFooterInAction) {
         CGPoint offset = self.contentOffset;
-        offset.y += 44.f;
+        //俊俊改的  offset.y += .0f;
+        //offset.y += 44.f;
         self.contentOffset = offset;
     }
 

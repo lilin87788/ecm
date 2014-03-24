@@ -621,16 +621,33 @@
     return 2;
 }
 
--(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0){
-        if ([_dataUItems count] > 0 ) return @"下属部门";
-        else return nil;
+        if ([_dataUItems count] == 0 ) return .0f;
+        else return 20;
     }else{
-        if ([_dataEItems count] > 0 ) return @"下属员工";
-        else return nil;
+        if ([_dataEItems count] == 0 ) return .0f;
+        else return 20;
     }
 }
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 16)];
+    label.backgroundColor = COLOR(245, 245, 245);
+    label.textColor = [UIColor grayColor];
+    label.font = [UIFont systemFontOfSize:15];
+    if (section == 0){
+        if ([_dataUItems count] > 0 ) label.text =  @"  下属部门";
+        else return nil;
+    }else{
+        if ([_dataEItems count] > 0 ) label.text =  @"  下属员工";
+        else  return nil;
+    }
+    return label;
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {

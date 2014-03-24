@@ -14,7 +14,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        UIImageView* iv = [[UIImageView alloc] initWithFrame:CGRectMake(10, 16, 10, 16)];
+        UIImageView* iv = [[UIImageView alloc] initWithFrame:CGRectMake(10, 17, 8, 12)];
         [iv setImage:Image(@"icon_organize.png")];
         [self.contentView addSubview:iv];
 
@@ -29,5 +29,4 @@
 {
     [super setSelected:selected animated:animated];
 }
-
 @end

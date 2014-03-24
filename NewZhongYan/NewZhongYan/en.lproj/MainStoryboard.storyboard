@@ -3981,7 +3981,7 @@
         <image name="remind.png" width="25" height="25"/>
         <image name="setpassword_bg.png" width="640" height="1008"/>
         <image name="setting.png" width="25" height="25"/>
-        <image name="star_on.png" width="35" height="35"/>
+        <image name="star_on.png" width="70" height="70"/>
         <image name="sysmaintain_ecm.png" width="32" height="32"/>
         <image name="user_input1.png" width="402" height="74"/>
         <image name="usercenter_hd_avatar_default.png" width="68" height="68"/>

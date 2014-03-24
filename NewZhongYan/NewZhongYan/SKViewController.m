@@ -232,8 +232,6 @@
 -(void)jumpToController:(id)sender
 {
     UIDragButton *btn=(UIDragButton *)[(UIDragButton *)sender superview] ;
-    //UIViewController* controller = [[APPUtils AppStoryBoard] instantiateViewControllerWithIdentifier:btn.controllerName];
-    //[self.navigationController pushViewController:controller animated:YES];
     [self performSegueWithIdentifier:btn.controllerName sender:self];
 }
 
@@ -292,25 +290,22 @@
     NSUInteger page = floor((bgScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     pageController.currentPage = page;
     SKGridController *controller = controllerArray[page];
-    titleLabel.text = controller.clientApp.NAME;
     navTitleLabel.text = controller.clientApp.NAME;
 }
 
-- (void)loadScrollViewWithPage:(NSUInteger)page
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    [bgScrollView setContentSize:CGSizeMake((page + 1) * 320, bgScrollView.frame.size.height)];
-    SKGridController *controller = [[APPUtils AppStoryBoard] instantiateViewControllerWithIdentifier:@"SKGridController"];
-    controller.rootController = self;
-    [controllerArray addObject:controller];
-    if (controller.view.superview == nil)
-    {
-        CGRect frame = bgScrollView.frame;
-        frame.origin.x = CGRectGetWidth(frame) * page;
-        frame.origin.y = 0;
-        controller.view.frame = frame;
-        
-        [self addChildViewController:controller];
-        [bgScrollView addSubview:controller.view];
+    CGFloat pageWidth = CGRectGetWidth(bgScrollView.frame);
+    int currentPage = floor((bgScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    NSLog(@"%d %d",currentPage,pageController.currentPage);
+    //当前位置在最后一页
+    if (currentPage == controllerArray.count - 1) {
+        NSLog(@"当前位置在最后一页");
+    }
+    
+    //当前位置在第一页
+    if (currentPage == 0) {
+        NSLog(@"当前位置在第一页");
     }
 }
 

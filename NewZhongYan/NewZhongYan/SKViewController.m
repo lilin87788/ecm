@@ -284,29 +284,39 @@
     [self.view addSubview:pageController];
 }
 
+/*
+ 循环滚动
+ 每次滚动后都将scrollview的offset设置为中间的一页
+ 若本次滚动是向前一页滚动，则把三页都向后放置，最后一页放到开头
+ 若本次滚动是向后一页滚动，则把三页都向前放置，第一页放到末尾
+ */
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     CGFloat pageWidth = CGRectGetWidth(bgScrollView.frame);
     NSUInteger page = floor((bgScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    if (page != pageController.currentPage) {
+        //当前位置在最后一页
+        if (page == controllerArray.count - 1) {
+            //先把
+            NSLog(@"当前位置在最后一页");
+        }
+        
+        //当前位置在第一页
+        if (page == 0) {
+            NSLog(@"当前位置在第一页");
+        }
+    }
+
     pageController.currentPage = page;
     SKGridController *controller = controllerArray[page];
     navTitleLabel.text = controller.clientApp.NAME;
 }
 
+
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    CGFloat pageWidth = CGRectGetWidth(bgScrollView.frame);
-    int currentPage = floor((bgScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    NSLog(@"%d %d",currentPage,pageController.currentPage);
-    //当前位置在最后一页
-    if (currentPage == controllerArray.count - 1) {
-        NSLog(@"当前位置在最后一页");
-    }
-    
-    //当前位置在第一页
-    if (currentPage == 0) {
-        NSLog(@"当前位置在第一页");
-    }
+
 }
 
 - (SKGridController*)loadScrollViewWithClientApp:(SKClientApp*)app PageNo:(NSUInteger)page

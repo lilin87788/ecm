@@ -256,10 +256,18 @@
         }
         [cell setECMPaperInfo:_dataArray[indexPath.row]];
         [cell resizeCellHeight];
-    }else{
+    } else if (self.isNotice) {
+        static NSString* identify = @"noticecell";
+        cell = [tableView dequeueReusableCellWithIdentifier:identify];
+        if (!cell) {
+            cell = [[SKSearchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+        }
+        [cell setECMPaperInfo:_dataArray[indexPath.row]];
+        [cell resizeCellHeight];
+    } else {
         static NSString* identify = @"newscell";
-         cell = [tableView dequeueReusableCellWithIdentifier:identify];
-        if (!cell){
+        cell = [tableView dequeueReusableCellWithIdentifier:identify];
+        if (!cell) {
             cell = [[SKSearchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
         }
         [cell setECMPaperInfo:_dataArray[indexPath.row]];

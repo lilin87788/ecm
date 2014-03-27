@@ -41,6 +41,7 @@
     searcher.fidlist = self.channel.FIDLIST;
     searcher.channel = self.channel;
     searcher.isMeeting = isMeeting;
+    searcher.isNotice = isNotice;
     [[APPUtils visibleViewController] presentViewController:nav animated:YES completion:^{
         
     }];
@@ -53,6 +54,8 @@
         [self dataFromDataBaseWithComleteBlock:^(NSArray* array){
             if (isMeeting) {
                 [_sectionDictionary addEntriesFromDictionary:[self praseMeetingArray:array]];
+            } else if (isNotice) {
+                [_sectionDictionary addEntriesFromDictionary:[self praseNoticeArray:array]];
             } else {
                 [_dataItems setArray:array];
             }
@@ -75,7 +78,7 @@
 }
 
 /**
- *  用于从数据库中获取该频道下说有的数据
+ *  用于从数据库中获取该频道下所有的数据
  *
  *  @param block
  */
@@ -127,7 +130,22 @@
                 }
             }
             _sectionDictionary = [NSMutableDictionary dictionaryWithDictionary:sectionDictionary];
-        }else{
+        } else if (isNotice) {
+            NSDictionary *sectionDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                               [NSMutableArray array],@"有效通知",
+                                               [NSMutableArray array],@"失效通知", nil];
+            
+            for (NSDictionary *dict in [NSArray arrayWithArray:dataArray]){
+                NSString* bz = [dict objectForKey:@"az"];
+                if (bz.intValue) {
+                    [(NSMutableArray*)[sectionDictionary objectForKey:@"有效通知"] addObject:dict];
+                }else{
+                    [(NSMutableArray*)[sectionDictionary objectForKey:@"失效通知"]  addObject:dict];
+                }
+            }
+            _sectionDictionary = [NSMutableDictionary dictionaryWithDictionary:sectionDictionary];
+
+        } else{
             for (NSMutableDictionary* d in dataArray)
             {
                 if ([[d objectForKey:@"bz"] intValue] == INNERTWODAY && [[d objectForKey:@"READED"] intValue] == UNREAD) {
@@ -156,6 +174,8 @@
         [self dataFromDataBaseWithComleteBlock:^(NSArray* array){
             if (isMeeting) {
                 [_sectionDictionary addEntriesFromDictionary:[self praseMeetingArray:array]];
+            } else if (isNotice) {
+                [_sectionDictionary addEntriesFromDictionary:[self praseNoticeArray:array]];
             } else {
                 [_dataItems setArray:array];
             }
@@ -169,6 +189,8 @@
         [self dataFromDataBaseWithFid:subChannels[anIndex - 1][@"FIDLIST"] ComleteBlock:^(NSArray* array){
             if (isMeeting) {
                 [_sectionDictionary addEntriesFromDictionary:[self praseMeetingArray:array]];
+            } else if (isNotice) {
+                [_sectionDictionary addEntriesFromDictionary:[self praseNoticeArray:array]];
             } else {
                 [_dataItems setArray:array];
             }
@@ -228,11 +250,36 @@
         if (bz.intValue) {
             [(NSMutableArray*)[sectionDictionary objectForKey:@"即将召开&正在召开"] addObject:dict];
         }else{
-            [(NSMutableArray*)[sectionDictionary objectForKey:@"已结束"]  addObject:dict];
+            [(NSMutableArray*)[sectionDictionary objectForKey:@"已结束"] addObject:dict];
         }
     }
     return sectionDictionary;
 }
+
+-(NSDictionary*)praseNoticeArray:(NSArray*)notices{
+    NSDictionary *sectionDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                       [NSMutableArray array],@"有效通知",
+                                       [NSMutableArray array],@"失效通知", nil];
+    
+    for (NSDictionary *dict in [NSArray arrayWithArray:notices]){
+        NSString* bz = [dict objectForKey:@"az"];
+        if (bz.intValue) {
+            [(NSMutableArray*)[sectionDictionary objectForKey:@"有效通知"] addObject:dict];
+        }else{
+            [(NSMutableArray*)[sectionDictionary objectForKey:@"失效通知"] addObject:dict];
+        }
+    }
+    NSArray *keys = [sectionDictionary allKeys];
+    for (int i = 0; i < [keys count]; i++) {
+        NSString *key = [keys objectAtIndex:i];
+        NSMutableArray *sectionItems = [sectionDictionary objectForKey:key];
+        if (!sectionItems || ![sectionItems count]) {
+            [(NSMutableArray*)[sectionDictionary objectForKey:key] addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"暂无数据", @"TITL", nil]];
+        }
+    }
+    return sectionDictionary;
+}
+
 
 -(void)back:(id)sender
 {
@@ -255,6 +302,7 @@
     [_tableView setHidden:YES];
     self.title = self.channel.NAME;
     isMeeting = [self.channel.TYPELABLE rangeOfString:@"meeting"].location != NSNotFound;
+    isNotice = [self.channel.TYPELABLE rangeOfString:@"notice"].location != NSNotFound;
     [titleButton setHidden:!self.channel.HASSUBTYPE];
     
     if (self.channel.HASSUBTYPE) {
@@ -272,6 +320,9 @@
     if (isMeeting) {
         _sectionArray = [[NSArray alloc] initWithObjects:@"即将召开&正在召开",@"已结束", nil];
         _sectionDictionary = [[NSMutableDictionary alloc] init];
+    } else if (isNotice) {
+        _sectionArray = [[NSArray alloc] initWithObjects:@"有效通知",@"失效通知", nil];
+        _sectionDictionary = [[NSMutableDictionary alloc] init];
     }
     
     [self dataFromDataBaseWithFid:self.channel.FIDLISTS ComleteBlock:^(NSArray* array){
@@ -280,6 +331,8 @@
             [noneDataLabel setHidden:YES];
             if (isMeeting) {
                 [_sectionDictionary addEntriesFromDictionary:[self praseMeetingArray:array]];
+            } else if (isNotice) {
+                [_sectionDictionary addEntriesFromDictionary:[self praseNoticeArray:array]];
             } else {
                 [_dataItems setArray:array];
             }
@@ -328,6 +381,8 @@
             if (array.count) {
                 if (isMeeting) {
                     [_sectionDictionary addEntriesFromDictionary:[self praseMeetingArray:array]];
+                } else if (isNotice) {
+                    [_sectionDictionary addEntriesFromDictionary:[self praseNoticeArray:array]];
                 } else {
                     [_dataItems setArray:array];
                 }
@@ -354,7 +409,9 @@
 {
     if (isMeeting){
         return [_sectionDictionary count];
-    }else{
+    } else if (isNotice) {
+        return [_sectionDictionary count];
+    } else{
         return 1;
     }
 }
@@ -363,6 +420,8 @@
 {
     if (isMeeting) {
         return [[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count];
+    } else if (isNotice) {
+        return [[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count];
     } else {
         return _dataItems.count;
     }
@@ -370,12 +429,23 @@
 
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+//    if (isMeeting) {
+//        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0) {
+//            return [_sectionArray objectAtIndex:section];
+//        }else{
+//            return 0;
+//        }
+//    } else if (isNotice) {
+//        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0) {
+//            return [_sectionArray objectAtIndex:section];
+//        }else{
+//            return 0;
+//        }
+//    }
     if (isMeeting) {
-        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0) {
-            return [_sectionArray objectAtIndex:section];
-        }else{
-            return 0;
-        }
+        return [_sectionArray objectAtIndex:section];
+    } else if (isNotice) {
+        return [_sectionArray objectAtIndex:section];
     }
     return 0;
 }
@@ -386,25 +456,50 @@
     label.backgroundColor = COLOR(245, 245, 245);
     label.textColor = [UIColor grayColor];
     label.font = [UIFont systemFontOfSize:15];
+//    if (isMeeting) {
+//        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0) {
+//            label.text = [NSString stringWithFormat:@"  %@",[_sectionArray objectAtIndex:section]];
+//            return label;
+//        }else{
+//            return 0;
+//        }
+//    } else if (isNotice) {
+//        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0) {
+//            label.text = [NSString stringWithFormat:@"  %@",[_sectionArray objectAtIndex:section]];
+//            return label;
+//        }else{
+//            return 0;
+//        }
+//    }
     if (isMeeting) {
-        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0) {
-            label.text = [NSString stringWithFormat:@"  %@",[_sectionArray objectAtIndex:section]];
-            return label;
-        }else{
-            return 0;
-        }
+        label.text = [NSString stringWithFormat:@"  %@",[_sectionArray objectAtIndex:section]];
+        return label;
+    } else if (isNotice) {
+        label.text = [NSString stringWithFormat:@"  %@",[_sectionArray objectAtIndex:section]];
+        return label;
     }
     return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+//    if (isMeeting){
+//        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0){
+//            return 20;
+//        }else{
+//            return 0;
+//        }
+//    } else if (isNotice) {
+//        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0){
+//            return 20;
+//        }else{
+//            return 0;
+//        }
+//    }
     if (isMeeting){
-        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0){
-            return 20;
-        }else{
-            return 0;
-        }
+        return 20;
+    } else if (isNotice) {
+        return 20;
     }
     return 0;
 }
@@ -425,7 +520,29 @@
         [cell resizeCellHeight];
         return cell;
 
-    }else{
+    } else if (isNotice) {
+        NSString* sectionName  = [_sectionArray objectAtIndex:indexPath.section];//获取section 的名字
+        NSArray * sectionArray = [_sectionDictionary objectForKey:sectionName];  //获取本section 的数据
+        NSDictionary*dataDictionary = [sectionArray objectAtIndex:indexPath.row];
+        
+        if ([[dataDictionary allKeys] count] == 1) {
+            UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:0];
+            cell.textLabel.text = @"暂无数据";
+            return cell;
+        }
+        static NSString* identify = @"noticecell";
+        SKTableViewCell*  cell = [tableView dequeueReusableCellWithIdentifier:identify];
+        if (!cell) {
+            cell = [[SKTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+        }
+
+
+        
+        [cell setECMInfo:dataDictionary Section:indexPath.section];
+        [cell resizeCellHeight];
+        return cell;
+        
+    } else {
         static NSString* identify = @"newscell";
         SKTableViewCell*  cell = [tableView dequeueReusableCellWithIdentifier:identify];
         if (!cell)
@@ -452,7 +569,14 @@
             SKECMBrowseController *browser = (SKECMBrowseController *)[segue destinationViewController];
             browser.channel = self.channel;
             browser.currentDictionary = sectionArray[selectedIndexPath.row];;
-        }else{
+        } else if (isNotice){
+            NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+            NSString* sectionName  = [_sectionArray objectAtIndex:selectedIndexPath.section];//获取section 的名字
+            NSArray * sectionArray = [_sectionDictionary objectForKey:sectionName];  //获取本section 的数据
+            SKECMBrowseController *browser = (SKECMBrowseController *)[segue destinationViewController];
+            browser.channel = self.channel;
+            browser.currentDictionary = sectionArray[selectedIndexPath.row];;
+        } else {
             NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
             NSMutableDictionary* dict = _dataItems[selectedIndexPath.row];
             SKECMBrowseController *browser = (SKECMBrowseController *)[segue destinationViewController];
@@ -484,7 +608,14 @@
         return [dataDictionary[@"TITL"] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:16.]
                                           constrainedToSize:CGSizeMake(280, 220)
                                               lineBreakMode:NSLineBreakByCharWrapping].height+55;
-    }else{
+    } else if (isNotice) {
+        NSString* sectionName  = [_sectionArray objectAtIndex:indexPath.section];//获取section 的名字
+        NSArray * sectionArray = [_sectionDictionary objectForKey:sectionName];  //获取本section 的数据
+        NSDictionary*  dataDictionary = [sectionArray objectAtIndex:indexPath.row];
+        return [dataDictionary[@"TITL"] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:16.]
+                                   constrainedToSize:CGSizeMake(280, 220)
+                                       lineBreakMode:NSLineBreakByCharWrapping].height+55;
+    } else {
         return [_dataItems[indexPath.row][@"TITL"]  sizeWithFont:[UIFont fontWithName:@"Helvetica" size:16.]
                                                       constrainedToSize:CGSizeMake(280, 220)
                                                           lineBreakMode:NSLineBreakByTruncatingTail].height + 30;

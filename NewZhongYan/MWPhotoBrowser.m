@@ -999,7 +999,7 @@
     
 	// Title
 	if ([self numberOfPhotos] > 1) {
-		self.title = [NSString stringWithFormat:@"%d %@ %lu", _currentPageIndex+1, NSLocalizedString(@"of", @"Used in the context: 'Showing 1 of 3 items'"), (unsigned long)[self numberOfPhotos]];
+		self.title = [NSString stringWithFormat:@"%u %@ %lu", (unsigned int)(_currentPageIndex+1), NSLocalizedString(@"of", @"Used in the context: 'Showing 1 of 3 items'"), (unsigned long)[self numberOfPhotos]];
 	} else {
 		self.title = nil;
 	}
@@ -1008,7 +1008,6 @@
 	_previousButton.enabled = (_currentPageIndex > 0);
 	_nextButton.enabled = (_currentPageIndex < [self numberOfPhotos]-1);
     _actionButton.enabled = [[self photoAtIndex:_currentPageIndex] underlyingImage] != nil;
-	
 }
 
 - (void)jumpToPageAtIndex:(NSUInteger)index animated:(BOOL)animated {

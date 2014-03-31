@@ -21,6 +21,10 @@
 		F212E45918233BA3001A0A74 /* REMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = F212E45318233BA3001A0A74 /* REMenuItemView.m */; };
 		F212E45A18233BA3001A0A74 /* REMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F212E45518233BA3001A0A74 /* REMenuContainerView.m */; };
 		F21B48821876528400842931 /* SKECMBrowseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F21B48811876528400842931 /* SKECMBrowseController.m */; };
+		F222E6F718E407DD009BBFC5 /* setpassword_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F222E6F618E407DD009BBFC5 /* setpassword_bg.png */; };
+		F222E6FB18E40956009BBFC5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F222E6F818E40956009BBFC5 /* Default-568h@2x.png */; };
+		F222E6FC18E40956009BBFC5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F222E6F918E40956009BBFC5 /* Default@2x.png */; };
+		F222E6FD18E40956009BBFC5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F222E6FA18E40956009BBFC5 /* Default.png */; };
 		F2258F1818D2B27900959601 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2258F1718D2B27900959601 /* placeholder@2x.png */; };
 		F2258F1A18D2B28400959601 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = F2258F1918D2B28400959601 /* placeholder.png */; };
 		F2258F1C18D2E26D00959601 /* loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2258F1B18D2E26D00959601 /* loading@2x.png */; };
@@ -295,24 +299,15 @@
 		F2B494D3180FE1E100246822 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B494D2180FE1E100246822 /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F2B4B18E18079D2500A789CB /* DrawPatternLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B4B18D18079D2500A789CB /* DrawPatternLockView.m */; };
 		F2B4B1941807A01C00A789CB /* SKPatternLockController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B4B1931807A01C00A789CB /* SKPatternLockController.m */; };
-		F2B4B1A01807A45F00A789CB /* btn_forgetpassword_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B4B1951807A45F00A789CB /* btn_forgetpassword_pressed.png */; };
-		F2B4B1A11807A45F00A789CB /* btn_forgetpassword.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B4B1961807A45F00A789CB /* btn_forgetpassword.png */; };
-		F2B4B1A21807A45F00A789CB /* locus_round_click_error.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B4B1971807A45F00A789CB /* locus_round_click_error.png */; };
-		F2B4B1A31807A45F00A789CB /* locus_round_click.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B4B1981807A45F00A789CB /* locus_round_click.png */; };
-		F2B4B1A41807A45F00A789CB /* locus_round_original.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B4B1991807A45F00A789CB /* locus_round_original.png */; };
 		F2B4B1A51807A45F00A789CB /* topbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B4B19A1807A45F00A789CB /* topbar_bg.png */; };
-		F2B4B1A61807A45F00A789CB /* firstpage_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B4B19B1807A45F00A789CB /* firstpage_bg.png */; };
 		F2B4B1A71807A45F00A789CB /* indicator_code_lock_point_area_default_holo.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B4B19C1807A45F00A789CB /* indicator_code_lock_point_area_default_holo.png */; };
 		F2B4B1A81807A45F00A789CB /* indicator_code_lock_point_area_green_holo.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B4B19D1807A45F00A789CB /* indicator_code_lock_point_area_green_holo.png */; };
 		F2B4B1A91807A45F00A789CB /* indicator_code_lock_point_area_red_holo.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B4B19E1807A45F00A789CB /* indicator_code_lock_point_area_red_holo.png */; };
-		F2B4B1AA1807A45F00A789CB /* setpassword_bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B4B19F1807A45F00A789CB /* setpassword_bg1.png */; };
 		F2B4B1AE1807E1F100A789CB /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B4B1AD1807E1F100A789CB /* DateUtils.m */; };
 		F2B66EF518151DD600AD6286 /* GetNewVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B66EF418151DD600AD6286 /* GetNewVersion.m */; };
 		F2B66EF81815391100AD6286 /* SKAPPUpdateController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B66EF71815391100AD6286 /* SKAPPUpdateController.m */; };
 		F2B66EFC18154B8500AD6286 /* SKToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B66EFB18154B8500AD6286 /* SKToolBar.m */; };
 		F2B67F7B17F7C0830007CB91 /* navagationBarCenterBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B67F7A17F7C0830007CB91 /* navagationBarCenterBtn@2x.png */; };
-		F2B67F8017F7C0990007CB91 /* btn_help_pressed1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B67F7E17F7C0990007CB91 /* btn_help_pressed1@2x.png */; };
-		F2B67F8117F7C0990007CB91 /* btn_help1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B67F7F17F7C0990007CB91 /* btn_help1@2x.png */; };
 		F2B67F9217F7C8A20007CB91 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B67F8F17F7C8A20007CB91 /* libsqlite3.0.dylib */; };
 		F2B67F9317F7C8A20007CB91 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B67F9017F7C8A20007CB91 /* QuartzCore.framework */; };
 		F2B67F9417F7C8A20007CB91 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B67F9117F7C8A20007CB91 /* QuickLook.framework */; };
@@ -350,11 +345,8 @@
 		F2BD53891828D50B00CBEA30 /* SKTrashboxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BD53881828D50B00CBEA30 /* SKTrashboxCell.m */; };
 		F2BE28E618DD77F000AADD13 /* btn_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2BE28E518DD77F000AADD13 /* btn_help@2x.png */; };
 		F2BE28E818DD780700AADD13 /* exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2BE28E718DD780700AADD13 /* exit@2x.png */; };
-		F2BE28EA18DD7F3200AADD13 /* setpassword_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F2BE28E918DD7F3200AADD13 /* setpassword_bg.png */; };
 		F2BE28EC18DD82AB00AADD13 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2BE28EB18DD82AB00AADD13 /* arrow@2x.png */; };
-		F2BE28EE18DD82B600AADD13 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2BE28ED18DD82B600AADD13 /* Default-568h@2x.png */; };
-		F2BE28F018DD830C00AADD13 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2BE28EF18DD830C00AADD13 /* Default@2x.png */; };
-		F2BE28F218DD833400AADD13 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F2BE28F118DD833400AADD13 /* Default.png */; };
+		F2BE28EE18DD82B600AADD13 /* Default-568h_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2BE28ED18DD82B600AADD13 /* Default-568h_logo@2x.png */; };
 		F2BE7D4D18DD6F68004D71E6 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = F2BE7D4C18DD6F68004D71E6 /* avatar.png */; };
 		F2BE7D5018DD7021004D71E6 /* progress.png in Resources */ = {isa = PBXBuildFile; fileRef = F2BE7D4E18DD7021004D71E6 /* progress.png */; };
 		F2BE7D5118DD7021004D71E6 /* track.png in Resources */ = {isa = PBXBuildFile; fileRef = F2BE7D4F18DD7021004D71E6 /* track.png */; };
@@ -383,6 +375,8 @@
 		F2CE6E231862B8F900D95B34 /* SKChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CE6E221862B8F900D95B34 /* SKChannel.m */; };
 		F2CE6E261862BB5800D95B34 /* SKChanneltp.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CE6E251862BB5800D95B34 /* SKChanneltp.m */; };
 		F2CE6E2D1862F1F700D95B34 /* SKECMURLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CE6E2C1862F1F700D95B34 /* SKECMURLManager.m */; };
+		F2D5C56718E3B6A4008E9015 /* z.png in Resources */ = {isa = PBXBuildFile; fileRef = F2D5C56518E3B6A4008E9015 /* z.png */; };
+		F2D5C56818E3B6A4008E9015 /* f.png in Resources */ = {isa = PBXBuildFile; fileRef = F2D5C56618E3B6A4008E9015 /* f.png */; };
 		F2D814681834D65E00FE0839 /* SKCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D814671834D65E00FE0839 /* SKCTextField.m */; };
 		F2D8146D1834D72700FE0839 /* SKAppConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D8146A1834D72700FE0839 /* SKAppConfiguration.m */; };
 		F2D8146E1834D72700FE0839 /* SKConfigureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D8146C1834D72700FE0839 /* SKConfigureCell.m */; };
@@ -444,6 +438,9 @@
 		F2F0396018190E6000B9116C /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F0395F18190E6000B9116C /* DACircularProgressView.m */; };
 		F2F0396318190FD200B9116C /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F0396218190FD200B9116C /* ImageIO.framework */; };
 		F2F039651819101300B9116C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F039641819101300B9116C /* AssetsLibrary.framework */; };
+		F2F20D5418E3C8FA000D4EDE /* Default_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F20D5318E3C8FA000D4EDE /* Default_logo.png */; };
+		F2F20D5618E3C901000D4EDE /* Default_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F20D5518E3C901000D4EDE /* Default_logo@2x.png */; };
+		F2F20D5818E3CCA6000D4EDE /* btn_done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F20D5718E3CCA6000D4EDE /* btn_done@2x.png */; };
 		F2F26F5B18D692FB00599888 /* btn_select@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F26F5A18D692FB00599888 /* btn_select@2x.png */; };
 		F2F26F5D18D698F200599888 /* meeting_place@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F26F5C18D698F200599888 /* meeting_place@2x.png */; };
 		F2F26F6518D6CF9900599888 /* homepage_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F26F6318D6CF9900599888 /* homepage_blue@2x.png */; };
@@ -515,6 +512,10 @@
 		F212E45518233BA3001A0A74 /* REMenuContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuContainerView.m; sourceTree = "<group>"; };
 		F21B48801876528400842931 /* SKECMBrowseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKECMBrowseController.h; sourceTree = "<group>"; };
 		F21B48811876528400842931 /* SKECMBrowseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKECMBrowseController.m; sourceTree = "<group>"; };
+		F222E6F618E407DD009BBFC5 /* setpassword_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setpassword_bg.png; sourceTree = "<group>"; };
+		F222E6F818E40956009BBFC5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F222E6F918E40956009BBFC5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		F222E6FA18E40956009BBFC5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F2258F1718D2B27900959601 /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
 		F2258F1918D2B28400959601 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		F2258F1B18D2E26D00959601 /* loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading@2x.png"; sourceTree = "<group>"; };
@@ -903,17 +904,10 @@
 		F2B4B18D18079D2500A789CB /* DrawPatternLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawPatternLockView.m; sourceTree = "<group>"; };
 		F2B4B1921807A01C00A789CB /* SKPatternLockController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPatternLockController.h; sourceTree = "<group>"; };
 		F2B4B1931807A01C00A789CB /* SKPatternLockController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPatternLockController.m; sourceTree = "<group>"; };
-		F2B4B1951807A45F00A789CB /* btn_forgetpassword_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_forgetpassword_pressed.png; sourceTree = "<group>"; };
-		F2B4B1961807A45F00A789CB /* btn_forgetpassword.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_forgetpassword.png; sourceTree = "<group>"; };
-		F2B4B1971807A45F00A789CB /* locus_round_click_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locus_round_click_error.png; sourceTree = "<group>"; };
-		F2B4B1981807A45F00A789CB /* locus_round_click.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locus_round_click.png; sourceTree = "<group>"; };
-		F2B4B1991807A45F00A789CB /* locus_round_original.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locus_round_original.png; sourceTree = "<group>"; };
 		F2B4B19A1807A45F00A789CB /* topbar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topbar_bg.png; sourceTree = "<group>"; };
-		F2B4B19B1807A45F00A789CB /* firstpage_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firstpage_bg.png; sourceTree = "<group>"; };
 		F2B4B19C1807A45F00A789CB /* indicator_code_lock_point_area_default_holo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indicator_code_lock_point_area_default_holo.png; sourceTree = "<group>"; };
 		F2B4B19D1807A45F00A789CB /* indicator_code_lock_point_area_green_holo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indicator_code_lock_point_area_green_holo.png; sourceTree = "<group>"; };
 		F2B4B19E1807A45F00A789CB /* indicator_code_lock_point_area_red_holo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indicator_code_lock_point_area_red_holo.png; sourceTree = "<group>"; };
-		F2B4B19F1807A45F00A789CB /* setpassword_bg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setpassword_bg1.png; sourceTree = "<group>"; };
 		F2B4B1AC1807E1F100A789CB /* DateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtils.h; sourceTree = "<group>"; };
 		F2B4B1AD1807E1F100A789CB /* DateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtils.m; sourceTree = "<group>"; };
 		F2B66EF318151DD600AD6286 /* GetNewVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetNewVersion.h; sourceTree = "<group>"; };
@@ -923,8 +917,6 @@
 		F2B66EFA18154B7D00AD6286 /* SKToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKToolBar.h; sourceTree = "<group>"; };
 		F2B66EFB18154B8500AD6286 /* SKToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKToolBar.m; sourceTree = "<group>"; };
 		F2B67F7A17F7C0830007CB91 /* navagationBarCenterBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navagationBarCenterBtn@2x.png"; sourceTree = "<group>"; };
-		F2B67F7E17F7C0990007CB91 /* btn_help_pressed1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_help_pressed1@2x.png"; sourceTree = "<group>"; };
-		F2B67F7F17F7C0990007CB91 /* btn_help1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_help1@2x.png"; sourceTree = "<group>"; };
 		F2B67F8F17F7C8A20007CB91 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		F2B67F9017F7C8A20007CB91 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F2B67F9117F7C8A20007CB91 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
@@ -981,11 +973,8 @@
 		F2BD53881828D50B00CBEA30 /* SKTrashboxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTrashboxCell.m; sourceTree = "<group>"; };
 		F2BE28E518DD77F000AADD13 /* btn_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_help@2x.png"; sourceTree = "<group>"; };
 		F2BE28E718DD780700AADD13 /* exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exit@2x.png"; sourceTree = "<group>"; };
-		F2BE28E918DD7F3200AADD13 /* setpassword_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setpassword_bg.png; sourceTree = "<group>"; };
 		F2BE28EB18DD82AB00AADD13 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
-		F2BE28ED18DD82B600AADD13 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		F2BE28EF18DD830C00AADD13 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		F2BE28F118DD833400AADD13 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		F2BE28ED18DD82B600AADD13 /* Default-568h_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h_logo@2x.png"; sourceTree = "<group>"; };
 		F2BE7D4C18DD6F68004D71E6 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
 		F2BE7D4E18DD7021004D71E6 /* progress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progress.png; sourceTree = "<group>"; };
 		F2BE7D4F18DD7021004D71E6 /* track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track.png; sourceTree = "<group>"; };
@@ -1027,6 +1016,8 @@
 		F2CE6E251862BB5800D95B34 /* SKChanneltp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKChanneltp.m; sourceTree = "<group>"; };
 		F2CE6E2B1862F1F700D95B34 /* SKECMURLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKECMURLManager.h; sourceTree = "<group>"; };
 		F2CE6E2C1862F1F700D95B34 /* SKECMURLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKECMURLManager.m; sourceTree = "<group>"; };
+		F2D5C56518E3B6A4008E9015 /* z.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = z.png; sourceTree = "<group>"; };
+		F2D5C56618E3B6A4008E9015 /* f.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = f.png; sourceTree = "<group>"; };
 		F2D814661834D65E00FE0839 /* SKCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCTextField.h; sourceTree = "<group>"; };
 		F2D814671834D65E00FE0839 /* SKCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCTextField.m; sourceTree = "<group>"; };
 		F2D814691834D72700FE0839 /* SKAppConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKAppConfiguration.h; sourceTree = "<group>"; };
@@ -1128,6 +1119,9 @@
 		F2F0395F18190E6000B9116C /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
 		F2F0396218190FD200B9116C /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		F2F039641819101300B9116C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		F2F20D5318E3C8FA000D4EDE /* Default_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_logo.png; sourceTree = "<group>"; };
+		F2F20D5518E3C901000D4EDE /* Default_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default_logo@2x.png"; sourceTree = "<group>"; };
+		F2F20D5718E3CCA6000D4EDE /* btn_done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_done@2x.png"; sourceTree = "<group>"; };
 		F2F26F5A18D692FB00599888 /* btn_select@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_select@2x.png"; sourceTree = "<group>"; };
 		F2F26F5C18D698F200599888 /* meeting_place@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "meeting_place@2x.png"; sourceTree = "<group>"; };
 		F2F26F6318D6CF9900599888 /* homepage_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homepage_blue@2x.png"; sourceTree = "<group>"; };
@@ -1911,18 +1905,11 @@
 		F2B4B1AB1807A46300A789CB /* pic */ = {
 			isa = PBXGroup;
 			children = (
-				F2B4B1951807A45F00A789CB /* btn_forgetpassword_pressed.png */,
-				F2B4B1961807A45F00A789CB /* btn_forgetpassword.png */,
-				F2B4B1971807A45F00A789CB /* locus_round_click_error.png */,
-				F2B4B1981807A45F00A789CB /* locus_round_click.png */,
-				F2B4B1991807A45F00A789CB /* locus_round_original.png */,
+				F222E6F618E407DD009BBFC5 /* setpassword_bg.png */,
 				F2B4B19A1807A45F00A789CB /* topbar_bg.png */,
-				F2B4B19B1807A45F00A789CB /* firstpage_bg.png */,
 				F2B4B19C1807A45F00A789CB /* indicator_code_lock_point_area_default_holo.png */,
 				F2B4B19D1807A45F00A789CB /* indicator_code_lock_point_area_green_holo.png */,
 				F2B4B19E1807A45F00A789CB /* indicator_code_lock_point_area_red_holo.png */,
-				F2BE28E918DD7F3200AADD13 /* setpassword_bg.png */,
-				F2B4B19F1807A45F00A789CB /* setpassword_bg1.png */,
 			);
 			name = pic;
 			sourceTree = "<group>";
@@ -1980,9 +1967,8 @@
 				F2258F2018D2EA3500959601 /* segLeft_press.png */,
 				F2258F2118D2EA3500959601 /* segRight.png */,
 				F2258F2218D2EA3500959601 /* segRight_press.png */,
-				F2B67F7E17F7C0990007CB91 /* btn_help_pressed1@2x.png */,
-				F2B67F7F17F7C0990007CB91 /* btn_help1@2x.png */,
 				F2BE28E718DD780700AADD13 /* exit@2x.png */,
+				F2F20D5718E3CCA6000D4EDE /* btn_done@2x.png */,
 				F2BE28E518DD77F000AADD13 /* btn_help@2x.png */,
 				F289FC4E180654DF00B825DC /* navbar44@2x.png */,
 				F289FC4F180654DF00B825DC /* navbar64@2x.png */,
@@ -2231,6 +2217,8 @@
 				F28DF848185ABAE9000B6C1F /* grid */,
 				F2C89B9F17F6B73D0099A62D /* SKAppDelegate.h */,
 				F2C89BA017F6B73D0099A62D /* SKAppDelegate.m */,
+				F2D5C56518E3B6A4008E9015 /* z.png */,
+				F2D5C56618E3B6A4008E9015 /* f.png */,
 				F2C89BAB17F6B73D0099A62D /* SKViewController.h */,
 				F2C89BAC17F6B73D0099A62D /* SKViewController.m */,
 				F2C89B9717F6B73D0099A62D /* Supporting Files */,
@@ -2242,6 +2230,12 @@
 			isa = PBXGroup;
 			children = (
 				F289FC521806561100B825DC /* Images.xcassets */,
+				F222E6F818E40956009BBFC5 /* Default-568h@2x.png */,
+				F222E6F918E40956009BBFC5 /* Default@2x.png */,
+				F222E6FA18E40956009BBFC5 /* Default.png */,
+				F2F20D5318E3C8FA000D4EDE /* Default_logo.png */,
+				F2F20D5518E3C901000D4EDE /* Default_logo@2x.png */,
+				F2BE28ED18DD82B600AADD13 /* Default-568h_logo@2x.png */,
 				F2DF1E8B18C08A8900A160FA /* Icon-Small.png */,
 				F2DF1E8C18C08A8900A160FA /* Icon.png */,
 				F2DF1E8D18C08A8900A160FA /* Icon-Small@2x.png */,
@@ -2257,9 +2251,6 @@
 				F240235617F6B89300C25FFB /* MainStoryboard_ios5.storyboard */,
 				F2C89B9E17F6B73D0099A62D /* NewZhongYan-Prefix.pch */,
 				F2C89B9817F6B73D0099A62D /* NewZhongYan-Info.plist */,
-				F2BE28F118DD833400AADD13 /* Default.png */,
-				F2BE28EF18DD830C00AADD13 /* Default@2x.png */,
-				F2BE28ED18DD82B600AADD13 /* Default-568h@2x.png */,
 				F2C89B9917F6B73D0099A62D /* InfoPlist.strings */,
 				F2C89B9C17F6B73D0099A62D /* main.m */,
 			);
@@ -2685,6 +2676,7 @@
 				F23487851831CD6D00E649AA /* iphone4_help_company.png in Resources */,
 				F2BE28E618DD77F000AADD13 /* btn_help@2x.png in Resources */,
 				F289FC531806561100B825DC /* Images.xcassets in Resources */,
+				F2D5C56818E3B6A4008E9015 /* f.png in Resources */,
 				F23CE449182B21600066F214 /* btn_submit_press@2x.png in Resources */,
 				F2DF1E9618C08A8900A160FA /* Icon-60@2x.png in Resources */,
 				F22C95B2180EBDF200BC6D71 /* status-bar-pattern-default@2x.jpg in Resources */,
@@ -2702,7 +2694,9 @@
 				F2DF1E9118C08A8900A160FA /* Icon-Small.png in Resources */,
 				F286C18E18223BEF00ADFF40 /* SKEmployeeCell.xib in Resources */,
 				F288469C18039938006A5D62 /* user_input1.png in Resources */,
+				F2F20D5818E3CCA6000D4EDE /* btn_done@2x.png in Resources */,
 				F24F44D71820E14500168C59 /* dial_button_hide.png in Resources */,
+				F222E6FB18E40956009BBFC5 /* Default-568h@2x.png in Resources */,
 				F234878F1831CD6D00E649AA /* iphone5_cms_detailed.png in Resources */,
 				F2DF1E8718C035F100A160FA /* remind_highnight@2x.png in Resources */,
 				F286C19618223D1000ADFF40 /* uncheck.png in Resources */,
@@ -2712,7 +2706,7 @@
 				F287263418DA804E009CD16A /* btn_reply_ecm_press@2x.png in Resources */,
 				F24F44D51820E14500168C59 /* dial_button_delete.png in Resources */,
 				F23487A11831CD6D00E649AA /* help4_5.png in Resources */,
-				F2BE28EE18DD82B600AADD13 /* Default-568h@2x.png in Resources */,
+				F2BE28EE18DD82B600AADD13 /* Default-568h_logo@2x.png in Resources */,
 				F234879E1831CD6D00E649AA /* help4_2.png in Resources */,
 				F2D814731834D74200FE0839 /* SKEmailConfigurationView.xib in Resources */,
 				F234879D1831CD6D00E649AA /* help4_1.png in Resources */,
@@ -2721,6 +2715,7 @@
 				F28846971803992F006A5D62 /* button.png in Resources */,
 				F2F26F5D18D698F200599888 /* meeting_place@2x.png in Resources */,
 				F24F44D61820E14500168C59 /* dial_button_delete_pressed.png in Resources */,
+				F222E6F718E407DD009BBFC5 /* setpassword_bg.png in Resources */,
 				F287261E18D99E52009CD16A /* btn_attachments_ecm@2x.png in Resources */,
 				F2DF1E8918C035F100A160FA /* setting_highnight@2x.png in Resources */,
 				F22C95B3180EBDF200BC6D71 /* status-bar-progress.png in Resources */,
@@ -2732,7 +2727,7 @@
 				F2F0392918190AF600B9116C /* MWPhotoBrowser.bundle in Resources */,
 				F287264418DAC2A4009CD16A /* appsetting_ecm.png in Resources */,
 				F25BE5A318D6DB2700CE54F1 /* btn_refresh_ecm@2x.png in Resources */,
-				F2B4B1A11807A45F00A789CB /* btn_forgetpassword.png in Resources */,
+				F2F20D5618E3C901000D4EDE /* Default_logo@2x.png in Resources */,
 				F2B965CB18C4593B001F227C /* dot_selected@2x.png in Resources */,
 				F286C19518223D1000ADFF40 /* check.png in Resources */,
 				F289FC50180654DF00B825DC /* navbar44@2x.png in Resources */,
@@ -2761,7 +2756,6 @@
 				F2F26FB918D6D74100599888 /* btn_search_ecm@2x.png in Resources */,
 				F2B4B1A71807A45F00A789CB /* indicator_code_lock_point_area_default_holo.png in Resources */,
 				F28846981803992F006A5D62 /* button_pressed.png in Resources */,
-				F2B4B1A41807A45F00A789CB /* locus_round_original.png in Resources */,
 				F2F26F6518D6CF9900599888 /* homepage_blue@2x.png in Resources */,
 				F23487871831CD6D00E649AA /* iphone4_cms.png in Resources */,
 				F23487921831CD6D00E649AA /* iphone5_email_edit.png in Resources */,
@@ -2769,13 +2763,14 @@
 				F291E218180CD9A80027F0C9 /* blueArrowDown@2x.png in Resources */,
 				F234878D1831CD6D00E649AA /* iphone4_help_oadetailed.png in Resources */,
 				F2A250FB18DD2623001317B5 /* back@2x.png in Resources */,
+				F2F20D5418E3C8FA000D4EDE /* Default_logo.png in Resources */,
 				F288469B18039938006A5D62 /* pw_input1.png in Resources */,
 				F234879A1831CD6D00E649AA /* iphone5_oa.png in Resources */,
 				F2B965C718C42420001F227C /* landbar_noshadow@2x.png in Resources */,
 				F2984A5B18DC49420030AA9F /* org_position_bg.png in Resources */,
-				F2BE28F218DD833400AADD13 /* Default.png in Resources */,
 				F23487951831CD6D00E649AA /* iphone5_help_addressbook.png in Resources */,
 				F287264618DAC2B6009CD16A /* pwmodify_ecm.png in Resources */,
+				F222E6FC18E40956009BBFC5 /* Default@2x.png in Resources */,
 				F28DE6E71816642F00E8CA79 /* icon_read.png in Resources */,
 				F234878C1831CD6D00E649AA /* iphone4_help_addressbook.png in Resources */,
 				F22C95B0180EBDF200BC6D71 /* status-bar-pattern-black@2x.jpg in Resources */,
@@ -2787,16 +2782,13 @@
 				F27690E318D6EF1400DA0A59 /* btn_last_ecm@2x.png in Resources */,
 				F291E217180CD9A80027F0C9 /* blueArrowDown.png in Resources */,
 				F2DF1E8618C035F100A160FA /* email1@2x.png in Resources */,
-				F2BE28EA18DD7F3200AADD13 /* setpassword_bg.png in Resources */,
 				F23487881831CD6D00E649AA /* iphone4_email_detailed.png in Resources */,
 				F23487901831CD6D00E649AA /* iphone5_cms.png in Resources */,
 				F22C372218DC6A890044F29C /* btn_home_bg.png in Resources */,
 				F2F26FBB18D6D75300599888 /* btn_search_ecm_press@2x.png in Resources */,
-				F2B4B1A31807A45F00A789CB /* locus_round_click.png in Resources */,
 				F24F44D91820E14500168C59 /* dial_button_pressed.png in Resources */,
 				F2DF1E8A18C035F100A160FA /* setting1@2x.png in Resources */,
 				F28846FC1803FF2E006A5D62 /* icon_gtasks.png in Resources */,
-				F2B4B1A61807A45F00A789CB /* firstpage_bg.png in Resources */,
 				F287262C18DA7AEB009CD16A /* btn_sms_ecm_press@2x.png in Resources */,
 				F287260518D988B3009CD16A /* btn_submit@2x.png in Resources */,
 				F2C1CF4718BDC8A6005941C1 /* usercenter_hd_avatar_default@2x.png in Resources */,
@@ -2818,18 +2810,15 @@
 				F287262218D99E9E009CD16A /* btn_sendmail_ecm_press@2x.png in Resources */,
 				F287262918DA7AAB009CD16A /* btn_mail_ecm@2x.png in Resources */,
 				F2BE7D5118DD7021004D71E6 /* track.png in Resources */,
-				F2B4B1AA1807A45F00A789CB /* setpassword_bg1.png in Resources */,
 				F287263518DA804E009CD16A /* btn_reply_ecm@2x.png in Resources */,
-				F2BE28F018DD830C00AADD13 /* Default@2x.png in Resources */,
 				F2984A5F18DC49970030AA9F /* org_info_nodisplayed.png in Resources */,
 				F2E5D59B182A5CCB00BFB48D /* test.xml in Resources */,
 				F28DE6E91816642F00E8CA79 /* cell_line.png in Resources */,
 				F2BE28EC18DD82AB00AADD13 /* arrow@2x.png in Resources */,
 				F2C1CF4618BDC8A6005941C1 /* usercenter_hd_avatar_default.png in Resources */,
-				F2B4B1A01807A45F00A789CB /* btn_forgetpassword_pressed.png in Resources */,
-				F2B4B1A21807A45F00A789CB /* locus_round_click_error.png in Resources */,
 				F2984A6118DC4A430030AA9F /* org_info_unfold.png in Resources */,
 				F287263918DA8995009CD16A /* list_onlyread.png in Resources */,
+				F2D5C56718E3B6A4008E9015 /* z.png in Resources */,
 				F234879B1831CD6D00E649AA /* buttonStart_pressed.png in Resources */,
 				F27690E518D6EF4300DA0A59 /* btn_next_ecm@2x.png in Resources */,
 				F287262618DA7A99009CD16A /* btn_call_ecm_press@2x.png in Resources */,
@@ -2841,6 +2830,7 @@
 				F286C19118223C9000ADFF40 /* employee_btn_call_pressed.png in Resources */,
 				F287263018DA8045009CD16A /* btn_forward_ecm_press@2x.png in Resources */,
 				F2B965D618C569F0001F227C /* remind_ecm@2x.png in Resources */,
+				F222E6FD18E40956009BBFC5 /* Default.png in Resources */,
 				F2B4B1A81807A45F00A789CB /* indicator_code_lock_point_area_green_holo.png in Resources */,
 				F287261518D99A7C009CD16A /* btn_moremail_ecm@2x.png in Resources */,
 				F287264818DAC2D4009CD16A /* sysmaintain_ecm.png in Resources */,
@@ -2859,7 +2849,6 @@
 				F286C19218223C9000ADFF40 /* employee_btn_call.png in Resources */,
 				F28DE6E81816642F00E8CA79 /* icon_unread.png in Resources */,
 				F2DF1E8818C035F100A160FA /* remind1@2x.png in Resources */,
-				F2B67F8117F7C0990007CB91 /* btn_help1@2x.png in Resources */,
 				F2DF1E9518C08A8900A160FA /* Icon@2x.png in Resources */,
 				F23487911831CD6D00E649AA /* iphone5_email_detailed.png in Resources */,
 				F28846A61803D62B006A5D62 /* button_1.png in Resources */,
@@ -2874,7 +2863,6 @@
 				F2BE28E818DD780700AADD13 /* exit@2x.png in Resources */,
 				F2B4B1A91807A45F00A789CB /* indicator_code_lock_point_area_red_holo.png in Resources */,
 				F2C1CF4B18BDCA66005941C1 /* night_user_defaulthead@2x.png in Resources */,
-				F2B67F8017F7C0990007CB91 /* btn_help_pressed1@2x.png in Resources */,
 				F25BE5A218D6DB2700CE54F1 /* btn_refresh_ecm_press@2x.png in Resources */,
 				F291518C18DFED1B00A259A3 /* email@2x.png in Resources */,
 				F287260C18D994F8009CD16A /* btn_history_ecm_press@2x.png in Resources */,

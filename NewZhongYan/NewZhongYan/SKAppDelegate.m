@@ -23,6 +23,11 @@
 #define MAXTIME 1
 static User* currentUser = nil;
 @implementation SKAppDelegate
+{
+    UIView *rView;//图片的UIView
+    UIImageView *zView;//Z图片ImageView
+    UIImageView *fView;//F图片ImageView
+}
 
 +(User*)sharedCurrentUser
 {
@@ -138,7 +143,36 @@ NSUInteger DeviceSystemMajorVersion() {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [_mainStoryboard instantiateInitialViewController];
     [self.window makeKeyAndVisible];
+    zView=[[UIImageView alloc]initWithFrame:self.window.frame];//初始化zView
+    if (IS_IPHONE_5){
+        zView.image=[UIImage imageNamed:@"Default-568h_logo"];//图片z.png 到zView
+    }else{
+        zView.image=[UIImage imageNamed:@"Default_logo"];//图片z.png 到zView
+    }
+    rView=[[UIView alloc]initWithFrame:self.window.frame];//初始化rView
+    [rView addSubview:zView];//add 到rView
+    [self.window addSubview:rView];//add 到window
+    
+    [self performSelector:@selector(TheAnimation) withObject:nil afterDelay:1];//5秒后执行TheAnimation
     return YES;
+}
+
+- (void)TheAnimation{
+    
+    CATransition *animation = [CATransition animation];
+    animation.delegate = self;
+    animation.duration = 0.7 ;  // 动画持续时间(秒)
+    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    animation.type = kCATransitionFade;//淡入淡出效果
+    [[rView layer] addAnimation:animation forKey:@"animation"];
+    [UIView animateWithDuration:0.7  //速度0.7秒
+                     animations:^{   //修改rView坐标
+                         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+                         [rView setAlpha:0];
+                     }
+                     completion:^(BOOL finished){
+                         [rView removeFromSuperview];
+                     }];
 }
 
 //当程序即将从active状态到inactive状态 或者用户quit了这个程序即将进入后台时的状态

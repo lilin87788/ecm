@@ -60,6 +60,11 @@
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tableView setContentOffset:CGPointZero];
+}
+
 -(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
     if(section == 0){
@@ -86,7 +91,7 @@
         cell.backgroundView = bgView;
         if (indexPath.section == 1){
             if (indexPath.row != 4) {
-                UIView* v = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(cell.contentView.bounds), CGRectGetWidth(cell.contentView.bounds)+10, 0.5)];
+                UIView* v = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(cell.contentView.bounds), CGRectGetWidth(cell.contentView.bounds), 0.5)];
                 [v setBackgroundColor:[UIColor lightGrayColor]];
                 [cell.contentView addSubview:v];
             }

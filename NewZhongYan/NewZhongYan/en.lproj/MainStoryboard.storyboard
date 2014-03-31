@@ -2294,19 +2294,6 @@
                                 <action selector="selectType:" destination="ZWW-XB-26l" eventType="touchUpInside" id="ZO1-gJ-Rld"/>
                             </connections>
                         </button>
-                        <barButtonItem key="rightBarButtonItem" id="sT1-iL-yGZ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Pan-js-yMT">
-                                <rect key="frame" x="244" y="2" width="60" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" backgroundImage="btn_help.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="help:" destination="ZWW-XB-26l" eventType="touchUpInside" id="Ogv-hL-ee8"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableview" destination="Ya3-ig-t9m" id="g5z-8u-sjE"/>
@@ -2403,19 +2390,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="0gO-V3-fiR">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" id="4so-ne-rUD">
-                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QjS-xe-vFD">
-                                <rect key="frame" x="244" y="2" width="60" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" backgroundImage="btn_help.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="help:" destination="79L-Rn-KlR" eventType="touchUpInside" id="oax-gq-a3J"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="GrN-aI-fP7" id="aLU-ZD-e3j"/>
@@ -2464,21 +2438,7 @@
                             <constraint firstItem="F5c-Vt-JrH" firstAttribute="top" secondItem="vqJ-iD-RfL" secondAttribute="bottom" id="ldL-6n-wXk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="6yf-eQ-TWB">
-                        <barButtonItem key="rightBarButtonItem" id="MKz-qK-LFZ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1nh-hm-s6g">
-                                <rect key="frame" x="244" y="2" width="60" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" backgroundImage="btn_help.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="help:" destination="Jyd-or-YhU" eventType="touchUpInside" id="rRM-QI-s8V"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="6yf-eQ-TWB"/>
                     <connections>
                         <outlet property="mainScrollview" destination="F5c-Vt-JrH" id="CoK-Fl-gWE"/>
                         <outlet property="toolView" destination="XiX-OV-PL8" id="Nf4-nd-cZS"/>
@@ -2525,21 +2485,7 @@
                             <constraint firstItem="gbY-Ph-ELv" firstAttribute="trailing" secondItem="Oza-Yg-imJ" secondAttribute="trailing" id="zqM-J3-vl8"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="邮件详情" id="38O-et-968">
-                        <barButtonItem key="rightBarButtonItem" id="if1-mT-v8U">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zc5-aZ-6OA">
-                                <rect key="frame" x="244" y="2" width="60" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" backgroundImage="btn_help.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="help:" destination="zEp-em-TNq" eventType="touchUpInside" id="Sec-nN-BsY"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="邮件详情" id="38O-et-968"/>
                     <connections>
                         <outlet property="scrollview" destination="gbY-Ph-ELv" id="WHH-ld-iX7"/>
                         <outlet property="toolView" destination="Oza-Yg-imJ" id="FOd-Ti-WXc"/>
@@ -2586,21 +2532,7 @@
                             <constraint firstItem="Uo6-97-o3L" firstAttribute="leading" secondItem="rE8-vd-3Hi" secondAttribute="leading" id="xfi-SJ-ViT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="攥写邮件" id="dVx-xT-Zie">
-                        <barButtonItem key="rightBarButtonItem" id="cnF-sJ-x23">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Dht-hW-EPZ">
-                                <rect key="frame" x="244" y="2" width="60" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" backgroundImage="btn_help.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="help:" destination="ZYZ-oD-zfH" eventType="touchUpInside" id="WVD-na-UQd"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="攥写邮件" id="dVx-xT-Zie"/>
                     <connections>
                         <outlet property="scrollView" destination="rTQ-UR-1sb" id="sBb-9L-8bs"/>
                         <outlet property="toolView" destination="Uo6-97-o3L" id="zy6-wx-OkO"/>
@@ -3992,9 +3924,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="CE3-TE-Nmm"/>
-        <segue reference="NbM-yS-InL"/>
         <segue reference="ZOR-Yw-wB9"/>
         <segue reference="ZxI-C2-MUv"/>
+        <segue reference="ujb-sO-3Ss"/>
+        <segue reference="CE3-TE-Nmm"/>
     </inferredMetricsTieBreakers>
 </document>

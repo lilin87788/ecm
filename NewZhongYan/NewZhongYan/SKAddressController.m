@@ -483,7 +483,16 @@
     
     if (_isMail)
     {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(chooseDone)];
+        if (System_Version_Small_Than_(7)) {
+            UIButton * doneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [doneBtn setFrame:CGRectMake(0, 0, 50, 30)];
+            [doneBtn setImage:Image(@"btn_done") forState:UIControlStateNormal];
+            [doneBtn addTarget:self action:@selector(chooseDone) forControlEvents:UIControlEventTouchUpInside];
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:doneBtn];
+        }else{
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(chooseDone)];
+        }
+        
         selectedEmployees=[[NSMutableArray alloc] init];
         self.navigationItem.titleView = nil;
         self.navigationItem.title = @"请选择联系人";

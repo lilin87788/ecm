@@ -39,7 +39,6 @@
     searcher.fidlist = self.channel.FIDLIST;
     searcher.channel = self.channel;
     searcher.isMeeting = isMeeting;
-    searcher.isNotice = isNotice;
     [[APPUtils visibleViewController] presentViewController:nav animated:YES completion:^{
     }];
 }
@@ -265,14 +264,6 @@
             [(NSMutableArray*)[sectionDictionary objectForKey:@"失效通知"] addObject:dict];
         }
     }
-    NSArray *keys = [sectionDictionary allKeys];
-    for (int i = 0; i < [keys count]; i++) {
-        NSString *key = [keys objectAtIndex:i];
-        NSMutableArray *sectionItems = [sectionDictionary objectForKey:key];
-        if (!sectionItems || ![sectionItems count]) {
-            [(NSMutableArray*)[sectionDictionary objectForKey:key] addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"暂无数据", @"TITL", nil]];
-        }
-    }
     return sectionDictionary;
 }
 
@@ -452,51 +443,51 @@
     label.backgroundColor = COLOR(245, 245, 245);
     label.textColor = [UIColor grayColor];
     label.font = [UIFont systemFontOfSize:15];
-//    if (isMeeting) {
-//        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0) {
-//            label.text = [NSString stringWithFormat:@"  %@",[_sectionArray objectAtIndex:section]];
-//            return label;
-//        }else{
-//            return 0;
-//        }
-//    } else if (isNotice) {
-//        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0) {
-//            label.text = [NSString stringWithFormat:@"  %@",[_sectionArray objectAtIndex:section]];
-//            return label;
-//        }else{
-//            return 0;
-//        }
-//    }
     if (isMeeting) {
-        label.text = [NSString stringWithFormat:@"  %@",[_sectionArray objectAtIndex:section]];
-        return label;
+        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0) {
+            label.text = [NSString stringWithFormat:@"  %@",[_sectionArray objectAtIndex:section]];
+            return label;
+        }else{
+            return 0;
+        }
     } else if (isNotice) {
-        label.text = [NSString stringWithFormat:@"  %@",[_sectionArray objectAtIndex:section]];
-        return label;
+        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0) {
+            label.text = [NSString stringWithFormat:@"  %@",[_sectionArray objectAtIndex:section]];
+            return label;
+        }else{
+            return 0;
+        }
     }
+//    if (isMeeting) {
+//        label.text = [NSString stringWithFormat:@"  %@",[_sectionArray objectAtIndex:section]];
+//        return label;
+//    } else if (isNotice) {
+//        label.text = [NSString stringWithFormat:@"  %@",[_sectionArray objectAtIndex:section]];
+//        return label;
+//    }
     return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-//    if (isMeeting){
-//        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0){
-//            return 20;
-//        }else{
-//            return 0;
-//        }
-//    } else if (isNotice) {
-//        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0){
-//            return 20;
-//        }else{
-//            return 0;
-//        }
-//    }
     if (isMeeting){
-        return 20;
+        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0){
+            return 20;
+        }else{
+            return 0;
+        }
     } else if (isNotice) {
-        return 20;
+        if ([[_sectionDictionary objectForKey:[_sectionArray objectAtIndex:section]] count] > 0){
+            return 20;
+        }else{
+            return 0;
+        }
     }
+//    if (isMeeting){
+//        return 20;
+//    } else if (isNotice) {
+//        return 20;
+//    }
     return 0;
 }
 
@@ -531,9 +522,6 @@
         if (!cell) {
             cell = [[SKTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
         }
-
-
-        
         [cell setECMInfo:dataDictionary Section:indexPath.section];
         [cell resizeCellHeight];
         return cell;
@@ -545,7 +533,6 @@
         {
             cell = [[SKTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
         }
-        
         [cell setECMInfo:_dataItems[indexPath.row]];
         [cell resizeCellHeight];
         return cell;
@@ -554,6 +541,10 @@
 
 -(void)deselect{
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"browse" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -592,10 +583,6 @@
     [self deselect];
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self performSegueWithIdentifier:@"browse" sender:self];
-}
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (isMeeting) {
         NSString* sectionName  = [_sectionArray objectAtIndex:indexPath.section];//获取section 的名字
@@ -610,7 +597,7 @@
         NSDictionary*  dataDictionary = [sectionArray objectAtIndex:indexPath.row];
         return [dataDictionary[@"TITL"] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:16.]
                                    constrainedToSize:CGSizeMake(280, 220)
-                                       lineBreakMode:NSLineBreakByCharWrapping].height+55;
+                                       lineBreakMode:NSLineBreakByCharWrapping].height+30;
     } else {
         return [_dataItems[indexPath.row][@"TITL"]  sizeWithFont:[UIFont fontWithName:@"Helvetica" size:16.]
                                                       constrainedToSize:CGSizeMake(280, 220)

@@ -16,6 +16,7 @@
     NSMutableDictionary         *_sectionDictionary;   //存储section的数据
     NSArray                     *_sectionArray;        //存储section的标题
     BOOL isMeeting;
+    BOOL isNotice;
 }
 
 @property (nonatomic,weak)IBOutlet PullingRefreshTableView *tableView;

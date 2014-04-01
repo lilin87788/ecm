@@ -18,4 +18,5 @@
 -(void)setCMSInfo:(NSDictionary*)info;
 -(void)setECMInfo:(NSDictionary*)info;
 -(void)setECMPaperInfo:(Paper*)paper;
+-(void)setECMInfo:(NSDictionary *)info Section:(NSInteger)section;
 @end

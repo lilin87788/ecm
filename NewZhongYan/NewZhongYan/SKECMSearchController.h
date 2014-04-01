@@ -23,4 +23,5 @@ typedef enum{
 @property (strong,nonatomic)NSString* fidlist;
 @property (weak,nonatomic)SKChannel* channel;
 @property BOOL isMeeting;
+@property BOOL isNotice;
 @end

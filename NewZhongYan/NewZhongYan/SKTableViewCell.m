@@ -108,6 +108,30 @@
     }
 }
 
+-(void)setECMInfo:(NSDictionary*)info Section:(NSInteger)section
+{
+    [_attachView setHidden:YES];
+    if ([info.allKeys containsObject:@"TITL"]) {
+        _titleLabel.text = [info objectForKey:@"TITL"];
+    }
+    
+    if ([info.allKeys containsObject:@"CRTM"]) {
+        [_crtmLabel setText:[info objectForKey:@"CRTM"]];
+    }
+    [self setAttachViewImage:info[@"ATTRLABLE"]];
+    if (![[info objectForKey:@"READED"] intValue]) {
+        [_stateView  setImage:Image(@"icon_unread")];
+    }else{
+        [_stateView setImage:Image(@"icon_read")];
+    }
+    
+    if (!section) {
+        [_stateView  setImage:[UIImage imageNamed:@"icon_unread"]];
+    }else{
+        [_stateView  setImage:[UIImage imageNamed:@"icon_read"]];
+    }
+}
+
 -(void)setCMSInfo:(NSDictionary*)info
 {
     if ([info.allKeys containsObject:@"TITL"]) {

@@ -292,32 +292,26 @@
  */
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    CGFloat pageWidth = CGRectGetWidth(bgScrollView.frame);
-    NSUInteger page = floor((bgScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    if (page != pageController.currentPage) {
-        //当前位置在最后一页
-        if (page == controllerArray.count - 1) {
-            //先把
-            NSLog(@"当前位置在最后一页");
-        }
-        
-        //当前位置在第一页
-        if (page == 0) {
-            NSLog(@"当前位置在第一页");
-        }
-    }
-
-    pageController.currentPage = page;
-    SKGridController *controller = controllerArray[page];
-    navTitleLabel.text = controller.clientApp.NAME;
+//    CGFloat pageWidth = CGRectGetWidth(bgScrollView.frame);
+//    NSUInteger page = floor((bgScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+//    if (page != pageController.currentPage) {
+//        //当前位置在最后一页
+//        if (page == controllerArray.count - 1) {
+//            //先把
+//            NSLog(@"当前位置在最后一页");
+//        }
+//        
+//        //当前位置在第一页
+//        if (page == 0) {
+//            NSLog(@"当前位置在第一页");
+//        }
+//    }
+//
+//    pageController.currentPage = page;
+//    SKGridController *controller = controllerArray[page];
+//    navTitleLabel.text = controller.clientApp.NAME;
 }
 
-
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-
-}
 
 - (SKGridController*)loadScrollViewWithClientApp:(SKClientApp*)app PageNo:(NSUInteger)page
 {

@@ -439,6 +439,7 @@
 		F2F0396018190E6000B9116C /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F0395F18190E6000B9116C /* DACircularProgressView.m */; };
 		F2F0396318190FD200B9116C /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F0396218190FD200B9116C /* ImageIO.framework */; };
 		F2F039651819101300B9116C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F039641819101300B9116C /* AssetsLibrary.framework */; };
+		F2F1770918EA5273000F778C /* NVDate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F1770818EA5273000F778C /* NVDate.m */; };
 		F2F20D5418E3C8FA000D4EDE /* Default_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F20D5318E3C8FA000D4EDE /* Default_logo.png */; };
 		F2F20D5618E3C901000D4EDE /* Default_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F20D5518E3C901000D4EDE /* Default_logo@2x.png */; };
 		F2F20D5818E3CCA6000D4EDE /* btn_done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F20D5718E3CCA6000D4EDE /* btn_done@2x.png */; };
@@ -1122,6 +1123,8 @@
 		F2F0395F18190E6000B9116C /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
 		F2F0396218190FD200B9116C /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		F2F039641819101300B9116C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		F2F1770718EA5273000F778C /* NVDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVDate.h; sourceTree = "<group>"; };
+		F2F1770818EA5273000F778C /* NVDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVDate.m; sourceTree = "<group>"; };
 		F2F20D5318E3C8FA000D4EDE /* Default_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_logo.png; sourceTree = "<group>"; };
 		F2F20D5518E3C901000D4EDE /* Default_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default_logo@2x.png"; sourceTree = "<group>"; };
 		F2F20D5718E3CCA6000D4EDE /* btn_done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_done@2x.png"; sourceTree = "<group>"; };
@@ -1998,6 +2001,8 @@
 				F28846A21803B335006A5D62 /* APPUtils.m */,
 				F28846BF1803F9DA006A5D62 /* FileUtils.h */,
 				F28846C01803F9DA006A5D62 /* FileUtils.m */,
+				F2F1770718EA5273000F778C /* NVDate.h */,
+				F2F1770818EA5273000F778C /* NVDate.m */,
 				F2B4B1AC1807E1F100A789CB /* DateUtils.h */,
 				F2B4B1AD1807E1F100A789CB /* DateUtils.m */,
 				F2F79EC5180D32B70004CAFC /* NetUtils.h */,
@@ -3121,6 +3126,7 @@
 				F287264F18DAD0B6009CD16A /* SKAppInstallController.m in Sources */,
 				F20EC76C1824CE4B00427D54 /* SKMailDetailController.m in Sources */,
 				F2B8322A1829F0BC007E2CC0 /* column.m in Sources */,
+				F2F1770918EA5273000F778C /* NVDate.m in Sources */,
 				F291E24A180CDD000027F0C9 /* ASIDataDecompressor.m in Sources */,
 				F2F79E8D180D24390004CAFC /* dbUtils.m in Sources */,
 				F2BCD66E185E9FE2004A629C /* UIView+screenshot.m in Sources */,

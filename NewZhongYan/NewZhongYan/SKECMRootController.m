@@ -40,9 +40,7 @@
     searcher.channel = self.channel;
     searcher.isMeeting = isMeeting;
     [[APPUtils visibleViewController] presentViewController:nav animated:YES completion:^{
-        
     }];
-    //[self performSegueWithIdentifier:@"ecmsearch" sender:self];
 }
 
 -(void)onRefrshClick

@@ -33,8 +33,6 @@
 		F2258F2418D2EA3500959601 /* segLeft_press.png in Resources */ = {isa = PBXBuildFile; fileRef = F2258F2018D2EA3500959601 /* segLeft_press.png */; };
 		F2258F2518D2EA3500959601 /* segRight.png in Resources */ = {isa = PBXBuildFile; fileRef = F2258F2118D2EA3500959601 /* segRight.png */; };
 		F2258F2618D2EA3500959601 /* segRight_press.png in Resources */ = {isa = PBXBuildFile; fileRef = F2258F2218D2EA3500959601 /* segRight_press.png */; };
-		F22967F6181F4E43006373CA /* SKSearchInsiderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F22967F5181F4E43006373CA /* SKSearchInsiderView.m */; };
-		F22967FC181F5359006373CA /* SKSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22967FB181F5359006373CA /* SKSearchController.m */; };
 		F22967FF181F64E9006373CA /* SKSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F22967FE181F64E9006373CA /* SKSearchCell.m */; };
 		F2296802181FA017006373CA /* NSString+hnzy.m in Sources */ = {isa = PBXBuildFile; fileRef = F2296801181FA017006373CA /* NSString+hnzy.m */; };
 		F22C372218DC6A890044F29C /* btn_home_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F22C372118DC6A890044F29C /* btn_home_bg.png */; };
@@ -97,12 +95,7 @@
 		F23CE451182B23C80066F214 /* SKCommonLanguageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23CE450182B23C80066F214 /* SKCommonLanguageController.m */; };
 		F23CE456182B343B0066F214 /* HPGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F23CE453182B343B0066F214 /* HPGrowingTextView.m */; };
 		F23CE457182B343B0066F214 /* HPTextViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = F23CE455182B343B0066F214 /* HPTextViewInternal.m */; };
-		F23CE45E182B76240066F214 /* SKNotifyItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23CE45D182B76240066F214 /* SKNotifyItemController.m */; };
-		F23CE461182B7A6D0066F214 /* SKMeetingItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23CE460182B7A6D0066F214 /* SKMeetingItemController.m */; };
-		F23CE464182B7A910066F214 /* SKAnnouncementItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23CE463182B7A910066F214 /* SKAnnouncementItemController.m */; };
 		F23CE467182B806D0066F214 /* SKCMeetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23CE466182B806D0066F214 /* SKCMeetCell.m */; };
-		F23CE470182B8C070066F214 /* SKWorkNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23CE46F182B8C070066F214 /* SKWorkNewsController.m */; };
-		F23CE473182B92650066F214 /* SKCompIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23CE472182B92650066F214 /* SKCompIssueViewController.m */; };
 		F23F3E0C1845E2680034C811 /* SKEdetailInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23F3E0B1845E2680034C811 /* SKEdetailInfoController.m */; };
 		F23F3E1018461BD50034C811 /* UIColor+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = F23F3E0F18461BD50034C811 /* UIColor+FlatUI.m */; };
 		F240235817F6B89300C25FFB /* MainStoryboard_ios5.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F240235617F6B89300C25FFB /* MainStoryboard_ios5.storyboard */; };
@@ -149,7 +142,6 @@
 		F2660E90187A476D00EAC0C1 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = F2660E84187A476D00EAC0C1 /* UIImage+MultiFormat.m */; };
 		F2660E91187A476D00EAC0C1 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2660E86187A476D00EAC0C1 /* UIImage+WebP.m */; };
 		F2660E92187A476D00EAC0C1 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F2660E88187A476D00EAC0C1 /* UIImageView+WebCache.m */; };
-		F2705AF3182C7E1F003D0B6E /* SKAttachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2705AF2182C7E1F003D0B6E /* SKAttachViewController.m */; };
 		F273196C183B8C51000FAF94 /* Content.m in Sources */ = {isa = PBXBuildFile; fileRef = F2731969183B8C51000FAF94 /* Content.m */; };
 		F273196D183B8C51000FAF94 /* SKECMDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = F273196B183B8C51000FAF94 /* SKECMDetail.m */; };
 		F2731975183C8D95000FAF94 /* SKIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2731974183C8D95000FAF94 /* SKIntroView.m */; };
@@ -215,7 +207,6 @@
 		F28846B51803F71F006A5D62 /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = F28846B41803F71F006A5D62 /* CustomBadge.m */; };
 		F28846BB1803F7DD006A5D62 /* SKLauncherItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F28846B81803F7DD006A5D62 /* SKLauncherItem.m */; };
 		F28846BC1803F7DD006A5D62 /* UIDragButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F28846BA1803F7DD006A5D62 /* UIDragButton.m */; };
-		F28846BE1803F96F006A5D62 /* main_config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F28846BD1803F96F006A5D62 /* main_config.xml */; };
 		F28846C11803F9DA006A5D62 /* FileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F28846C01803F9DA006A5D62 /* FileUtils.m */; };
 		F28846D11803FAC3006A5D62 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F28846C51803FAC3006A5D62 /* DDXMLElementAdditions.m */; };
 		F28846D21803FAC3006A5D62 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = F28846C71803FAC3006A5D62 /* NSString+DDXML.m */; };
@@ -232,7 +223,6 @@
 		F28846E61803FC0D006A5D62 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28846E51803FC0D006A5D62 /* MessageUI.framework */; };
 		F28846FB1803FF2E006A5D62 /* icon_email.png in Resources */ = {isa = PBXBuildFile; fileRef = F28846ED1803FF2E006A5D62 /* icon_email.png */; };
 		F28846FC1803FF2E006A5D62 /* icon_gtasks.png in Resources */ = {isa = PBXBuildFile; fileRef = F28846EE1803FF2E006A5D62 /* icon_gtasks.png */; };
-		F289FC49180633A700B825DC /* SKNewsItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = F289FC48180633A700B825DC /* SKNewsItemController.m */; };
 		F289FC50180654DF00B825DC /* navbar44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F289FC4E180654DF00B825DC /* navbar44@2x.png */; };
 		F289FC51180654DF00B825DC /* navbar64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F289FC4F180654DF00B825DC /* navbar64@2x.png */; };
 		F289FC531806561100B825DC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F289FC521806561100B825DC /* Images.xcassets */; };
@@ -242,7 +232,6 @@
 		F28DE6EE1816648900E8CA79 /* SKTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F28DE6ED1816648900E8CA79 /* SKTableViewCell.m */; };
 		F28DE6F11816653700E8CA79 /* SKLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F28DE6F01816653700E8CA79 /* SKLabel.m */; };
 		F28DE6F31816678700E8CA79 /* cms_attachment.png in Resources */ = {isa = PBXBuildFile; fileRef = F28DE6F21816678700E8CA79 /* cms_attachment.png */; };
-		F28DE6FC1816763E00E8CA79 /* SKNewsAttachController.m in Sources */ = {isa = PBXBuildFile; fileRef = F28DE6FB1816763E00E8CA79 /* SKNewsAttachController.m */; };
 		F28DF83B185AA97A000B6C1F /* UIImage+BlurredFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = F28DF838185AA97A000B6C1F /* UIImage+BlurredFrame.m */; };
 		F28DF83C185AA97A000B6C1F /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F28DF83A185AA97A000B6C1F /* UIImage+ImageEffects.m */; };
 		F28DF841185AAA3B000B6C1F /* DRNRealTimeBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = F28DF83E185AAA3B000B6C1F /* DRNRealTimeBlurView.m */; };
@@ -296,7 +285,6 @@
 		F2A4853F182A567E0068A4D7 /* ParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4853E182A567E0068A4D7 /* ParseOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F2A48542182A56AD0068A4D7 /* SKColumnDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A48541182A56AD0068A4D7 /* SKColumnDetailController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F2AA9572181A4B33001DD53B /* DMLazyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AA9571181A4B33001DD53B /* DMLazyScrollView.m */; };
-		F2AA9575181A4BCF001DD53B /* SKBrowseNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AA9574181A4BCF001DD53B /* SKBrowseNewsController.m */; };
 		F2B494D3180FE1E100246822 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B494D2180FE1E100246822 /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F2B4B18E18079D2500A789CB /* DrawPatternLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B4B18D18079D2500A789CB /* DrawPatternLockView.m */; };
 		F2B4B1941807A01C00A789CB /* SKPatternLockController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B4B1931807A01C00A789CB /* SKPatternLockController.m */; };
@@ -354,11 +342,8 @@
 		F2C1CF4318BD9CE1005941C1 /* SKPathButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C1CF4218BD9CE1005941C1 /* SKPathButton.m */; };
 		F2C1CF4618BDC8A6005941C1 /* usercenter_hd_avatar_default.png in Resources */ = {isa = PBXBuildFile; fileRef = F2C1CF4418BDC8A6005941C1 /* usercenter_hd_avatar_default.png */; };
 		F2C1CF4718BDC8A6005941C1 /* usercenter_hd_avatar_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2C1CF4518BDC8A6005941C1 /* usercenter_hd_avatar_default@2x.png */; };
-		F2C1CF4B18BDCA66005941C1 /* night_user_defaulthead@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2C1CF4A18BDCA66005941C1 /* night_user_defaulthead@2x.png */; };
 		F2C2C10B18222D12006ACB3F /* SKUnitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C2C10A18222D12006ACB3F /* SKUnitCell.m */; };
 		F2C47D9B18BAEDCA00358645 /* GBPathImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C47D9918BAEDCA00358645 /* GBPathImageView.m */; };
-		F2C47D9D18BB32CB00358645 /* bgView.png in Resources */ = {isa = PBXBuildFile; fileRef = F2C47D9C18BB32CB00358645 /* bgView.png */; };
-		F2C47D9F18BB32D500358645 /* bgView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2C47D9E18BB32D500358645 /* bgView@2x.png */; };
 		F2C89B9117F6B73D0099A62D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2C89B9017F6B73D0099A62D /* UIKit.framework */; };
 		F2C89B9317F6B73D0099A62D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2C89B9217F6B73D0099A62D /* Foundation.framework */; };
 		F2C89B9517F6B73D0099A62D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2C89B9417F6B73D0099A62D /* CoreGraphics.framework */; };
@@ -376,8 +361,6 @@
 		F2CE6E231862B8F900D95B34 /* SKChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CE6E221862B8F900D95B34 /* SKChannel.m */; };
 		F2CE6E261862BB5800D95B34 /* SKChanneltp.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CE6E251862BB5800D95B34 /* SKChanneltp.m */; };
 		F2CE6E2D1862F1F700D95B34 /* SKECMURLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CE6E2C1862F1F700D95B34 /* SKECMURLManager.m */; };
-		F2D5C56718E3B6A4008E9015 /* z.png in Resources */ = {isa = PBXBuildFile; fileRef = F2D5C56518E3B6A4008E9015 /* z.png */; };
-		F2D5C56818E3B6A4008E9015 /* f.png in Resources */ = {isa = PBXBuildFile; fileRef = F2D5C56618E3B6A4008E9015 /* f.png */; };
 		F2D814681834D65E00FE0839 /* SKCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D814671834D65E00FE0839 /* SKCTextField.m */; };
 		F2D8146D1834D72700FE0839 /* SKAppConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D8146A1834D72700FE0839 /* SKAppConfiguration.m */; };
 		F2D8146E1834D72700FE0839 /* SKConfigureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D8146C1834D72700FE0839 /* SKConfigureCell.m */; };
@@ -439,7 +422,6 @@
 		F2F0396018190E6000B9116C /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F0395F18190E6000B9116C /* DACircularProgressView.m */; };
 		F2F0396318190FD200B9116C /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F0396218190FD200B9116C /* ImageIO.framework */; };
 		F2F039651819101300B9116C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2F039641819101300B9116C /* AssetsLibrary.framework */; };
-		F2F1770918EA5273000F778C /* NVDate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F1770818EA5273000F778C /* NVDate.m */; };
 		F2F20D5418E3C8FA000D4EDE /* Default_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F20D5318E3C8FA000D4EDE /* Default_logo.png */; };
 		F2F20D5618E3C901000D4EDE /* Default_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F20D5518E3C901000D4EDE /* Default_logo@2x.png */; };
 		F2F20D5818E3CCA6000D4EDE /* btn_done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F20D5718E3CCA6000D4EDE /* btn_done@2x.png */; };
@@ -526,10 +508,6 @@
 		F2258F2018D2EA3500959601 /* segLeft_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segLeft_press.png; sourceTree = "<group>"; };
 		F2258F2118D2EA3500959601 /* segRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segRight.png; sourceTree = "<group>"; };
 		F2258F2218D2EA3500959601 /* segRight_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segRight_press.png; sourceTree = "<group>"; };
-		F22967F4181F4E43006373CA /* SKSearchInsiderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSearchInsiderView.h; sourceTree = "<group>"; };
-		F22967F5181F4E43006373CA /* SKSearchInsiderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSearchInsiderView.m; sourceTree = "<group>"; };
-		F22967FA181F5359006373CA /* SKSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSearchController.h; sourceTree = "<group>"; };
-		F22967FB181F5359006373CA /* SKSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSearchController.m; sourceTree = "<group>"; };
 		F22967FD181F64E9006373CA /* SKSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSearchCell.h; sourceTree = "<group>"; };
 		F22967FE181F64E9006373CA /* SKSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSearchCell.m; sourceTree = "<group>"; };
 		F2296800181FA017006373CA /* NSString+hnzy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+hnzy.h"; sourceTree = "<group>"; };
@@ -608,18 +586,8 @@
 		F23CE453182B343B0066F214 /* HPGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPGrowingTextView.m; sourceTree = "<group>"; };
 		F23CE454182B343B0066F214 /* HPTextViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPTextViewInternal.h; sourceTree = "<group>"; };
 		F23CE455182B343B0066F214 /* HPTextViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPTextViewInternal.m; sourceTree = "<group>"; };
-		F23CE45C182B76240066F214 /* SKNotifyItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKNotifyItemController.h; sourceTree = "<group>"; };
-		F23CE45D182B76240066F214 /* SKNotifyItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKNotifyItemController.m; sourceTree = "<group>"; };
-		F23CE45F182B7A6D0066F214 /* SKMeetingItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKMeetingItemController.h; sourceTree = "<group>"; };
-		F23CE460182B7A6D0066F214 /* SKMeetingItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKMeetingItemController.m; sourceTree = "<group>"; };
-		F23CE462182B7A910066F214 /* SKAnnouncementItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKAnnouncementItemController.h; sourceTree = "<group>"; };
-		F23CE463182B7A910066F214 /* SKAnnouncementItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKAnnouncementItemController.m; sourceTree = "<group>"; };
 		F23CE465182B806D0066F214 /* SKCMeetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCMeetCell.h; sourceTree = "<group>"; };
 		F23CE466182B806D0066F214 /* SKCMeetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCMeetCell.m; sourceTree = "<group>"; };
-		F23CE46E182B8C070066F214 /* SKWorkNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKWorkNewsController.h; sourceTree = "<group>"; };
-		F23CE46F182B8C070066F214 /* SKWorkNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKWorkNewsController.m; sourceTree = "<group>"; };
-		F23CE471182B92650066F214 /* SKCompIssueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCompIssueViewController.h; sourceTree = "<group>"; };
-		F23CE472182B92650066F214 /* SKCompIssueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCompIssueViewController.m; sourceTree = "<group>"; };
 		F23F3E0A1845E2680034C811 /* SKEdetailInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKEdetailInfoController.h; sourceTree = "<group>"; };
 		F23F3E0B1845E2680034C811 /* SKEdetailInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKEdetailInfoController.m; sourceTree = "<group>"; };
 		F23F3E0E18461BD50034C811 /* UIColor+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FlatUI.h"; sourceTree = "<group>"; };
@@ -692,8 +660,6 @@
 		F2660E86187A476D00EAC0C1 /* UIImage+WebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WebP.m"; sourceTree = "<group>"; };
 		F2660E87187A476D00EAC0C1 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		F2660E88187A476D00EAC0C1 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
-		F2705AF1182C7E1F003D0B6E /* SKAttachViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKAttachViewController.h; sourceTree = "<group>"; };
-		F2705AF2182C7E1F003D0B6E /* SKAttachViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKAttachViewController.m; sourceTree = "<group>"; };
 		F2731968183B8C51000FAF94 /* Content.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Content.h; sourceTree = "<group>"; };
 		F2731969183B8C51000FAF94 /* Content.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Content.m; sourceTree = "<group>"; };
 		F273196A183B8C51000FAF94 /* SKECMDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKECMDetail.h; sourceTree = "<group>"; };
@@ -773,7 +739,6 @@
 		F28846B81803F7DD006A5D62 /* SKLauncherItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKLauncherItem.m; sourceTree = "<group>"; };
 		F28846B91803F7DD006A5D62 /* UIDragButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDragButton.h; sourceTree = "<group>"; };
 		F28846BA1803F7DD006A5D62 /* UIDragButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDragButton.m; sourceTree = "<group>"; };
-		F28846BD1803F96F006A5D62 /* main_config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = main_config.xml; sourceTree = "<group>"; };
 		F28846BF1803F9DA006A5D62 /* FileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtils.h; sourceTree = "<group>"; };
 		F28846C01803F9DA006A5D62 /* FileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtils.m; sourceTree = "<group>"; };
 		F28846C41803FAC3006A5D62 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
@@ -798,8 +763,6 @@
 		F28846E51803FC0D006A5D62 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F28846ED1803FF2E006A5D62 /* icon_email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_email.png; sourceTree = "<group>"; };
 		F28846EE1803FF2E006A5D62 /* icon_gtasks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_gtasks.png; sourceTree = "<group>"; };
-		F289FC47180633A700B825DC /* SKNewsItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKNewsItemController.h; sourceTree = "<group>"; };
-		F289FC48180633A700B825DC /* SKNewsItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKNewsItemController.m; sourceTree = "<group>"; };
 		F289FC4E180654DF00B825DC /* navbar44@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar44@2x.png"; sourceTree = "<group>"; };
 		F289FC4F180654DF00B825DC /* navbar64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar64@2x.png"; sourceTree = "<group>"; };
 		F289FC521806561100B825DC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -810,9 +773,7 @@
 		F28DE6ED1816648900E8CA79 /* SKTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTableViewCell.m; sourceTree = "<group>"; };
 		F28DE6EF1816653700E8CA79 /* SKLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKLabel.h; sourceTree = "<group>"; };
 		F28DE6F01816653700E8CA79 /* SKLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKLabel.m; sourceTree = "<group>"; };
-		F28DE6F21816678700E8CA79 /* cms_attachment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cms_attachment.png; sourceTree = "<group>"; };
-		F28DE6FA1816763E00E8CA79 /* SKNewsAttachController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKNewsAttachController.h; sourceTree = "<group>"; };
-		F28DE6FB1816763E00E8CA79 /* SKNewsAttachController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKNewsAttachController.m; sourceTree = "<group>"; };
+		F28DE6F21816678700E8CA79 /* cms_attachment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cms_attachment.png; path = ../cms_attachment.png; sourceTree = "<group>"; };
 		F28DF837185AA97A000B6C1F /* UIImage+BlurredFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BlurredFrame.h"; sourceTree = "<group>"; };
 		F28DF838185AA97A000B6C1F /* UIImage+BlurredFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BlurredFrame.m"; sourceTree = "<group>"; };
 		F28DF839185AA97A000B6C1F /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -900,8 +861,6 @@
 		F2A48541182A56AD0068A4D7 /* SKColumnDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKColumnDetailController.m; sourceTree = "<group>"; };
 		F2AA9570181A4B33001DD53B /* DMLazyScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMLazyScrollView.h; sourceTree = "<group>"; };
 		F2AA9571181A4B33001DD53B /* DMLazyScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMLazyScrollView.m; sourceTree = "<group>"; };
-		F2AA9573181A4BCF001DD53B /* SKBrowseNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBrowseNewsController.h; sourceTree = "<group>"; };
-		F2AA9574181A4BCF001DD53B /* SKBrowseNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBrowseNewsController.m; sourceTree = "<group>"; };
 		F2B494D1180FE1E100246822 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
 		F2B494D2180FE1E100246822 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
 		F2B4B18C18079D2500A789CB /* DrawPatternLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawPatternLockView.h; sourceTree = "<group>"; };
@@ -980,19 +939,16 @@
 		F2BE28EB18DD82AB00AADD13 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		F2BE28ED18DD82B600AADD13 /* Default-568h_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h_logo@2x.png"; sourceTree = "<group>"; };
 		F2BE7D4C18DD6F68004D71E6 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
-		F2BE7D4E18DD7021004D71E6 /* progress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progress.png; sourceTree = "<group>"; };
-		F2BE7D4F18DD7021004D71E6 /* track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track.png; sourceTree = "<group>"; };
+		F2BE7D4E18DD7021004D71E6 /* progress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = progress.png; path = ../progress.png; sourceTree = "<group>"; };
+		F2BE7D4F18DD7021004D71E6 /* track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = track.png; path = ../track.png; sourceTree = "<group>"; };
 		F2C1CF4118BD9CE1005941C1 /* SKPathButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPathButton.h; sourceTree = "<group>"; };
 		F2C1CF4218BD9CE1005941C1 /* SKPathButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPathButton.m; sourceTree = "<group>"; };
 		F2C1CF4418BDC8A6005941C1 /* usercenter_hd_avatar_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = usercenter_hd_avatar_default.png; sourceTree = "<group>"; };
 		F2C1CF4518BDC8A6005941C1 /* usercenter_hd_avatar_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "usercenter_hd_avatar_default@2x.png"; sourceTree = "<group>"; };
-		F2C1CF4A18BDCA66005941C1 /* night_user_defaulthead@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "night_user_defaulthead@2x.png"; sourceTree = "<group>"; };
 		F2C2C10918222D12006ACB3F /* SKUnitCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKUnitCell.h; sourceTree = "<group>"; };
 		F2C2C10A18222D12006ACB3F /* SKUnitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKUnitCell.m; sourceTree = "<group>"; };
 		F2C47D9918BAEDCA00358645 /* GBPathImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBPathImageView.m; sourceTree = "<group>"; };
 		F2C47D9A18BAEDCA00358645 /* GBPathImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBPathImageView.h; sourceTree = "<group>"; };
-		F2C47D9C18BB32CB00358645 /* bgView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgView.png; sourceTree = "<group>"; };
-		F2C47D9E18BB32D500358645 /* bgView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgView@2x.png"; sourceTree = "<group>"; };
 		F2C89B8D17F6B73D0099A62D /* NewZhongYan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewZhongYan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2C89B9017F6B73D0099A62D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F2C89B9217F6B73D0099A62D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1020,8 +976,6 @@
 		F2CE6E251862BB5800D95B34 /* SKChanneltp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKChanneltp.m; sourceTree = "<group>"; };
 		F2CE6E2B1862F1F700D95B34 /* SKECMURLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKECMURLManager.h; sourceTree = "<group>"; };
 		F2CE6E2C1862F1F700D95B34 /* SKECMURLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKECMURLManager.m; sourceTree = "<group>"; };
-		F2D5C56518E3B6A4008E9015 /* z.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = z.png; sourceTree = "<group>"; };
-		F2D5C56618E3B6A4008E9015 /* f.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = f.png; sourceTree = "<group>"; };
 		F2D814661834D65E00FE0839 /* SKCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCTextField.h; sourceTree = "<group>"; };
 		F2D814671834D65E00FE0839 /* SKCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCTextField.m; sourceTree = "<group>"; };
 		F2D814691834D72700FE0839 /* SKAppConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKAppConfiguration.h; sourceTree = "<group>"; };
@@ -1123,8 +1077,6 @@
 		F2F0395F18190E6000B9116C /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
 		F2F0396218190FD200B9116C /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		F2F039641819101300B9116C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		F2F1770718EA5273000F778C /* NVDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVDate.h; sourceTree = "<group>"; };
-		F2F1770818EA5273000F778C /* NVDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVDate.m; sourceTree = "<group>"; };
 		F2F20D5318E3C8FA000D4EDE /* Default_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_logo.png; sourceTree = "<group>"; };
 		F2F20D5518E3C901000D4EDE /* Default_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default_logo@2x.png"; sourceTree = "<group>"; };
 		F2F20D5718E3CCA6000D4EDE /* btn_done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_done@2x.png"; sourceTree = "<group>"; };
@@ -1247,16 +1199,6 @@
 			name = placeholdtextview;
 			sourceTree = "<group>";
 		};
-		F20EC7751824F9B600427D54 /* attach */ = {
-			isa = PBXGroup;
-			children = (
-				F2BE7D4E18DD7021004D71E6 /* progress.png */,
-				F2BE7D4F18DD7021004D71E6 /* track.png */,
-				F28DE6F21816678700E8CA79 /* cms_attachment.png */,
-			);
-			name = attach;
-			sourceTree = "<group>";
-		};
 		F212E44B18233B92001A0A74 /* REMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -1274,18 +1216,7 @@
 			name = REMenu;
 			sourceTree = "<group>";
 		};
-		F22967EF181F4D0E006373CA /* search */ = {
-			isa = PBXGroup;
-			children = (
-				F22967F4181F4E43006373CA /* SKSearchInsiderView.h */,
-				F22967F5181F4E43006373CA /* SKSearchInsiderView.m */,
-				F22967FA181F5359006373CA /* SKSearchController.h */,
-				F22967FB181F5359006373CA /* SKSearchController.m */,
-			);
-			name = search;
-			sourceTree = "<group>";
-		};
-		F2296803181FB831006373CA /* utilView */ = {
+		F2296803181FB831006373CA /* ECM */ = {
 			isa = PBXGroup;
 			children = (
 				F2731967183B8C3F000FAF94 /* Model */,
@@ -1303,10 +1234,10 @@
 				F24E7F75183DEF5500B7F23A /* SKECMAttahController.m */,
 				F27A5B1C18B5E7E50056BAF5 /* testecmdetail.xml */,
 			);
-			name = utilView;
+			name = ECM;
 			sourceTree = "<group>";
 		};
-		F2296804181FB83E006373CA /* addressbook */ = {
+		F2296804181FB83E006373CA /* addressBook */ = {
 			isa = PBXGroup;
 			children = (
 				F24B0F471859A4DC00E9CE6B /* pic */,
@@ -1321,7 +1252,7 @@
 				F23F3E0A1845E2680034C811 /* SKEdetailInfoController.h */,
 				F23F3E0B1845E2680034C811 /* SKEdetailInfoController.m */,
 			);
-			name = addressbook;
+			name = addressBook;
 			sourceTree = "<group>";
 		};
 		F22C60AE1819FB3F007A3473 /* categary */ = {
@@ -1498,25 +1429,6 @@
 			name = pic;
 			sourceTree = "<group>";
 		};
-		F23CE458182B750F0066F214 /* notify */ = {
-			isa = PBXGroup;
-			children = (
-				F2705AF1182C7E1F003D0B6E /* SKAttachViewController.h */,
-				F2705AF2182C7E1F003D0B6E /* SKAttachViewController.m */,
-				F23CE46E182B8C070066F214 /* SKWorkNewsController.h */,
-				F23CE46F182B8C070066F214 /* SKWorkNewsController.m */,
-				F23CE471182B92650066F214 /* SKCompIssueViewController.h */,
-				F23CE472182B92650066F214 /* SKCompIssueViewController.m */,
-				F23CE45C182B76240066F214 /* SKNotifyItemController.h */,
-				F23CE45D182B76240066F214 /* SKNotifyItemController.m */,
-				F23CE45F182B7A6D0066F214 /* SKMeetingItemController.h */,
-				F23CE460182B7A6D0066F214 /* SKMeetingItemController.m */,
-				F23CE462182B7A910066F214 /* SKAnnouncementItemController.h */,
-				F23CE463182B7A910066F214 /* SKAnnouncementItemController.m */,
-			);
-			name = notify;
-			sourceTree = "<group>";
-		};
 		F23F3E0D18461B1E0034C811 /* flatuikit */ = {
 			isa = PBXGroup;
 			children = (
@@ -1636,6 +1548,12 @@
 		F2731967183B8C3F000FAF94 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F2CE6E1D1862B28900D95B34 /* SKClientApp.h */,
+				F2CE6E1E1862B28900D95B34 /* SKClientApp.m */,
+				F2CE6E211862B8F900D95B34 /* SKChannel.h */,
+				F2CE6E221862B8F900D95B34 /* SKChannel.m */,
+				F2CE6E241862BB5800D95B34 /* SKChanneltp.h */,
+				F2CE6E251862BB5800D95B34 /* SKChanneltp.m */,
 				F2625F2C187D4D3F003F2295 /* Paper.h */,
 				F2625F2D187D4D3F003F2295 /* Paper.m */,
 				F2731968183B8C51000FAF94 /* Content.h */,
@@ -1656,7 +1574,7 @@
 			name = login;
 			sourceTree = "<group>";
 		};
-		F28846B61803F782006A5D62 /* items */ = {
+		F28846B61803F782006A5D62 /* launchItems */ = {
 			isa = PBXGroup;
 			children = (
 				F28847031803FF41006A5D62 /* itempic */,
@@ -1667,7 +1585,7 @@
 				F28846B31803F71F006A5D62 /* CustomBadge.h */,
 				F28846B41803F71F006A5D62 /* CustomBadge.m */,
 			);
-			name = items;
+			name = launchItems;
 			sourceTree = "<group>";
 		};
 		F28846C21803FA8F006A5D62 /* opensource */ = {
@@ -1903,7 +1821,7 @@
 			name = openUDID_0;
 			sourceTree = "<group>";
 		};
-		F2B4B18B18079CEB00A789CB /* pattern lock */ = {
+		F2B4B18B18079CEB00A789CB /* patternLock */ = {
 			isa = PBXGroup;
 			children = (
 				F2B4B1AB1807A46300A789CB /* pic */,
@@ -1914,7 +1832,7 @@
 				F2B4B1921807A01C00A789CB /* SKPatternLockController.h */,
 				F2B4B1931807A01C00A789CB /* SKPatternLockController.m */,
 			);
-			name = "pattern lock";
+			name = patternLock;
 			sourceTree = "<group>";
 		};
 		F2B4B1AB1807A46300A789CB /* pic */ = {
@@ -1932,8 +1850,6 @@
 		F2B66EF918154B0F00AD6286 /* utilsUI */ = {
 			isa = PBXGroup;
 			children = (
-				F2D814661834D65E00FE0839 /* SKCTextField.h */,
-				F2D814671834D65E00FE0839 /* SKCTextField.m */,
 				F28DE6EF1816653700E8CA79 /* SKLabel.h */,
 				F28DE6F01816653700E8CA79 /* SKLabel.m */,
 				F2B66EFA18154B7D00AD6286 /* SKToolBar.h */,
@@ -1942,6 +1858,8 @@
 				F2E5D5A3182A654600BFB48D /* SKSToolBar.m */,
 				F286C19D1822893F00ADFF40 /* SKLToolBar.h */,
 				F286C19E1822893F00ADFF40 /* SKLToolBar.m */,
+				F2D814661834D65E00FE0839 /* SKCTextField.h */,
+				F2D814671834D65E00FE0839 /* SKCTextField.m */,
 				F20EC7701824DE0B00427D54 /* SKAttachButton.h */,
 				F20EC7711824DE0B00427D54 /* SKAttachButton.m */,
 				F2A48536182A426A0068A4D7 /* SKImageView.h */,
@@ -1962,7 +1880,6 @@
 				F2F26F5F18D6A26300599888 /* attach */,
 				F2F26F5E18D6A25100599888 /* mainView */,
 				F234875E1831CD2D00E649AA /* help */,
-				F20EC7751824F9B600427D54 /* attach */,
 				F2B67F8A17F7C0A50007CB91 /* nav */,
 			);
 			name = resource;
@@ -2001,13 +1918,10 @@
 				F28846A21803B335006A5D62 /* APPUtils.m */,
 				F28846BF1803F9DA006A5D62 /* FileUtils.h */,
 				F28846C01803F9DA006A5D62 /* FileUtils.m */,
-				F2F1770718EA5273000F778C /* NVDate.h */,
-				F2F1770818EA5273000F778C /* NVDate.m */,
 				F2B4B1AC1807E1F100A789CB /* DateUtils.h */,
 				F2B4B1AD1807E1F100A789CB /* DateUtils.m */,
 				F2F79EC5180D32B70004CAFC /* NetUtils.h */,
 				F2F79EC6180D32B70004CAFC /* NetUtils.m */,
-				F2B67F9917F7D1DE0007CB91 /* readme.h */,
 				F2F79EA9180D2FAF0004CAFC /* GTMDefines.h */,
 			);
 			name = utils;
@@ -2094,30 +2008,18 @@
 			isa = PBXGroup;
 			children = (
 				F2B66EF918154B0F00AD6286 /* utilsUI */,
-				F2296803181FB831006373CA /* utilView */,
+				F28DF848185ABAE9000B6C1F /* grid */,
+				F28846B61803F782006A5D62 /* launchItems */,
+				F28846B21803F6B0006A5D62 /* login */,
 				F28DE6EA1816644D00E8CA79 /* cell */,
-				F2BA34A3180547040018CAA3 /* news */,
-				F23CE458182B750F0066F214 /* notify */,
+				F2BA349A1804F7B50018CAA3 /* setting */,
+				F2296803181FB831006373CA /* ECM */,
 				F2BD538A1829114400CBEA30 /* OA */,
 				F259A8B618236E10000D95C2 /* email */,
-				F2B4B18B18079CEB00A789CB /* pattern lock */,
-				F22967EF181F4D0E006373CA /* search */,
-				F2296804181FB83E006373CA /* addressbook */,
+				F2B4B18B18079CEB00A789CB /* patternLock */,
+				F2296804181FB83E006373CA /* addressBook */,
 			);
 			name = UI;
-			sourceTree = "<group>";
-		};
-		F2BA34A3180547040018CAA3 /* news */ = {
-			isa = PBXGroup;
-			children = (
-				F289FC47180633A700B825DC /* SKNewsItemController.h */,
-				F289FC48180633A700B825DC /* SKNewsItemController.m */,
-				F28DE6FA1816763E00E8CA79 /* SKNewsAttachController.h */,
-				F28DE6FB1816763E00E8CA79 /* SKNewsAttachController.m */,
-				F2AA9573181A4BCF001DD53B /* SKBrowseNewsController.h */,
-				F2AA9574181A4BCF001DD53B /* SKBrowseNewsController.m */,
-			);
-			name = news;
 			sourceTree = "<group>";
 		};
 		F2BD538A1829114400CBEA30 /* OA */ = {
@@ -2175,9 +2077,10 @@
 		F2C89B8417F6B73D0099A62D = {
 			isa = PBXGroup;
 			children = (
+				F2B67F9917F7D1DE0007CB91 /* readme.h */,
+				F2B67F7917F7BEBE0007CB91 /* resource */,
 				F28846C21803FA8F006A5D62 /* opensource */,
 				F2B67F8B17F7C8770007CB91 /* utils */,
-				F2B67F7917F7BEBE0007CB91 /* resource */,
 				F2C89B9617F6B73D0099A62D /* NewZhongYan */,
 				F2C89BBA17F6B73D0099A62D /* NewZhongYanTests */,
 				F2C89B8F17F6B73D0099A62D /* Frameworks */,
@@ -2223,20 +2126,12 @@
 			isa = PBXGroup;
 			children = (
 				F22E54C018E9051B00E3440A /* exception */,
-				F2CE6E271862C4B000D95B34 /* URLManager */,
 				F2D814851835C33300FE0839 /* helper */,
 				F2F79E87180D1A120004CAFC /* agent */,
 				F2F79E80180D16C40004CAFC /* dbutils */,
 				F2BA34A2180546F70018CAA3 /* UI */,
-				F2BA349A1804F7B50018CAA3 /* setting */,
-				F28846B21803F6B0006A5D62 /* login */,
-				F28846B61803F782006A5D62 /* items */,
-				F2CE6E201862B29B00D95B34 /* model */,
-				F28DF848185ABAE9000B6C1F /* grid */,
 				F2C89B9F17F6B73D0099A62D /* SKAppDelegate.h */,
 				F2C89BA017F6B73D0099A62D /* SKAppDelegate.m */,
-				F2D5C56518E3B6A4008E9015 /* z.png */,
-				F2D5C56618E3B6A4008E9015 /* f.png */,
 				F2C89BAB17F6B73D0099A62D /* SKViewController.h */,
 				F2C89BAC17F6B73D0099A62D /* SKViewController.m */,
 				F2C89B9717F6B73D0099A62D /* Supporting Files */,
@@ -2247,23 +2142,8 @@
 		F2C89B9717F6B73D0099A62D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F2F1770A18EA539B000F778C /* appImage */,
 				F289FC521806561100B825DC /* Images.xcassets */,
-				F222E6F818E40956009BBFC5 /* Default-568h@2x.png */,
-				F222E6F918E40956009BBFC5 /* Default@2x.png */,
-				F222E6FA18E40956009BBFC5 /* Default.png */,
-				F2F20D5318E3C8FA000D4EDE /* Default_logo.png */,
-				F2F20D5518E3C901000D4EDE /* Default_logo@2x.png */,
-				F2BE28ED18DD82B600AADD13 /* Default-568h_logo@2x.png */,
-				F2DF1E8B18C08A8900A160FA /* Icon-Small.png */,
-				F2DF1E8C18C08A8900A160FA /* Icon.png */,
-				F2DF1E8D18C08A8900A160FA /* Icon-Small@2x.png */,
-				F2DF1E8E18C08A8900A160FA /* Icon-Small-40@2x.png */,
-				F2DF1E8F18C08A8900A160FA /* Icon@2x.png */,
-				F2DF1E9018C08A8900A160FA /* Icon-60@2x.png */,
-				F2C47D9C18BB32CB00358645 /* bgView.png */,
-				F2C47D9E18BB32D500358645 /* bgView@2x.png */,
-				F2C1CF4A18BDCA66005941C1 /* night_user_defaulthead@2x.png */,
-				F28846BD1803F96F006A5D62 /* main_config.xml */,
 				F2C89BA817F6B73D0099A62D /* MainStoryboard.storyboard */,
 				F262BF80180C045800F590F8 /* MainStoryboard_ios6.storyboard */,
 				F240235617F6B89300C25FFB /* MainStoryboard_ios5.storyboard */,
@@ -2292,28 +2172,6 @@
 				F2C89BBD17F6B73D0099A62D /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		F2CE6E201862B29B00D95B34 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				F2CE6E1D1862B28900D95B34 /* SKClientApp.h */,
-				F2CE6E1E1862B28900D95B34 /* SKClientApp.m */,
-				F2CE6E211862B8F900D95B34 /* SKChannel.h */,
-				F2CE6E221862B8F900D95B34 /* SKChannel.m */,
-				F2CE6E241862BB5800D95B34 /* SKChanneltp.h */,
-				F2CE6E251862BB5800D95B34 /* SKChanneltp.m */,
-			);
-			name = model;
-			sourceTree = "<group>";
-		};
-		F2CE6E271862C4B000D95B34 /* URLManager */ = {
-			isa = PBXGroup;
-			children = (
-				F2CE6E2B1862F1F700D95B34 /* SKECMURLManager.h */,
-				F2CE6E2C1862F1F700D95B34 /* SKECMURLManager.m */,
-			);
-			name = URLManager;
 			sourceTree = "<group>";
 		};
 		F2D814811834DBF100FE0839 /* cell */ = {
@@ -2463,6 +2321,25 @@
 			name = DACircularProgressView;
 			sourceTree = "<group>";
 		};
+		F2F1770A18EA539B000F778C /* appImage */ = {
+			isa = PBXGroup;
+			children = (
+				F222E6F818E40956009BBFC5 /* Default-568h@2x.png */,
+				F222E6F918E40956009BBFC5 /* Default@2x.png */,
+				F222E6FA18E40956009BBFC5 /* Default.png */,
+				F2F20D5318E3C8FA000D4EDE /* Default_logo.png */,
+				F2F20D5518E3C901000D4EDE /* Default_logo@2x.png */,
+				F2BE28ED18DD82B600AADD13 /* Default-568h_logo@2x.png */,
+				F2DF1E8B18C08A8900A160FA /* Icon-Small.png */,
+				F2DF1E8C18C08A8900A160FA /* Icon.png */,
+				F2DF1E8D18C08A8900A160FA /* Icon-Small@2x.png */,
+				F2DF1E8E18C08A8900A160FA /* Icon-Small-40@2x.png */,
+				F2DF1E8F18C08A8900A160FA /* Icon@2x.png */,
+				F2DF1E9018C08A8900A160FA /* Icon-60@2x.png */,
+			);
+			name = appImage;
+			sourceTree = "<group>";
+		};
 		F2F26F5E18D6A25100599888 /* mainView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2476,6 +2353,9 @@
 		F2F26F5F18D6A26300599888 /* attach */ = {
 			isa = PBXGroup;
 			children = (
+				F2BE7D4E18DD7021004D71E6 /* progress.png */,
+				F2BE7D4F18DD7021004D71E6 /* track.png */,
+				F28DE6F21816678700E8CA79 /* cms_attachment.png */,
 				F2B965D718C56C88001F227C /* btn_delete_highlight.png */,
 				F2B965D818C56C88001F227C /* btn_delete.png */,
 				F2B965D918C56C88001F227C /* btn_download_highlight.png */,
@@ -2572,28 +2452,30 @@
 		F2F79E87180D1A120004CAFC /* agent */ = {
 			isa = PBXGroup;
 			children = (
+				F2F79E88180D1A900004CAFC /* LocalDataMeta.h */,
+				F2F79E89180D1A900004CAFC /* LocalDataMeta.m */,
 				F2F79EBC180D327F0004CAFC /* SKDataDaemonHelper.h */,
 				F2F79EBD180D327F0004CAFC /* SKDataDaemonHelper.m */,
 				F20E559B1863DFC500660A60 /* SKDaemonManager.h */,
 				F20E559C1863DFC500660A60 /* SKDaemonManager.m */,
 				F2F79E9A180D2DAF0004CAFC /* SKAgentLogonManager.h */,
 				F2F79E9B180D2DAF0004CAFC /* SKAgentLogonManager.m */,
-				F2F79E88180D1A900004CAFC /* LocalDataMeta.h */,
-				F2F79E89180D1A900004CAFC /* LocalDataMeta.m */,
 				F2F79E97180D2C7E0004CAFC /* LocalMetaDataManager.h */,
 				F2F79E98180D2C7E0004CAFC /* LocalMetaDataManager.m */,
 				F2B66EF318151DD600AD6286 /* GetNewVersion.h */,
 				F2B66EF418151DD600AD6286 /* GetNewVersion.m */,
 				F2F79EB0180D309D0004CAFC /* RegisterDevice.h */,
 				F2F79EB1180D309D0004CAFC /* RegisterDevice.m */,
-				F2F79E94180D2A420004CAFC /* DataServiceURLs.h */,
-				F2F79E95180D2A420004CAFC /* DataServiceURLs.m */,
-				F2F79E91180D29B70004CAFC /* SKMessageEntity.h */,
-				F2F79E92180D29B70004CAFC /* SKMessageEntity.m */,
 				F2F79EBF180D32940004CAFC /* SKHTTPRequest.h */,
 				F2F79EC0180D32940004CAFC /* SKHTTPRequest.m */,
 				F2F79EC1180D32940004CAFC /* SKFormDataRequest.h */,
 				F2F79EC2180D32940004CAFC /* SKFormDataRequest.m */,
+				F2F79E91180D29B70004CAFC /* SKMessageEntity.h */,
+				F2F79E92180D29B70004CAFC /* SKMessageEntity.m */,
+				F2CE6E2B1862F1F700D95B34 /* SKECMURLManager.h */,
+				F2CE6E2C1862F1F700D95B34 /* SKECMURLManager.m */,
+				F2F79E94180D2A420004CAFC /* DataServiceURLs.h */,
+				F2F79E95180D2A420004CAFC /* DataServiceURLs.m */,
 			);
 			name = agent;
 			sourceTree = "<group>";
@@ -2694,7 +2576,6 @@
 				F23487851831CD6D00E649AA /* iphone4_help_company.png in Resources */,
 				F2BE28E618DD77F000AADD13 /* btn_help@2x.png in Resources */,
 				F289FC531806561100B825DC /* Images.xcassets in Resources */,
-				F2D5C56818E3B6A4008E9015 /* f.png in Resources */,
 				F23CE449182B21600066F214 /* btn_submit_press@2x.png in Resources */,
 				F2DF1E9618C08A8900A160FA /* Icon-60@2x.png in Resources */,
 				F22C95B2180EBDF200BC6D71 /* status-bar-pattern-default@2x.jpg in Resources */,
@@ -2729,7 +2610,6 @@
 				F2D814731834D74200FE0839 /* SKEmailConfigurationView.xib in Resources */,
 				F234879D1831CD6D00E649AA /* help4_1.png in Resources */,
 				F287262318D99E9E009CD16A /* btn_sendmail_ecm@2x.png in Resources */,
-				F28846BE1803F96F006A5D62 /* main_config.xml in Resources */,
 				F28846971803992F006A5D62 /* button.png in Resources */,
 				F2F26F5D18D698F200599888 /* meeting_place@2x.png in Resources */,
 				F24F44D61820E14500168C59 /* dial_button_delete_pressed.png in Resources */,
@@ -2817,7 +2697,6 @@
 				F23487841831CD6D00E649AA /* iphone4_mainpage.png in Resources */,
 				F27690DF18D6ECF700DA0A59 /* btn_clean_ecm@2x.png in Resources */,
 				F23487941831CD6D00E649AA /* iphone5_help_addressbook_detailed.png in Resources */,
-				F2C47D9F18BB32D500358645 /* bgView@2x.png in Resources */,
 				F291518518DFC89400A259A3 /* star_on.png in Resources */,
 				F23487A51831CD6D00E649AA /* help5_4.png in Resources */,
 				F23487A31831CD6D00E649AA /* help5_2.png in Resources */,
@@ -2836,7 +2715,6 @@
 				F2C1CF4618BDC8A6005941C1 /* usercenter_hd_avatar_default.png in Resources */,
 				F2984A6118DC4A430030AA9F /* org_info_unfold.png in Resources */,
 				F287263918DA8995009CD16A /* list_onlyread.png in Resources */,
-				F2D5C56718E3B6A4008E9015 /* z.png in Resources */,
 				F234879B1831CD6D00E649AA /* buttonStart_pressed.png in Resources */,
 				F27690E518D6EF4300DA0A59 /* btn_next_ecm@2x.png in Resources */,
 				F287262618DA7A99009CD16A /* btn_call_ecm_press@2x.png in Resources */,
@@ -2880,12 +2758,10 @@
 				F2BA34991804F7AF0018CAA3 /* linebuttom_n.png in Resources */,
 				F2BE28E818DD780700AADD13 /* exit@2x.png in Resources */,
 				F2B4B1A91807A45F00A789CB /* indicator_code_lock_point_area_red_holo.png in Resources */,
-				F2C1CF4B18BDCA66005941C1 /* night_user_defaulthead@2x.png in Resources */,
 				F25BE5A218D6DB2700CE54F1 /* btn_refresh_ecm_press@2x.png in Resources */,
 				F291518C18DFED1B00A259A3 /* email@2x.png in Resources */,
 				F287260C18D994F8009CD16A /* btn_history_ecm_press@2x.png in Resources */,
 				F291518E18DFED6900A259A3 /* remind@2x.png in Resources */,
-				F2C47D9D18BB32CB00358645 /* bgView.png in Resources */,
 				F234879C1831CD6D00E649AA /* buttonStart.png in Resources */,
 				F25EC64B18277FCA00490F38 /* SKMailEmployeeCell.xib in Resources */,
 				F287263B18DA89E4009CD16A /* dispose.png in Resources */,
@@ -2947,7 +2823,6 @@
 				F212E45A18233BA3001A0A74 /* REMenuContainerView.m in Sources */,
 				F2BD53821828C43B00CBEA30 /* SKDraftboxCell.m in Sources */,
 				F2731975183C8D95000FAF94 /* SKIntroView.m in Sources */,
-				F289FC49180633A700B825DC /* SKNewsItemController.m in Sources */,
 				F22C95AE180EBDF200BC6D71 /* BWStatusBarOverlay.m in Sources */,
 				F2B965D218C48053001F227C /* ClientAppHelper.m in Sources */,
 				F23F3E0C1845E2680034C811 /* SKEdetailInfoController.m in Sources */,
@@ -2959,7 +2834,6 @@
 				F2F79E86180D18410004CAFC /* Sqlite.m in Sources */,
 				F23CE456182B343B0066F214 /* HPGrowingTextView.m in Sources */,
 				F2660E89187A476D00EAC0C1 /* SDWebImageDecoder.m in Sources */,
-				F2AA9575181A4BCF001DD53B /* SKBrowseNewsController.m in Sources */,
 				F23AA258184F2338004248DB /* PBKDF2.m in Sources */,
 				F2C47D9B18BAEDCA00358645 /* GBPathImageView.m in Sources */,
 				F23AA255184F2338004248DB /* AESCrypt.m in Sources */,
@@ -2980,7 +2854,6 @@
 				F2F79EAF180D2FAF0004CAFC /* NSString+HTML.m in Sources */,
 				F2F038F7181908C300B9116C /* EGOImageLoader.m in Sources */,
 				F291E253180CDD660027F0C9 /* Reachability.m in Sources */,
-				F2705AF3182C7E1F003D0B6E /* SKAttachViewController.m in Sources */,
 				F2625F2E187D4D3F003F2295 /* Paper.m in Sources */,
 				F2B66EF518151DD600AD6286 /* GetNewVersion.m in Sources */,
 				F23AA24B184F1624004248DB /* SKSecretController.m in Sources */,
@@ -2989,7 +2862,6 @@
 				F2E5D5A4182A654600BFB48D /* SKSToolBar.m in Sources */,
 				F2B66EFC18154B8500AD6286 /* SKToolBar.m in Sources */,
 				F2B8322C1829F0BC007E2CC0 /* element.m in Sources */,
-				F23CE45E182B76240066F214 /* SKNotifyItemController.m in Sources */,
 				F2C89BAD17F6B73D0099A62D /* SKViewController.m in Sources */,
 				F2B8322B1829F0BC007E2CC0 /* columns.m in Sources */,
 				F24F44ED1820FCDE00168C59 /* SKCKeyBoards.m in Sources */,
@@ -3005,7 +2877,6 @@
 				F291E221180CDABE0027F0C9 /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
 				F2B494D3180FE1E100246822 /* OpenUDID.m in Sources */,
 				F2F79EA8180D2F4F0004CAFC /* UIAlertView+hnzy.m in Sources */,
-				F22967F6181F4E43006373CA /* SKSearchInsiderView.m in Sources */,
 				F2F79EC4180D32940004CAFC /* SKFormDataRequest.m in Sources */,
 				F24F44BB1820D93900168C59 /* SKAddressController.m in Sources */,
 				F2AA9572181A4B33001DD53B /* DMLazyScrollView.m in Sources */,
@@ -3059,7 +2930,6 @@
 				F259A8FF18237B87000D95C2 /* SKInboxCell.m in Sources */,
 				F2660E92187A476D00EAC0C1 /* UIImageView+WebCache.m in Sources */,
 				F259A8B918236E31000D95C2 /* SKEmailController.m in Sources */,
-				F23CE473182B92650066F214 /* SKCompIssueViewController.m in Sources */,
 				F2B4B18E18079D2500A789CB /* DrawPatternLockView.m in Sources */,
 				F2C2C10B18222D12006ACB3F /* SKUnitCell.m in Sources */,
 				F212E45918233BA3001A0A74 /* REMenuItemView.m in Sources */,
@@ -3117,7 +2987,6 @@
 				F28846A31803B335006A5D62 /* APPUtils.m in Sources */,
 				F20EC7721824DE0B00427D54 /* SKAttachButton.m in Sources */,
 				F2F79E96180D2A420004CAFC /* DataServiceURLs.m in Sources */,
-				F23CE470182B8C070066F214 /* SKWorkNewsController.m in Sources */,
 				F291E24B180CDD010027F0C9 /* ASIDownloadCache.m in Sources */,
 				F2E803521830D43F00670B7D /* FTAnimationManager.m in Sources */,
 				F2D814841835BD6900FE0839 /* SKMaintainViewController.m in Sources */,
@@ -3126,16 +2995,13 @@
 				F287264F18DAD0B6009CD16A /* SKAppInstallController.m in Sources */,
 				F20EC76C1824CE4B00427D54 /* SKMailDetailController.m in Sources */,
 				F2B8322A1829F0BC007E2CC0 /* column.m in Sources */,
-				F2F1770918EA5273000F778C /* NVDate.m in Sources */,
 				F291E24A180CDD000027F0C9 /* ASIDataDecompressor.m in Sources */,
 				F2F79E8D180D24390004CAFC /* dbUtils.m in Sources */,
 				F2BCD66E185E9FE2004A629C /* UIView+screenshot.m in Sources */,
 				F2D814A01835C75300FE0839 /* CODOCSHelper.m in Sources */,
-				F22967FC181F5359006373CA /* SKSearchController.m in Sources */,
 				F2B832281829F0BC007E2CC0 /* branch.m in Sources */,
 				F2F038F6181908C300B9116C /* EGOImageLoadConnection.m in Sources */,
 				F291E24E180CDD010027F0C9 /* ASIInputStream.m in Sources */,
-				F28DE6FC1816763E00E8CA79 /* SKNewsAttachController.m in Sources */,
 				F2CE6E1F1862B28900D95B34 /* SKClientApp.m in Sources */,
 				F2660E8F187A476D00EAC0C1 /* UIImage+GIF.m in Sources */,
 				F2FFDBBF18346291001B9B84 /* SKPersonInfoController.m in Sources */,
@@ -3147,13 +3013,11 @@
 				F2F0396018190E6000B9116C /* DACircularProgressView.m in Sources */,
 				F286C18C182233DE00ADFF40 /* SKEmployeeCell.m in Sources */,
 				F2F0392718190A9000B9116C /* MWZoomingScrollView.m in Sources */,
-				F23CE461182B7A6D0066F214 /* SKMeetingItemController.m in Sources */,
 				F2660E8A187A476D00EAC0C1 /* SDWebImageDownloader.m in Sources */,
 				F273196C183B8C51000FAF94 /* Content.m in Sources */,
 				F2F79EBB180D30E80004CAFC /* NSString+MD5Addition.m in Sources */,
 				F2B832291829F0BC007E2CC0 /* business.m in Sources */,
 				F291E21D180CDA470027F0C9 /* JSONKit.m in Sources */,
-				F23CE464182B7A910066F214 /* SKAnnouncementItemController.m in Sources */,
 				F22C60B11819FBEA007A3473 /* UIImageView+Addition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

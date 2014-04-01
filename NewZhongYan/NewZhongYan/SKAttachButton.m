@@ -7,7 +7,6 @@
 //
 
 #import "SKAttachButton.h"
-#import "SKAttachViewController.h"
 @implementation SKAttachButton
 @synthesize DSImageView = _DSImageView;
 @synthesize attachLabel = _attachLabel;

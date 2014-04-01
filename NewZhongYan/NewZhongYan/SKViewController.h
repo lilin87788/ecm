@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "UIDragButton.h"
 #import "SKPatternLockController.h"
-#import "SKNewsItemController.h"
 
 #import "SMPageControl.h"
 @interface SKViewController : UIViewController<UIDragButtonDelegate,drawPatternLockDelegate,SKDataDaemonHelperDelegate,UITabBarDelegate>

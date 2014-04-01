@@ -10,9 +10,7 @@
 #import "SKTableViewCell.h"
 #import "SKToolBar.h"
 #import "SKDaemonManager.h"
-#import "SKBrowseNewsController.h"
 #import "SKECMBrowseController.h"
-#import "SKSearchController.h"
 #import "SKECMSearchController.h"
 #import "SKCMeetCell.h"
 #define UP 1

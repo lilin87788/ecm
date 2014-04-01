@@ -404,15 +404,14 @@
 //注释  显示版本号
 -(void)onGetNewVersionDoneWithDic:(NSDictionary *)dic
 {
-    NSDictionary* vDic=[[NSDictionary alloc] initWithDictionary:[[[dic objectForKey:@"s"] objectAtIndex:0] objectForKey:@"v"]];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
-    if ([[vDic objectForKey:@"NVER"] floatValue] > [appVersion floatValue])
+    if ([[dic objectForKey:@"NVER"] floatValue] > [appVersion floatValue])
     {
         UINavigationController* nav = [[APPUtils AppStoryBoard] instantiateViewControllerWithIdentifier:@"versionupdatenav"];
         [self presentViewController:nav animated:NO completion:^{
             SKAPPUpdateController* updater = (SKAPPUpdateController*)[nav topViewController];
-            [updater setVersionDic:vDic];
+            [updater setVersionDic:dic];
         }];
     }
 }

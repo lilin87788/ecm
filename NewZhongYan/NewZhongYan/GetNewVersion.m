@@ -47,15 +47,40 @@
     __weak SKHTTPRequest *req = request;
     [request setCompletionBlock:^{
         NSDictionary *dic=[[req responseData] objectFromJSONData];
-        if (block) {
-            block(dic);
+        if (dic && [[dic allKeys] containsObject:@"s"])
+        {
+            NSArray* sarray = [dic objectForKey:@"s"];
+            if (sarray.count > 0)
+            {
+                NSDictionary* vdic = [sarray objectAtIndex:0];
+                if (vdic && [[vdic allKeys] containsObject:@"v"])
+                {
+                    NSDictionary* resultdic = [vdic objectForKey:@"v"];
+                    if (dic && [[dic allKeys] containsObject:@"c"]) {
+                        if (![[dic objectForKey:@"c"] isEqualToString:@"EXCEPTION"]) {
+                            NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+                            NSString *appVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
+                            if ([[resultdic objectForKey:@"NVER"] floatValue] > [appVersion floatValue])
+                            {
+                                if (block) {
+                                    block(resultdic);
+                                }
+                            }
+                        }else{
+                            NSLog(@"获取版本信息错误 %@",req.responseString);
+                        }
+                    }
+                    
+                }
+            }
+            
         }
     }];
     [request setFailedBlock:^{
-         if (errorinfo) {
-             errorinfo(@{@"reason": req.errorinfo});
-         }
-     }];
+        if (errorinfo) {
+            errorinfo(@{@"reason": req.errorinfo});
+        }
+    }];
     [request startAsynchronous];
 }
 @end

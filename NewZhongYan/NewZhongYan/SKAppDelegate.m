@@ -20,6 +20,7 @@
 #import "SKViewController.h"
 #import "AESCrypt.h"
 #import "EGOCache.h"
+#import "UncaughtExceptionHandler.h"
 #define MAXTIME 1
 static User* currentUser = nil;
 @implementation SKAppDelegate
@@ -51,6 +52,11 @@ NSUInteger DeviceSystemMajorVersion() {
     return _deviceSystemMajorVersion;
 }
 
+- (void)installUncaughtExceptionHandler
+{
+    InstallUncaughtExceptionHandler();
+}
+
 -(void)creeateDatabase
 {
     //判断以前是不是安装过这个应用
@@ -70,6 +76,7 @@ NSUInteger DeviceSystemMajorVersion() {
 
 -(void)createDataManager
 {
+    InstallUncaughtExceptionHandler();
     _queue = [[NSOperationQueue alloc] init];
     [FileUtils setvalueToPlistWithKey:@"sleepTime" Value:[NSDate distantFuture]];
     [self creeateDatabase];
@@ -127,9 +134,6 @@ NSUInteger DeviceSystemMajorVersion() {
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     if (System_Version_Small_Than_(7)) {
-//            [[UIBarButtonItem appearance] setBackButtonBackgroundImage:Image(@"back")
-//                                                              forState:UIControlStateNormal
-//                                                            barMetrics:UIBarMetricsDefault];
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
             _mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_ios6" bundle:nil];
         }else {

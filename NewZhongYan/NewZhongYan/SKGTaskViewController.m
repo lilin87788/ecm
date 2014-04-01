@@ -308,7 +308,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary* dataDictionary = [_dataItems objectAtIndex:indexPath.row];
     NSString* flowInstanceId = [dataDictionary objectForKey:@"FLOWINSTANCEID"];
     if ([[dataDictionary objectForKey:@"HANDLE"] intValue] == 0

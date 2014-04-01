@@ -49,6 +49,7 @@
 		F22C95B2180EBDF200BC6D71 /* status-bar-pattern-default@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F22C95AB180EBDF200BC6D71 /* status-bar-pattern-default@2x.jpg */; };
 		F22C95B3180EBDF200BC6D71 /* status-bar-progress.png in Resources */ = {isa = PBXBuildFile; fileRef = F22C95AC180EBDF200BC6D71 /* status-bar-progress.png */; };
 		F22C95B4180EBDF200BC6D71 /* status-bar-progress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F22C95AD180EBDF200BC6D71 /* status-bar-progress@2x.png */; };
+		F22E54C318E9052800E3440A /* UncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F22E54C218E9052800E3440A /* UncaughtExceptionHandler.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F23487831831CD6D00E649AA /* iphone4_index.png in Resources */ = {isa = PBXBuildFile; fileRef = F234875F1831CD6D00E649AA /* iphone4_index.png */; };
 		F23487841831CD6D00E649AA /* iphone4_mainpage.png in Resources */ = {isa = PBXBuildFile; fileRef = F23487601831CD6D00E649AA /* iphone4_mainpage.png */; };
 		F23487851831CD6D00E649AA /* iphone4_help_company.png in Resources */ = {isa = PBXBuildFile; fileRef = F23487611831CD6D00E649AA /* iphone4_help_company.png */; };
@@ -548,6 +549,8 @@
 		F22C95AB180EBDF200BC6D71 /* status-bar-pattern-default@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "status-bar-pattern-default@2x.jpg"; sourceTree = "<group>"; };
 		F22C95AC180EBDF200BC6D71 /* status-bar-progress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-bar-progress.png"; sourceTree = "<group>"; };
 		F22C95AD180EBDF200BC6D71 /* status-bar-progress@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-bar-progress@2x.png"; sourceTree = "<group>"; };
+		F22E54C118E9052800E3440A /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
+		F22E54C218E9052800E3440A /* UncaughtExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UncaughtExceptionHandler.m; sourceTree = "<group>"; };
 		F234875F1831CD6D00E649AA /* iphone4_index.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone4_index.png; sourceTree = "<group>"; };
 		F23487601831CD6D00E649AA /* iphone4_mainpage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone4_mainpage.png; sourceTree = "<group>"; };
 		F23487611831CD6D00E649AA /* iphone4_help_company.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone4_help_company.png; sourceTree = "<group>"; };
@@ -1396,6 +1399,15 @@
 			name = BWStatusBarOverlay;
 			sourceTree = "<group>";
 		};
+		F22E54C018E9051B00E3440A /* exception */ = {
+			isa = PBXGroup;
+			children = (
+				F22E54C118E9052800E3440A /* UncaughtExceptionHandler.h */,
+				F22E54C218E9052800E3440A /* UncaughtExceptionHandler.m */,
+			);
+			name = exception;
+			sourceTree = "<group>";
+		};
 		F234875E1831CD2D00E649AA /* help */ = {
 			isa = PBXGroup;
 			children = (
@@ -2205,6 +2217,7 @@
 		F2C89B9617F6B73D0099A62D /* NewZhongYan */ = {
 			isa = PBXGroup;
 			children = (
+				F22E54C018E9051B00E3440A /* exception */,
 				F2CE6E271862C4B000D95B34 /* URLManager */,
 				F2D814851835C33300FE0839 /* helper */,
 				F2F79E87180D1A120004CAFC /* agent */,
@@ -2991,6 +3004,7 @@
 				F2F79EC4180D32940004CAFC /* SKFormDataRequest.m in Sources */,
 				F24F44BB1820D93900168C59 /* SKAddressController.m in Sources */,
 				F2AA9572181A4B33001DD53B /* DMLazyScrollView.m in Sources */,
+				F22E54C318E9052800E3440A /* UncaughtExceptionHandler.m in Sources */,
 				F28DF845185AAA8F000B6C1F /* FXBlurView.m in Sources */,
 				F2D8149B1835C75300FE0839 /* NewsHelper.m in Sources */,
 				F2D814981835C75300FE0839 /* MainHelper.m in Sources */,

@@ -17,32 +17,6 @@
     UIButton                    *titleButton2;
 }
 
--(void)handleTapForHelpImage:(UIGestureRecognizer*)recognizer
-{
-    if (recognizer.state==UIGestureRecognizerStateEnded)
-    {
-        UIImageView* helpImage = (UIImageView*)[self.view.window viewWithTag:1111];
-        [helpImage fallOut:.4 delegate:nil completeBlock:^{
-            [helpImage performSelector:@selector(removeFromSuperview) withObject:0 afterDelay:0.4];
-            [self.navigationItem.rightBarButtonItem setEnabled:YES];
-        }] ;
-    }
-}
-
-- (IBAction)help:(id)sender {
-    UIImageView* helpImage=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-    [helpImage setImage:[UIImage imageNamed:IS_IPHONE_5? @"iphone5_oa" : @"iphone4_oa"]];
-    [helpImage setUserInteractionEnabled:YES];
-    [helpImage setTag:1111];
-    [self.view.window addSubview:helpImage];
-    
-    UITapGestureRecognizer *tapGes=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapForHelpImage:)];
-    [helpImage addGestureRecognizer:tapGes];
-    [helpImage fallIn:.4 delegate:nil completeBlock:^{
-        [self.navigationItem.rightBarButtonItem setEnabled:NO];
-    }];
-}
-
 -(void)onSearchClick
 {
     [self.searchBar becomeFirstResponder];
@@ -50,7 +24,6 @@
 
 -(void)onRefrshClick
 {
-    [super onRefrshClick];
     [SKDataDaemonHelper synWithMetaData:[LocalDataMeta sharedRemind] delegate:self];
 }
 
@@ -72,14 +45,8 @@
     });
 }
 
-//-(void)getDataFromDataBase
-//{
-//    [self getGtaskFromDataBaseWith:remindState];
-//}
-
 -(void)dataFromDataBaseWithComleteBlock:(resultsetBlock)block
 {
-    [super dataFromDataBaseWithComleteBlock:block];
     [self dataFromDataBaseWithComleteBlock:remindState ComleteBlock:block];
 }
 

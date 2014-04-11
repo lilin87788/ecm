@@ -10,6 +10,7 @@
 #import "SKAppConfiguration.h"
 #import "SKNewMailController.h"
 #import "UIColor+FlatUI.h"
+#import "SKIntroView.h"
 @implementation SKSettingController
 -(void)back:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
@@ -18,6 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.view setBackgroundColor:COLOR(239, 239, 239)];
     if (System_Version_Small_Than_(7)) {
         UIButton* backbtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [backbtn setFrame:CGRectMake(0, 0, 50, 30)];
@@ -31,12 +33,11 @@
         self.navigationItem.backBarButtonItem = backItem;
     }
     
-    [self.view setBackgroundColor:COLOR(239, 239, 239)];
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 90)];
     [view setBackgroundColor:COLOR(239, 239, 239)];
     [self.tableView setTableFooterView:view];
     
-    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 25, 320, 21)];
+    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 21)];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setText:@"湖南中烟工业有限公司 版权所有"];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
@@ -45,7 +46,7 @@
     [titleLabel setFont:[UIFont systemFontOfSize:18]];
     [view  addSubview:titleLabel];
     
-    UILabel* subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(titleLabel.frame) + 2, 320, 21)];
+    UILabel* subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(titleLabel.frame) + 1, 320, 21)];
     [subTitleLabel setBackgroundColor:[UIColor clearColor]];
     [subTitleLabel setText:@"copyright 2011-2014 All Rights Reserved"];
     [subTitleLabel setTextAlignment:NSTextAlignmentCenter];
@@ -136,13 +137,27 @@
                 break;
         }
     }else if(indexPath.section == 2){
-        SKNewMailController* aEmail = [[APPUtils AppStoryBoard] instantiateViewControllerWithIdentifier:@"SKNewMailController"];
-        SKToken* token = [[SKToken alloc] initWithTitle:@"产品经理"
-                                      representedObject:@"p_liuyang@hngytobacco.com"];
-        [aEmail.toTokenField addToken:token];
-        [aEmail setStatus:NewMailStatusWrite];
-        [aEmail.STokenField setText:@"手机门户意见反馈"];
-        [[APPUtils visibleViewController].navigationController pushViewController:aEmail animated:YES];
+        switch (indexPath.row) {
+            case 0:
+            {
+                SKIntroView *introView=[[SKIntroView alloc] initWithFrame:CGRectMake(0,20, SCREEN_WIDTH,SCREEN_HEIGHT)];
+                [[APPUtils APPdelegate].window addSubview:introView];
+                break;
+            }
+            case 1:
+            {
+                SKNewMailController* aEmail = [[APPUtils AppStoryBoard] instantiateViewControllerWithIdentifier:@"SKNewMailController"];
+                SKToken* token = [[SKToken alloc] initWithTitle:@"产品经理"
+                                              representedObject:@"p_liuyang@hngytobacco.com"];
+                [aEmail.toTokenField addToken:token];
+                [aEmail setStatus:NewMailStatusWrite];
+                [aEmail.STokenField setText:@"手机门户意见反馈"];
+                [[APPUtils visibleViewController].navigationController pushViewController:aEmail animated:YES];
+                break;
+            }
+            default:
+                break;
+        }
     }
 }
 @end

@@ -9,9 +9,17 @@
 #import "SKSToolBar.h"
 #import "UIImage+rescale.h"
 #import "APPUtils.h"
+#import "SKViewController.h"
+
 @implementation SKSToolBar
 @synthesize homeButton,firstButton,secondButton;
 @synthesize firstLabel,secondLabel;
+-(void)backToRoot:(id)sender
+{
+    SKViewController* controller = [APPUtils AppRootViewController];
+    [controller.navigationController popToRootViewControllerAnimated:YES];
+}
+
 
 - (id)initWithFrame:(CGRect)frame
 {

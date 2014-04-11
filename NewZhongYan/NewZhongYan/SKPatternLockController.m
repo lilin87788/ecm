@@ -15,6 +15,7 @@
 {
     NSMutableArray* _paths;//路径
     NSMutableArray *touchedImages;
+    UIButton *changePassWordBtn;
 }
 @end
 
@@ -149,6 +150,23 @@
 {
     [super viewDidLoad];
     [self initNavBar];
+    
+    //修改密码按钮
+    changePassWordBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    [changePassWordBtn setTitle:@"修改保护密码" forState:UIControlStateNormal];
+    [changePassWordBtn setFrame:CGRectMake(0, BottomY - 44 , 150,44)];
+    [changePassWordBtn addTarget:self action:@selector(changePassWord) forControlEvents:UIControlEventTouchUpInside];
+    [changePassWordBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+    [self.view addSubview:changePassWordBtn];
+    
+    //忘记密码按钮
+    UIButton *forgetPassWordBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    [forgetPassWordBtn setTitle:@"忘记保护密码" forState:UIControlStateNormal];
+    [forgetPassWordBtn setFrame:CGRectMake(SCREEN_WIDTH-150, BottomY - 44, 150,44)];
+    [forgetPassWordBtn addTarget:self action:@selector(forgetPassWord:) forControlEvents:UIControlEventTouchUpInside];
+    [forgetPassWordBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+    [self.view addSubview:forgetPassWordBtn];
+    
     [self getPassWord];
     if (!password||[password isEqualToString:@""])
     {
@@ -426,14 +444,14 @@
     {
         status=PatternLockStatusInputingOldPassword;
         markLabel.text=@"请输入旧密码";
-        //[changePassWordBtn setTitle:@"输入保护密码" forState:UIControlStateNormal];
+        [changePassWordBtn setTitle:@"输入保护密码" forState:UIControlStateNormal];
         
     }
     else
     {
         status=PatternLockStatusUnlocking;
         markLabel.text=@"请输入保护密码";
-        //[changePassWordBtn setTitle:@"修改保护密码" forState:UIControlStateNormal];
+        [changePassWordBtn setTitle:@"修改保护密码" forState:UIControlStateNormal];
         
     }
 }

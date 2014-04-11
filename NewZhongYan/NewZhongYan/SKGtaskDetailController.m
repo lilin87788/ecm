@@ -25,12 +25,12 @@
 #import "MBProgressHUD.h"
 #pragma mark- 相关界面参数的宏定义
 #define CONTENT_WIDTH 300
-#define CONTENT_TITLEHEIGHT 44
+#define CONTENT_TITLEHEIGHT 20
 #define CONTENT_TOPEDGE 8
 #define CONTENT_BUTTOMEDGE 8
 #define NAMELABLE_HEIGHT 25
 #define VERLINE_LEFT 95
-#define VALUELABLE_WIDTH 198
+#define VALUELABLE_WIDTH 180
 #define VALUELABLE_LEFT 105
 #define NAMELABLE_WIDTH 90
 #define SIGNATURELABEL_HEIGHT 20
@@ -52,6 +52,9 @@
     UIBarButtonItem *nextBtn;
     UIBarButtonItem *doneBtn;
     UIToolbar *textToolBar;
+    UIView* titleView;
+    
+    
     CGFloat  TITLE_HEIGHT;
     DDXMLDocument *mainDoc;
     BOOL isErrorHappened;//用于如果出现错误 则不弹出提示框 直接返回
@@ -129,7 +132,6 @@
  */
 -(void)praserBusinessWithServerData:(NSData*)data
 {
-    //data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"xml"]];
     _aBusiness = [[business alloc] init];
     mainDoc = [[DDXMLDocument alloc] initWithData:data options:0 error:0];
     _aBusiness.returncode =  [(DDXMLElement*)[[mainDoc nodesForXPath:@"//returncode" error:0] objectAtIndex:0] stringValue];
@@ -173,6 +175,31 @@
  */
 -(void)businessDataFromServer
 {
+    NSData* data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"xml"]];
+    [self praserBusinessWithServerData:data];
+    if (![self.aBusiness.returncode isEqualToString:@"OK"])
+    {
+        isErrorHappened=YES;
+        NSString* msg = @"获取待办失败";
+        if ([self.aBusiness.returncode rangeOfString:@"1002"].location != NSNotFound)
+        {
+            msg = @"该待办已经办理";
+            NSString* sql = [NSString stringWithFormat:@"update T_REMINDS set STATUS = 1 where AID  = '%@'",[GTaskDetailInfo objectForKey:@"AID"]];
+            [[DBQueue sharedbQueue] updateDataTotableWithSQL:sql];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refresh" object:0 userInfo:[NSDictionary dictionaryWithObject:[GTaskDetailInfo objectForKey:@"AID"] forKey:@"AID"]];
+        }
+        [BWStatusBarOverlay showMessage:msg duration:2 animated:YES];
+        return ;
+    }
+    NSString* step = (self.aBusiness.step && ![self.aBusiness.step isEqualToString:@""])
+    ?[NSString stringWithFormat:@"当前环节: %@",self.aBusiness.step]:@"";
+    [stepLabel setText:step];
+    [self createBusinessDetailViewWithData:self.aBusiness];
+    [myToolBar.secondButton setEnabled:YES];
+    [myToolBar.thirdButton setEnabled:YES];
+
+    return;
     NSURL* workItemUrl = [DataServiceURLs getWorkItemDetails:[APPUtils userUid]
                                                         TFRM:[GTaskDetailInfo objectForKey:@"TFRM"]
                                                          AID:[GTaskDetailInfo objectForKey:@"AID"]];
@@ -181,7 +208,8 @@
     [request setCompletionBlock:^{
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSData* data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"xml"]];
-        data = req.responseData;
+        //data = req.responseData;
+        //NSLog(@"%@",req.responseString);
         [self praserBusinessWithServerData:data];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (![self.aBusiness.returncode isEqualToString:@"OK"])
@@ -203,8 +231,11 @@
             ?[NSString stringWithFormat:@"当前环节: %@",self.aBusiness.step]:@"";
             [stepLabel setText:step];
             [self createBusinessDetailViewWithData:self.aBusiness];
-            [myToolBar.secondButton setEnabled:YES];
-            [myToolBar.thirdButton setEnabled:YES];
+            if ([GTaskDetailInfo[@"HANDLE"] intValue] != 1)
+            {
+                [myToolBar.secondButton setEnabled:YES];
+                [myToolBar.thirdButton setEnabled:YES];
+            }
             currentTextViewindex = -1;
         });
     }];
@@ -241,7 +272,6 @@
                                       NSString* step = (self.aBusiness.step && ![self.aBusiness.step isEqualToString:@""])
                                       ?[NSString stringWithFormat:@"当前环节: %@",self.aBusiness.step]
                                       :@"";
-                                      //隐藏加载界面
                                       dispatch_async(dispatch_get_main_queue(), ^{
                                           if (![self.aBusiness.returncode isEqualToString:@"OK"]) {
                                               isErrorHappened=YES;
@@ -308,7 +338,6 @@
 {
     [super viewDidLoad];
     [self initData];
-    
     if (System_Version_Small_Than_(7)) {
         UIButton* backbtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [backbtn setFrame:CGRectMake(0, 0, 50, 30)];
@@ -321,6 +350,7 @@
         backItem.title = @"返回";
         self.navigationItem.backBarButtonItem = backItem;
     }
+    [self.view setBackgroundColor:COLOR(239, 239, 239)];
     
     myToolBar = [[SKLToolBar alloc] initWithFrame:CGRectMake(0,0, 320, 49)];
     [myToolBar setFirstItem:@"btn_history_ecm" Title:@"历史"];
@@ -333,28 +363,34 @@
     [myToolBar.thirdButton  setEnabled:NO];
     [toolView addSubview:myToolBar];
     
-    CGFloat height = [[self.GTaskDetailInfo objectForKey:@"TITL"]
+    CGFloat height = [self.GTaskDetailInfo[@"TITL"]
                       sizeWithFont:[UIFont boldSystemFontOfSize:18]
                       constrainedToSize: CGSizeMake(300,MAXFLOAT)
                       lineBreakMode:NSLineBreakByCharWrapping].height;
+    titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, 320,height)];
+    [titleView setBackgroundColor:[UIColor whiteColor]];
+    [mainScrollview addSubview:titleView];
     
-    UILabel *titlelabel=[[UILabel alloc] initWithFrame:CGRectMake(8, 10, CONTENT_WIDTH, height)];
-    [titlelabel setText:[self.GTaskDetailInfo objectForKey:@"TITL"]];
+    UIView* leftBlockView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5,height)];
+    [leftBlockView setBackgroundColor:COLOR(177, 0, 4)];
+    [titleView addSubview:leftBlockView];
+    
+    UILabel *titlelabel=[[UILabel alloc] initWithFrame:CGRectMake(10, 0, CONTENT_WIDTH, height)];
+    [titlelabel setText:self.GTaskDetailInfo[@"TITL"]];
     [titlelabel setFont:[UIFont boldSystemFontOfSize:18]];
     [titlelabel setNumberOfLines:0];
     [titlelabel setLineBreakMode:NSLineBreakByCharWrapping];
-    [mainScrollview addSubview:titlelabel];
+    [titleView addSubview:titlelabel];
     
-    stepLabel=[[UILabel alloc] initWithFrame:CGRectMake(8, CGRectGetMaxY(titlelabel.frame), CONTENT_WIDTH, 20)];
+    stepLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(titlelabel.frame) + 2, CONTENT_WIDTH, 16.7)];
     [stepLabel setLineBreakMode:NSLineBreakByTruncatingTail];
-    [stepLabel setTextAlignment:NSTextAlignmentCenter];
-    [stepLabel setFont:[UIFont systemFontOfSize:16]];
-    [mainScrollview addSubview:stepLabel];
+    [stepLabel setFont:[UIFont systemFontOfSize:14]];
+    [titleView addSubview:stepLabel];
+    [leftBlockView setFrame:CGRectMake(0,0,5,CGRectGetMaxY(stepLabel.frame))];
+    [titleView setFrame:CGRectMake(0,5,320,CGRectGetMaxY(stepLabel.frame))];
+    TITLE_HEIGHT += CGRectGetMaxY(titleView.frame);
     
-    TITLE_HEIGHT += CGRectGetMaxY(stepLabel.frame);
-    contentView =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(stepLabel.frame), 0, 0)];
-    [contentView.layer setBorderWidth:1];
-    [contentView.layer setBorderColor:[[UIColor lightGrayColor] CGColor]];
+    contentView =[[UIView alloc] initWithFrame:CGRectMake(0,TITLE_HEIGHT, 0, 0)];
     [mainScrollview addSubview:contentView];
     
     
@@ -430,9 +466,8 @@
 //横线
 -(UIView *)createHorizonalLine:(float)lineWidth
 {
-    
-    UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 0, lineWidth, 1)];
-    [v setBackgroundColor:[UIColor lightGrayColor]];
+    UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 0, lineWidth, 2)];
+    [v setBackgroundColor:COLOR(239, 239, 239)];
     return v ;
 }
 
@@ -448,18 +483,14 @@
 -(void)addCustomViewWithColumns:(columns*)cs
 {
     UIView *cv=[[UIView alloc] init];
+    [cv setBackgroundColor:[UIColor whiteColor]];
     //加入标题********************************************
-    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(4, 0, CONTENT_WIDTH,CONTENT_TITLEHEIGHT-5)];
-    [titleLabel setText:[cs.columnsDict objectForKey:@"name"]];
-    [titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
-    [titleLabel setTextColor:COLOR(51,181,229)];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];
+    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320,CONTENT_TITLEHEIGHT)];
+    [titleLabel setText:[NSString stringWithFormat:@"   %@",cs.columnsDict[@"name"]]];
+    [titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
+    [titleLabel setTextColor:COLOR(96,96,96)];
+    [titleLabel setBackgroundColor:COLOR(239, 239, 239)];
     [cv addSubview:titleLabel];
-    
-    UIView *horLine=[self createHorizonalLine:CONTENT_WIDTH];
-    [horLine setFrame:CGRectMake(0, CONTENT_TITLEHEIGHT-1, horLine.frame.size.width, horLine.frame.size.height)];
-    [cv addSubview:horLine];
-    
     //加入内容************************************************
     for (column* c in cs.columnsArray)
     {
@@ -499,18 +530,18 @@
                     [self addFileBtnToCvWithColumnDic:e.elementDict andCv:cv];
                 }
             }
-            UIView *horLine=[self createHorizonalLine:CONTENT_WIDTH];
-            [horLine setFrame:CGRectMake(0, CONTENT_TITLEHEIGHT+contentTotalHeight, horLine.frame.size.width, horLine.frame.size.height)];
-            contentTotalHeight+=1;
+            UIView *horLine=[self createHorizonalLine:320];
+            [horLine setFrame:CGRectMake(0, CONTENT_TITLEHEIGHT+contentTotalHeight,320,2)];
+            contentTotalHeight+=2;
             [cv addSubview:horLine];
         }
     }
     
-    [cv setFrame:CGRectMake(0, totalHeight, CONTENT_WIDTH, CONTENT_TITLEHEIGHT+contentTotalHeight)];
+    [cv setFrame:CGRectMake(0, totalHeight, 320, CONTENT_TITLEHEIGHT+contentTotalHeight)];
     totalHeight+=contentTotalHeight+CONTENT_TITLEHEIGHT;
     [contentView addSubview:cv];
-    [contentView setFrame:CGRectMake(10, CGRectGetMaxY(stepLabel.frame), CONTENT_WIDTH, totalHeight)];
-    [mainScrollview setContentSize:CGSizeMake(CONTENT_WIDTH, totalHeight+CGRectGetMaxY(stepLabel.frame))];
+    [contentView setFrame:CGRectMake(0, CGRectGetMaxY(titleView.frame), 320, totalHeight)];
+    [mainScrollview setContentSize:CGSizeMake(320, totalHeight+CGRectGetMaxY(titleView.frame))];
 }
 
 //加入文件按钮
@@ -527,18 +558,14 @@
                                            Filed:[cDic objectForKey:@"id"]];
     NSString *aid=[GTaskDetailInfo objectForKey:@"AID"];
     NSString *filePath=[[SKAttachManger aIDPath:aid] stringByAppendingPathComponent:[cDic objectForKey:@"name"]];
-    SKAttachButton *btn=[[SKAttachButton alloc] initNoBorderBtnWithFrame:CGRectMake(5,CONTENT_TITLEHEIGHT+contentTotalHeight, 290, CONTENT_TITLEHEIGHT)];
+    SKAttachButton *btn=[[SKAttachButton alloc] initNoBorderBtnWithFrame:CGRectMake(10,CONTENT_TITLEHEIGHT+contentTotalHeight, 300, 44)];
     [btn setTitle:[cDic objectForKey:@"name"] forState:UIControlStateNormal];
     [btn setFilePath:filePath];
     [btn setAttachUrl:getFileUrl];
     [btn setIsAttachExisted:[[NSFileManager defaultManager] fileExistsAtPath:filePath]];
     [cv addSubview:btn];
-    
-    UIView *horLine=[self createHorizonalLine:CONTENT_WIDTH];
-    [horLine setFrame:CGRectMake(0, CONTENT_TITLEHEIGHT+btn.frame.size.height+contentTotalHeight, horLine.frame.size.width, horLine.frame.size.height)];
-    contentTotalHeight+=CONTENT_TITLEHEIGHT+1;
+    contentTotalHeight += 44;
     [cv addSubview:btn];
-    [cv addSubview:horLine];
 }
 
 -(void)addTextToCvWithColumn:(column *)c andCv:(UIView *)cv andCs:(columns*)cs
@@ -556,7 +583,7 @@
     HPGrowingTextView *gTextView ;
     if (columntype) {
         valueLabelHeight=24;
-        CGRect gTextViewRect=CGRectMake(VALUELABLE_LEFT - 5,CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight - 5,VALUELABLE_WIDTH,35);
+        CGRect gTextViewRect=CGRectMake(VALUELABLE_LEFT - 5,CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight - 3,VALUELABLE_WIDTH,30);
         gTextView = [[HPGrowingTextView alloc]initWithFrame:gTextViewRect];
         gTextView.yLocation=totalHeight+CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight;
         [gTextView setCv:cv];
@@ -566,16 +593,8 @@
         [gTextView setNode:c.cnode];
         [gTextView setCs:cs];
         [gTextView setTag:currentTextViewindex];
-        [self roundTextView:gTextView];
+        [gTextView setBackgroundColor:COLOR(208, 208, 208)];
         [gTextView setCID:[c.columnDict objectForKey:@"id"]];
-        if (extendType==SKSignature||extendType==SKPhrase)
-        {
-            gTextView.hasBtnDownside=YES;
-        }
-        else
-        {
-            gTextView.hasBtnDownside=NO;
-        }
         [gTextView setExtendType:extendType];
         [cv addSubview:gTextView];
         
@@ -589,24 +608,22 @@
         [valueLabel setNumberOfLines:0];
         if (nameLabelString.length)
         {
-            valueLabelHeight=[c.value sizeWithFont:[UIFont boldSystemFontOfSize:16] constrainedToSize:CGSizeMake(VALUELABLE_WIDTH, 1000) lineBreakMode:NSLineBreakByTruncatingTail].height;
-            valueLabelHeight=valueLabelHeight==0?25:valueLabelHeight;
-            nameLabelHeight=[nameLabelString sizeWithFont:[UIFont boldSystemFontOfSize:16] constrainedToSize:CGSizeMake(NAMELABLE_WIDTH, 1000) lineBreakMode:NSLineBreakByWordWrapping].height;
-            valueLabelHeight=valueLabelHeight<=nameLabelHeight?nameLabelHeight:valueLabelHeight;
-            [valueLabel setFrame:CGRectMake(VALUELABLE_LEFT, CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight, VALUELABLE_WIDTH, valueLabelHeight)];
+            valueLabelHeight = [c.value sizeWithFont:[UIFont boldSystemFontOfSize:16] constrainedToSize:CGSizeMake(VALUELABLE_WIDTH, 1000) lineBreakMode:NSLineBreakByTruncatingTail].height;
+            valueLabelHeight = valueLabelHeight <= 32 ? 32:valueLabelHeight;
+            nameLabelHeight = [nameLabelString sizeWithFont:[UIFont boldSystemFontOfSize:16] constrainedToSize:CGSizeMake(NAMELABLE_WIDTH, 1000) lineBreakMode:NSLineBreakByWordWrapping].height;
+            valueLabelHeight = valueLabelHeight <= nameLabelHeight ? nameLabelHeight : valueLabelHeight;
+            [valueLabel setFrame:CGRectMake(VALUELABLE_LEFT - 5, CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight, VALUELABLE_WIDTH, valueLabelHeight)];
         }else{
             valueLabelHeight=[c.value sizeWithFont:[UIFont boldSystemFontOfSize:16] constrainedToSize:CGSizeMake(280, 1000) lineBreakMode:NSLineBreakByWordWrapping].height;
-            valueLabelHeight=valueLabelHeight==0?40:valueLabelHeight;
-            [valueLabel setFrame:CGRectMake(10, CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight, 280, valueLabelHeight)];
+            valueLabelHeight = valueLabelHeight <= 32 ? 32 : valueLabelHeight;
+            [valueLabel setFrame:CGRectMake(20, CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight, 280, valueLabelHeight)];
         }
         [cv addSubview:valueLabel];
     }
     
     if (nameLabelString.length)
     {
-        float nameLabelY=CONTENT_TITLEHEIGHT+8+contentTotalHeight;
-        float lineHeight = valueLabelHeight+CONTENT_BUTTOMEDGE+CONTENT_TOPEDGE;
-        //如果时必填项
+        float nameLabelY=CONTENT_TITLEHEIGHT + 10 + contentTotalHeight;
         if (columntype == rwTypeW1 || columntype == rwTypeWB1)
         {
             if(gTextView)
@@ -621,53 +638,31 @@
         [nameLabel setFont:[UIFont systemFontOfSize:16]];
         [nameLabel setNumberOfLines:0];
         [cv addSubview:nameLabel];
-        
-        UIView *verLine=[self createVerticalLine:lineHeight];
-        [verLine setFrame:CGRectMake(VERLINE_LEFT, CONTENT_TITLEHEIGHT+contentTotalHeight,1,lineHeight)];
-        [cv addSubview:verLine];
     }
-    UIView *horLine=[self createHorizonalLine:300];
-    [horLine setFrame:CGRectMake(0, CONTENT_TITLEHEIGHT+valueLabelHeight+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE+contentTotalHeight,300, 1)];
+    
+    UIView *horLine=[self createHorizonalLine:320];
+    [horLine setFrame:CGRectMake(0, CONTENT_TITLEHEIGHT+valueLabelHeight+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE+contentTotalHeight,320, 2)];
     [cv addSubview:horLine];
+    
     if (extendType==SKPhrase&&columntype)
     {
         UIButton *phraseBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-        [phraseBtn setBackgroundImage:[UIImage imageNamed:@"btn_home_bg.png"] forState:UIControlStateNormal];
-        [phraseBtn setFrame:CGRectMake(CONTENT_WIDTH-65, contentTotalHeight+CONTENT_TITLEHEIGHT+45, 60, 37)];
+        [phraseBtn setBackgroundImage:Image(@"phrase_ecm") forState:UIControlStateNormal];
+        [phraseBtn setFrame:CGRectMake(CGRectGetMaxX(gTextView.frame) + 5,CGRectGetMinY(gTextView.frame) + 0.1, 32, 32)];
         [phraseBtn addTarget:self action:@selector(getPhrase:) forControlEvents:UIControlEventTouchUpInside];
+        [phraseBtn setTag:currentTextViewindex-1];//和textview对应起来
         [cv addSubview:phraseBtn];
-        [phraseBtn setTag:(currentTextViewindex-1)*10000];//和textview对应起来
-        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, phraseBtn.frame.size.width, phraseBtn.frame.size.height)];
-        [label setText:@"常用语"];
-        [label setTextAlignment:NSTextAlignmentCenter];
-        [label setBackgroundColor:[UIColor clearColor]];
-        [phraseBtn addSubview:label];
-        [phraseBtn bringSubviewToFront:label];
-        contentTotalHeight+=valueLabelHeight+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE+45+1;//加上了textView和button的高度
-    }
-    else if(extendType==SKSignature&&columntype)
-    {
+    }else if(extendType==SKSignature&&columntype){
         [gTextView setEditable:NO];
         UIButton *signatureBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-        [signatureBtn setBackgroundImage:[UIImage imageNamed:@"btn_home_bg.png"] forState:UIControlStateNormal];
-        [signatureBtn setFrame:CGRectMake(CONTENT_WIDTH-65, contentTotalHeight+CONTENT_TITLEHEIGHT+45, 60, 37)];
+        [signatureBtn setBackgroundImage:[UIImage imageNamed:@"sigh_ecm"] forState:UIControlStateNormal];
+        [signatureBtn setFrame:CGRectMake(CGRectGetMaxX(gTextView.frame) + 6,CGRectGetMinY(gTextView.frame) + 0.1, 32, 32)];
         [signatureBtn addTarget:self action:@selector(getSignatureWithTextView:) forControlEvents:UIControlEventTouchUpInside];
         [gTextView setIsTextSignature:YES];
+        [signatureBtn setTag:(currentTextViewindex-1)];//和textview对应起来
         [cv addSubview:signatureBtn];
-        [signatureBtn setTag:(currentTextViewindex-1)*10000];//和textview对应起来
-        //添加label解决图片遮盖文字
-        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, signatureBtn.frame.size.width, signatureBtn.frame.size.height)];
-        [label setText:@"签名"];
-        [label setTextAlignment:NSTextAlignmentCenter];
-        [label setBackgroundColor:[UIColor clearColor]];
-        [signatureBtn addSubview:label];
-        [signatureBtn bringSubviewToFront:label];
-        contentTotalHeight+=valueLabelHeight+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE+45+1;//加上了textView和button的高度
     }
-    else
-    {
-        contentTotalHeight+=valueLabelHeight+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE+1;
-    }
+    contentTotalHeight+=valueLabelHeight+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE;
 }
 
 //加入图像类型内容
@@ -682,9 +677,9 @@
     if (c.value==nil||[c.value isEqualToString:@""])
     {
         nameLabelY=contentTotalHeight+CONTENT_TITLEHEIGHT;
-        if ([FileUtils extendType:c]==SKSignature)
+        if ([FileUtils extendType:c] == SKSignature)
         {
-            HPGrowingTextView *gTextView=[[HPGrowingTextView alloc] initWithFrame:CGRectMake(VALUELABLE_LEFT, contentTotalHeight+CONTENT_TITLEHEIGHT, 0.01, 60)];
+            HPGrowingTextView *gTextView=[[HPGrowingTextView alloc] initWithFrame:CGRectMake(VALUELABLE_LEFT - 5, contentTotalHeight+CONTENT_TITLEHEIGHT, 0.01, 50)];
             gTextView.isForSignature=YES;
             gTextView.yLocation=totalHeight+CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight;
             [gTextView setTag:currentTextViewindex];
@@ -694,30 +689,22 @@
             [saveTextViewArray addObject:gTextView];
             currentTextViewindex++;
             TextDownView *tdView=[[TextDownView alloc] init];
-            CGRect tdRect=[tdView frame];
+            CGRect tdRect = tdView.frame;
             tdRect.origin.y=CGRectGetMaxY(gTextView.frame)+8;
             tdRect.origin.x=gTextView.frame.origin.x;
-            tdRect.size.height=32;
             tdView.frame=tdRect;
-            CGRect labelRect=[tdView.noticeLabel frame];
-            labelRect.size.height=32;
-            labelRect.origin.y=0;
-            tdView.noticeLabel.frame=labelRect;
-            [tdView.noticeLabel setLineBreakMode:NSLineBreakByWordWrapping];
-            [tdView.noticeLabel setNumberOfLines:2];
             tdView.noticeLabel.text=@"使用签名按键签名!";
             [tdView.flagImage setImage:[UIImage imageNamed:@"warning.png"]];
             [cv addSubview:tdView];
             
             SKImageView *signatureImageView;
             signatureImageView=[[SKImageView alloc] init];
-            [signatureImageView setFrame:CGRectMake(VALUELABLE_LEFT, contentTotalHeight+CONTENT_TITLEHEIGHT, 0, 40)];
-            [cv addSubview:signatureImageView];
-            //            UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-            //            [signatureImageView setUserInteractionEnabled:YES];
-            //[signatureImageView addGestureRecognizer:tapRecognizer];
+            signatureImageView.frame = CGRectMake(VALUELABLE_LEFT - 5, contentTotalHeight+CONTENT_TITLEHEIGHT, 0.01, 40);
             signatureImageView.tag=currentImageViewIndex*1001;
             signatureImageView.tdView=tdView;
+            [cv addSubview:signatureImageView];
+            nameLabelY=contentTotalHeight+CONTENT_TITLEHEIGHT+ (signatureImageView.frame.size.height-NAMELABLE_HEIGHT)/2;
+            
             rwType columnType = [FileUtils getRWType:c.columnDict];
             if (columnType==rwTypeW1||columnType==rwTypeWB1) {
                 signatureImageView.textView=gTextView;
@@ -732,137 +719,87 @@
             imageSignatureID=[[NSString alloc] initWithString:[c.columnDict objectForKey:@"id"]];
             [signatureIDArray addObject:imageSignatureID];
             
-            cv.tag=1002;
             UIButton *signatureBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-            [signatureBtn setBackgroundImage:[UIImage imageNamed:@"btn_home_bg.png"] forState:UIControlStateNormal];
-            [signatureBtn setFrame:CGRectMake(CONTENT_WIDTH-65, contentTotalHeight+CONTENT_TITLEHEIGHT+40, 60, 37)];
+            [signatureBtn setBackgroundImage:[UIImage imageNamed:@"sigh_ecm"] forState:UIControlStateNormal];
+            [signatureBtn setFrame:CGRectMake(CGRectGetMaxX(tdView.frame) + 6,CGRectGetMinY(tdView.frame) - 12, 32, 32)];
             [signatureBtn addTarget:self action:@selector(getSignature:) forControlEvents:UIControlEventTouchUpInside];
             [cv addSubview:signatureBtn];
             [signatureBtn setTag:currentImageViewIndex*100];
-            //添加label解决图片遮盖文字
-            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, signatureBtn.frame.size.width, signatureBtn.frame.size.height)];
-            [label setText:@"签名"];
-            [label setTextAlignment:NSTextAlignmentCenter];
-            [label setBackgroundColor:[UIColor clearColor]];
-            [signatureBtn addSubview:label];
-            [signatureBtn bringSubviewToFront:label];
             currentImageViewIndex++;
             
-            UIView *verLine=[self createVerticalLine:40+37];
-            UIView *horLine=[self createHorizonalLine:CONTENT_WIDTH];
-            [verLine setFrame:CGRectMake(VERLINE_LEFT, contentTotalHeight+CONTENT_TITLEHEIGHT, verLine.frame.size.width, verLine.frame.size.height)];
-            [horLine setFrame:CGRectMake(0,contentTotalHeight+CONTENT_TITLEHEIGHT+ 40+37, horLine.frame.size.width, horLine.frame.size.height)];
-            [cv addSubview:verLine];
+            UIView *horLine=[self createHorizonalLine:320];
+            [horLine setFrame:CGRectMake(0,contentTotalHeight+CONTENT_TITLEHEIGHT+ 40+37,320,2)];
             [cv addSubview:horLine];
-            contentTotalHeight+=40+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE+37;//加上了textView和button的高度
-        }
-        else
-        {
-            UIView *verLine=[self createVerticalLine:NAMELABLE_HEIGHT];
-            UIView *horLine=[self createHorizonalLine:CONTENT_WIDTH];
-            [verLine setFrame:CGRectMake(VERLINE_LEFT, contentTotalHeight+CONTENT_TITLEHEIGHT, verLine.frame.size.width, verLine.frame.size.height)];
-            [horLine setFrame:CGRectMake(0,contentTotalHeight+CONTENT_TITLEHEIGHT+ NAMELABLE_HEIGHT, horLine.frame.size.width, horLine.frame.size.height)];
-            [cv addSubview:verLine];
+            contentTotalHeight = CGRectGetMaxY(horLine.frame) - CONTENT_TITLEHEIGHT;
+        }else {
+            //这里需要测试
+            UIView *horLine=[self createHorizonalLine:320];
+            [horLine setFrame:CGRectMake(0,contentTotalHeight+CONTENT_TITLEHEIGHT+ NAMELABLE_HEIGHT,320,2)];
             [cv addSubview:horLine];
-            contentTotalHeight+=NAMELABLE_HEIGHT+1;
+            contentTotalHeight+=NAMELABLE_HEIGHT+2;
         }
-        
     }
     else
     {
         if ([FileUtils extendType:c]==SKSignature)
         {
             nameLabelY=contentTotalHeight+CONTENT_TITLEHEIGHT;
-            SKImageView *signatureImageView;
-            signatureImageView=[[SKImageView alloc] init];
-            [signatureImageView setFrame:CGRectMake(VALUELABLE_LEFT, contentTotalHeight+CONTENT_TITLEHEIGHT, 0, 40)];
-            [cv addSubview:signatureImageView];
-            // UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-            [signatureImageView setUserInteractionEnabled:YES];
-            //[signatureImageView addGestureRecognizer:tapRecognizer];
-            signatureImageView.tag=currentImageViewIndex*1001;
-            
             UIImage *image=[UIImage imageWithData:[NSData dataFromBase64String:c.value]];
+            CGRect imageRect = [self getImageViewSizeWithImageSize:image.size andLimitedWidth:VALUELABLE_WIDTH andLeftMargin:VALUELABLE_LEFT - 5];
+            SKImageView *signatureImageView;
+            signatureImageView = [[SKImageView alloc] init];
+            signatureImageView.tag=currentImageViewIndex*1001;
             [signatureImageView setImage:image];
-            CGRect imageRect = [self getImageViewSizeWithImageSize:image.size andLimitedWidth:VALUELABLE_WIDTH andLeftMargin:VALUELABLE_LEFT];
             [signatureImageView setFrame:imageRect];
-            
+            [cv addSubview:signatureImageView];
+            nameLabelY=contentTotalHeight+CONTENT_TITLEHEIGHT+ (signatureImageView.frame.size.height-NAMELABLE_HEIGHT)/2;
             
             [signatureImageViewArray addObject:signatureImageView];
             NSString *imageSignatureID;
             imageSignatureID=[[NSString alloc] initWithString:[c.columnDict objectForKey:@"id"]];
             [signatureIDArray addObject:imageSignatureID];
-            //标签+++++++++++++++++++++++
             TextDownView *tdView=[[TextDownView alloc] init];
             CGRect tdRect=[tdView frame];
             tdRect.origin.y=CGRectGetMaxY(signatureImageView.frame)+8;
             tdRect.origin.x=signatureImageView.frame.origin.x;
-            tdRect.size.height=32;
             tdView.frame=tdRect;
-            
-            CGRect labelRect=[tdView.noticeLabel frame];
-            labelRect.size.height=32;
-            labelRect.origin.y=0;
-            tdView.noticeLabel.frame=labelRect;
-            [tdView.noticeLabel setLineBreakMode:NSLineBreakByWordWrapping];
-            [tdView.noticeLabel setNumberOfLines:2];
-            //tdView.noticeLabel.text=@"使用手写签名或签名按键签名!";
             tdView.noticeLabel.text=@"使用签名按键签名!";
             [tdView.flagImage setImage:[UIImage imageNamed:@"warning.png"]];
             [cv addSubview:tdView];
             
-            cv.tag=1002;
             UIButton *signatureBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-            [signatureBtn setBackgroundImage:[UIImage imageNamed:@"btn_home_bg.png"] forState:UIControlStateNormal];
-            [signatureBtn setFrame:CGRectMake(CONTENT_WIDTH-65, contentTotalHeight+CONTENT_TITLEHEIGHT+40, 60, 37)];
+            [signatureBtn setBackgroundImage:[UIImage imageNamed:@"sigh_ecm"] forState:UIControlStateNormal];
+            [signatureBtn setFrame:CGRectMake(CGRectGetMaxX(tdView.frame) + 6,CGRectGetMinY(tdView.frame) - 12, 32, 32)];
             [signatureBtn addTarget:self action:@selector(getSignature:) forControlEvents:UIControlEventTouchUpInside];
             [cv addSubview:signatureBtn];
             [signatureBtn setTag:currentImageViewIndex*100];
-            //添加label解决图片遮盖文字
-            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, signatureBtn.frame.size.width, signatureBtn.frame.size.height)];
-            [label setText:@"签名"];
-            [label setTextAlignment:NSTextAlignmentCenter];
-            [label setBackgroundColor:[UIColor clearColor]];
-            [signatureBtn addSubview:label];
-            [signatureBtn bringSubviewToFront:label];
             currentImageViewIndex++;
             
-            UIView *verLine=[self createVerticalLine:40+37];
-            UIView *horLine=[self createHorizonalLine:CONTENT_WIDTH];
-            [verLine setFrame:CGRectMake(VERLINE_LEFT, contentTotalHeight+CONTENT_TITLEHEIGHT, verLine.frame.size.width, verLine.frame.size.height)];
-            [horLine setFrame:CGRectMake(0,contentTotalHeight+CONTENT_TITLEHEIGHT+ 40+37, horLine.frame.size.width, horLine.frame.size.height)];
-            [cv addSubview:verLine];
+            UIView *horLine=[self createHorizonalLine:320];
+            [horLine setFrame:CGRectMake(0,contentTotalHeight+CONTENT_TITLEHEIGHT+ signatureImageView.frame.size.height + 32,320,2)];
             [cv addSubview:horLine];
-            contentTotalHeight+=40+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE+37;//加上了textView和button的高度
-        }
-        else
-        {
+            contentTotalHeight = CGRectGetMaxY(horLine.frame) - CONTENT_TITLEHEIGHT;
+        }else{
             NSData *imageData=[NSData dataFromBase64String:c.value];
             UIImage *image=[UIImage imageWithData:imageData];
-            
             SKImageView *imageView=[[SKImageView alloc] initWithImage:image];
             imageView.base64String = c.value;
-            [imageView setFrame:[self getImageViewSizeWithImageSize:image.size andLimitedWidth:VALUELABLE_WIDTH andLeftMargin:VALUELABLE_LEFT]];
+            [imageView setFrame:[self getImageViewSizeWithImageSize:image.size andLimitedWidth:VALUELABLE_WIDTH andLeftMargin:VALUELABLE_LEFT - 5]];
             [cv addSubview:imageView];
-            
-            
             nameLabelY=contentTotalHeight+CONTENT_TITLEHEIGHT+ (imageView.frame.size.height-NAMELABLE_HEIGHT)/2;
-            UIView *verLine=[self createVerticalLine:imageView.frame.size.height];
-            UIView *horLine=[self createHorizonalLine:CONTENT_WIDTH];
-            [verLine setFrame:CGRectMake(VERLINE_LEFT, contentTotalHeight+CONTENT_TITLEHEIGHT, verLine.frame.size.width, verLine.frame.size.height)];
-            [horLine setFrame:CGRectMake(0,contentTotalHeight+CONTENT_TITLEHEIGHT+ imageView.frame.size.height, horLine.frame.size.width, horLine.frame.size.height)];
-            [cv addSubview:verLine];
+           
+            UIView *horLine=[self createHorizonalLine:320];
+            [horLine setFrame:CGRectMake(0,contentTotalHeight+CONTENT_TITLEHEIGHT+ imageView.frame.size.height,320,2)];
             [cv addSubview:horLine];
-            contentTotalHeight+=imageView.frame.size.height+1;
+            contentTotalHeight = CGRectGetMaxY(horLine.frame) - CONTENT_TITLEHEIGHT;
         }
     }
+    
     UILabel *nameLabel=[[UILabel alloc] initWithFrame:CGRectMake(8, nameLabelY, NAMELABLE_WIDTH, NAMELABLE_HEIGHT)];
     [nameLabel setText:[c.columnDict objectForKey:@"name"]];
     [nameLabel setFont:[UIFont systemFontOfSize:16]];
     [nameLabel setTextColor:[UIColor blackColor]];
     [cv addSubview:nameLabel];
-    
-    
 }
 
 -(void)addTextToCvWithElement:(element *)e andColumn:(column *)c andCv:(UIView *)cv andCs:(columns *)cs
@@ -884,8 +821,8 @@
         valueLabelHeight=24;
         gTextView = [[HPGrowingTextView alloc]
                      initWithFrame:CGRectMake(VALUELABLE_LEFT - 5,
-                                              CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight - 5,
-                                              VALUELABLE_WIDTH, 35)];
+                                              CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight,
+                                              VALUELABLE_WIDTH, 30)];
         gTextView.yLocation=totalHeight+CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight;
         [gTextView setTag:currentTextViewindex];
         [gTextView setDelegate:self];
@@ -895,62 +832,47 @@
         [gTextView setReturnKeyType:UIReturnKeyDone];
         [gTextView setCID:[e.elementDict objectForKey:@"id"]];
         [gTextView setNode:e.enode];
-        if (extendType==SKSignature||extendType==SKPhrase)
-        {
-            gTextView.hasBtnDownside=YES;
-        }
-        else
-        {
-            gTextView.hasBtnDownside=NO;
-        }
         [gTextView setExtendType:extendType];
-        [self roundTextView:gTextView];
+        [gTextView setBackgroundColor:COLOR(208, 208, 208)];
         [cv addSubview:gTextView];
         [saveColumnsArray addObject:e];
         [saveTextViewArray addObject:gTextView];
         currentTextViewindex++;
-    }
-    else//如果只是显示
-    {
+    }else{
         UILabel *valueLabel;
         valueLabel=[[UILabel alloc] initWithFrame:CGRectMake(VALUELABLE_LEFT, CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight, VALUELABLE_WIDTH, valueLabelHeight)];
-        
         [valueLabel setText:e.value];
         [valueLabel setFont:[UIFont boldSystemFontOfSize:16]];
         [valueLabel setNumberOfLines:0];
+        [cv addSubview:valueLabel];
         if (nameLabelString.length)
         {
             valueLabelHeight=[e.value sizeWithFont:[UIFont boldSystemFontOfSize:16] constrainedToSize:CGSizeMake(VALUELABLE_WIDTH, 1000) lineBreakMode:NSLineBreakByWordWrapping].height;
-            valueLabelHeight=valueLabelHeight==0?25:valueLabelHeight;
+            valueLabelHeight=valueLabelHeight <=32 ? 32 : valueLabelHeight;
             nameLabelHeight=[nameLabelString sizeWithFont:[UIFont boldSystemFontOfSize:16] constrainedToSize:CGSizeMake(NAMELABLE_WIDTH, 1000) lineBreakMode:NSLineBreakByWordWrapping].height;
             valueLabelHeight=valueLabelHeight<=nameLabelHeight?nameLabelHeight:valueLabelHeight;
-            [valueLabel setFrame:CGRectMake(VALUELABLE_LEFT, CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight, VALUELABLE_WIDTH, valueLabelHeight)];
+            [valueLabel setFrame:CGRectMake(VALUELABLE_LEFT - 5, CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight,VALUELABLE_WIDTH, valueLabelHeight)];
         }else{
             valueLabelHeight=[e.value sizeWithFont:[UIFont boldSystemFontOfSize:16] constrainedToSize:CGSizeMake(280, 1000) lineBreakMode:NSLineBreakByWordWrapping].height;
-            valueLabelHeight=valueLabelHeight==0?40:valueLabelHeight;
-            [valueLabel setFrame:CGRectMake(10, CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight, 280, valueLabelHeight)];
+            valueLabelHeight=valueLabelHeight <=32 ? 32 : valueLabelHeight;
+            [valueLabel setFrame:CGRectMake(20, CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight, 280, valueLabelHeight)];
         }
         //如果有明细
         if (extendType==SKColumnDetail)
         {
-            [valueLabel setFrame:CGRectMake(VALUELABLE_LEFT, CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight, VALUELABLE_WIDTH-80, valueLabelHeight)];
             UIButton *detailBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-            [detailBtn setBackgroundImage:[UIImage imageNamed:@"btn_home_bg.png"] forState:UIControlStateNormal];
-            [detailBtn setFrame:CGRectMake(CONTENT_WIDTH-65, contentTotalHeight+CONTENT_TITLEHEIGHT, 60, 37)];
-            [DetailIDArray addObject:[[c columnDict] objectForKey:@"id"]];
+            [detailBtn setImage:[UIImage imageNamed:@"icon_organize.png"] forState:UIControlStateNormal];
+            [detailBtn setFrame:CGRectMake(CGRectGetMaxX(valueLabel.frame) + 5,CGRectGetMinY(valueLabel.frame), 32, 32)];
+            [DetailIDArray addObject:c.columnDict[@"id"]];
             [detailBtn setTag:curretnDetailIndex];
             [detailBtn addTarget:self action:@selector(getColumnDetail:) forControlEvents:UIControlEventTouchUpInside];
-            //添加label解决图片遮盖文字
-            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, detailBtn.frame.size.width, detailBtn.frame.size.height)];
-            [label setText:@"明细"];
-            [label setTextAlignment:NSTextAlignmentCenter];
-            [label setBackgroundColor:[UIColor clearColor]];
-            [detailBtn addSubview:label];
-            [detailBtn bringSubviewToFront:label];
             [cv addSubview:detailBtn];
+            UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(getColumnDetail:)];
+            tap.view.tag = curretnDetailIndex;
+            valueLabel.userInteractionEnabled=YES;
+            [valueLabel addGestureRecognizer:tap];
             curretnDetailIndex++;
         }
-        [cv addSubview:valueLabel];
     }
     if (nameLabelString.length)
     {
@@ -963,7 +885,7 @@
                 [gTextView setNameLabelText:nameLabelString];
             }
         }
-        float nameLabelY=CONTENT_TITLEHEIGHT+8+contentTotalHeight;
+        float nameLabelY=CONTENT_TITLEHEIGHT+10+contentTotalHeight;
         UILabel *nameLabel=[[UILabel alloc] initWithFrame:CGRectMake(8, nameLabelY, NAMELABLE_WIDTH, valueLabelHeight)];
         [nameLabel setText:[e.elementDict objectForKey:@"name"]];
         [nameLabel setTextColor:[UIColor blackColor]];
@@ -975,39 +897,22 @@
     
     if (extendType==SKPhrase&&elementype){
         UIButton *phraseBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-        [phraseBtn setBackgroundImage:[UIImage imageNamed:@"btn_home_bg.png"] forState:UIControlStateNormal];
-        [phraseBtn setFrame:CGRectMake(CONTENT_WIDTH-65, contentTotalHeight+CONTENT_TITLEHEIGHT+45, 60, 37)];
+        [phraseBtn setBackgroundImage:Image(@"phrase_ecm") forState:UIControlStateNormal];
+        [phraseBtn setFrame:CGRectMake(CGRectGetMaxX(gTextView.frame) + 5,CGRectGetMinY(gTextView.frame) + 0.1, 32, 32)];
         [phraseBtn addTarget:self action:@selector(getPhrase:) forControlEvents:UIControlEventTouchUpInside];
+        [phraseBtn setTag:currentTextViewindex-1];//和textview对应起来
         [cv addSubview:phraseBtn];
-        [phraseBtn setTag:(currentTextViewindex-1)*10000];//和textview对应起来
-        //添加label解决图片遮盖文字
-        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, phraseBtn.frame.size.width, phraseBtn.frame.size.height)];
-        [label setText:@"常用语"];
-        [label setTextAlignment:NSTextAlignmentCenter];
-        [label setBackgroundColor:[UIColor clearColor]];
-        [phraseBtn addSubview:label];
-        [phraseBtn bringSubviewToFront:label];
-        contentTotalHeight+=valueLabelHeight+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE+45;//加上了textView和button的高度
     }else if(extendType==SKSignature&&elementype){
         [gTextView setEditable:NO];
         UIButton *signatureBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-        [signatureBtn setBackgroundImage:[UIImage imageNamed:@"btn_home_bg.png"] forState:UIControlStateNormal];
-        [signatureBtn setFrame:CGRectMake(CONTENT_WIDTH-65, contentTotalHeight+CONTENT_TITLEHEIGHT+45, 60, 37)];
+        [signatureBtn setBackgroundImage:[UIImage imageNamed:@"sigh_ecm"] forState:UIControlStateNormal];
+        [signatureBtn setFrame:CGRectMake(CGRectGetMaxX(gTextView.frame) + 6,CGRectGetMinY(gTextView.frame) + 0.1, 32, 32)];
         [signatureBtn addTarget:self action:@selector(getSignatureWithTextView:) forControlEvents:UIControlEventTouchUpInside];
         [gTextView setIsTextSignature:YES];
+        [signatureBtn setTag:(currentTextViewindex-1)];//和textview对应起来
         [cv addSubview:signatureBtn];
-        [signatureBtn setTag:(currentTextViewindex-1)*10000];//和textview对应起来
-        //添加label解决图片遮盖文字
-        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, signatureBtn.frame.size.width, signatureBtn.frame.size.height)];
-        [label setText:@"签名"];
-        [label setTextAlignment:NSTextAlignmentCenter];
-        [label setBackgroundColor:[UIColor clearColor]];
-        [signatureBtn addSubview:label];
-        [signatureBtn bringSubviewToFront:label];
-        contentTotalHeight+=valueLabelHeight+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE+45;//加上了textView和button的高度
-    }else{
-        contentTotalHeight+=valueLabelHeight+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE;
     }
+    contentTotalHeight+=valueLabelHeight+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE;
 }
 
 //加入图像类型内容
@@ -1024,8 +929,7 @@
         nameLabelY=contentTotalHeight+CONTENT_TITLEHEIGHT;
         if ([FileUtils extendTypeWithElement:e]==SKSignature)
         {
-            //gtextView设置nameLAbel
-            HPGrowingTextView *gTextView=[[HPGrowingTextView alloc] initWithFrame:CGRectMake(VALUELABLE_LEFT, contentTotalHeight+CONTENT_TITLEHEIGHT, 0.01, 60)];
+            HPGrowingTextView *gTextView=[[HPGrowingTextView alloc] initWithFrame:CGRectMake(VALUELABLE_LEFT - 5, contentTotalHeight+CONTENT_TITLEHEIGHT, 0.01, 50)];
             gTextView.isForSignature=YES;
             gTextView.yLocation=totalHeight+CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight;
             [gTextView setTag:currentTextViewindex];
@@ -1038,28 +942,16 @@
             TextDownView *tdView=[[TextDownView alloc] init];
             CGRect tdRect=[tdView frame];
             tdRect.origin.y=CGRectGetMaxY(gTextView.frame)+8;
-            tdRect.origin.x=gTextView.frame.origin.x-5;//5 用于对齐
-            tdRect.size.height=32;
+            tdRect.origin.x=gTextView.frame.origin.x;
             tdView.frame=tdRect;
-            CGRect labelRect=[tdView.noticeLabel frame];
-            labelRect.size.height=32;
-            labelRect.origin.y=0;
-            tdView.noticeLabel.frame=labelRect;
-            
-            [tdView.noticeLabel setLineBreakMode:NSLineBreakByWordWrapping];
-            [tdView.noticeLabel setNumberOfLines:2];
-            //tdView.noticeLabel.text=@"使用手写签名或签名按键签名!";
             tdView.noticeLabel.text=@"使用签名按键签名!";
             [tdView.flagImage setImage:[UIImage imageNamed:@"warning.png"]];
             [cv addSubview:tdView];
             
-            
             SKImageView *signatureImageView;
             signatureImageView=[[SKImageView alloc] init];
             [signatureImageView setFrame:CGRectMake(VALUELABLE_LEFT, contentTotalHeight+CONTENT_TITLEHEIGHT, 160, 60)];
-            //UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
             [signatureImageView setUserInteractionEnabled:YES];
-            //[signatureImageView addGestureRecognizer:tapRecognizer];
             signatureImageView.tag=currentImageViewIndex*1001;
             
             signatureImageView.tdView=tdView;
@@ -1067,109 +959,73 @@
             if (columnType==rwTypeW1||columnType==rwTypeWB1) {
                 signatureImageView.textView=gTextView;
                 gTextView.isHadToBeFill=YES;
+                [gTextView setNameLabelText:e.elementDict[@"name"]];
             }
             [signatureImageView setXmlnode:e.enode];
             [signatureImageView setCs:cs];
             [signatureImageView.cs setIsWritenColumns:YES];
             signatureImageView.nameLabelText=[e.elementDict objectForKey:@"name"];
             [signatureImageViewArray addObject:signatureImageView];
-            NSString *imageSignatureID;
-            imageSignatureID=[[NSString alloc] initWithString:[e.elementDict objectForKey:@"id"]];
-            [signatureIDArray addObject:imageSignatureID];
-            
+            [signatureIDArray addObject:e.elementDict[@"id"]];
             [cv addSubview:signatureImageView];
             
             UIButton *signatureBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-            [signatureBtn setBackgroundImage:[UIImage imageNamed:@"btn_home_bg.png"] forState:UIControlStateNormal];
-            [signatureBtn setFrame:CGRectMake(CONTENT_WIDTH-65, contentTotalHeight+CONTENT_TITLEHEIGHT+40, 60, 37)];
+            [signatureBtn setBackgroundImage:[UIImage imageNamed:@"sigh_ecm"] forState:UIControlStateNormal];
+            [signatureBtn setFrame:CGRectMake(CGRectGetMaxX(tdView.frame) + 6,CGRectGetMinY(tdView.frame) - 12, 32, 32)];
             [signatureBtn addTarget:self action:@selector(getSignature:) forControlEvents:UIControlEventTouchUpInside];
             [cv addSubview:signatureBtn];
             [signatureBtn setTag:currentImageViewIndex*100];
-            //添加label解决图片遮盖文字
-            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, signatureBtn.frame.size.width, signatureBtn.frame.size.height)];
-            [label setText:@"签名"];
-            [label setTextAlignment:NSTextAlignmentCenter];
-            [label setBackgroundColor:[UIColor clearColor]];
-            [signatureBtn addSubview:label];
-            [signatureBtn bringSubviewToFront:label];
             currentImageViewIndex++;
-            contentTotalHeight+=40+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE+37;//加上了textView和button的高度
+            contentTotalHeight += 40 + CONTENT_TOPEDGE + CONTENT_BUTTOMEDGE + 37;//加上了textView和button的高度
         }
         else
         {
-            contentTotalHeight+=NAMELABLE_HEIGHT;
+            contentTotalHeight += NAMELABLE_HEIGHT;
         }
     }
     else
     {
-        //注释
         if ([FileUtils extendTypeWithElement:e]==SKSignature)
         {
             nameLabelY=contentTotalHeight+CONTENT_TITLEHEIGHT;
+            UIImage *image=[UIImage imageWithData:[NSData dataFromBase64String:e.value]];
+            CGRect imageRect = [self getImageViewSizeWithImageSize:image.size andLimitedWidth:VALUELABLE_WIDTH andLeftMargin:VALUELABLE_LEFT - 5];
             SKImageView *signatureImageView;
             signatureImageView=[[SKImageView alloc] init];
-            //UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-            [signatureImageView setUserInteractionEnabled:YES];
             signatureImageView.tag=currentImageViewIndex*1001;
-            UIImage *image=[UIImage imageWithData:[NSData dataFromBase64String:e.value]];
-            [signatureImageView setImage:image];
+            signatureImageView.image =image;
             [signatureImageView setBase64String:e.value];
-            CGRect imageRect = [self getImageViewSizeWithImageSize:image.size andLimitedWidth:VALUELABLE_WIDTH andLeftMargin:VALUELABLE_LEFT];
             [signatureImageView setFrame:imageRect];
+            [cv addSubview:signatureImageView];
+            
+            nameLabelY=contentTotalHeight+CONTENT_TITLEHEIGHT+ (signatureImageView.frame.size.height-NAMELABLE_HEIGHT)/2;
             [signatureImageViewArray addObject:signatureImageView];
+            [signatureIDArray addObject:e.elementDict[@"id"]];
             
-            NSString *imageSignatureID;
-            imageSignatureID=[[NSString alloc] initWithString:[e.elementDict objectForKey:@"id"]];
-            [signatureIDArray addObject:imageSignatureID];
-            
-            //标签+++++++++++++++++++++++
             TextDownView *tdView=[[TextDownView alloc] init];
             CGRect tdRect=[tdView frame];
             tdRect.origin.y=CGRectGetMaxY(signatureImageView.frame)+8;
             tdRect.origin.x=signatureImageView.frame.origin.x;
-            tdRect.size.height=32;
             tdView.frame=tdRect;
-            
-            CGRect labelRect=[tdView.noticeLabel frame];
-            labelRect.size.height=32;
-            labelRect.origin.y=0;
-            tdView.noticeLabel.frame=labelRect;
-            [tdView.noticeLabel setLineBreakMode:NSLineBreakByWordWrapping];
-            [tdView.noticeLabel setNumberOfLines:2];
-            //tdView.noticeLabel.text=@"使用手写签名或签名按键签名!";
             tdView.noticeLabel.text=@"使用签名按键签名!";
             [tdView.flagImage setImage:[UIImage imageNamed:@"warning.png"]];
             [cv addSubview:tdView];
-            //++++++++++++++++++++
-            
-            [cv addSubview:signatureImageView];
             
             UIButton *signatureBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-            [signatureBtn setBackgroundImage:[UIImage imageNamed:@"btn_home_bg.png"] forState:UIControlStateNormal];
-            [signatureBtn setFrame:CGRectMake(CONTENT_WIDTH-65, contentTotalHeight+CONTENT_TITLEHEIGHT+40, 60, 37)];
+            [signatureBtn setBackgroundImage:[UIImage imageNamed:@"sigh_ecm"] forState:UIControlStateNormal];
+            [signatureBtn setFrame:CGRectMake(CGRectGetMaxX(tdView.frame) + 6,CGRectGetMinY(tdView.frame) - 12, 32, 32)];
             [signatureBtn addTarget:self action:@selector(getSignature:) forControlEvents:UIControlEventTouchUpInside];
             [cv addSubview:signatureBtn];
             [signatureBtn setTag:currentImageViewIndex*100];
-            //添加label解决图片遮盖文字
-            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, signatureBtn.frame.size.width, signatureBtn.frame.size.height)];
-            [label setText:@"签名"];
-            [label setTextAlignment:NSTextAlignmentCenter];
-            [label setBackgroundColor:[UIColor clearColor]];
-            [signatureBtn addSubview:label];
-            [signatureBtn bringSubviewToFront:label];
             currentImageViewIndex++;
-            
-            contentTotalHeight+=40+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE+37;//加上了textView和button的高度
-        }
-        else//注释
-        {
+            contentTotalHeight = CGRectGetMaxY(signatureBtn.frame) - CONTENT_TITLEHEIGHT;//加上了textView和button的高度
+        }else{
             UIImage *image=[UIImage imageWithData:[NSData dataFromBase64String:e.value]];
             SKImageView *imageView=[[SKImageView alloc] initWithImage:image];
             imageView.base64String = e.value;
             CGRect imageRect = [self getImageViewSizeWithImageSize:image.size andLimitedWidth:VALUELABLE_WIDTH andLeftMargin:VALUELABLE_LEFT];
             [imageView setFrame:imageRect];
             [cv addSubview:imageView];
-            
             nameLabelY=contentTotalHeight+CONTENT_TITLEHEIGHT+ (imageView.frame.size.height-NAMELABLE_HEIGHT)/2;
             contentTotalHeight+=imageView.frame.size.height;
         }
@@ -1345,21 +1201,18 @@
 -(void)setCustomFrame:(HPGrowingTextView *)textView andChangeHeight:(float)diff
 {
     float ylocation = textView.frame.origin.y;
-    for (UIView *v in textView.cv.subviews)
-    {
-        if (v.frame.origin.y > ylocation) //如果是在textView下面 则修改其位置
-        {
+    for (UIView *v in textView.cv.subviews){
+        if (v.frame.origin.y > ylocation){
             CGRect vRect=v.frame;
             vRect.origin.y-=diff/((v.tag == textView.tag) + 1);
             v.frame=vRect;
         }
-        else if(v.frame.size.width==1)  //如果是竖线 则增加或者减少长度
-        {
-            CGRect vRect=v.frame;
-            vRect.size.height-=diff;
-            v.frame=vRect;
-        }
     }
+    
+    CGRect cvrect = textView.cv.frame;
+    cvrect.size.height-=diff;
+    textView.cv.frame=cvrect;
+    
     CGRect contentRect=contentView.frame;
     contentRect.size.height-=diff;
     contentView.frame=contentRect;
@@ -1376,8 +1229,8 @@
         {
             TextDownView *tdView=[[TextDownView alloc] init];
             CGRect tdRect=[tdView frame];
-            tdRect.origin.y=CGRectGetMaxY(growingTextView.frame)+5;
-            tdRect.origin.x=growingTextView.frame.origin.x;
+            tdRect.origin.y=CGRectGetMaxY(growingTextView.frame);
+            tdRect.origin.x=CGRectGetMinX(growingTextView.frame);
             tdView.frame=tdRect;
             switch (extendType)
             {
@@ -1397,11 +1250,13 @@
             [tdView.flagImage setImage:[UIImage imageNamed:@"warning.png"]];
             [growingTextView.cv addSubview:tdView];
             growingTextView.textDownView=tdView;
+            
+            
             if (!growingTextView.hasBtnDownside)
             {
                 [mainScrollview setContentSize:CGSizeMake(mainScrollview.contentSize.width, mainScrollview.contentSize.height+tdRect.size.height)];
-                float diff=tdRect.size.height;
-                float ylocation = CGRectGetMaxY(tdRect);
+                float diff = tdRect.size.height;
+                float ylocation = CGRectGetMinY(tdRect);
                 for (UIView *v in growingTextView.cv.subviews)
                 {
                     if (v.frame.origin.y > ylocation) //如果是在textView下面 则修改其位置
@@ -1410,17 +1265,16 @@
                         vRect.origin.y+=diff;
                         v.frame=vRect;
                     }
-                    else if(v.frame.size.width==1)  //如果是竖线 则增加或者减少长度
-                    {
-                        CGRect vRect=v.frame;
-                        vRect.size.height+=diff;
-                        v.frame=vRect;
-                    }
                 }
                 //设置整个contentView的高度
                 CGRect contentRect=contentView.frame;
                 contentRect.size.height+=diff;
                 contentView.frame=contentRect;
+                
+                CGRect cvrect = growingTextView.cv.frame;
+                cvrect.size.height+=diff;
+                growingTextView.cv.frame=cvrect;
+                
                 //设置contentView种其他CustomView的Y轴位置
                 for (UIView *v in contentView.subviews)
                 {
@@ -1464,7 +1318,6 @@
 {
     float diff = (growingTextView.frame.size.height - height);
     if ((int)diff == 0) return;
-    
     [mainScrollview setContentSize:CGSizeMake(mainScrollview.contentSize.width, mainScrollview.contentSize.height-diff)];
     [self setCustomFrame:growingTextView andChangeHeight:diff];
     
@@ -1492,7 +1345,7 @@
         [growingTextView.textDownView setHidden:NO];
         if (![growingTextView.text isEqualToString:@""])
         {
-            [growingTextView.textDownView setHidden:YES];
+            //[growingTextView.textDownView setHidden:YES];
         }
         else
         {
@@ -1673,8 +1526,8 @@
 -(void)getPhrase:(UIButton*)sender
 {
     SKCommonLanguageController *lc = [[SKCommonLanguageController alloc] init];
-    lc.textViewKey=[NSString stringWithFormat:@"%d",(int)(sender.tag/10000)];
-    HPGrowingTextView *textV=(HPGrowingTextView *)[self.view viewWithTag:((UIButton *)sender).tag/10000];
+    lc.textViewKey=[NSString stringWithFormat:@"%d",(int)(sender.tag)];
+    HPGrowingTextView *textV=(HPGrowingTextView *)[self.view viewWithTag:((UIButton *)sender).tag];
     lc.textViewText=textV.text;
     currentTextViewindex = [saveTextViewArray indexOfObject:textV];
     [self.navigationController pushViewController:lc animated:YES];
@@ -1687,7 +1540,7 @@
  */
 -(void)getSignatureWithTextView:(id)sender
 {
-    HPGrowingTextView *textV=(HPGrowingTextView *)[self.view viewWithTag:((UIButton *)sender).tag/10000];
+    HPGrowingTextView *textV=(HPGrowingTextView *)[self.view viewWithTag:((UIButton *)sender).tag];
     textV.isTextSignature = YES;//这里其实可以去掉 改掉以后
     if (![textV.text isEqualToString:@""]&&![textV.text isEqualToString:[APPUtils userName]])
     {
@@ -1719,14 +1572,13 @@
         [signatureImageView.tdView setHidden:NO];
         return;
     }
-    NSURL* signatureUrl = [DataServiceURLs getSignature:[APPUtils userUid] TFRM:[GTaskDetailInfo objectForKey:@"TFRM"] Style:0];
+    NSURL* signatureUrl = [DataServiceURLs getSignature:[APPUtils userUid] TFRM:GTaskDetailInfo[@"TFRM"] Style:@"0"];
     
     SKHTTPRequest *request = [SKHTTPRequest requestWithURL:signatureUrl];
     __weak SKHTTPRequest *req = request;
     [request setCompletionBlock:^{
         if (req.responseStatusCode == 500) {
             [BWStatusBarOverlay showErrorWithMessage:@"服务器网络故障!" duration:1 animated:1];
-            
             return;
         }
         GDataXMLDocument* tempdoc = [[GDataXMLDocument alloc] initWithData:req.responseData encoding:NSUTF8StringEncoding error:0] ;
@@ -1768,7 +1620,13 @@
 {
     SKColumnDetailController *dc=[[SKColumnDetailController alloc] init];
     [dc setFlowInstanceID:[GTaskDetailInfo objectForKey:@"FLOWINSTANCEID"]];
-    [dc setUniqueID:[DetailIDArray objectAtIndex:((UIButton *)sender).tag]];
+    if ([sender class] == [UITapGestureRecognizer class]) {
+        UITapGestureRecognizer* gesture = (UITapGestureRecognizer*)sender;
+        [dc setUniqueID:[DetailIDArray objectAtIndex:gesture.view.tag]];
+    }else{
+        UIButton* button = (UIButton*)sender;
+        [dc setUniqueID:[DetailIDArray objectAtIndex:button.tag]];
+    }
     [dc setFrom:[GTaskDetailInfo objectForKey:@"TFRM"]];
     [self.navigationController pushViewController:dc animated:YES];
 }
@@ -1877,7 +1735,7 @@
     }
     
     xmlstring = [xmlstring stringByAppendingString:@"</root>"];
-    NSLog(@"%@",xmlstring);
+    //NSLog(@"%@",xmlstring);
     [self saveWithSaveXml:xmlstring];
 }
 
@@ -1915,7 +1773,6 @@
             else
             {
                 SKNextBranchesController* nb = [[SKNextBranchesController alloc] initWithDictionary:GTaskDetailInfo];
-                nb.transactBid = [NSString string];
                 [self.navigationController pushViewController:nb animated:YES];
             }
         }else{
@@ -1925,6 +1782,8 @@
                 [self backtoItem];
             }
         }
+        
+        
         [myToolBar.thirdButton setEnabled:YES];
     }];
     [saveDatarequest setFailedBlock:^{

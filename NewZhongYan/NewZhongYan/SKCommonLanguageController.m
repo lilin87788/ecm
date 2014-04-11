@@ -121,27 +121,14 @@ BOOL isEditing;
     }
     [phraseTextField setDelegate:self];
     [phraseTextField setReturnKeyType:UIReturnKeyDone];
-    [phraseTextField setMaxNumberOfLines:3];//最多两行
-    [self roundTextView:phraseTextField];
+    [phraseTextField setMaxNumberOfLines:3];//最多两行]
+    [phraseTextField setBackgroundColor:COLOR(208, 208, 208)];
     [downView addSubview:phraseTextField];
     
-    
     UIButton *addBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [addBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    [addBtn.titleLabel setTextColor:[UIColor redColor]];
-    
-    [addBtn setBackgroundImage:[UIImage imageNamed:@"btn_home_bg.png"] forState:UIControlStateNormal];
-    [addBtn setFrame:CGRectMake(270, 3, 45, 40)];
-    
+    [addBtn setImage:[UIImage imageNamed:@"sigh_ecm"] forState:UIControlStateNormal];
+    [addBtn setFrame:CGRectMake(270, 5, 45, 40)];
     [addBtn addTarget:self action:@selector(addPhrase:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, addBtn.frame.size.width, addBtn.frame.size.height)];
-    [label setText:@"添加"];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [label setBackgroundColor:[UIColor clearColor]];
-    [addBtn addSubview:label];
-    [addBtn bringSubviewToFront:label];
-    
     [downView addSubview:addBtn];
     isEditing=NO;
 }

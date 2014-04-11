@@ -693,7 +693,6 @@ id getColValue(sqlite3_stmt *stmt,int iCol)
 }
 
 //待办提醒相关表
-
 //-1 待办 0
 //handle
 //0表示：不可处理
@@ -770,7 +769,6 @@ id getColValue(sqlite3_stmt *stmt,int iCol)
                               READED              SMALLINT           DEFAULT 0,\
                               READ                INTEGER           DEFAULT 0\
                               );",@"T_CODOCS"];
-    
     
     NSString* t_codocstp_sql  = [NSString stringWithFormat:@"create table  if not exists %@\
                                  (\

@@ -93,10 +93,8 @@
 - (NSString *) uniqueGlobalDeviceIdentifier{
     NSString *macaddress = [[UIDevice currentDevice] macaddress];
     NSString *uniqueIdentifier = [macaddress stringFromMD5];
-    NSLog(@"OpenUDID == %@",[OpenUDID value]);
-    NSLog(@"OpenUDID == %@",uniqueIdentifier);
+    NSLog(@"[OpenUDID value] == %@",[OpenUDID value]);
     if (IS_IOS7) {
-        NSLog(@"OpenUDID == %@",[[[UIDevice currentDevice] identifierForVendor] UUIDString]);
         return [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     }
     return uniqueIdentifier;

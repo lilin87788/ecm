@@ -18,7 +18,13 @@
 #import "SKViewController.h"
 #import "SKAddressController.h"
 @interface SKTransactorController ()
-//构建视图
+{
+    UIView* titleView;
+    UILabel* titleLabel;
+    UIView* leftBlockView;
+    NSString* currrentBid;
+    NSMutableArray* bidArray;
+}
 -(void)drawView;
 -(void)drawAddSignalView;
 @end
@@ -47,9 +53,7 @@
 
 - (void)requestFinished:(SKHTTPRequest *)request
 {
-    //NSLog(@"%@",request.responseString);
     if (request.responseStatusCode != 200) {
-        //[utils AlterView:self.view Title:@"尊敬的用户您好:" Deatil:@"网络异常请联系供应商"];
         [BWStatusBarOverlay showErrorWithMessage:@"网络异常请联系供应商" duration:1 animated:1];
         return;
     }
@@ -92,34 +96,37 @@
 
 -(void)drawAddSignalView
 {
-    currentHeight += CGRectGetMaxY([self.view viewWithTag:1000].frame) + 5;
-    UILabel* addsigLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, currentHeight + 5, 100, 20)];
-    addsigLabel.text = @"   加签人";
-    [self.view addSubview:addsigLabel];
+    UILabel* addsigLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(titleLabel.frame) + 5, 100, 20)];
+    addsigLabel.text = @"加签人";
+    [titleView addSubview:addsigLabel];
     
     UIButton* btn = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    [btn setFrame:CGRectMake(320 - 50, currentHeight, 30, 30)];
+    [btn setFrame:CGRectMake(320 - 30, CGRectGetMaxY(titleLabel.frame), 25, 25)];
     [btn addTarget:self action:@selector(addSignalPeople) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
+    [titleView addSubview:btn];
     
-    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, currentHeight + 30, 320, 0)];
+    CGRect rect = titleView.frame;
+    rect.size.height = CGRectGetMaxY(btn.frame);
+    titleView.frame = rect;
+    
+    rect = leftBlockView.frame;
+    rect.size.height = CGRectGetMaxY(btn.frame);
+    leftBlockView.frame = rect;
+    
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(titleView.frame), 320, 20)];
     if ([self.pts.selection isEqualToString:@"multi"]) {
         [label setText:@"   办理人选择 (多选)"];
     }else{
         [label setText:@"   办理人选择 (单选)"];
     }
     
-    [label setTextColor:COLOR(51,181,229)];
-    [self fitLabel:label];
-    currentHeight += label.frame.size.height + 5;
+    [label setTextColor:COLOR(96,96,96)];
+    label.numberOfLines = 0;
+    [label setFont:[UIFont systemFontOfSize:16]];
     [self.view addSubview:label];
+
     
-    //分割线
-    UIImageView* DividingLines = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_line.png"]];
-    [DividingLines setFrame:CGRectMake(0, currentHeight + 30, 320, 2)];
-    [self.view addSubview:DividingLines];
-    
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(DividingLines.frame) + 1 , 320,SCREEN_HEIGHT - 49 - CGRectGetMaxY(DividingLines.frame) - 1)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(label.frame) , 320,SCREEN_HEIGHT - 49 - CGRectGetMaxY(label.frame) )];
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
     [_tableView setBounces:NO];
@@ -132,28 +139,22 @@
 
 -(void)drawView
 {
-    UILabel *titleLabel = (UILabel*)[self.view viewWithTag:1000];
-    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(titleLabel.frame), 320, 0)];
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(titleView.frame), 320, 20)];
     if ([self.pts.selection isEqualToString:@"multi"]) {
-         [label setText:@"   办理人选择 (多选)"];
+         [label setText:@"    办理人选择 (多选)"];
     }else{
-         [label setText:@"   办理人选择 (单选)"];
+         [label setText:@"    办理人选择 (单选)"];
     }
-   
-    [label setTextColor:COLOR(51,181,229)];
-    [self fitLabel:label];
+    [label setBackgroundColor:COLOR(239, 239, 239)];
+    [label setTextColor:COLOR(96,96,96)];
+    [label setFont:[UIFont boldSystemFontOfSize:15]];
     [self.view addSubview:label];
     
-    //分割线
-    UIImageView* DividingLines = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_line.png"]];
-    [DividingLines setFrame:CGRectMake(0, CGRectGetMaxY(label.frame) + 5, 320, 2)];
-    [self.view addSubview:DividingLines];
     _tableView = [[UITableView alloc] init];
     if (IS_IOS7) {
-        [_tableView setFrame:CGRectMake(0,CGRectGetMaxY(DividingLines.frame),320,SCREEN_HEIGHT - CGRectGetMaxY(DividingLines.frame) - 49)];
+        [_tableView setFrame:CGRectMake(0,CGRectGetMaxY(label.frame),320,SCREEN_HEIGHT - CGRectGetMaxY(label.frame) - 49)];
     }else{
-        [_tableView setFrame:CGRectMake(0,CGRectGetMaxY(DividingLines.frame),320,ScreenHeight - CGRectGetMaxY(DividingLines.frame) - 49)];
-
+        [_tableView setFrame:CGRectMake(0,CGRectGetMaxY(label.frame),320,ScreenHeight - CGRectGetMaxY(label.frame) - 49)];
     }
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
@@ -168,19 +169,11 @@
 {
     self = [super init];
     if (self) {
-        
         selectedRow = -1;
-        self.bid = abid;
         self.GTaskInfo = dictionary;
         self.pts = [[participants alloc] init];
-        NSURL* participantsURL = [DataServiceURLs getParticipants:[APPUtils userUid]
-                                                             TFRM:[GTaskInfo objectForKey:@"TFRM"]
-                                                       Workitemid:[GTaskInfo objectForKey:@"AID"]
-                                                         BranchId:self.bid];
-        pRequest = [[SKHTTPRequest alloc] initWithURL:participantsURL];
-        [pRequest setDefaultResponseEncoding:NSUTF8StringEncoding];
-        [pRequest setDelegate:self];
-        [pRequest startAsynchronous];
+        bidArray = [NSMutableArray array];
+        currrentBid = abid;
     }
     return self;
 }
@@ -301,18 +294,15 @@
 
 -(UILabel*)selfAdaptionLable:(UIFont*)font Width:(CGFloat)width Text:(NSString*)text
 {
-    CGFloat rowHeight = [@"李林" sizeWithFont:font constrainedToSize:CGSizeMake(320, MAXFLOAT)].height;
     CGFloat height = [text sizeWithFont:font
                       constrainedToSize: CGSizeMake(width,MAXFLOAT)
                           lineBreakMode:NSLineBreakByWordWrapping].height; //expectedLabelSizeOne.height 就是内容的高度
-    CGRect labelRect = CGRectMake((320 - width)/2.0, TopY ,width,height);
+    CGRect labelRect = CGRectMake(10, 5 ,width,height);
     UILabel *label = [[UILabel alloc] initWithFrame:labelRect];
     label.lineBreakMode = UILineBreakModeWordWrap;
     label.numberOfLines = 0;//上面两行设置多行显示s
     label.font = font;
     label.text = text;
-    if (height > rowHeight) [label setTextAlignment:NSTextAlignmentLeft];
-    else             [label setTextAlignment:NSTextAlignmentCenter];
     return label;
 }
 
@@ -343,25 +333,50 @@
                                                  name:@"EmailContact"
                                                object:nil];
     
-    self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"办理人";
-    UILabel* titleLabel = [self selfAdaptionLable:[UIFont systemFontOfSize:17]
-                                             Width:300
-                                              Text:[self.GTaskInfo objectForKey:@"TITL"]];
-    [titleLabel setTag:1000];
-    [titleLabel setTextColor:[UIColor grayColor]];
-    [titleLabel setShadowColor:[UIColor whiteColor]];
-    [titleLabel setShadowOffset:CGSizeMake(-1, -1)];
-    [titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
-    [self.view addSubview:titleLabel];
+    [self.view setBackgroundColor:COLOR(239, 239, 239)];
+    
+    titleLabel = [self selfAdaptionLable:[UIFont boldSystemFontOfSize:18]
+                                   Width:300
+                                    Text:[self.GTaskInfo objectForKey:@"TITL"]];
+    
+    titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+    [titleView setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:titleView];
+    
+    leftBlockView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5,CGRectGetMaxY(titleLabel.frame) + 20)];
+    [leftBlockView setBackgroundColor:COLOR(177, 0, 4)];
+    [titleView addSubview:titleLabel];
+    [titleView addSubview:leftBlockView];
+    [titleView setFrame: CGRectMake(0, TopY, 320, CGRectGetMaxY(titleLabel.frame) + 20)];
     
     SKSToolBar* myToolBar = [[SKSToolBar alloc] initWithFrame:CGRectMake(0,BottomY - 49, 320, 49)];
-    [myToolBar.homeButton addTarget:self action:@selector(backToRoot:) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.secondButton addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.firstButton addTarget:self action:@selector(lastBranch:) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar setFirstItem:@"btn_last_ecm" Title:@"上一步"];
     [myToolBar setSecondItem:@"btn_submit" Title:@"提交"];
     [self.view addSubview:myToolBar];
+    
+    for(UIViewController* controller in self.navigationController.viewControllers)
+    {
+        if([controller class] == [SKNextBranchesController class])
+        {
+            SKNextBranchesController* nb = (SKNextBranchesController*)controller;
+            [bidArray addObject:nb.bid];
+        }
+    }
+    [bidArray addObject:currrentBid];
+    [bidArray removeObjectAtIndex:0];
+    NSLog(@"self.bid = %@   %@",self.bid,[bidArray componentsJoinedByString:@":"]);
+    self.bid = [bidArray componentsJoinedByString:@":"];
+    NSURL* participantsURL = [DataServiceURLs getParticipants:[APPUtils userUid]
+                                                         TFRM:[GTaskInfo objectForKey:@"TFRM"]
+                                                   Workitemid:[GTaskInfo objectForKey:@"AID"]
+                                                     BranchId:self.bid];
+    pRequest = [[SKHTTPRequest alloc] initWithURL:participantsURL];
+    [pRequest setDefaultResponseEncoding:NSUTF8StringEncoding];
+    [pRequest setDelegate:self];
+    [pRequest startAsynchronous];
 }
 
 #pragma mark -TableView 代理

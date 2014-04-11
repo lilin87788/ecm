@@ -23,7 +23,15 @@
         previewController = [[SKQLPreviewController alloc] init];
         previewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         
-        _attachLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 12, 235, 20)];
+        CGRect rect = CGRectInset(self.bounds, 1, 5);
+        UIView* bgview = [[UIView alloc] initWithFrame:rect];
+        [bgview setBackgroundColor:[UIColor clearColor]];
+        [self addSubview:bgview];
+        bgview.layer.borderWidth = 1;
+        bgview.layer.borderColor = [COLOR(51, 183, 229) CGColor];
+        bgview.layer.cornerRadius = 4;
+        
+        _attachLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 14, 235, 20)];
         [_attachLabel setTextColor:[UIColor blackColor]];
         [_attachLabel setBackgroundColor:[UIColor clearColor]];
         [_attachLabel setTextAlignment:NSTextAlignmentLeft];
@@ -56,13 +64,12 @@
         }
         //[progresser setCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2 + 15)];
         [progresser setCenter:CGPointMake(self.frame.size.width/2 - 60, self.frame.size.height/2 + 15)];
-        CGRect rect = progresser.frame;
+        rect = progresser.frame;
         rect.size.width += 90;
         progresser.frame = rect;
         [progresser setHidden:YES];
         [self addSubview:progresser];
         [self addTarget:self action:@selector(loadAttachment) forControlEvents:UIControlEventTouchUpInside];
-
     }
     return self;
 }
@@ -73,6 +80,15 @@
     if (self) {
         previewController = [[SKQLPreviewController alloc] init];
         previewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        
+        CGRect rect = CGRectInset(self.bounds, 1, 5);
+        UIView* bgview = [[UIView alloc] initWithFrame:rect];
+        [bgview setBackgroundColor:[UIColor clearColor]];
+        [self addSubview:bgview];
+        bgview.layer.borderWidth = 1;
+        bgview.layer.borderColor = [COLOR(51, 183, 229) CGColor];
+        bgview.layer.cornerRadius = 4;
+        
         _attachLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 12, 235, 20)];
         [_attachLabel setTextColor:[UIColor blackColor]];
         [_attachLabel setBackgroundColor:[UIColor clearColor]];
@@ -100,8 +116,8 @@
         [self addSubview:_downloadButton];
         
         progresser = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-        [progresser setCenter:CGPointMake(self.frame.size.width/2 - 60, self.frame.size.height/2 + 15)];
-        CGRect rect = progresser.frame;
+        [progresser setCenter:CGPointMake(self.frame.size.width/2 - 60, self.frame.size.height/2 + 13)];
+        rect = progresser.frame;
         rect.size.width += 90;
         progresser.frame = rect;
         [progresser setHidden:YES];

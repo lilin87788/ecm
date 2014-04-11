@@ -32,5 +32,4 @@
 @property(nonatomic,retain)aNextBranches   *nextBranches;
 @property(nonatomic,retain)UITableView     *tableView;
 @property(nonatomic,retain)NSString        *bid;
-@property(nonatomic,retain)NSString        *transactBid;
 @end

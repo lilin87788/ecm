@@ -16,12 +16,13 @@
     self=[super init];
     if (self)
     {
-        [self setFrame:CGRectMake(0, 0, 130, 20)];
+        [self setFrame:CGRectMake(0, 0, 180, 20)];
         [self setBackgroundColor:[UIColor clearColor]];
         flagImage=[[UIImageView alloc] initWithFrame:CGRectMake(0, 5, 10, 10)];
         [flagImage setBackgroundColor:[UIColor clearColor]];
         
         noticeLabel= [[UILabel alloc] initWithFrame:CGRectMake(12, 0, 135, 20)];
+        [noticeLabel setLineBreakMode:NSLineBreakByWordWrapping];
         [noticeLabel setBackgroundColor:[UIColor clearColor]];
         [noticeLabel setFont:[UIFont systemFontOfSize:13]];
         [noticeLabel setTextColor:[UIColor colorWithRed:0/255.0  green:89.0/255.0 blue:175.0/255.0 alpha:1]];

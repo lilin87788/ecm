@@ -23,29 +23,25 @@
 -(void)initSelf
 {
     mainScrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-    [mainScrollView setContentSize:CGSizeMake(self.frame.size.width*5, 0)];
+    [mainScrollView setContentSize:CGSizeMake(self.frame.size.width*7, 0)];
     [mainScrollView setBounces:NO];
     [mainScrollView setShowsHorizontalScrollIndicator:NO];
     [mainScrollView setPagingEnabled:YES];
     [mainScrollView setDelegate:self];
     [self addSubview:mainScrollView];
-    for (int i=0; i<5; i++)
+    for (int i=0; i<7; i++)
     {
         UIView *vi=[[UIView alloc] initWithFrame:CGRectMake(320*i, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
         UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, -20, vi.bounds.size.width, vi.bounds.size.height)];
         NSString *str;
         if ([UIScreen mainScreen].bounds.size.height>480) {
             str=[NSString stringWithFormat:@"help5_%d.png",i+1];
-        }
-        else
-        {
+        } else {
             str=[NSString stringWithFormat:@"help4_%d.png",i+1];
         }
-        
         [imageView setImage:[UIImage imageNamed:str]];
         [vi addSubview:imageView];
-        if(i==4)
-        {
+        if(i==6){
             UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
             [button setBackgroundImage:[UIImage imageNamed:@"buttonStart"] forState:UIControlStateNormal];
             [button setBackgroundImage:[UIImage imageNamed:@"buttonStart_pressed"] forState:UIControlStateHighlighted];
@@ -57,7 +53,7 @@
         [mainScrollView addSubview:vi];
     }
     pageControl=[[UIPageControl alloc] initWithFrame:CGRectMake(135, [UIScreen mainScreen].bounds.size.height-20-20, 50, 20)];
-    [pageControl setNumberOfPages:5];
+    [pageControl setNumberOfPages:7];
     pageControl.currentPage=0;
     [self addSubview:pageControl];
 }
@@ -69,18 +65,14 @@
 
 -(void)start
 {
-    [UIView animateWithDuration:0.5 animations:^
-     {
-         [self setAlpha:0.2];
-     }
-                     completion:^(BOOL a)
-     {
-         if (a)
-         {
-             [[UIApplication sharedApplication] setStatusBarHidden:NO];
-             [self removeFromSuperview];
-         }
-     }];
+    [UIView animateWithDuration:0.5 animations:^ {
+        [self setAlpha:0.2];
+    } completion:^(BOOL a){
+        if (a){
+            [[UIApplication sharedApplication] setStatusBarHidden:NO];
+            [self removeFromSuperview];
+        }
+    }];
 }
 
 -(void)dealloc

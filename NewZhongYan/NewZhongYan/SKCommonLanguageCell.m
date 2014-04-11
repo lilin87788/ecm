@@ -41,7 +41,7 @@
         [CLTextView setFont:[UIFont systemFontOfSize:15]];
         [CLTextView setDelegate:self];
         [CLTextView setReturnKeyType:UIReturnKeyDone];
-        [self roundTextView:CLTextView];
+        [CLTextView setBackgroundColor:COLOR(208, 208, 208)];
         [self.contentView addSubview:CLTextView];
         
         confirmBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];

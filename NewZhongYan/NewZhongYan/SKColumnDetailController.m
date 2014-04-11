@@ -16,9 +16,9 @@
 @end
 
 @implementation SKColumnDetailController
-#define TITLE_HEIGHT 55
-#define CONTENT_WIDTH 300
-#define CONTENT_TITLEHEIGHT 44
+#define TITLE_HEIGHT 0
+#define CONTENT_WIDTH 320
+#define CONTENT_TITLEHEIGHT 20
 #define CONTENT_TOPEDGE 8
 #define CONTENT_BUTTOMEDGE 8
 #define NAMELABLE_HEIGHT 25
@@ -59,12 +59,10 @@
     return v ;
 }
 
-//横线
 -(UIView *)createHorizonalLine:(float)lineWidth
 {
-    
-    UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 0, lineWidth, 1)];
-    [v setBackgroundColor:[UIColor lightGrayColor]];
+    UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 0, lineWidth, 2)];
+    [v setBackgroundColor:COLOR(239, 239, 239)];
     return v ;
 }
 
@@ -98,14 +96,14 @@
         backItem.title = @"返回";
         self.navigationItem.backBarButtonItem = backItem;
     }
+    [self.view setBackgroundColor:COLOR(239, 239, 239)];
+    
     [self setTitle:isHistory ? @"历史数据" : @"明细数据" ];
     mainScrollview=[[UIScrollView alloc] initWithFrame:CGRectMake(0, TopY, 320, [UIScreen mainScreen].bounds.size.height-TopY)];
     [self.view addSubview:mainScrollview];
     [mainScrollview release];
     
     contentView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    [contentView.layer setBorderWidth:1];
-    [contentView.layer setBorderColor:[[UIColor lightGrayColor] CGColor]];
     [mainScrollview addSubview:contentView];
     [contentView release];
     
@@ -140,12 +138,12 @@
             [BWStatusBarOverlay showMessage:@"服务器网络故障!" duration:1 animated:1];
             return;
         }
+        NSLog(@"%@",request.responseString);
         NSOperationQueue* queue = [[NSOperationQueue alloc] init];
         ParseOperation *parser =
         [[ParseOperation alloc] initWithData:[request responseData]
                            completionHandler:^(business *abusiness) {
                                self.aBusiness = abusiness;
-                               //隐藏加载界面
                                dispatch_async(dispatch_get_main_queue(), ^{
                                    [self createBusinessDetailViewWithData:self.aBusiness];
                                    if (![self.aBusiness.returncode isEqualToString:@"OK"]) {
@@ -178,20 +176,15 @@
 
 //加入customView到contentView中
 -(void)addCustomViewWithColumns:(columns*)cs
-{
-    UIView *cv=[[UIView alloc] init];
+{UIView *cv=[[UIView alloc] init];
+    [cv setBackgroundColor:[UIColor whiteColor]];
     //加入标题********************************************
-    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, CONTENT_WIDTH,CONTENT_TITLEHEIGHT-1)];
-    [titleLabel setText:[cs.columnsDict objectForKey:@"name"]];
-    [titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
-    [titleLabel setTextColor:COLOR(51,181,229)];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];
+    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320,CONTENT_TITLEHEIGHT)];
+    [titleLabel setText:[NSString stringWithFormat:@"   %@",cs.columnsDict[@"name"]]];
+    [titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
+    [titleLabel setTextColor:COLOR(96,96,96)];
+    [titleLabel setBackgroundColor:COLOR(239, 239, 239)];
     [cv addSubview:titleLabel];
-    [titleLabel release];
-    UIView *horLine=[self createHorizonalLine:CONTENT_WIDTH];
-    [horLine setFrame:CGRectMake(0, CONTENT_TITLEHEIGHT-1, horLine.frame.size.width, horLine.frame.size.height)];
-    [cv addSubview:horLine];
-    
     //加入内容************************************************
     for (column* c in cs.columnsArray)
     {
@@ -233,7 +226,7 @@
     [cv setFrame:CGRectMake(0, totalHeight, CONTENT_WIDTH, CONTENT_TITLEHEIGHT+contentTotalHeight)];
     totalHeight+=contentTotalHeight+CONTENT_TITLEHEIGHT;
     [contentView addSubview:cv];
-    [contentView setFrame:CGRectMake(10, 10, CONTENT_WIDTH, totalHeight)];
+    [contentView setFrame:CGRectMake(0, TITLE_HEIGHT, CONTENT_WIDTH, totalHeight)];
     [mainScrollview setContentSize:CGSizeMake(CONTENT_WIDTH, totalHeight+TITLE_HEIGHT)];
     [cv release];
 }
@@ -248,40 +241,28 @@
     float returnHeight;
     float returnWidth;
     CGRect returnRect;
-    if(imageHeight>limitedWidth)//图像高度大于右边控件宽度
-    {
-        if (imageHeight<imageWidth) //图像高度小于图像宽度
-        {
+    if(imageHeight>limitedWidth){
+        if (imageHeight<imageWidth){
             returnWidth=limitedWidth;
             returnHeight=limitedWidth*ratio;
             returnRect= CGRectMake(leftMargin, contentTotalHeight+CONTENT_TITLEHEIGHT+(limitedWidth-returnHeight)/2, returnWidth, returnHeight);
-        }
-        else                        //图像高度大于等于图像宽度
-        {
+        }else{
             returnHeight=limitedWidth;
             returnWidth=limitedWidth/ratio;
             returnRect=CGRectMake(leftMargin+(limitedWidth-returnWidth)/2, contentTotalHeight+CONTENT_TITLEHEIGHT, returnWidth, returnHeight);
         }
-    }
-    else                            //图像高度小于等于右边控件宽度
-    {
-        if (imageHeight<imageWidth) //图像高度小于图像宽度
-        {
-            if (imageWidth>limitedWidth) //图像宽度大于右边控件宽度
-            {
+    }else{
+        if (imageHeight<imageWidth) {
+            if (imageWidth>limitedWidth){
                 returnWidth=limitedWidth;
                 returnHeight=limitedWidth*ratio;
                 returnRect= CGRectMake(leftMargin, contentTotalHeight+CONTENT_TITLEHEIGHT+(limitedWidth-returnHeight)/2, returnWidth, returnHeight);
-            }
-            else
-            {
+            }else{
                 returnWidth=imageWidth;
                 returnHeight=imageHeight -10;
                 returnRect= CGRectMake(leftMargin, contentTotalHeight+CONTENT_TITLEHEIGHT, returnWidth, returnHeight);
             }
-        }
-        else
-        {
+        }else{
             returnWidth=imageWidth;
             returnHeight=imageHeight;
             returnRect= CGRectMake(leftMargin, contentTotalHeight+CONTENT_TITLEHEIGHT, returnWidth, returnHeight);
@@ -504,9 +485,10 @@
         valueLabelHeight=valueLabelHeight<20?20:valueLabelHeight;
         [valueLabel setFrame:CGRectMake(10, CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight, 280, valueLabelHeight)];
     }
-    
     [cv addSubview:valueLabel];
-    [valueLabel release];if (nameLabelString.length)
+    [valueLabel release];
+    
+    if (nameLabelString.length)
     {
         float nameLabelY=CONTENT_TITLEHEIGHT+(valueLabelHeight+CONTENT_TOPEDGE+CONTENT_BUTTOMEDGE-NAMELABLE_HEIGHT)/2+contentTotalHeight;
         float lineHeight = valueLabelHeight+CONTENT_BUTTOMEDGE+CONTENT_TOPEDGE;
@@ -543,13 +525,13 @@
     if (nameLabelString.length)
     {
         valueLabelHeight=[e.value sizeWithFont:[UIFont boldSystemFontOfSize:16] constrainedToSize:CGSizeMake(VALUELABLE_WIDTH, 1000) lineBreakMode:NSLineBreakByWordWrapping].height;
-        valueLabelHeight=valueLabelHeight<20?20:valueLabelHeight;
+        valueLabelHeight=valueLabelHeight <= 20 ? 20 : valueLabelHeight;
         nameLabelHeight=[nameLabelString sizeWithFont:[UIFont boldSystemFontOfSize:16] constrainedToSize:CGSizeMake(NAMELABLE_WIDTH, 1000) lineBreakMode:NSLineBreakByWordWrapping].height;
         valueLabelHeight=valueLabelHeight<=nameLabelHeight?nameLabelHeight:valueLabelHeight;
         [valueLabel setFrame:CGRectMake(VALUELABLE_LEFT, CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight, VALUELABLE_WIDTH, valueLabelHeight)];
     }else{
         valueLabelHeight=[e.value sizeWithFont:[UIFont boldSystemFontOfSize:16] constrainedToSize:CGSizeMake(280, 1000) lineBreakMode:NSLineBreakByWordWrapping].height;
-        valueLabelHeight=valueLabelHeight<20?20:valueLabelHeight;
+        valueLabelHeight=valueLabelHeight <= 20 ? 20 : valueLabelHeight;
         [valueLabel setFrame:CGRectMake(10, CONTENT_TITLEHEIGHT+CONTENT_TOPEDGE+contentTotalHeight, 280, valueLabelHeight)];
     }
     [cv addSubview:valueLabel];

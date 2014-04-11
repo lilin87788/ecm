@@ -28,6 +28,7 @@ static User* currentUser = nil;
     UIView *rView;//图片的UIView
     UIImageView *zView;//Z图片ImageView
     UIImageView *fView;//F图片ImageView
+    NSString *theDeviceToken;//推送令牌
 }
 
 +(User*)sharedCurrentUser
@@ -79,6 +80,9 @@ NSUInteger DeviceSystemMajorVersion() {
     InstallUncaughtExceptionHandler();
     _queue = [[NSOperationQueue alloc] init];
     [FileUtils setvalueToPlistWithKey:@"sleepTime" Value:[NSDate distantFuture]];
+    //推送
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|
+     UIRemoteNotificationTypeSound];
     [self creeateDatabase];
     if (!self.logonManager) {
         self.logonManager = [APPUtils AppLogonManager];
@@ -223,6 +227,44 @@ NSUInteger DeviceSystemMajorVersion() {
         }
     }
 }
+
+
+//注册成功
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSRange subStr;
+    NSMutableString *deviceTokenString = [NSMutableString stringWithFormat:@"%@", deviceToken];
+    
+    subStr = [deviceTokenString rangeOfString:@">"];
+    if (subStr.location != NSNotFound) {
+        [deviceTokenString deleteCharactersInRange:subStr];
+    }
+    subStr = [deviceTokenString rangeOfString:@"<"];
+    if (subStr.location != NSNotFound) {
+        [deviceTokenString deleteCharactersInRange:subStr];
+    }
+    subStr = [deviceTokenString rangeOfString:@" "];
+    while (subStr.location != NSNotFound) {
+        [deviceTokenString deleteCharactersInRange:subStr];
+        subStr = [deviceTokenString rangeOfString:@" "];
+    }
+    theDeviceToken = deviceTokenString;
+	NSLog(@"deviceToken: %@\n%@", deviceToken, theDeviceToken);
+}
+
+//注册失败
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"Error in registration. Error: %@", error);
+}
+
+//当应用接收到远程推送的响应函数
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSString *status = [NSString stringWithFormat:@"Notification received:\n%@",[userInfo description]];
+    NSLog(@"status:%@",status);
+}
+
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {

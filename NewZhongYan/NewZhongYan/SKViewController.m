@@ -344,8 +344,6 @@
         tabbar.backgroundImage = Image(@"landbar_noshadow");
         [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor lightGrayColor]} forState:UIControlStateNormal];
     }
-
-    [self copyXMLToDocument];
     [self initNavBar];
     [self initPageController];
     [self initSetting];
@@ -417,14 +415,7 @@
     [validateLogonrequest setTimeOutSeconds:15];
     [validateLogonrequest setDefaultResponseEncoding:NSUTF8StringEncoding];
     [validateLogonrequest startSynchronous];
-    if ([[validateLogonrequest responseData] length] == 1)
-    {
-        return YES;
-    }
-    else
-    {
-        return NO;
-    }
+    return [[validateLogonrequest responseData] length] == 1;
 }
 
 -(void)updateClientAppinfo

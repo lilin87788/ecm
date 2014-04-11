@@ -364,7 +364,8 @@
         CGRect frame = internalTextView.bounds;
         CGSize fudgeFactor;
         // The padding added around the text on iOS6 and iOS7 is different.
-        fudgeFactor = CGSizeMake(10.0, 16.0);
+        //modified by lilin 原来的值是16 现在修改成12 以适应我们的应用
+        fudgeFactor = CGSizeMake(10.0, 12.0);
         
         frame.size.height -= fudgeFactor.height;
         frame.size.width -= fudgeFactor.width;

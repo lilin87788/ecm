@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SKHTTPRequest.h"
 #import "participants.h"
+#import "SKNextBranchesController.h"
 @interface SKTransactorController : UIViewController
 <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
@@ -22,9 +23,10 @@
 }
 
 -(id)initWithDictionary:(NSDictionary*)dictionary  BranchID:(NSString*)abid;
-@property(nonatomic,retain)NSString        *bid;
-@property(nonatomic,retain)participants    *pts;
-@property(nonatomic,retain)NSDictionary    *GTaskInfo;
-@property(nonatomic,retain)UITableView     *tableView;
-@property(nonatomic,retain)NSString        *branchname;
+@property(nonatomic,strong)NSString        *bid;
+@property(nonatomic,strong)participants    *pts;
+@property(nonatomic,strong)NSDictionary    *GTaskInfo;
+@property(nonatomic,strong)UITableView     *tableView;
+@property(nonatomic,strong)NSString        *branchname;
+@property(nonatomic,strong)SKNextBranchesController* brancher;
 @end

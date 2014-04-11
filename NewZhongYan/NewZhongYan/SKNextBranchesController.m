@@ -19,13 +19,15 @@
 @interface SKNextBranchesController ()
 {
     UILabel* titleLabel;
+    UIView* titleView;
+    NSString* currrentBid;
 }
 //构建视图
 -(void)drawView;
 @end
 
 @implementation SKNextBranchesController
-@synthesize GTaskInfo,uid,bid,nextBranches,tableView,transactBid;
+@synthesize GTaskInfo,uid,bid,nextBranches,tableView;
 
 - (void)requestFailed:(SKHTTPRequest *)request
 {
@@ -35,6 +37,7 @@
 
 - (void)requestFinished:(SKHTTPRequest *)request
 {
+    NSLog(@"%@",request.responseString);
     if (request.responseStatusCode == 500) {
         [BWStatusBarOverlay showErrorWithMessage:@"网络异常请联系供应商" duration:1 animated:1];
     }
@@ -63,26 +66,20 @@
     [self drawView];
 }
 
--(void)fitLabel:(UILabel*)label
-{
-    label.font = [UIFont systemFontOfSize:17];
-    label.numberOfLines = 0;
-    [label sizeToFit];
-}
-
 -(void)drawView
 {
     _tableView = [[UITableView alloc] init];
     if (IS_IOS7) {
-        [_tableView setFrame:CGRectMake(0,CGRectGetMaxY(titleLabel.frame) + 5,320,
-                                        SCREEN_HEIGHT - 49 - CGRectGetMaxY(titleLabel.frame) - 5)];
+        [_tableView setFrame:CGRectMake(0,CGRectGetMaxY(titleView.frame),320,
+                                        SCREEN_HEIGHT - 49 - CGRectGetMaxY(titleView.frame) - 5)];
     }else{
-        [_tableView setFrame:CGRectMake(0,CGRectGetMaxY(titleLabel.frame) + 5,320,
-                                        SCREEN_HEIGHT - 49 - CGRectGetMaxY(titleLabel.frame) - 5 - 64)];
+        [_tableView setFrame:CGRectMake(0,CGRectGetMaxY(titleView.frame),320,
+                                        SCREEN_HEIGHT - 49 - CGRectGetMaxY(titleView.frame) - 5 - 64)];
     }
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [_tableView setBackgroundColor:COLOR(239, 239, 239)];
     [self.view addSubview:_tableView];
 }
 
@@ -127,22 +124,20 @@
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView* headView = [[UIView alloc] init];
-    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
+    [headView setBackgroundColor:COLOR(239, 239, 239)];
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 3, 320, 0)];
     branches* bs = self.nextBranches.branchesArray[section];
     if (bs.attributeDictionary[@"name"]) {
         [label setText:[NSString stringWithFormat:@"   %@ (单选)",bs.attributeDictionary[@"name"]]];
     }else{
         [label setText:@"   流程选择 (单选)"];
     }
-    [label setTextColor:COLOR(51,181,229)];
-    [self fitLabel:label];
-    
+    [label setTextColor:COLOR(96,96,96)];
+    [label setBackgroundColor:COLOR(239, 239, 239)];
+    [label setFont:[UIFont boldSystemFontOfSize:15]];
+    [label sizeToFit];
     [headView setFrame:CGRectMake(0, 0, 320, label.frame.size.height)];
     [headView addSubview:label];
-    
-    UIImageView* DividingLines = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_line.png"]];
-    [DividingLines setFrame:CGRectMake(0,  CGRectGetMaxY(label.frame) + 5, 320, 2)];
-    [headView addSubview:DividingLines];
     return headView;
 }
 
@@ -163,7 +158,6 @@
         self.nextBranches = [[aNextBranches alloc] init];
         self.uid = [APPUtils userUid];
         self.bid = @"000";
-        
     }
     return self;
 }
@@ -185,17 +179,28 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
+        NSMutableArray* bidArray = [NSMutableArray array];
+        for(UIViewController* controller in self.navigationController.viewControllers)
+        {
+            if([controller class] == [SKNextBranchesController class])
+            {
+                SKNextBranchesController* nb = (SKNextBranchesController*)controller;
+                [bidArray addObject:nb.bid];
+            }
+        }
+        [bidArray addObject:currrentBid];
+        [bidArray removeObjectAtIndex:0];
+        self.bid = [bidArray componentsJoinedByString:@":"];
         NSURL* commitUrl = [DataServiceURLs commitWorkItem];
         SKFormDataRequest *commitRequest = [SKFormDataRequest requestWithURL:commitUrl];
         [commitRequest setPostValue:[APPUtils userUid] forKey:@"userid"];
         [commitRequest setPostValue:[GTaskInfo objectForKey:@"TFRM"]  forKey:@"from"];
         [commitRequest setPostValue:[GTaskInfo objectForKey:@"AID"]  forKey:@"workitemid"];
-        [commitRequest setPostValue:self.transactBid forKey:@"branchid"];
+        [commitRequest setPostValue:@"" forKey:@"branchid"];
         [commitRequest setPostValue:@"" forKey:@"plist"];
         __weak SKFormDataRequest *req = commitRequest;
         [commitRequest setCompletionBlock:^{
             if (req.responseStatusCode == 500) {
-                //[utils AlterView:self.view Title:@"尊敬的用户您好:" Deatil:@"网络异常请联系供应商"]; return;
                 return;
             }
             if ([[req responseString] isEqualToString:@"OK"])
@@ -222,31 +227,24 @@
 
 -(void)nextStep:(id)sender{
     if (!selectedRow) {
-        //[utils showTextOnView:self.view Text:@"您还没有选择适当的流程分支!"];
         [BWStatusBarOverlay showErrorWithMessage:@"您还没有选择适当的流程分支!" duration:1 animated:YES];
         return;
     }
     branches* bs =  (branches*)self.nextBranches.branchesArray[selectedRow.section];
     branch* b = bs.branchArray[selectedRow.row];
     if ([b.ifend isEqualToString:@"nextto"]) {
-        
         //➢	branchid，可供选择的分支途径。为String数组，如果某项流程是主流程下子流程，其格式为主流程id:子流程id
         SKNextBranchesController* nb = [[SKNextBranchesController alloc] initWithDictionary:self.GTaskInfo];
         nb.bid = b.bid;
-        nb.transactBid = [self.transactBid stringByAppendingString:[NSString stringWithFormat:@":%@",b.bid]];
         [self.navigationController pushViewController:nb animated:YES];
     } else {
         if ([b.ifend isEqualToString:@"YES"]) {
-            self.transactBid = [self.transactBid stringByAppendingString:[NSString stringWithFormat:@":%@",b.bid]];
-            self.transactBid = [self.transactBid substringFromIndex:1];
+            currrentBid = b.bid;
             NSString* msg = [NSString stringWithFormat:@"流程将进入%@环节是否确认提交",b.bname];
             UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
             [av show];
         }else{
-            //还待测试
-            self.transactBid = [self.transactBid stringByAppendingString:[NSString stringWithFormat:@":%@",b.bid]];
-            self.transactBid = [self.transactBid substringFromIndex:1];
-            SKTransactorController* tc = [[SKTransactorController alloc] initWithDictionary:self.GTaskInfo BranchID:self.transactBid];
+            SKTransactorController* tc = [[SKTransactorController alloc] initWithDictionary:self.GTaskInfo BranchID:b.bid];
             tc.branchname = b.bname;
             [self.navigationController pushViewController:tc animated:YES];
         }
@@ -257,18 +255,15 @@
 
 -(UILabel*)selfAdaptionLable:(UIFont*)font Width:(CGFloat)width Text:(NSString*)text
 {
-    CGFloat rowHeight = [@"李林" sizeWithFont:font constrainedToSize:CGSizeMake(320, MAXFLOAT)].height;
     CGFloat height = [text sizeWithFont:font
                       constrainedToSize: CGSizeMake(width,MAXFLOAT)
                           lineBreakMode:NSLineBreakByWordWrapping].height; //expectedLabelSizeOne.height 就是内容的高度
-    CGRect labelRect = CGRectMake((320 - width)/2.0, TopY + 5,width,height);
+    CGRect labelRect = CGRectMake(10, 2,width,height);
     UILabel *label = [[UILabel alloc] initWithFrame:labelRect];
     label.lineBreakMode = UILineBreakModeWordWrap;
     label.numberOfLines = 0;//上面两行设置多行显示s
     label.font = font;
     label.text = text;
-    if (height > rowHeight) [label setTextAlignment:NSTextAlignmentLeft];
-    else             [label setTextAlignment:NSTextAlignmentCenter];
     return label;
 }
 
@@ -280,7 +275,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view setBackgroundColor:COLOR(239, 239, 239)];
     if (System_Version_Small_Than_(7)) {
         UIButton* backbtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [backbtn setFrame:CGRectMake(0, 0, 50, 30)];
@@ -295,16 +290,20 @@
         backItem.title = @"返回";
         self.navigationItem.backBarButtonItem = backItem;
     }
-    titleLabel = [self selfAdaptionLable:[UIFont systemFontOfSize:17]
+    
+    titleLabel = [self selfAdaptionLable:[UIFont boldSystemFontOfSize:18]
                                    Width:300
                                     Text:[self.GTaskInfo objectForKey:@"TITL"]];
-    [titleLabel setTag:1000];
-    //[titleLabel setBackgroundColor:COLOR(17, 168, 171)];
-    [titleLabel setTextColor:[UIColor grayColor]];
-    [titleLabel setShadowColor:[UIColor whiteColor]];
-    [titleLabel setShadowOffset:CGSizeMake(-1, -1)];
-    [titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
-    [self.view addSubview:titleLabel];
+    
+    titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+    [titleView setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:titleView];
+    
+    UIView* leftBlockView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5,CGRectGetMaxY(titleLabel.frame) + 20)];
+    [leftBlockView setBackgroundColor:COLOR(177, 0, 4)];
+    [titleView addSubview:titleLabel];
+    [titleView addSubview:leftBlockView];
+    [titleView setFrame: CGRectMake(0, TopY, 320, CGRectGetMaxY(titleLabel.frame) + 20)];
     
     SKSToolBar* myToolBar = [[SKSToolBar alloc] initWithFrame:CGRectMake(0, BottomY-49, 320, 49)];
     [myToolBar.homeButton addTarget:self action:@selector(backToRoot:) forControlEvents:UIControlEventTouchUpInside];
@@ -325,9 +324,4 @@
     [NBRequest setDelegate:self];
     [NBRequest startAsynchronous];
 }
-
-- (void)viewDidUnload{
-    [super viewDidUnload];
-}
-
 @end

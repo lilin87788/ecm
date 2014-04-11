@@ -196,7 +196,7 @@
         [commitRequest setPostValue:[APPUtils userUid] forKey:@"userid"];
         [commitRequest setPostValue:[GTaskInfo objectForKey:@"TFRM"]  forKey:@"from"];
         [commitRequest setPostValue:[GTaskInfo objectForKey:@"AID"]  forKey:@"workitemid"];
-        [commitRequest setPostValue:@"" forKey:@"branchid"];
+        [commitRequest setPostValue:self.bid forKey:@"branchid"];
         [commitRequest setPostValue:@"" forKey:@"plist"];
         __weak SKFormDataRequest *req = commitRequest;
         [commitRequest setCompletionBlock:^{

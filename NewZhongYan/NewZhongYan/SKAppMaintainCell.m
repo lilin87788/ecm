@@ -37,7 +37,6 @@
 
 -(void)setDataInfo:(NSDictionary*)dict
 {
-    [icon setImage:[dict objectForKey:@"image"]];
     sizeLabel.text=[dict objectForKey:@"size"];
     nameLabel.text=[dict objectForKey:@"title"];
 }

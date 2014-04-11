@@ -40,6 +40,5 @@
     }else{
         self.department.text = [dict objectForKey:@"PNAME"];
     }
-
 }
 @end

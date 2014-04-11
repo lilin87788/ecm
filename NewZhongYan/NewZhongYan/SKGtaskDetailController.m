@@ -861,7 +861,7 @@
         if (extendType==SKColumnDetail)
         {
             UIButton *detailBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-            [detailBtn setImage:[UIImage imageNamed:@"icon_organize.png"] forState:UIControlStateNormal];
+            [detailBtn setImage:[UIImage imageNamed:@"btn_oaotherdetail"] forState:UIControlStateNormal];
             [detailBtn setFrame:CGRectMake(CGRectGetMaxX(valueLabel.frame) + 5,CGRectGetMinY(valueLabel.frame), 32, 32)];
             [DetailIDArray addObject:c.columnDict[@"id"]];
             [detailBtn setTag:curretnDetailIndex];

@@ -396,6 +396,7 @@
 //注释  显示版本号
 -(void)onGetNewVersionDoneWithDic:(NSDictionary *)dic
 {
+    NSLog(@"%@",dic);
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
     if ([[dic objectForKey:@"NVER"] floatValue] > [appVersion floatValue])

@@ -201,32 +201,32 @@
     switch (item.tag) {
         case 0:
         {
-            item.selectedImage = Image(@"remind_highnight");
+            //item.selectedImage = Image(@"remind_highnight");
             [self performSegueWithIdentifier:@"SKGTaskViewController"sender:self];
             break;
         }
         case 1:
         {
-            item.selectedImage = Image(@"email_highnight");
+            //item.selectedImage = Image(@"email_highnight");
             [self performSegueWithIdentifier:@"SKEmailController"sender:self];
             break;
         }
         case 2:
         {
-            item.selectedImage = Image(@"address_highnight");
+            //item.selectedImage = Image(@"address_highnight");
             [self performSegueWithIdentifier:@"SKAddressController"sender:self];
             break;
         }
         case 3:
         {
-            item.selectedImage = Image(@"setting_highnight");
+            //item.selectedImage = Image(@"setting_highnight");
             [self performSegueWithIdentifier:@"setting"sender:self];
-            //[settingController ecmTouchDown];
             break;
         }
         default:
             break;
     }
+    tabBar.selectedItem = nil;
 }
 
 -(void)jumpToController:(id)sender

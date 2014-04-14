@@ -92,7 +92,25 @@
         cell.backgroundView = bgView;
         if (indexPath.section == 1){
             if (indexPath.row != 4) {
-                UIView* v = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(cell.contentView.bounds), CGRectGetWidth(cell.contentView.bounds), 0.5)];
+                CGRect rect ;
+                if (indexPath.row == 0) {
+                    rect = CGRectMake(0, CGRectGetMaxY(cell.contentView.bounds), CGRectGetWidth(cell.contentView.bounds) + 10, 0.5);
+                }else{
+                    rect = CGRectMake(0, CGRectGetMaxY(cell.contentView.bounds), CGRectGetWidth(cell.contentView.bounds), 0.5);
+                }
+                UIView* v = [[UIView alloc] initWithFrame:rect];
+                [v setBackgroundColor:[UIColor lightGrayColor]];
+                [cell.contentView addSubview:v];
+            }
+        }else if(indexPath.section == 2){
+            if (indexPath.row != 1) {
+                CGRect rect ;
+                if (indexPath.row == 0) {
+                    rect = CGRectMake(0, CGRectGetMaxY(cell.contentView.bounds), CGRectGetWidth(cell.contentView.bounds) + 10, 0.5);
+                }else{
+                    rect = CGRectMake(0, CGRectGetMaxY(cell.contentView.bounds), CGRectGetWidth(cell.contentView.bounds), 0.5);
+                }
+                UIView* v = [[UIView alloc] initWithFrame:rect];
                 [v setBackgroundColor:[UIColor lightGrayColor]];
                 [cell.contentView addSubview:v];
             }
@@ -128,9 +146,6 @@
             }
             case 4:
             {
-                [UIAlertView showAlertString:@"该功能即将完善..."];
-//                NSURL* appInstallUrl =  [NSURL URLWithString:[NSString stringWithFormat:@"http://tam.hngytobacco.com/d"]];
-//                [[UIApplication sharedApplication] openURL:appInstallUrl];
                 break;
             }
             default:

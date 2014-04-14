@@ -45,7 +45,7 @@
 -(void)refreshViewWithNetData
 {
     [departmentLabel setText:[personInfoDictionary objectForKey:@"deptName"]];
-    [mailLabel setText:[[personInfoDictionary objectForKey:@"email"] stringByReplacingOccurrencesOfString:@"@" withString:@"@\n"]];
+    [mailLabel setText:[[personInfoDictionary objectForKey:@"email"] stringByReplacingOccurrencesOfString:@"@" withString:@"\n@"]];
     [mobileTextField setText:[personInfoDictionary objectForKey:@"mobile"]];
     [shortPhoneTextField setText:[personInfoDictionary objectForKey:@"shortPhone"]];
     [telephoneTextField setText:[personInfoDictionary objectForKey:@"telephone"]];
@@ -163,7 +163,7 @@
     [contactView addSubview:shortPhoneicon];
     
     UILabel* shortPhoneTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 50, 80, 18)];
-    shortPhoneTitleLabel.text = @"短      号:";
+    shortPhoneTitleLabel.text = @"短       号:";
     [contactView addSubview:shortPhoneTitleLabel];
     
     shortPhoneTextField = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(mobileTitleLabel.frame), 46, 180, 28)];
@@ -238,7 +238,6 @@
                                                object:nil];
     
     SKSToolBar* myToolBar = [[SKSToolBar alloc] initWithFrame:CGRectMake(0, 0, 320, 49)];
-    [myToolBar.homeButton addTarget:self action:@selector(backToRoot:) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.firstButton addTarget:self action:@selector(savePersonInfoToServer) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.secondButton addTarget:self action:@selector(getUserInfoFromServer) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar setFirstItem:@"btn_save_ecm" Title:@"保存"];

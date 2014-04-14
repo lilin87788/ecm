@@ -94,8 +94,8 @@
 -(void)loadContent
 {
     NSString* contentPath = [AM ecmContentPathWithOwnerApp:self.channel.OWNERAPP];
-    NSURL*    contentUrl =  [NSURL URLWithString:@"http://10.159.30.88/aaa-agents/xml/ECMDetail.xml"];
-    contentUrl = [NSURL URLWithString:_news[@"URL"]];
+    //NSURL*    contentUrl =  [NSURL URLWithString:@"http://10.159.30.88/aaa-agents/xml/ECMDetail.xml"];
+    NSURL*    contentUrl = [NSURL URLWithString:_news[@"URL"]];
     if ([AM ecmContentExistedWithOwnerApp:self.channel.OWNERAPP])
     {
         [self analysisXml:contentPath];

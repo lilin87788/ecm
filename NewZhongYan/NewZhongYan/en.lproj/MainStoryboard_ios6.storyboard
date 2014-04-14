@@ -2913,7 +2913,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="密码修改" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9j-EZ-t1F">
-                                                    <rect key="frame" x="55" y="11" width="212" height="21"/>
+                                                    <rect key="frame" x="58" y="11" width="212" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
@@ -3136,8 +3136,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="V9g-GB-ouX"/>
         <segue reference="iol-VQ-4dL"/>
-        <segue reference="djd-Le-84I"/>
+        <segue reference="fua-6h-snE"/>
+        <segue reference="k3P-sK-tMI"/>
     </inferredMetricsTieBreakers>
 </document>

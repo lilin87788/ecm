@@ -521,10 +521,9 @@
         [_resultsTable setFrame:CGRectMake(0, _resultsTable.frame.origin.y, 320,
                                            scrollView.bounds.size.height -  _resultsTable.frame.origin.y)];
         CGRect toolbarRect=toolView.frame;
-        toolbarRect.origin.y -= keyboardHeight;
+        toolbarRect.origin.y = CGRectGetMaxY(scrollView.frame);
         toolView.frame=toolbarRect;
         [self.view bringSubviewToFront:toolView];
-       
     }];
 }
 

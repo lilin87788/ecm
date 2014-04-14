@@ -296,11 +296,12 @@
         NSString* sql = [NSString stringWithFormat:@"select * from T_CHANNEL WHERE PARENTID  = %@",self.channel.CURRENTID];
         subChannels = [[DBQueue sharedbQueue] recordFromTableBySQL:sql];
     }else{
-        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 21)];
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 21)];
         label.text = self.channel.NAME;
         label.font = [UIFont boldSystemFontOfSize:18];
         label.textColor = [UIColor whiteColor];
         label.backgroundColor = [UIColor clearColor];
+        [label sizeToFit];
         self.navigationItem.titleView = label;
     }
 

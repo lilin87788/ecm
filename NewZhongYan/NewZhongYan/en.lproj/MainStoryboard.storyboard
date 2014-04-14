@@ -1063,19 +1063,6 @@
                                 <action selector="selectType:" destination="5M0-c3-6NB" eventType="touchUpInside" id="YbH-5H-S02"/>
                             </connections>
                         </button>
-                        <barButtonItem key="rightBarButtonItem" id="wk8-gv-jap">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="R6G-xf-9IT">
-                                <rect key="frame" x="244" y="2" width="60" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" backgroundImage="btn_help.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="help:" destination="5M0-c3-6NB" eventType="touchUpInside" id="Ybn-of-QIC"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="orgazationBar" destination="P3r-Ic-egb" id="Yz3-GZ-hGT"/>
@@ -2281,7 +2268,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="密码修改" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7S-GU-z8z">
-                                                    <rect key="frame" x="55" y="11" width="212" height="21"/>
+                                                    <rect key="frame" x="58" y="11" width="212" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
@@ -3007,7 +2994,6 @@
         <image name="appinstall_ecm.png" width="32" height="32"/>
         <image name="appsetting_ecm.png" width="32" height="32"/>
         <image name="btn_delete.png" width="48" height="48"/>
-        <image name="btn_help.png" width="50" height="30"/>
         <image name="btn_select.png" width="91" height="37"/>
         <image name="button.png" width="225" height="72"/>
         <image name="button_1.png" width="225" height="72"/>

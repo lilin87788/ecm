@@ -140,7 +140,6 @@
     [newBTextView setDelegate:self];
     
     SKSToolBar* myToolBar = [[SKSToolBar alloc] initWithFrame:CGRectMake(0, 0, 320, 49)];
-    [myToolBar.homeButton addTarget:self action:@selector(backToRoot:) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.firstButton addTarget:self action:@selector(clearTextView) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar.secondButton addTarget:self action:@selector(savePasswordToServer) forControlEvents:UIControlEventTouchUpInside];
     [myToolBar setFirstItem:@"btn_clean_ecm" Title:@"清除"];

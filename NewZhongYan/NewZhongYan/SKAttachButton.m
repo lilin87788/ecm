@@ -53,7 +53,7 @@
         _downloadButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_downloadButton setBackgroundImage:[UIImage imageNamed:@"btn_download"] forState:UIControlStateNormal];
         [_downloadButton setBackgroundImage:[UIImage imageNamed:@"btn_download_highlight"] forState:UIControlStateHighlighted];
-        [_downloadButton setFrame:CGRectMake(frame.size.width - 27, 10, 24, 24)];
+        [_downloadButton setFrame:CGRectMake(frame.size.width - 28, 10, 24, 24)];
         [_downloadButton addTarget:self action:@selector(loadAttachment) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_downloadButton];
         

@@ -90,6 +90,125 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)createPersonInfoView
+{
+    CGRect titleRect = CGRectMake(0, 20, 320, 100);
+    UIView* titleView = [[UIView alloc] initWithFrame:titleRect];
+    titleView.layer.borderColor = COLOR(220, 220, 223).CGColor;
+    titleView.layer.borderWidth = 1;
+    [titleView setBackgroundColor:[UIColor whiteColor]];    [mainScrollView addSubview:titleView];
+    
+    CGRect headrect =  CGRectMake(20,10, 80, 80);
+    UIButton* headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [headBtn setFrame:headrect];
+    [headBtn setImage:Image(@"avatar") forState:UIControlStateNormal];
+    [titleView addSubview:headBtn];
+    
+    UIView* verView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(headrect) + 10, 10, 1, 80)];
+    [verView setBackgroundColor:[UIColor lightGrayColor]];
+    [titleView addSubview:verView];
+    
+    CGRect namerect = CGRectMake(CGRectGetMaxX(headrect) + 20, 10, 195, 25);
+    nameLabel = [[UILabel alloc] initWithFrame:namerect];
+    nameLabel.text = [APPUtils userName];
+    [titleView addSubview:nameLabel];
+    
+    CGRect departmentrect = CGRectMake(CGRectGetMaxX(headrect) + 20, CGRectGetMaxY(headrect) - 35, 195, 35);
+    departmentLabel = [[UILabel alloc] initWithFrame:departmentrect];
+    [titleView addSubview:departmentLabel];
+    
+    
+    CGRect emailRect = CGRectMake(0, CGRectGetMaxY(titleView.frame) + 20, 320, 60);
+    UIView* emaliView = [[UIView alloc] initWithFrame:emailRect];
+    emaliView.layer.borderColor = COLOR(220, 220, 223).CGColor;
+    emaliView.layer.borderWidth = 1;
+    [emaliView setBackgroundColor:[UIColor whiteColor]];
+    [mainScrollView addSubview:emaliView];
+    
+    UIImageView* emaliIcon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 16, 16)];
+    emaliIcon.image = Image(@"contact_email.png");
+    [emaliView addSubview:emaliIcon];
+    
+    UILabel* emailNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 10, 80, 18)];
+    emailNameLabel.text = @"邮      箱:";
+    [emaliView addSubview:emailNameLabel];
+    
+    mailLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(emailNameLabel.frame),4, 200, 50)];
+    [mailLabel setNumberOfLines:0];
+    [emaliView addSubview:mailLabel];
+    
+    CGRect contactRect = CGRectMake(0, CGRectGetMaxY(emaliView.frame) + 20, 320, 132);
+    UIView* contactView = [[UIView alloc] initWithFrame:contactRect];
+    contactView.layer.borderColor = COLOR(220, 220, 223).CGColor;
+    contactView.layer.borderWidth = 1;
+    [contactView setBackgroundColor:[UIColor whiteColor]];
+    [mainScrollView addSubview:contactView];
+
+    //电话
+    UIImageView* mobileicon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 16, 16)];
+    mobileicon.image = Image(@"contact_mobile");
+    [contactView addSubview:mobileicon];
+    
+    UILabel* mobileTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 10, 80, 18)];
+    mobileTitleLabel.text = @"移动电话:";
+    [contactView addSubview:mobileTitleLabel];
+    
+    mobileTextField = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(mobileTitleLabel.frame), 4, 180, 28)];
+    [mobileTextField setBackgroundColor:COLOR(208, 208, 208)];
+    [contactView addSubview:mobileTextField];
+    
+    //短号
+    UIImageView* shortPhoneicon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 50, 16, 16)];
+    shortPhoneicon.image = Image(@"contact_shortnum");
+    [contactView addSubview:shortPhoneicon];
+    
+    UILabel* shortPhoneTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 50, 80, 18)];
+    shortPhoneTitleLabel.text = @"短      号:";
+    [contactView addSubview:shortPhoneTitleLabel];
+    
+    shortPhoneTextField = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(mobileTitleLabel.frame), 46, 180, 28)];
+    [shortPhoneTextField setBackgroundColor:COLOR(208, 208, 208)];
+    [contactView addSubview:shortPhoneTextField];
+    
+    
+    //办公电哈
+    UIImageView* telephoneicon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 95, 16, 16)];
+    telephoneicon.image = Image(@"contact_tel");
+    [contactView addSubview:telephoneicon];
+    
+    UILabel* telephoneTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 95, 80, 18)];
+    telephoneTitleLabel.text = @"办公电话:";
+    [contactView addSubview:telephoneTitleLabel];
+    
+    telephoneTextField= [[HPGrowingTextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(mobileTitleLabel.frame),90,180,28)];
+    [telephoneTextField setBackgroundColor:COLOR(208, 208, 208)];
+    [contactView addSubview:telephoneTextField];
+    
+    CGRect addressRect = CGRectMake(0, CGRectGetMaxY(contactView.frame) + 20, 320, 50);
+    UIView* addressView = [[UIView alloc] initWithFrame:addressRect];
+    addressView.layer.borderColor = COLOR(220, 220, 223).CGColor;
+    addressView.layer.borderWidth = 1;
+    [addressView setBackgroundColor:[UIColor whiteColor]];
+    [mainScrollView addSubview:addressView];
+    
+    UIImageView* officeAddressicon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 16, 16)];
+    officeAddressicon.image = Image(@"contact_place");
+    [addressView addSubview:officeAddressicon];
+    
+    UILabel* officeAddressTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 10, 80, 18)];
+    officeAddressTitleLabel.text = @"办公地址:";
+    [addressView addSubview:officeAddressTitleLabel];
+    
+    officeAddressTextField = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(mobileTitleLabel.frame), 4, 180, 28)];
+    [officeAddressTextField setBackgroundColor:COLOR(208, 208, 208)];
+    [addressView addSubview:officeAddressTextField];
+    
+    
+    float maxViewHight = CGRectGetMaxY(addressView.frame);
+    float contentHight = SCREEN_HEIGHT - 64 - 49 + 1;
+    [mainScrollView setContentSize:CGSizeMake(320,maxViewHight > contentHight ? maxViewHight : contentHight)];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -105,7 +224,9 @@
         backItem.title = @"返回";
         self.navigationItem.backBarButtonItem = backItem;
     }
+    [self.view setBackgroundColor:COLOR(239, 239, 239)];
     
+    [self createPersonInfoView];
     //添加键盘监视通知
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -140,22 +261,17 @@
     [officeAddressTextField setDelegate:self];
     //[officeAddressTextField setMaxNumberOfLines:1];
     
-    
-    [self roundTextView:mobileTextField];
-    [self roundTextView:telephoneTextField];
-    [self roundTextView:shortPhoneTextField];
-    [self roundTextView:officeAddressTextField];
-    
     //键盘toolBar--------------------------
     previousBtn=[[UIBarButtonItem alloc] initWithTitle:@"上一项" style:UIBarButtonItemStyleBordered target:self action:@selector(previousText)];
     nextBtn=[[UIBarButtonItem alloc] initWithTitle:@"下一项" style:UIBarButtonItemStyleBordered target:self action:@selector(nextText)];
     UIBarButtonItem *flexibleSpaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     doneBtn=[[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(doneTextEditing)];
     textToolBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0, BottomY, 320, 44)];
-    [textToolBar setItems:[NSArray arrayWithObjects:previousBtn,nextBtn,flexibleSpaceItem,doneBtn,nil]];
     if (System_Version_Small_Than_(7)) {
         [textToolBar setBarStyle:UIBarStyleBlackTranslucent];
     }
+    [textToolBar setItems:[NSArray arrayWithObjects:previousBtn,nextBtn,flexibleSpaceItem,doneBtn,nil]];
+
     [self.view addSubview:textToolBar];
     
     [self getUserInfoFromServer];
@@ -306,31 +422,30 @@
     [self setToolBarItemEnable];
 }
 
--(void)setScrollViewOffsetWithTextView:(HPGrowingTextView *)textView
-{
-    if(textView==officeAddressTextField)
-    {
-        [mainScrollView setContentOffset:CGPointMake(0,205) animated:YES];
-    }else if(textView==mobileTextField){
-        [mainScrollView setContentOffset:CGPointMake(0,35) animated:YES];
-    }else if(textView==shortPhoneTextField){
-        [mainScrollView setContentOffset:CGPointMake(0,90) animated:YES];
-    } else if(textView==telephoneTextField){
-        [mainScrollView setContentOffset:CGPointMake(0,150) animated:YES];
-    }
-}
-
 - (BOOL)growingTextViewShouldBeginEditing:(HPGrowingTextView *)growingTextView
 {
     if (IS_IPHONE_5){
         if(growingTextView==officeAddressTextField)
         {
-            [mainScrollView setContentOffset:CGPointMake(0,120) animated:YES];
+            [mainScrollView setContentOffset:CGPointMake(0,175) animated:YES];
         }else if(growingTextView==telephoneTextField){
-            [mainScrollView setContentOffset:CGPointMake(0,60) animated:YES];
+            [mainScrollView setContentOffset:CGPointMake(0,110) animated:YES];
+        }else if(growingTextView==mobileTextField){
+            [mainScrollView setContentOffset:CGPointMake(0,20) animated:YES];
+        }else if(growingTextView==shortPhoneTextField){
+            [mainScrollView setContentOffset:CGPointMake(0,64) animated:YES];
         }
     }else{
-        [self setScrollViewOffsetWithTextView:growingTextView];
+        if(growingTextView==officeAddressTextField)
+        {
+            [mainScrollView setContentOffset:CGPointMake(0,265) animated:YES];
+        }else if(growingTextView==mobileTextField){
+            [mainScrollView setContentOffset:CGPointMake(0,110) animated:YES];
+        }else if(growingTextView==shortPhoneTextField){
+            [mainScrollView setContentOffset:CGPointMake(0,154) animated:YES];
+        } else if(growingTextView==telephoneTextField){
+            [mainScrollView setContentOffset:CGPointMake(0,196) animated:YES];
+        }
     }
     
     TextDownView *tdView;
@@ -354,7 +469,7 @@
         tdView.noticeLabel.frame=labelRect;
         
         tdView.noticeLabel.font=[UIFont systemFontOfSize:12];
-        [mainScrollView addSubview:tdView];
+        [growingTextView.superview addSubview:tdView];
         growingTextView.textDownView=tdView;
     }
     [tdView setHidden:NO];

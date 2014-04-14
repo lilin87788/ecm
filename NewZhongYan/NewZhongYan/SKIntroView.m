@@ -23,13 +23,13 @@
 -(void)initSelf
 {
     mainScrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-    [mainScrollView setContentSize:CGSizeMake(self.frame.size.width*7, 0)];
+    [mainScrollView setContentSize:CGSizeMake(self.frame.size.width*6, 0)];
     [mainScrollView setBounces:NO];
     [mainScrollView setShowsHorizontalScrollIndicator:NO];
     [mainScrollView setPagingEnabled:YES];
     [mainScrollView setDelegate:self];
     [self addSubview:mainScrollView];
-    for (int i=0; i<7; i++)
+    for (int i=0; i<6; i++)
     {
         UIView *vi=[[UIView alloc] initWithFrame:CGRectMake(320*i, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
         UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, -20, vi.bounds.size.width, vi.bounds.size.height)];
@@ -41,7 +41,7 @@
         }
         [imageView setImage:[UIImage imageNamed:str]];
         [vi addSubview:imageView];
-        if(i==6){
+        if(i==5){
             UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
             [button setBackgroundImage:[UIImage imageNamed:@"buttonStart"] forState:UIControlStateNormal];
             [button setBackgroundImage:[UIImage imageNamed:@"buttonStart_pressed"] forState:UIControlStateHighlighted];
@@ -53,7 +53,7 @@
         [mainScrollView addSubview:vi];
     }
     pageControl=[[UIPageControl alloc] initWithFrame:CGRectMake(135, [UIScreen mainScreen].bounds.size.height-20-20, 50, 20)];
-    [pageControl setNumberOfPages:7];
+    [pageControl setNumberOfPages:6];
     pageControl.currentPage=0;
     [self addSubview:pageControl];
 }

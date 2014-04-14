@@ -22,9 +22,8 @@
         _CURRENTID = channelInfo[@"CURRENTID"];
         _PARENTID = channelInfo[@"PARENTID"];
         _HASSUBTYPE = [channelInfo[@"HASSUBTYPE"] boolValue];
-        NSTimeInterval time = [[DateUtils stringToDate:@"1970-01-01T08:00:00.000" DateFormat:dateTimeFormat] timeIntervalSince1970];
-        _MAXUPTM = [NSString stringWithFormat:@"%.0f",time*1000];
-        _MINUPTM = [NSString stringWithFormat:@"%.0f",time*1000];;
+        _MAXUPTM = @"0";
+        _MINUPTM = @"0";
         self.FIDLISTS = _FIDLIST;
         if (self.HASSUBTYPE) {
             NSString* sql = [NSString stringWithFormat:@"select * from T_CHANNEL WHERE PARENTID  = %@",self.CURRENTID];
@@ -44,6 +43,7 @@
 {
     NSString* sql = [NSString stringWithFormat:@"select max(uptm) MAXUPTM,min(uptm) MINUPTM from T_DOCUMENTS where channelid in (%@);",self.FIDLISTS];
     NSDictionary* dict = [[DBQueue  sharedbQueue] getSingleRowBySQL:sql];
+    
     if (dict) {
         if (![dict[@"MAXUPTM"] isEqual:[NSNull null]]) {
             _MAXUPTM = dict[@"MAXUPTM"];

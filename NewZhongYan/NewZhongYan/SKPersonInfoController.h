@@ -11,15 +11,15 @@
 
 @interface SKPersonInfoController : UIViewController<HPGrowingTextViewDelegate>
 {
-    __weak IBOutlet UILabel *nameLabel;
-    __weak IBOutlet UILabel *departmentLabel;
-    __weak IBOutlet UILabel *mailLabel;
-    __weak IBOutlet HPGrowingTextView *mobileTextField;
+      UILabel *nameLabel;
+      UILabel *departmentLabel;
+      UILabel *mailLabel;
+      HPGrowingTextView *mobileTextField;
 
-    __weak IBOutlet HPGrowingTextView *shortPhoneTextField;
-    __weak IBOutlet HPGrowingTextView *telephoneTextField;
-    __weak IBOutlet HPGrowingTextView *officeAddressTextField;
-    __weak IBOutlet UIView *toolVIew;
-    __weak IBOutlet UIScrollView *mainScrollView;
+      HPGrowingTextView *shortPhoneTextField;
+      HPGrowingTextView *telephoneTextField;
+      HPGrowingTextView *officeAddressTextField;
+      UIView *toolVIew;
+      UIScrollView *mainScrollView;
 }
 @end

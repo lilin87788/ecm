@@ -133,6 +133,8 @@
         self.navigationItem.backBarButtonItem = backItem;
     }
     
+    [self.view setBackgroundColor:COLOR(239, 239, 239)];
+    
     [oldTextView setDelegate:self];
     [newATextView setDelegate:self];
     [newBTextView setDelegate:self];

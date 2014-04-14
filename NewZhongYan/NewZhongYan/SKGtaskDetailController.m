@@ -172,34 +172,34 @@
 
 /**
  *  获取待办数据
+ NSData* data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"xml"]];
+ [self praserBusinessWithServerData:data];
+ if (![self.aBusiness.returncode isEqualToString:@"OK"])
+ {
+ isErrorHappened=YES;
+ NSString* msg = @"获取待办失败";
+ if ([self.aBusiness.returncode rangeOfString:@"1002"].location != NSNotFound)
+ {
+ msg = @"该待办已经办理";
+ NSString* sql = [NSString stringWithFormat:@"update T_REMINDS set STATUS = 1 where AID  = '%@'",[GTaskDetailInfo objectForKey:@"AID"]];
+ [[DBQueue sharedbQueue] updateDataTotableWithSQL:sql];
+ 
+ [[NSNotificationCenter defaultCenter] postNotificationName:@"refresh" object:0 userInfo:[NSDictionary dictionaryWithObject:[GTaskDetailInfo objectForKey:@"AID"] forKey:@"AID"]];
+ }
+ [BWStatusBarOverlay showMessage:msg duration:2 animated:YES];
+ return ;
+ }
+ NSString* step = (self.aBusiness.step && ![self.aBusiness.step isEqualToString:@""])
+ ?[NSString stringWithFormat:@"当前环节: %@",self.aBusiness.step]:@"";
+ [stepLabel setText:step];
+ [self createBusinessDetailViewWithData:self.aBusiness];
+ [myToolBar.secondButton setEnabled:YES];
+ [myToolBar.thirdButton setEnabled:YES];
+ 
+ return;
  */
 -(void)businessDataFromServer
 {
-    NSData* data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"xml"]];
-    [self praserBusinessWithServerData:data];
-    if (![self.aBusiness.returncode isEqualToString:@"OK"])
-    {
-        isErrorHappened=YES;
-        NSString* msg = @"获取待办失败";
-        if ([self.aBusiness.returncode rangeOfString:@"1002"].location != NSNotFound)
-        {
-            msg = @"该待办已经办理";
-            NSString* sql = [NSString stringWithFormat:@"update T_REMINDS set STATUS = 1 where AID  = '%@'",[GTaskDetailInfo objectForKey:@"AID"]];
-            [[DBQueue sharedbQueue] updateDataTotableWithSQL:sql];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"refresh" object:0 userInfo:[NSDictionary dictionaryWithObject:[GTaskDetailInfo objectForKey:@"AID"] forKey:@"AID"]];
-        }
-        [BWStatusBarOverlay showMessage:msg duration:2 animated:YES];
-        return ;
-    }
-    NSString* step = (self.aBusiness.step && ![self.aBusiness.step isEqualToString:@""])
-    ?[NSString stringWithFormat:@"当前环节: %@",self.aBusiness.step]:@"";
-    [stepLabel setText:step];
-    [self createBusinessDetailViewWithData:self.aBusiness];
-    [myToolBar.secondButton setEnabled:YES];
-    [myToolBar.thirdButton setEnabled:YES];
-
-    return;
     NSURL* workItemUrl = [DataServiceURLs getWorkItemDetails:[APPUtils userUid]
                                                         TFRM:[GTaskDetailInfo objectForKey:@"TFRM"]
                                                          AID:[GTaskDetailInfo objectForKey:@"AID"]];
@@ -207,9 +207,7 @@
     __weak SKHTTPRequest *req = request;
     [request setCompletionBlock:^{
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        NSData* data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"xml"]];
-        //data = req.responseData;
-        //NSLog(@"%@",req.responseString);
+        NSData* data = req.responseData;
         [self praserBusinessWithServerData:data];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (![self.aBusiness.returncode isEqualToString:@"OK"])

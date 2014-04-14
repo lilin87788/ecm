@@ -87,7 +87,6 @@
 -(void)setContentInset:(UIEdgeInsets)s
 {
 	UIEdgeInsets insets = s;
-	
 	if(s.bottom>8) insets.bottom = 0;
 	insets.top = 0;
 

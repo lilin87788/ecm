@@ -11,7 +11,6 @@
 #import "DDXMLDocument.h"
 #import "DDXMLElementAdditions.h"
 #import "DDXMLElement.h"
-#import "SKSystemMenuController.h"
 #import "SKPatternLockController.h"
 #import "SKAgentLogonManager.h"
 #import "LocalMetaDataManager.h"
@@ -30,7 +29,6 @@
 #define ClientInfomationCheckDate @"ClientInfomationCheckDate"
 @interface SKViewController ()
 {
-    SKSystemMenuController* settingController;
     BWStatusBarOverlay* BWStatusBar;
     //UIPageControl* pageController;
     
@@ -164,21 +162,6 @@
 
 -(void)showSettingView:(UIButton*)sender
 {
-    [settingController ecmTouchDown];
-}
-
--(void)initSetting
-{
-    settingController = [[APPUtils AppStoryBoard] instantiateViewControllerWithIdentifier:@"setting"];
-    settingController.rootController = self;
-    CGRect rect = CGRectMake(0,self.view.bounds.size.height - 44 - 44,320,self.view.bounds.size.height - 44);
-    if (IS_IOS7)
-    {
-        rect.origin.y += 44;
-    }
-    rect.origin.y+= 44;
-    [settingController.view setFrame:rect];
-    [self.view addSubview:settingController.view];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -346,7 +329,6 @@
     }
     [self initNavBar];
     [self initPageController];
-    [self initSetting];
     if (isFirstLogin) {
         SKLoginViewController* loginController = [[APPUtils AppStoryBoard] instantiateViewControllerWithIdentifier:@"loginController"];
         [FileUtils setvalueToPlistWithKey:@"EPSIZE" Value:@"5"];

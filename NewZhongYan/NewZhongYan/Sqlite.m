@@ -1181,7 +1181,6 @@ ENABLED	是否可用，1表示可用，0表示不可用（删除掉了）
     [filemanager removeItemAtPath:[SKAttachManger workNewsPath] error:0];
     //6 删除公司公文文件夹
     [filemanager removeItemAtPath:[SKAttachManger codocsPath] error:0];
-    
     //7 删除配置文件main_config.xml
     [filemanager removeItemAtPath:[[FileUtils documentPath] stringByAppendingPathComponent:@"main_config.xml"] error:0];
     
@@ -1204,6 +1203,8 @@ ENABLED	是否可用，1表示可用，0表示不可用（删除掉了）
     // 7 删除公共文档表
     [[DBQueue sharedbQueue] updateDataTotableWithSQL:@"DROP TABLE T_PUBDOCS"];
     //删除表
+    
+    //这里还需要修改
     //对数据库中的密码进行加密
     NSDictionary* item =[[DBQueue sharedbQueue] getSingleRowBySQL:@"select * from USER_REMS;"];
     if (item) {
@@ -1217,12 +1218,7 @@ ENABLED	是否可用，1表示可用，0表示不可用（删除掉了）
     [[APPUtils AppLogonManager] loginWithUser:[SKAppDelegate sharedCurrentUser]
                                 CompleteBlock:^{
                                     [SKClientApp getClientAppWithCompleteBlock:^{
-//                                        NSArray* array = [[DBQueue sharedbQueue] recordFromTableBySQL:@"select * from T_CLIENTAPP where HASPMS = 1 and ENABLED = 1 ORDER BY DEFAULTED;"];
-//                                        for (NSDictionary* dict in array)
-//                                        {
-//                                            SKClientApp* clientApp = [[SKClientApp alloc] initWithDictionary:dict];
-//                                            [SKDaemonManager SynChannelWithClientApp:clientApp complete:0 faliure:0];
-//                                        }
+                                        
                                     } faliureBlock:0];
                                     //获取频道信息
                                     //NSLog(@"正在获取频道信息");

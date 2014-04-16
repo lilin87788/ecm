@@ -19,28 +19,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NewZhongYan/SKGtaskDetailController.m"
-            timestampString = "419160409.951697"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1578"
-            endingLineNumber = "1578"
-            landmarkName = "-getSignature:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "NewZhongYan/SKViewController.m"
-            timestampString = "419164794.04528"
+            timestampString = "419218666.790981"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "400"
-            endingLineNumber = "400"
+            startingLineNumber = "382"
+            endingLineNumber = "382"
             landmarkName = "-onGetNewVersionDoneWithDic:"
             landmarkType = "5">
          </BreakpointContent>

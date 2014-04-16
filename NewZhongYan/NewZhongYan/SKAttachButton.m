@@ -32,12 +32,16 @@
         bgview.layer.cornerRadius = 4;
         
         _attachLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 14, 235, 20)];
+        [_attachLabel setUserInteractionEnabled:YES];
         [_attachLabel setTextColor:[UIColor blackColor]];
         [_attachLabel setBackgroundColor:[UIColor clearColor]];
         [_attachLabel setTextAlignment:NSTextAlignmentLeft];
         [_attachLabel setLineBreakMode:NSLineBreakByTruncatingMiddle];
         [_attachLabel setFont:[UIFont systemFontOfSize:16]];
         [self addSubview:_attachLabel];
+        
+        UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onLabelClicked:)];
+        [_attachLabel addGestureRecognizer:gesture];
         
         _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [_indicator setFrame:CGRectMake(264, 5, 38, 38)];
@@ -179,6 +183,10 @@
     }
 }
 
+-(void)onLabelClicked:(UITapGestureRecognizer*)gesture
+{
+    [self sendActionsForControlEvents:UIControlEventTouchUpInside];
+}
 
 -(void)loadAttachment{
     if (self.attachUrl && self.filePath)
@@ -191,11 +199,7 @@
             id<QLPreviewItem> a = [NSURL fileURLWithPath:self.filePath];
             if ([QLPreviewController canPreviewItem:a])
             {
-                //[[APPUtils visibleViewController] presentViewController:previewController animated:YES completion:^{
-                //}];
-                
                 [[[APPUtils visibleViewController] navigationController] pushViewController:previewController animated:YES];
-
             }
             return;
         }

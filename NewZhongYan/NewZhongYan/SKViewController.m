@@ -503,7 +503,7 @@
                 }
                 
             }else{
-                //有事后需要检查是否需要重新构建grid 界面 比如 bug10 首次登陆 help 界面 再进来的情况
+                //有时候需要检查是否需要重新构建grid 界面 比如 bug10 首次登陆 help 界面 再进来的情况
                 if (!clientAppArray) {
                     [self firstInitClientApp];
                     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ECONTACTSYNED"]) {

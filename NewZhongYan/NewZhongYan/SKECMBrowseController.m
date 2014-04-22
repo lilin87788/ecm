@@ -10,12 +10,17 @@
 #import "SKECMAttahController.h"
 
 @implementation SKECMBrowseController
+{
+}
 @synthesize contentList,viewControllers,kNumberOfPages,currentDictionary;
 
 #pragma mark -DMLazyScrollView delegate
 - (void)lazyScrollViewDidEndDecelerating:(DMLazyScrollView *)pagingView atPageIndex:(NSInteger)pageIndex
 {
-    if (![self.channel.TYPELABLE isEqualToString:@"meeting,"]) {
+ 
+    BOOL isMeeting = [self.channel.TYPELABLE rangeOfString:@"meeting"].location != NSNotFound;
+    BOOL isNotice = [self.channel.TYPELABLE rangeOfString:@"notice"].location != NSNotFound;
+    if (!isMeeting && !isNotice) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [[DBQueue sharedbQueue] updateDataTotableWithSQL:[NSString stringWithFormat:
                                                               @"update T_DOCUMENTS set READED = 1 where AID  = '%@'",

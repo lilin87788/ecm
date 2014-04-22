@@ -367,7 +367,6 @@
     }
     [bidArray addObject:currrentBid];
     [bidArray removeObjectAtIndex:0];
-    NSLog(@"self.bid = %@   %@",self.bid,[bidArray componentsJoinedByString:@":"]);
     self.bid = [bidArray componentsJoinedByString:@":"];
     NSURL* participantsURL = [DataServiceURLs getParticipants:[APPUtils userUid]
                                                          TFRM:[GTaskInfo objectForKey:@"TFRM"]

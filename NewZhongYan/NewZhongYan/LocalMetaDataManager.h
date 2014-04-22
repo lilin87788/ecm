@@ -44,5 +44,12 @@
 
 +(NSString*)newECMDataItemCount:(NSString*)currentFid;
 
+/**
+ *  这个不仅仅适用于会议也适用于通知了
+ *
+ *  @param currentFid <#currentFid description#>
+ *
+ *  @return <#return value description#>
+ */
 +(NSString*)newECMMeettingItemCount:(NSString*)currentFid;
 @end

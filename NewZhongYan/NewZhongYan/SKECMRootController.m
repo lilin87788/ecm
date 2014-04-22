@@ -131,8 +131,8 @@
                                                [NSMutableArray array],@"失效通知", nil];
             
             for (NSDictionary *dict in [NSArray arrayWithArray:dataArray]){
-                NSString* bz = [dict objectForKey:@"az"];
-                if (bz.intValue) {
+                NSString* az = [dict objectForKey:@"az"];
+                if (az.intValue) {
                     [(NSMutableArray*)[sectionDictionary objectForKey:@"有效通知"] addObject:dict];
                 }else{
                     [(NSMutableArray*)[sectionDictionary objectForKey:@"失效通知"]  addObject:dict];

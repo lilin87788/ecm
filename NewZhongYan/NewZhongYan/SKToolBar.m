@@ -24,9 +24,11 @@
     if (self) {
         self.backgroundColor = COLOR(247, 247, 247);
         homeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [homeButton setImage:Image(@"homepage") forState:UIControlStateNormal];
-        [homeButton setImage:Image(@"homepage_blue") forState:UIControlStateSelected];
-        [homeButton setImage:Image(@"homepage_blue") forState:UIControlStateHighlighted];
+        UIImage* homeImage = [Image(@"homepage") rescaleImageToSize:CGSizeMake(24, 24)];
+        UIImage* homeImage_press = [Image(@"homepage_blue") rescaleImageToSize:CGSizeMake(24, 24)];
+        [homeButton setImage:homeImage forState:UIControlStateNormal];
+        [homeButton setImage:homeImage_press forState:UIControlStateSelected];
+        [homeButton setImage:homeImage_press forState:UIControlStateHighlighted];
         [homeButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 8, 0)];
         [homeButton setFrame:CGRectMake(2, 0, 49, 49)];
         [homeButton addTarget:self action:@selector(backToRoot:) forControlEvents:UIControlEventTouchUpInside];
@@ -37,7 +39,7 @@
         homeLabel.text = @"首页";
         homeLabel.textAlignment = UITextAlignmentCenter;
         homeLabel.backgroundColor = [UIColor clearColor];
-        homeLabel.font = [UIFont systemFontOfSize:10];
+        homeLabel.font = [UIFont systemFontOfSize:12];
         CGPoint labelCenter = homeButton.center;
         labelCenter.y += 15;
         [homeLabel setCenter:labelCenter];
@@ -47,16 +49,19 @@
         searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [searchButton setFrame:CGRectMake(180, 0, 49, 49)];
         [searchButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 8, 0)];
-        [searchButton setImage:Image(@"btn_search_ecm") forState:UIControlStateNormal];
-        [searchButton setImage:Image(@"btn_search_ecm_press") forState:UIControlStateSelected];
-        [searchButton setImage:Image(@"btn_search_ecm_press") forState:UIControlStateHighlighted];
+        homeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage* searchImage = [Image(@"btn_search_ecm") rescaleImageToSize:CGSizeMake(24, 24)];
+        UIImage* searchImage_press = [Image(@"btn_search_ecm_press") rescaleImageToSize:CGSizeMake(24, 24)];
+        [searchButton setImage:searchImage forState:UIControlStateNormal];
+        [searchButton setImage:searchImage_press forState:UIControlStateSelected];
+        [searchButton setImage:searchImage_press forState:UIControlStateHighlighted];
         [self addSubview:searchButton];
         
         UILabel* searchLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
         searchLabel.text = @"搜索";
         searchLabel.textAlignment = UITextAlignmentCenter;
         searchLabel.backgroundColor = [UIColor clearColor];
-        searchLabel.font = [UIFont systemFontOfSize:10];
+        searchLabel.font = [UIFont systemFontOfSize:12];
         CGPoint searchLabelCenter = searchButton.center;
         searchLabelCenter.y += 15;
         [searchLabel setCenter:searchLabelCenter];
@@ -65,16 +70,18 @@
         refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [refreshButton setFrame:CGRectMake(260, 0, 49, 49)];
         [refreshButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 8, 0)];
-        [refreshButton setImage:[UIImage imageNamed:@"btn_refresh_ecm"] forState:UIControlStateNormal];
-        [refreshButton setImage:[UIImage imageNamed:@"btn_refresh_ecm_press"] forState:UIControlStateSelected];
-        [refreshButton setImage:[UIImage imageNamed:@"btn_refresh_ecm_press"] forState:UIControlStateSelected];
+        UIImage* refreshImage = [Image(@"btn_refresh_ecm") rescaleImageToSize:CGSizeMake(24, 24)];
+        UIImage* refreshImage_press = [Image(@"btn_refresh_ecm_press") rescaleImageToSize:CGSizeMake(24, 24)];
+        [refreshButton setImage:refreshImage forState:UIControlStateNormal];
+        [refreshButton setImage:refreshImage_press forState:UIControlStateSelected];
+        [refreshButton setImage:refreshImage_press forState:UIControlStateSelected];
         [self addSubview:refreshButton];
 
         UILabel* refreshLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
         refreshLabel.text = @"同步";
         refreshLabel.textAlignment = UITextAlignmentCenter;
         refreshLabel.backgroundColor = [UIColor clearColor];
-        refreshLabel.font = [UIFont systemFontOfSize:10];
+        refreshLabel.font = [UIFont systemFontOfSize:12];
         CGPoint refreshlabelCenter = refreshButton.center;
         refreshlabelCenter.y += 15;
         [refreshLabel setCenter:refreshlabelCenter];
@@ -103,9 +110,11 @@
     if (self) {
         self.backgroundColor = COLOR(247, 247, 247);
         homeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [homeButton setImage:Image(@"homepage") forState:UIControlStateNormal];
-        [homeButton setImage:Image(@"homepage_blue") forState:UIControlStateSelected];
-        [homeButton setImage:Image(@"homepage_blue") forState:UIControlStateHighlighted];
+        UIImage* homeImage = [Image(@"homepage") rescaleImageToSize:CGSizeMake(24, 24)];
+        UIImage* homeImage_press = [Image(@"homepage_blue") rescaleImageToSize:CGSizeMake(24, 24)];
+        [homeButton setImage:homeImage forState:UIControlStateNormal];
+        [homeButton setImage:homeImage_press forState:UIControlStateSelected];
+        [homeButton setImage:homeImage_press forState:UIControlStateHighlighted];
         [homeButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 8, 0)];
         [homeButton setFrame:CGRectMake(2, 0, 49, 49)];
         [homeButton addTarget:self action:@selector(backToRoot:) forControlEvents:UIControlEventTouchUpInside];
@@ -116,7 +125,7 @@
         homeLabel.text = @"首页";
         homeLabel.textAlignment = UITextAlignmentCenter;
         homeLabel.backgroundColor = [UIColor clearColor];
-        homeLabel.font = [UIFont systemFontOfSize:10];
+        homeLabel.font = [UIFont systemFontOfSize:12];
         CGPoint labelCenter = homeButton.center;
         labelCenter.y += 15;
         [homeLabel setCenter:labelCenter];

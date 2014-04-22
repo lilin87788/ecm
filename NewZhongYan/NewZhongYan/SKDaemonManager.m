@@ -235,7 +235,7 @@ static NSOperationQueue* sharedQueue = nil;
     NSURL* url = [SKECMURLManager getDocunmentWithChannelCode:_channel.CODE QueryDate:(_isUp ? _channel.MAXUPTM :_channel.MINUPTM) isUP:_isUp];
     SKHTTPRequest* request = [SKHTTPRequest requestWithURL:url];
     [request startSynchronous];
-    NSLog(@"%@ %@ ",request.url,request.responseString);
+    //NSLog(@"%@ %@ ",request.url,request.responseString);
     if (!request.error) {
         SKMessageEntity* entity = [[SKMessageEntity alloc] initWithData:[request responseData]];
         if (!entity.praserError) {

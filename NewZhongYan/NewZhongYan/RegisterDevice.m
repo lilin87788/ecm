@@ -38,7 +38,7 @@
     [request addRequestHeader:@"password" value:[APPUtils userPassword]];
     [request addRequestHeader:@"phone-brand" value:@"Apple"];
     [request addRequestHeader:@"phone-model" value:[[UIDevice currentDevice] platformString]];
-    [request addRequestHeader:@"phone-os" value:@"ipad"];
+    [request addRequestHeader:@"phone-os" value:@"iphone"];
     [request addRequestHeader:@"IMEI" value:[[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]];
     [request startSynchronous];
     if (request.error)

@@ -299,18 +299,18 @@
         if(array){
             for (UIDragButton*btn in upButtons) {
                 long long lmaxuptm = [btn.channel.MAXUPTM longLongValue];
-                //long long lminuptm = [btn.channel.MINUPTM longLongValue];
                 long long smaxuptm = [self maxuptmFromServer:array ChannelCode:btn.channel.CODE];
-                //NSLog(@"%@ lmax =  %lld  smax = %lld lmin =%lld",btn.channel.NAME,lmaxuptm,smaxuptm,lminuptm);
                 if (smaxuptm > lmaxuptm) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [btn setBadgeNumber:@"new"];
                     });
                 }else{
-                    if (![btn.channel.TYPELABLE isEqualToString:@"meeting,"]) {
-                        [btn setBadgeNumber:[LocalMetaDataManager newECMDataItemCount:btn.channel.FIDLISTS]];
+                    BOOL isMeeting = [btn.channel.TYPELABLE rangeOfString:@"meeting"].location != NSNotFound;
+                    BOOL isNotice = [btn.channel.TYPELABLE rangeOfString:@"notice"].location != NSNotFound;
+                    if (isMeeting || isNotice) {
+                        [btn setBadgeNumber:[LocalMetaDataManager newECMMeettingItemCount:btn.channel.FIDLISTS]];
                     }else{
-                         [btn setBadgeNumber:[LocalMetaDataManager newECMMeettingItemCount:btn.channel.FIDLISTS]];
+                        [btn setBadgeNumber:[LocalMetaDataManager newECMDataItemCount:btn.channel.FIDLISTS]];
                     }
                 }
             }
@@ -324,10 +324,12 @@
 -(void)setECMBadgeNumber{
     for (UIDragButton *btn in upButtons)
     {
-        if (![btn.channel.TYPELABLE isEqualToString:@"meeting,"]) {
-            [btn setBadgeNumber:[LocalMetaDataManager newECMDataItemCount:btn.channel.FIDLISTS]];
-        }else{
+        BOOL isMeeting = [btn.channel.TYPELABLE rangeOfString:@"meeting"].location != NSNotFound;
+        BOOL isNotice = [btn.channel.TYPELABLE rangeOfString:@"notice"].location != NSNotFound;
+        if (isMeeting || isNotice) {
             [btn setBadgeNumber:[LocalMetaDataManager newECMMeettingItemCount:btn.channel.FIDLISTS]];
+        }else{
+            [btn setBadgeNumber:[LocalMetaDataManager newECMDataItemCount:btn.channel.FIDLISTS]];
         }
     }
 }

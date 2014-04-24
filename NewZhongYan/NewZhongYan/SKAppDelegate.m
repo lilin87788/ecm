@@ -58,6 +58,9 @@ NSUInteger DeviceSystemMajorVersion() {
     InstallUncaughtExceptionHandler();
 }
 
+/**
+ *  创建和更新数据库
+ */
 -(void)creeateDatabase
 {
     //判断以前是不是安装过这个应用
@@ -75,6 +78,9 @@ NSUInteger DeviceSystemMajorVersion() {
     }
 }
 
+/**
+ *  创建网络监听
+ */
 -(void)createDataManager
 {
     InstallUncaughtExceptionHandler();
@@ -151,17 +157,17 @@ NSUInteger DeviceSystemMajorVersion() {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [_mainStoryboard instantiateInitialViewController];
     [self.window makeKeyAndVisible];
-    zView=[[UIImageView alloc]initWithFrame:self.window.frame];//初始化zView
+    zView=[[UIImageView alloc]initWithFrame:self.window.frame];
     if (IS_IPHONE_5){
-        zView.image=[UIImage imageNamed:@"Default-568h_logo"];//图片z.png 到zView
+        zView.image=[UIImage imageNamed:@"Default-568h_logo"];
     }else{
-        zView.image=[UIImage imageNamed:@"Default_logo"];//图片z.png 到zView
+        zView.image=[UIImage imageNamed:@"Default_logo"];
     }
-    rView=[[UIView alloc]initWithFrame:self.window.frame];//初始化rView
-    [rView addSubview:zView];//add 到rView
-    [self.window addSubview:rView];//add 到window
+    rView=[[UIView alloc]initWithFrame:self.window.frame];
+    [rView addSubview:zView];
+    [self.window addSubview:rView];
     
-    [self performSelector:@selector(TheAnimation) withObject:nil afterDelay:1];//5秒后执行TheAnimation
+    [self performSelector:@selector(TheAnimation) withObject:nil afterDelay:1];
     return YES;
 }
 
@@ -227,7 +233,6 @@ NSUInteger DeviceSystemMajorVersion() {
         }
     }
 }
-
 
 //注册成功
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken

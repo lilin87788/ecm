@@ -2078,7 +2078,7 @@
 			isa = PBXGroup;
 			children = (
 				F22E54C018E9051B00E3440A /* exception */,
-				F2D814851835C33300FE0839 /* helper */,
+				F2D814851835C33300FE0839 /* Datahelper */,
 				F2F79E87180D1A120004CAFC /* agent */,
 				F2F79E80180D16C40004CAFC /* dbutils */,
 				F2BA34A2180546F70018CAA3 /* UI */,
@@ -2137,7 +2137,7 @@
 			name = cell;
 			sourceTree = "<group>";
 		};
-		F2D814851835C33300FE0839 /* helper */ = {
+		F2D814851835C33300FE0839 /* Datahelper */ = {
 			isa = PBXGroup;
 			children = (
 				F2D814861835C75300FE0839 /* MainHelper.h */,
@@ -2161,7 +2161,7 @@
 				F2D814961835C75300FE0839 /* CODOCSHelper.h */,
 				F2D814971835C75300FE0839 /* CODOCSHelper.m */,
 			);
-			name = helper;
+			name = Datahelper;
 			path = ..;
 			sourceTree = "<group>";
 		};

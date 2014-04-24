@@ -13,7 +13,6 @@
 #import "SMPageControl.h"
 @interface SKViewController : UIViewController<UIDragButtonDelegate,drawPatternLockDelegate,SKDataDaemonHelperDelegate,UITabBarDelegate>
 {
-    NSMutableArray *upButtons;
     NSMutableArray* clientAppArray;
     BOOL isFirstLogin;
 }

@@ -15,8 +15,6 @@
 @interface SKAppDelegate : UIResponder <UIApplicationDelegate>
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UIStoryboard *mainStoryboard;
-@property (strong, nonatomic) UINavigationController* nav;
-
 @property (strong,nonatomic)  Reachability *internetReachability;
 @property (strong, nonatomic) NSOperationQueue    *queue;
 @property (strong, nonatomic) LocalMetaDataManager* metaDataManager;

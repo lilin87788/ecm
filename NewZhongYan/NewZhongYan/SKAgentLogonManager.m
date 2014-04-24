@@ -210,7 +210,7 @@
                 if (errorblock) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         UIAlertView* av = [UIAlertView showAlertString:@"帐号或者密码已经被修改请重新登录"];
-                        av.delegate = self;
+                        av.delegate = [APPUtils AppRootViewController];;
                         av.tag = 101;
                     });
                     //errorblock(@{@"name": @"登录失败",@"reason":@"帐号或者密码错误"});

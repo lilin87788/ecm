@@ -79,9 +79,16 @@ typedef void (^resultsetBlock)(NSArray *resultset);
 
 #define Image(_pointer) [UIImage imageNamed:_pointer]
 
+//测试环境
 //#define ZZZobt @"http://tam.hngytobacco.com/ZZZobta/aaa-agents/avs"
 
+//正式环境下的测试环境下
 #define ZZZobt @"http://tam.hngytobacco.com/ZZZobtb/aaa-agents-test/avs"
+
+//正式环境
+//#define ZZZobt @"http://tam.hngytobacco.com/ZZZobtb/aaa-agents/avs"
+
+//测试环境2
 //#define ZZZobt @"http://192.168.1.198:8080/aaa-agents-web/avs"
 
 //判断 手机的版本是不是大于某个值

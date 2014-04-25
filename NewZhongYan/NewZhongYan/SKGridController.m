@@ -30,21 +30,17 @@
 @end
 
 @implementation SKGridController
-
--(NSString*)controllerWithCode:(NSString*)code
-{
-    if ([code isEqualToString:@"copublicnotice"]) {
-        return @"SKAnnouncementItemController";
-    }
-    return @"SKAnnouncementItemController";
-}
-
 -(void)jumpToController:(id)sender
 {
     UIDragButton *btn=(UIDragButton *)[(UIDragButton *)sender superview];
     [_rootController performSegueWithIdentifier:@"SKECMRootController" sender:btn.channel];
 }
 
+/**
+ *  构建grid view 的界面
+ *
+ *  @param completeBlock <#completeBlock description#>
+ */
 -(void)initChannelView:(basicBlock)completeBlock
 {
     isLoadImage = YES;
@@ -89,7 +85,9 @@
     });
 }
 
+#pragma mark - EGOButton代理函数
 - (void)imageButtonLoadedImage:(EGOImageButton*)imageButton{
+    
 }
 
 - (void)imageButtonFailedToLoadImage:(EGOImageButton*)imageButton error:(NSError*)error
@@ -100,7 +98,14 @@
                                            context:(void*)imageButton];
 }
 
-// 这代码还需要测试 逻辑
+/**
+ *  这里还需要测试
+ *
+ *  @param keyPath <#keyPath description#>
+ *  @param object  <#object description#>
+ *  @param change  <#change description#>
+ *  @param context <#context description#>
+ */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
                         change:(NSDictionary *)change context:(void *)context {
     if (!isLoadImage) {
@@ -111,34 +116,12 @@
     [[SKAppDelegate sharedCurrentUser] removeObserver:self forKeyPath:@"logged"];
 }
 
-//取出xml中的app节点  并按照app节点中的location节点的值升序排序
--(NSArray *)dataFromXml
-{
-    NSString *path=[[FileUtils documentPath] stringByAppendingPathComponent:@"main_config.xml"];
-    NSData *data=[NSData dataWithContentsOfFile:path];
-    DDXMLDocument *doc = [[DDXMLDocument alloc]initWithData:data options:0 error:nil];
-    NSArray *items = [doc nodesForXPath:@"//app" error:nil];
-    
-    NSArray *array=[items sortedArrayUsingComparator:^NSComparisonResult(id obj1,id obj2)
-                    {
-                        DDXMLElement *element1=(DDXMLElement *)obj1;
-                        DDXMLElement *element2=(DDXMLElement *)obj2;
-                        DDXMLNode *locationElement1=[element1 elementForName:@"location"];
-                        DDXMLNode *locationElement2=[element2 elementForName:@"location"];
-                        NSInteger index1=[locationElement1.stringValue integerValue];
-                        NSInteger index2=[locationElement2.stringValue integerValue];
-                        if (index1 > index2) {
-                            return (NSComparisonResult)NSOrderedDescending;
-                        }
-                        if (index1 < index2)
-                        {
-                            return (NSComparisonResult)NSOrderedAscending;
-                        }
-                        return (NSComparisonResult)NSOrderedSame;
-                    }];
-    return array;
-}
-
+/**
+ *  设置每一个按钮的位置
+ *  注意在我这里 每一个按钮都对应一个平道
+ *  @param _bool         是否使用动画
+ *  @param shakingButton 被点中的按钮  如果是初始化界面的话 被点中的按钮可能会为空
+ */
 - (void)setUpButtonsFrameWithAnimate:(BOOL)_bool withoutShakingButton:(UIDragButton *)shakingButton
 {
     NSUInteger count = [upButtons count];
@@ -173,6 +156,11 @@
     }
 }
 
+/**
+ *  检查图标的位置 看是不是需要交换位置
+ *
+ *  @param shakingButton 被点中的button
+ */
 - (void)checkLocationOfOthersWithButton:(UIDragButton *)shakingButton
 {
     for (int i = 0; i < [upButtons count]; i++)
@@ -207,20 +195,11 @@
     }
 }
 
--(void)copyXMLToDocument
-{
-    //这里最好判断原xml文件是不是存在 在向doc中执行复制操作
-    NSString *path =[[NSString alloc]initWithString:[[NSBundle mainBundle]pathForResource:@"main_config"ofType:@"xml"]];
-    NSString *docPath=[[FileUtils documentPath] stringByAppendingPathComponent:@"main_config.xml"];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:docPath])
-    {
-        [[NSFileManager defaultManager] copyItemAtPath:path toPath:docPath error:nil];
-    }else{
-        [[NSFileManager defaultManager] removeItemAtPath:docPath error:0];
-        [[NSFileManager defaultManager] copyItemAtPath:path toPath:docPath error:nil];
-    }
-}
-
+/**
+ *  当该界面出现时  应检测该应用下对应的频道是不是有更新
+ *
+ *  @param animated <#animated description#>
+ */
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -236,7 +215,6 @@
                                                }];
         }];
     } faliure:^(NSError* error){
-        //NSLog(@"%@",error);
         [SKDaemonManager SynMaxUpdateDateWithClient:self.clientApp
                                            complete:^(NSMutableArray* array){
                                                dispatch_async(dispatch_get_main_queue(), ^{
@@ -252,10 +230,13 @@
 {
     [super viewDidLoad];
     [self initChannelView:^{
-            [self reloadBageNumber];
+        [self setECMBadgeNumber];
     }];
 }
 
+/**
+ *  刷新界面
+ */
 -(void)reloadData
 {
     [SKDaemonManager SynChannelWithClientApp:self.clientApp complete:^{
@@ -270,7 +251,6 @@
                                                }];
         }];
     } faliure:^(NSError* error){
-        //NSLog(@"%@",error);
         [SKDaemonManager SynMaxUpdateDateWithClient:self.clientApp
                                            complete:^(NSMutableArray* array){
                                                dispatch_async(dispatch_get_main_queue(), ^{
@@ -282,12 +262,19 @@
     }];
 }
 
+/**
+ *  获取某个频道下服务器上最大数据的时间
+ *
+ *  @param array 存储服务器上某应用下所有频道的最新数据时间
+ *  @param code  频道code
+ *
+ *  @return 13位的时间戳
+ */
 -(long long)maxuptmFromServer:(NSArray*)array ChannelCode:(NSString*)code{
     for (NSDictionary* dict in array) {
         NSDictionary* vinfo = dict[@"v"];
         if ([vinfo[@"CHANNELCODE"] isEqualToString:code]) {
             NSString* timestr = vinfo[@"LATESTTIME"];
-            //NSLog(@"%@ %@",timestr,code);
             NSTimeInterval time = [[DateUtils stringToDate:timestr DateFormat:dateTimeFormat] timeIntervalSince1970];
             return time*1000;
         }
@@ -295,6 +282,11 @@
     return 0;
 }
 
+/**
+ *  用服务器最新的数据信息 更新badge数据
+ *
+ *  @param array 服务器上该应用下的最新数据
+ */
 -(void)reloadBageNumberWithServerInfo:(NSArray*)array{
         if(array){
             for (UIDragButton*btn in upButtons) {
@@ -317,10 +309,9 @@
         }
 }
 
--(void)reloadBageNumber{
-    [self setECMBadgeNumber];
-}
-
+/**
+ *  设置ecm上badge的数值
+ */
 -(void)setECMBadgeNumber{
     for (UIDragButton *btn in upButtons)
     {
@@ -336,6 +327,5 @@
 
 -(void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
-    NSLog(@"SKGridController 我内存报警了，来治我吧。。。");
 }
 @end

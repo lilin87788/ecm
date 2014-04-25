@@ -29,9 +29,20 @@
 
 //返回成功插入的记录数
 
-
+/**
+ *  用于ecm
+ *
+ *  @param entity <#entity description#>
+ *  @param table  <#table description#>
+ */
 -(void)insertDataToTableWithDataArray:(SKMessageEntity*)entity TableName:(NSString*)table;
 
+/**
+ *  用于cms
+ *
+ *  @param entity   <#entity description#>
+ *  @param dataMeta <#dataMeta description#>
+ */
 -(void)insertDataToTableWithDataArray:(SKMessageEntity*)entity LocalDataMeta:(LocalDataMeta*)dataMeta;
 
 /**
